@@ -1,0 +1,107 @@
+import 'package:during/data/source/entity/saving_entity.dart';
+import 'package:during/data/source/entity/transaction_entity.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+
+class DuringDbProvider {
+  static DuringDbProvider? _duringDbProvider;
+
+  DuringDbProvider._internal() {
+    _duringDbProvider = this;
+  }
+
+  factory DuringDbProvider() =>
+      _duringDbProvider ?? DuringDbProvider._internal();
+
+  static late Database _database;
+
+  Future<Database> get database async {
+    _database = await _initDatabase();
+    return _database;
+  }
+
+  _initDatabase() async {
+    String path = join(await getDatabasesPath(), 'during.db');
+    return await openDatabase(
+      path,
+      version: 1,
+      onCreate: _onCreate,
+    );
+  }
+
+  Future _onCreate(Database db, int version) async {
+    await db.execute(
+        'CREATE TABLE duringTransaction (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+        'type TEXT, '
+        'date INTEGER, '
+        'nominal INTEGER, '
+        'category TEXT, '
+        'name TEXT, '
+        'color TEXT, '
+        'savingId INTEGER)');
+
+    await db.execute(
+        'CREATE TABLE duringSaving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+        'name TEXT, '
+        'balance INTEGER, '
+        'color TEXT)');
+  }
+
+  Future<void> saveTransaction(TransactionEntity transaction) async {
+    final Database db = await database;
+    await db.insert('duringTransaction', transaction.toMap());
+  }
+
+  Future<List<TransactionEntity>> loadDuringTransactions() async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result =
+        await db.query('duringTransaction', orderBy: 'id DESC');
+    List<TransactionEntity> transactions = result.isEmpty
+        ? []
+        : result.map((e) => TransactionEntity.fromMap(e)).toList();
+    return transactions;
+  }
+
+  Future<List<int>> totalIncome() async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db
+        .rawQuery('SELECT * FROM duringTransaction WHERE type = \'Income\'');
+    List<int> incomes = result.isEmpty
+        ? []
+        : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();
+    return incomes;
+  }
+
+  Future<List<int>> totalExpense() async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db
+        .rawQuery('SELECT * FROM duringTransaction WHERE type = \'Expense\'');
+    List<int> expenses = result.isEmpty
+        ? []
+        : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();
+    return expenses;
+  }
+
+  Future<void> insertSaving(SavingEntity saving) async {
+    final Database db = await database;
+    await db.insert('duringSaving', saving.toMap());
+  }
+
+  Future<List<int>> totalSavingBalance() async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db.query('duringSaving');
+    List<int> balance = result.isEmpty
+        ? []
+        : result.map((e) => SavingEntity.fromMap(e).balance!).toList();
+    return balance;
+  }
+
+  Future<List<SavingEntity>> loadSavings() async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db.query('duringSaving');
+    List<SavingEntity> balance = result.isEmpty
+        ? []
+        : result.map((e) => SavingEntity.fromMap(e)).toList();
+    return balance;
+  }
+}
