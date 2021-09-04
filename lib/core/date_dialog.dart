@@ -13,44 +13,109 @@ class DateDialog extends StatefulWidget {
 }
 
 class _DateDialogState extends State<DateDialog> {
-  DateTime _dateTime = DateTime.now();
+  late DateTime _currentDate;
+  late TimeOfDay _currentTime;
+
+  late DateTime _selectedDateTime;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentDate = DateTime.now();
+    _currentTime =
+        TimeOfDay(hour: _currentDate.hour, minute: _currentDate.minute);
+    _changeDateTime();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
-        HeaderText(title: 'Date', isMore: false),
-        SizedBox(height: 8),
-        GestureDetector(
-          onTap: () async {
-            var date = await showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(2021),
-              lastDate: DateTime(2025),
-            );
-            if (date != null) {
-              setState(() {
-                _dateTime = date;
-                widget.selectedDate(date.millisecondsSinceEpoch);
-              });
-            }
-          },
-          child: Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black38),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Text(
-              _getCurrentDate(_dateTime),
-              style: TextStyle(fontSize: 16),
-            ),
+        Expanded(
+          flex: 2,
+          child: Column(
+            children: [
+              HeaderText(title: 'Date', isMore: false),
+              SizedBox(height: 8),
+              GestureDetector(
+                onTap: () async {
+                  var date = await showDatePicker(
+                    context: context,
+                    initialDate: _currentDate,
+                    firstDate: DateTime(2020),
+                    lastDate: DateTime(2025),
+                  );
+                  if (date != null) {
+                    setState(() {
+                      _currentDate = date;
+                      _changeDateTime();
+                      widget.selectedDate(
+                          _selectedDateTime.millisecondsSinceEpoch);
+                    });
+                  }
+                },
+                child: Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black38),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Text(
+                    _getCurrentDate(_currentDate),
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(width: 8),
+        Expanded(
+          flex: 1,
+          child: Column(
+            children: [
+              HeaderText(title: 'Time', isMore: false),
+              SizedBox(height: 8),
+              GestureDetector(
+                onTap: () async {
+                  var selectedTime = await showTimePicker(
+                    context: context,
+                    initialTime: _currentTime,
+                  );
+
+                  if (selectedTime != null) {
+                    setState(() {
+                      _currentTime = selectedTime;
+                      _changeDateTime();
+                      widget.selectedDate(
+                          _selectedDateTime.millisecondsSinceEpoch);
+                    });
+                  }
+                },
+                child: Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black38),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Text(
+                    '${_currentTime.hour}:${_currentTime.minute}',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],
     );
+  }
+
+  void _changeDateTime() {
+    _selectedDateTime = DateTime(_currentDate.year, _currentDate.month,
+        _currentDate.day, _currentTime.hour, _currentTime.minute);
   }
 
   String _getCurrentDate(DateTime date) {
