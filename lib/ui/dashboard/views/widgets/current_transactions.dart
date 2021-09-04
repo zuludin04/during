@@ -1,13 +1,13 @@
 import 'package:during/core/helper.dart';
 import 'package:during/core/string_extension.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
-import 'package:during/ui/dashboard/controllers/home_controller.dart';
+import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CurrentTransaction extends StatelessWidget {
-  final HomeController controller;
+  final DashboardController controller;
 
   CurrentTransaction(this.controller);
 

@@ -1,5 +1,4 @@
 import 'package:during/ui/dashboard/bindings/dashboard_binding.dart';
-import 'package:during/ui/dashboard/bindings/home_binding.dart';
 import 'package:during/ui/dashboard/views/dashboard_screen.dart';
 import 'package:during/ui/saving/bindings/saving_insert_binding.dart';
 import 'package:during/ui/saving/bindings/saving_list_binding.dart';
@@ -20,10 +19,7 @@ class AppPages {
     GetPage(
       name: INITIAL,
       page: () => DashboardScreen(),
-      bindings: [
-        DashboardBinding(),
-        HomeBinding(),
-      ],
+      binding: DashboardBinding(),
     ),
     GetPage(
       name: _Path.TRANSACTION_CREATE,

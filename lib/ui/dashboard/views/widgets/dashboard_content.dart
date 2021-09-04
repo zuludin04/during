@@ -1,14 +1,13 @@
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
-import 'package:during/ui/dashboard/controllers/home_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/current_transactions.dart';
 import 'package:during/ui/dashboard/views/widgets/transaction_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeNavigation extends StatelessWidget {
+class DashboardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.find();
+    DashboardController controller = Get.find();
     return SafeArea(
       child: CustomScrollView(
         physics: BouncingScrollPhysics(),
@@ -58,10 +57,7 @@ class HomeNavigation extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        DashboardController controller = Get.find();
-                        controller.changeIndex(1);
-                      },
+                      onTap: () {},
                       child: Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -97,7 +93,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.center,
       padding: EdgeInsets.all(12),
       color: Colors.white,
       child: Row(
@@ -123,8 +119,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
           ),
           IconButton(
             icon: Icon(
-              Icons.notifications_on_outlined,
-              color: Color(0xffFFA400),
+              Icons.settings_outlined,
               size: 30,
             ),
             onPressed: () {},
