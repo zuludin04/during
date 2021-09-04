@@ -44,7 +44,8 @@ class DuringDbProvider {
         'CREATE TABLE duringSaving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
         'name TEXT, '
         'balance INTEGER, '
-        'color TEXT)');
+        'color TEXT, '
+        'date INTEGER)');
   }
 
   Future<void> saveTransaction(TransactionEntity transaction) async {

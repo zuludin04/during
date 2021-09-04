@@ -18,6 +18,7 @@ class SavingInsertController extends GetxController {
       name: name.value,
       balance: int.parse(balance.value),
       color: color.value,
+      date: DateTime.now().millisecondsSinceEpoch,
     );
 
     await _repository.insertSaving(saving);
