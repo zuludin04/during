@@ -48,9 +48,7 @@ class TransactionCreateScreen extends StatelessWidget {
                   TransactionType(_controller),
                   SizedBox(height: 16),
                   CategoryPicker(
-                    title: _controller.type.value == 'Income'
-                        ? 'Income'
-                        : 'Expense',
+                    title: 'Category',
                     dialogTitle: _controller.type.value == 'Income'
                         ? 'Income Category'
                         : 'Expense Category',
@@ -61,11 +59,6 @@ class TransactionCreateScreen extends StatelessWidget {
                     onSelectedCategory: (cat) =>
                         _controller.category.value = cat,
                   ),
-                  // category: _controller.category.value,
-                  // type: _controller.type.value,
-                  // onSelectedCategory: (cat) {
-                  //   _controller.category.value = cat;
-                  // },
                   SizedBox(height: 16),
                   Column(
                     children: [

@@ -50,20 +50,29 @@ class SavingListScreen extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: 35,
-              height: 35,
+              width: 40,
+              height: 40,
+              padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: Color(int.parse('0x${saving.color}')),
                 shape: BoxShape.circle,
               ),
               child: SvgPicture.asset(
-                  iconAssetByCategory(saving.category ?? 'Other')),
+                iconAssetByCategory(saving.category ?? 'Other'),
+                color: Colors.white,
+              ),
             ),
             SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(saving.name ?? ''),
+                Text(
+                  saving.name ?? '',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 Text('Rp ${saving.balance!.toPriceFormat()}'),
               ],
             ),
