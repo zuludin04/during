@@ -29,11 +29,12 @@ class DashboardScreen extends StatelessWidget {
               Icons.add
             ),
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: AnimatedBottomNavigationBar(
             icons: [
               Icons.home_outlined,
               Icons.swap_horiz_outlined,
+              Icons.download_outlined,
               Icons.settings_outlined,
             ],
             onTap: (index) => controller.changeIndex(index),
@@ -43,13 +44,14 @@ class DashboardScreen extends StatelessWidget {
             splashColor: Color(0xff373A36),
             inactiveColor: Colors.white,
             notchSmoothness: NotchSmoothness.defaultEdge,
-            gapLocation: GapLocation.end,
+            gapLocation: GapLocation.center,
           ),
           body: IndexedStack(
             index: controller.selectIndex,
             children: [
               HomeNavigation(),
               bottomNavScreen('Transaction'),
+              bottomNavScreen('Saving'),
               bottomNavScreen('Settings'),
             ],
           ),
