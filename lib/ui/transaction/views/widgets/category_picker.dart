@@ -52,28 +52,62 @@ class _CategoryPickerState extends State<CategoryPicker> {
     var categories =
         widget.type == 'Income' ? incomeCategories : expenseCategories;
     return Container(
-      color: Colors.white,
-      child: GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              Get.back(result: categories[index]);
-            },
-            child: Column(
-              children: [
-                SvgPicture.asset(
-                  iconAssetByCategory(categories[index]),
-                  width: 30,
-                  height: 30,
-                ),
-                Text(categories[index]),
-              ],
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+      ),
+      padding: EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.type == 'Income' ? 'Income Category' : 'Expense Category',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
             ),
-          );
-        },
-        itemCount: categories.length,
+          ),
+          SizedBox(height: 24),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    Get.back(result: categories[index]);
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xffffa400),
+                          shape: BoxShape.circle,
+                        ),
+                        padding: EdgeInsets.all(12),
+                        child: SvgPicture.asset(
+                          iconAssetByCategory(categories[index]),
+                          color: Color(0xff373a36),
+                          width: 30,
+                          height: 30,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        categories[index],
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              itemCount: categories.length,
+            ),
+          ),
+        ],
       ),
     );
   }
