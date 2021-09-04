@@ -10,6 +10,7 @@ class SavingInsertController extends GetxController {
   var name = ''.obs;
   var balance = ''.obs;
   var color = ''.obs;
+  var category = 'Bank'.obs;
 
   void insertSaving() async {
     if (color.value == '') color.value = ColorTools.colorCode(Colors.blue);
@@ -19,6 +20,7 @@ class SavingInsertController extends GetxController {
       balance: int.parse(balance.value),
       color: color.value,
       date: DateTime.now().millisecondsSinceEpoch,
+      category: category.value,
     );
 
     await _repository.insertSaving(saving);

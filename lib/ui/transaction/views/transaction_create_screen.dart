@@ -1,9 +1,10 @@
+import 'package:during/core/category_picker.dart';
 import 'package:during/core/date_dialog.dart';
 import 'package:during/core/header_text.dart';
+import 'package:during/core/helper.dart';
 import 'package:during/core/input_text_field.dart';
 import 'package:during/core/toolbar_during.dart';
 import 'package:during/ui/transaction/controllers/transaction_create_controller.dart';
-import 'package:during/ui/transaction/views/widgets/category_picker.dart';
 import 'package:during/ui/transaction/views/widgets/transaction_type.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,12 +48,24 @@ class TransactionCreateScreen extends StatelessWidget {
                   TransactionType(_controller),
                   SizedBox(height: 16),
                   CategoryPicker(
-                    category: _controller.category.value,
-                    type: _controller.type.value,
-                    onSelectedCategory: (cat) {
-                      _controller.category.value = cat;
-                    },
+                    title: _controller.type.value == 'Income'
+                        ? 'Income'
+                        : 'Expense',
+                    dialogTitle: _controller.type.value == 'Income'
+                        ? 'Income Category'
+                        : 'Expense Category',
+                    value: _controller.category.value,
+                    categories: _controller.type.value == 'Income'
+                        ? incomeCategories
+                        : expenseCategories,
+                    onSelectedCategory: (cat) =>
+                        _controller.category.value = cat,
                   ),
+                  // category: _controller.category.value,
+                  // type: _controller.type.value,
+                  // onSelectedCategory: (cat) {
+                  //   _controller.category.value = cat;
+                  // },
                   SizedBox(height: 16),
                   Column(
                     children: [

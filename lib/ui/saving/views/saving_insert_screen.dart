@@ -1,4 +1,6 @@
+import 'package:during/core/category_picker.dart';
 import 'package:during/core/color_dialog.dart';
+import 'package:during/core/helper.dart';
 import 'package:during/core/input_text_field.dart';
 import 'package:during/core/toolbar_during.dart';
 import 'package:during/ui/saving/controllers/saving_insert_controller.dart';
@@ -41,6 +43,15 @@ class SavingInsertScreen extends StatelessWidget {
               key: _formKey,
               child: Column(
                 children: [
+                  CategoryPicker(
+                    title: 'Category',
+                    dialogTitle: 'Saving Category',
+                    value: _controller.category.value,
+                    categories: savingCategories,
+                    onSelectedCategory: (cat) =>
+                        _controller.category.value = cat,
+                  ),
+                  SizedBox(height: 16),
                   SizedBox(height: 16),
                   InputTextField(
                     title: 'Name',

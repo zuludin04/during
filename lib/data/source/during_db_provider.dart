@@ -45,7 +45,8 @@ class DuringDbProvider {
         'name TEXT, '
         'balance INTEGER, '
         'color TEXT, '
-        'date INTEGER)');
+        'date INTEGER, '
+        'category TEXT)');
   }
 
   Future<void> saveTransaction(TransactionEntity transaction) async {

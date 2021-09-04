@@ -22,6 +22,12 @@ String iconAssetByCategory(String category) {
       return 'assets/category/icon_bonus.svg';
     case 'Selling':
       return 'assets/category/icon_selling.svg';
+    case 'Bank':
+      return 'assets/saving/icon_bank.svg';
+    case 'E-Money':
+      return 'assets/saving/icon_emoney.svg';
+    case 'Cash':
+      return 'assets/saving/icon_cash.svg';
     default:
       return 'assets/category/icon_other.svg';
   }
@@ -40,3 +46,4 @@ final expenseCategories = [
   'Other'
 ];
 final incomeCategories = ['Fee', 'Bonus', 'Selling'];
+final savingCategories = ['Bank', 'E-Money', 'Cash'];

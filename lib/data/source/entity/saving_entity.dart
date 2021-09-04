@@ -4,6 +4,7 @@ class SavingEntity {
   int? balance;
   String? color;
   int? date;
+  String? category;
 
   SavingEntity({
     this.id,
@@ -11,6 +12,7 @@ class SavingEntity {
     this.balance,
     this.color,
     this.date,
+    this.category,
   });
 
   SavingEntity.fromMap(Map<String, dynamic> map) {
@@ -19,6 +21,7 @@ class SavingEntity {
     balance = map['balance'];
     color = map['color'];
     date = map['date'];
+    category = map['category'];
   }
 
   Map<String, dynamic> toMap() {
@@ -28,6 +31,7 @@ class SavingEntity {
     map['balance'] = balance;
     map['color'] = color;
     map['date'] = date;
+    map['category'] = category;
     return map;
   }
 }
