@@ -99,7 +99,7 @@ class CurrentTransaction extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    transaction.date!.changeDateFormat('dd MMM yyyy'),
+                    transaction.date!.changeDateFormat('dd MMM yyyy, HH:mm'),
                     style: TextStyle(color: Colors.black87),
                   ),
                 ],
