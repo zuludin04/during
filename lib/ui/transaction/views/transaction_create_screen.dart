@@ -26,6 +26,16 @@ class TransactionCreateScreen extends StatelessWidget {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               _formKey.currentState!.save();
+              if (_controller.pickedSaving.value == 'Choose Saving') {
+                Get.rawSnackbar(message: 'Pick your account saving');
+                return;
+              }
+
+              if (_controller.savingBalance() < 0) {
+                Get.rawSnackbar(message: 'Your account balance will be minus.');
+                return;
+              }
+
               _controller.createTransaction();
             } else {
               Get.rawSnackbar(message: 'Field can\'t be empty');

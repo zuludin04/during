@@ -1,3 +1,4 @@
+import 'package:during/core/string_extension.dart';
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
@@ -34,6 +35,7 @@ class TransactionCreateController extends GetxController {
     );
 
     await _repository.saveTransaction(transaction);
+    await _repository.updateSavingBalance(saving.id, savingBalance());
     Get.back(result: type.value);
   }
 
@@ -42,7 +44,8 @@ class TransactionCreateController extends GetxController {
     if (result != null) {
       if (result is SavingEntity) {
         saving = result;
-        pickedSaving.value = result.name ?? '';
+        pickedSaving.value =
+            '${result.name} - (Rp ${result.balance!.toPriceFormat()})';
       }
     }
   }
@@ -53,5 +56,11 @@ class TransactionCreateController extends GetxController {
     } else {
       category.value = 'Education';
     }
+  }
+
+  int savingBalance() {
+    return type.value == 'Income'
+        ? saving.balance! + int.parse(nominal.value)
+        : saving.balance! - int.parse(nominal.value);
   }
 }

@@ -14,9 +14,9 @@ abstract class DuringRepository {
 
   Future<void> insertSaving(SavingEntity saving);
 
-  Future<int> userBalance();
-
   Future<List<SavingEntity>> loadSaving();
+
+  Future<void> updateSavingBalance(int? savingId, int? balance);
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -63,14 +63,9 @@ class DuringRepositoryImpl extends DuringRepository {
       _dbProvider.insertSaving(saving);
 
   @override
-  Future<int> userBalance() async {
-    var result = await _dbProvider.totalSavingBalance();
-    if (result.isEmpty)
-      return 0;
-    else
-      return result.sum;
-  }
+  Future<List<SavingEntity>> loadSaving() => _dbProvider.loadSavings();
 
   @override
-  Future<List<SavingEntity>> loadSaving() => _dbProvider.loadSavings();
+  Future<void> updateSavingBalance(int? savingId, int? balance) =>
+      _dbProvider.updateSavingBalance(savingId, balance);
 }

@@ -89,15 +89,6 @@ class DuringDbProvider {
     await db.insert('duringSaving', saving.toMap());
   }
 
-  Future<List<int>> totalSavingBalance() async {
-    final Database db = await database;
-    List<Map<String, dynamic>> result = await db.query('duringSaving');
-    List<int> balance = result.isEmpty
-        ? []
-        : result.map((e) => SavingEntity.fromMap(e).balance!).toList();
-    return balance;
-  }
-
   Future<List<SavingEntity>> loadSavings() async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.query('duringSaving');
@@ -105,5 +96,11 @@ class DuringDbProvider {
         ? []
         : result.map((e) => SavingEntity.fromMap(e)).toList();
     return balance;
+  }
+
+  Future<void> updateSavingBalance(int? savingId, int? balance) async {
+    final Database db = await database;
+    await db.update('duringSaving', {'balance': balance},
+        where: 'id=?', whereArgs: [savingId]);
   }
 }
