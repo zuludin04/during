@@ -6,6 +6,7 @@ import 'package:during/ui/saving/views/saving_insert_screen.dart';
 import 'package:during/ui/saving/views/saving_list_screen.dart';
 import 'package:during/ui/transaction/bindings/transaction_create_binding.dart';
 import 'package:during/ui/transaction/views/transaction_create_screen.dart';
+import 'package:during/ui/transaction/views/transaction_filter_screen.dart';
 import 'package:get/get.dart';
 
 part 'app_routes.dart';
@@ -25,6 +26,10 @@ class AppPages {
       name: _Path.TRANSACTION_CREATE,
       page: () => TransactionCreateScreen(),
       binding: TransactionCreateBinding(),
+    ),
+    GetPage(
+      name: _Path.TRANSACTION_RECORD,
+      page: () => TransactionFilterScreen(),
     ),
     GetPage(
       name: _Path.SAVING_INSERT,

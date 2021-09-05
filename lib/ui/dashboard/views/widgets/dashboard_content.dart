@@ -1,3 +1,4 @@
+import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/current_transactions.dart';
 import 'package:during/ui/dashboard/views/widgets/saving_slider.dart';
@@ -43,7 +44,7 @@ class DashboardContent extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => Get.toNamed(RoutePath.TRANSACTION_RECORD),
                       child: Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 12),
