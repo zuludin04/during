@@ -1,4 +1,5 @@
 import 'package:during/data/during_repository.dart';
+import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +7,7 @@ class DashboardController extends GetxController {
   final DuringRepository _repository = Get.find();
 
   var todayTransaction = <TransactionEntity>[].obs;
+  var savings = <SavingEntity>[].obs;
   var emptyTransaction = false.obs;
   var incomes = 0.obs;
   var expenses = 0.obs;
@@ -13,9 +15,15 @@ class DashboardController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    loadSavingList();
     loadIncomes();
     loadExpenses();
     loadTodayTransaction();
+  }
+
+  void loadSavingList() async {
+    var result = await _repository.loadSaving();
+    savings.value = result;
   }
 
   void loadTodayTransaction() async {

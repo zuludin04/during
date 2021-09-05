@@ -12,7 +12,7 @@ class TransactionInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 90,
+      height: 80,
       child: Row(
         children: [
           SizedBox(width: 10),
@@ -66,7 +66,6 @@ class TransactionInfo extends StatelessWidget {
                     fontSize: 13,
                   ),
                 ),
-                SizedBox(height: 5),
                 Text(
                   'Rp ${nominal.toPriceFormat()}',
                   style: TextStyle(

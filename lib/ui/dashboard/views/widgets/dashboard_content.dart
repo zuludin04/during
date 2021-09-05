@@ -1,5 +1,6 @@
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/current_transactions.dart';
+import 'package:during/ui/dashboard/views/widgets/saving_slider.dart';
 import 'package:during/ui/dashboard/views/widgets/transaction_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,22 +21,7 @@ class DashboardContent extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               SizedBox(height: 10),
-              Text(
-                'Balance',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Text(
-                'Rp 1.000.000',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              SavingSlider(controller),
               SizedBox(height: 20),
               Obx(
                 () => TransactionInfo(
