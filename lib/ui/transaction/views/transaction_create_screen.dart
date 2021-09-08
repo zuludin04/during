@@ -72,7 +72,7 @@ class TransactionCreateScreen extends StatelessWidget {
                   SizedBox(height: 16),
                   Column(
                     children: [
-                      HeaderText(title: 'Saving', isMore: false),
+                      HeaderText(title: 'Saving', showTrailing: false),
                       SizedBox(height: 8),
                       GestureDetector(
                         onTap: () {

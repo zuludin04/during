@@ -28,7 +28,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderText(title: widget.title, isMore: false),
+        HeaderText(title: widget.title, showTrailing: false),
         SizedBox(height: 8),
         GestureDetector(
           onTap: () async {

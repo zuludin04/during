@@ -1,13 +1,80 @@
+import 'package:during/core/helper.dart';
 import 'package:during/core/toolbar_during.dart';
+import 'package:during/ui/transaction/views/widgets/filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TransactionFilterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ToolbarDuring.defaultToolbar('Records'),
-      body: Center(
-        child: Text('Transaction Record'),
+      body: Column(
+        children: [
+          _filterBar(),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Text('Text #$index');
+              },
+              itemCount: 20,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _filterBar() {
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Container(
+              height: kToolbarHeight / 2,
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 80,
+                    margin: EdgeInsets.symmetric(horizontal: 8),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Color(0xffFFA400),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Text(
+                      dateRangeFilters[index],
+                      style: TextStyle(color: Color(0xff373A36)),
+                    ),
+                  );
+                },
+                itemCount: dateRangeFilters.length,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 50,
+            child: GestureDetector(
+              onTap: () async {
+                var result = await Get.bottomSheet(FilterBottomSheet());
+                if (result != null) {
+                  if (result == true) {
+                    print('Filter transaction list');
+                  }
+                }
+              },
+              child: Icon(
+                Icons.filter_list,
+                color: Color(0xff373A36),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

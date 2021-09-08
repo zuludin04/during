@@ -18,7 +18,7 @@ class _ColorDialogState extends State<ColorDialog> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderText(title: 'Color', isMore: false),
+        HeaderText(title: 'Color', showTrailing: false),
         SizedBox(height: 8),
         GestureDetector(
           onTap: () {

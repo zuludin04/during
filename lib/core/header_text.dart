@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 
 class HeaderText extends StatelessWidget {
   final String title;
-  final bool isMore;
+  final bool showTrailing;
   final String more;
   final double titleSize;
   final double moreSize;
-  final Function()? onMoreTap;
+  final Widget? trailing;
+  final Function()? onTrailingTap;
 
   HeaderText({
     required this.title,
-    required this.isMore,
+    required this.showTrailing,
     this.more = '',
     this.titleSize = 16,
     this.moreSize = 13,
-    this.onMoreTap,
+    this.trailing,
+    this.onTrailingTap,
   });
 
   @override
@@ -32,20 +34,24 @@ class HeaderText extends StatelessWidget {
           ),
         ),
         Visibility(
-          visible: isMore,
+          visible: showTrailing,
           child: GestureDetector(
-            onTap: onMoreTap,
-            child: Text(
-              more,
-              style: TextStyle(
-                fontSize: moreSize,
-                color: Color(0xff757575),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            onTap: onTrailingTap,
+            child: trailing ?? _trailingMoreWidget(),
           ),
         )
       ],
+    );
+  }
+
+  Widget _trailingMoreWidget() {
+    return Text(
+      more,
+      style: TextStyle(
+        fontSize: moreSize,
+        color: Color(0xff757575),
+        fontWeight: FontWeight.w500,
+      ),
     );
   }
 }

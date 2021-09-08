@@ -35,7 +35,7 @@ class _DateDialogState extends State<DateDialog> {
           flex: 2,
           child: Column(
             children: [
-              HeaderText(title: 'Date', isMore: false),
+              HeaderText(title: 'Date', showTrailing: false),
               SizedBox(height: 8),
               GestureDetector(
                 onTap: () async {
@@ -75,7 +75,7 @@ class _DateDialogState extends State<DateDialog> {
           flex: 1,
           child: Column(
             children: [
-              HeaderText(title: 'Time', isMore: false),
+              HeaderText(title: 'Time', showTrailing: false),
               SizedBox(height: 8),
               GestureDetector(
                 onTap: () async {

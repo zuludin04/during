@@ -25,7 +25,7 @@ class InputTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderText(title: title, isMore: false),
+        HeaderText(title: title, showTrailing: false),
         SizedBox(height: 8),
         Container(
           child: TextFormField(

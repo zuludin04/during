@@ -31,7 +31,7 @@ class _FormFieldSpinnerState extends State<FormFieldSpinner> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderText(title: widget.title, isMore: false),
+        HeaderText(title: widget.title, showTrailing: false),
         SizedBox(height: 8),
         FormField<String>(
           builder: (FormFieldState<String> state) {
