@@ -1,15 +1,20 @@
 import 'package:during/core/header_text.dart';
 import 'package:during/core/helper.dart';
+import 'package:during/ui/transaction/controllers/transaction_filter_controller.dart';
 import 'package:during/ui/transaction/views/widgets/chip_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FilterBottomSheet extends StatelessWidget {
+  final TransactionFilterController _controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return SafeArea(
       top: true,
       child: Container(
+        height: size.height * 0.80,
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -38,7 +43,10 @@ class FilterBottomSheet extends StatelessWidget {
                   SizedBox(height: 12),
                   ChipCategories('Category', expenseCategories),
                   SizedBox(height: 12),
-                  ChipCategories('Saving', ['BCA', 'BSI']),
+                  Obx(
+                    () => ChipCategories('Saving',
+                        _controller.savings.map((e) => e.name!).toList()),
+                  ),
                 ],
               ),
             ),

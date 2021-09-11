@@ -21,15 +21,18 @@ class _ChipCategoriesState extends State<ChipCategories> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HeaderText(title: widget.title, showTrailing: false, titleSize: 14),
+        SizedBox(height: 5),
         Wrap(
           children: chipsCategory(widget.categories)
               .map((e) => ChoiceChip(
-                    label: Text(e.title!),
-                    selected: e.id == _idSelected,
-                    onSelected: (_) => setState(
-                      () => _idSelected = e.id!,
+                    label: Text(
+                      e.title!,
+                      style: TextStyle(color: Colors.white),
                     ),
-                    selectedColor: Colors.red,
+                    padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                    selected: e.id == _idSelected,
+                    onSelected: (_) => setState(() => _idSelected = e.id!),
+                    selectedColor: Color(0xffFFA400),
                   ))
               .toList(),
           spacing: 8,

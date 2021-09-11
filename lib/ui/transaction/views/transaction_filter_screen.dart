@@ -49,7 +49,7 @@ class TransactionFilterScreen extends StatelessWidget {
                     ),
                     child: Text(
                       dateRangeFilters[index],
-                      style: TextStyle(color: Color(0xff373A36)),
+                      style: TextStyle(color: Colors.white),
                     ),
                   );
                 },
@@ -61,7 +61,11 @@ class TransactionFilterScreen extends StatelessWidget {
             width: 50,
             child: GestureDetector(
               onTap: () async {
-                var result = await Get.bottomSheet(FilterBottomSheet());
+                var result = await Get.bottomSheet(
+                  FilterBottomSheet(),
+                  isScrollControlled: true,
+                  ignoreSafeArea: false,
+                );
                 if (result != null) {
                   if (result == true) {
                     print('Filter transaction list');
