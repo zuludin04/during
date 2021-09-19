@@ -23,7 +23,6 @@ class DashboardContent extends StatelessWidget {
             delegate: SliverChildListDelegate([
               SizedBox(height: 10),
               SavingSlider(controller),
-              SizedBox(height: 20),
               Obx(
                 () => TransactionInfo(
                     controller.incomes.value, controller.expenses.value),

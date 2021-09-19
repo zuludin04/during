@@ -15,20 +15,29 @@ class SavingSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Container(
-        height: 160,
-        child: CarouselSlider.builder(
-          itemCount: controller.savings.length,
-          itemBuilder: (context, index, realIndex) {
-            return _savingCardItem(controller.savings[realIndex]);
-          },
-          options: CarouselOptions(
-            scrollPhysics: BouncingScrollPhysics(),
-            autoPlay: false,
-            aspectRatio: 2.0,
-            enlargeCenterPage: true,
-            enableInfiniteScroll: false,
-          ),
+      () => Visibility(
+        visible: controller.savings.isNotEmpty,
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 160,
+              child: CarouselSlider.builder(
+                itemCount: controller.savings.length,
+                itemBuilder: (context, index, realIndex) {
+                  return _savingCardItem(controller.savings[realIndex]);
+                },
+                options: CarouselOptions(
+                  scrollPhysics: BouncingScrollPhysics(),
+                  autoPlay: false,
+                  aspectRatio: 2.0,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: false,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+          ],
         ),
       ),
     );
