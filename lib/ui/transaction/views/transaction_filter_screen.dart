@@ -1,5 +1,7 @@
 import 'package:during/core/helper.dart';
 import 'package:during/core/toolbar_during.dart';
+import 'package:during/data/model/filter_transaction.dart';
+import 'package:during/ui/transaction/controllers/transaction_filter_controller.dart';
 import 'package:during/ui/transaction/views/widgets/filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,9 +69,12 @@ class TransactionFilterScreen extends StatelessWidget {
                   ignoreSafeArea: false,
                 );
                 if (result != null) {
-                  if (result == true) {
-                    print('Filter transaction list');
+                  if (result is FilterTransaction) {
+                    print('Filter range is ${result.range}');
                   }
+                } else {
+                  var c = Get.find<TransactionFilterController>();
+                  c.typed.value = c.filtered.type!;
                 }
               },
               child: Icon(

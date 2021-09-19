@@ -37,29 +37,65 @@ class FilterBottomSheet extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  ChipCategories('Range', dateRangeFilters),
+                  ChipCategories(
+                    title: 'Range',
+                    categories: dateRangeFilters,
+                    selected: _controller.filtered.range!,
+                    onSelected: _controller.changeFilterRange,
+                  ),
                   SizedBox(height: 12),
-                  ChipCategories('Type', types),
-                  SizedBox(height: 12),
-                  ChipCategories('Category', expenseCategories),
+                  ChipCategories(
+                    title: 'Type',
+                    categories: types,
+                    selected: _controller.filtered.type!,
+                    onSelected: _controller.changeFilterType,
+                  ),
                   SizedBox(height: 12),
                   Obx(
-                    () => ChipCategories('Saving',
-                        _controller.savings.map((e) => e.name!).toList()),
+                    () => ChipCategories(
+                      title: 'Category',
+                      categories: _controller.typed.value == 1
+                          ? incomeCategories
+                          : expenseCategories,
+                      selected: _controller.filtered.category!,
+                      onSelected: _controller.changeFilterCategory,
+                    ),
                   ),
+                  SizedBox(height: 12),
+                  Obx(() {
+                    if (_controller.emptySaving.value) {
+                      return _emptySaving();
+                    } else {
+                      return ChipCategories(
+                          title: 'Saving',
+                          categories:
+                              _controller.savings.map((e) => e.name!).toList());
+                    }
+                  }),
                 ],
               ),
             ),
             Container(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => Get.back(result: true),
+                onPressed: () => _controller.filterTransaction(),
                 child: Text('Filter'),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _emptySaving() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        HeaderText(title: 'Saving', showTrailing: false, titleSize: 14),
+        SizedBox(height: 5),
+        Text('Your saving still empty'),
+      ],
     );
   }
 }

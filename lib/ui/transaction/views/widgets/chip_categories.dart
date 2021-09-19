@@ -5,15 +5,28 @@ import 'package:flutter/material.dart';
 class ChipCategories extends StatefulWidget {
   final String title;
   final List<String> categories;
+  final int selected;
+  final Function(int id)? onSelected;
 
-  ChipCategories(this.title, this.categories);
+  ChipCategories({
+    required this.title,
+    required this.categories,
+    this.selected = 0,
+    this.onSelected,
+  });
 
   @override
   _ChipCategoriesState createState() => _ChipCategoriesState();
 }
 
 class _ChipCategoriesState extends State<ChipCategories> {
-  int _idSelected = 0;
+  late int _idSelected;
+
+  @override
+  void initState() {
+    _idSelected = widget.selected;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +44,10 @@ class _ChipCategoriesState extends State<ChipCategories> {
                     ),
                     padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                     selected: e.id == _idSelected,
-                    onSelected: (_) => setState(() => _idSelected = e.id!),
+                    onSelected: (_) => setState(() {
+                      _idSelected = e.id!;
+                      widget.onSelected!(e.id!);
+                    }),
                     selectedColor: Color(0xffFFA400),
                   ))
               .toList(),
