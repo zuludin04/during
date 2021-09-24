@@ -13,12 +13,15 @@ class DashboardScreen extends StatelessWidget {
         onPressed: () async {
           var result = await Get.toNamed(RoutePath.TRANSACTION_CREATE);
           DashboardController controller = Get.find();
-          if (result == 'Income') {
-            controller.loadIncomes();
-            controller.loadTodayTransaction();
-          } else if (result == 'Expense') {
-            controller.loadExpenses();
-            controller.loadTodayTransaction();
+          if (result != null) {
+            if (result == 'Income') {
+              controller.loadIncomes();
+              controller.loadTodayTransaction();
+            } else if (result == 'Expense') {
+              controller.loadExpenses();
+              controller.loadTodayTransaction();
+            }
+            controller.loadSavingList();
           }
         },
         child: Icon(Icons.add),
