@@ -14,7 +14,7 @@ class ToolbarDuring {
       backgroundColor: Colors.white,
       title: Text(
         title,
-        style: TextStyle(color: Color(0xff111410)),
+        style: TextStyle(color: Color(0xff111410), fontSize: 18),
       ),
       centerTitle: true,
       elevation: 0,

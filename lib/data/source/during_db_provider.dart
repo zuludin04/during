@@ -98,6 +98,16 @@ class DuringDbProvider {
     return balance;
   }
 
+  Future<SavingEntity> loadSingleSaving(int id) async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result =
+        await db.rawQuery('SELECT * FROM duringSaving WHERE id = $id');
+    List<SavingEntity> balance = result.isEmpty
+        ? []
+        : result.map((e) => SavingEntity.fromMap(e)).toList();
+    return balance[0];
+  }
+
   Future<void> updateSavingBalance(int? savingId, int? balance) async {
     final Database db = await database;
     await db.update('duringSaving', {'balance': balance},

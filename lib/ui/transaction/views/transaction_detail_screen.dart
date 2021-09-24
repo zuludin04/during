@@ -1,0 +1,101 @@
+import 'package:during/core/header_text.dart';
+import 'package:during/core/string_extension.dart';
+import 'package:during/core/toolbar_during.dart';
+import 'package:during/ui/transaction/controllers/transaction_detail_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class TransactionDetailScreen extends StatelessWidget {
+  final TransactionDetailController _controller = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: ToolbarDuring.defaultToolbar('Transaction Detail'),
+      body: Container(
+        width: double.infinity,
+        margin: EdgeInsets.all(16),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GetBuilder<TransactionDetailController>(
+                  builder: (controller) {
+                    return RichText(
+                      text: TextSpan(
+                          text: 'From ',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                          children: [
+                            TextSpan(
+                              text: controller.saving,
+                              style: TextStyle(
+                                color: Color(int.parse(
+                                    '0x${controller.transaction.color}')),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ]),
+                    );
+                  },
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Rp ${_controller.transaction.nominal!.toPriceFormat()}',
+                  style: TextStyle(
+                    fontSize: 26,
+                    color: _controller.transaction.type == 'Income'
+                        ? Colors.green
+                        : Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  _controller.transaction.date!
+                      .changeDateFormat('dd MMM yyyy, HH:mm'),
+                  style: TextStyle(color: Colors.black87),
+                ),
+                _transactionInfo('Name', '${_controller.transaction.name}'),
+                _transactionInfo('Type', '${_controller.transaction.type}'),
+                _transactionInfo(
+                    'Category', '${_controller.transaction.category}'),
+                SizedBox(height: 16),
+                Divider(color: Colors.black12, thickness: 1),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.delete),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.edit),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _transactionInfo(String header, String item) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 16),
+        HeaderText(title: header, showTrailing: false, titleSize: 15),
+        Text(
+          item,
+          style: TextStyle(fontSize: 16),
+        ),
+      ],
+    );
+  }
+}
