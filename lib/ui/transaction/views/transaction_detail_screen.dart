@@ -68,7 +68,24 @@ class TransactionDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.defaultDialog(
+                          title: 'Delete Transaction',
+                          content:
+                              Text('Are you sure want to delete transaction?'),
+                          confirm: TextButton(
+                            onPressed: () {
+                              Get.back();
+                              _controller.deleteTransaction();
+                            },
+                            child: Text('OK'),
+                          ),
+                          cancel: TextButton(
+                            onPressed: () => Get.back(),
+                            child: Text('Cancel'),
+                          ),
+                        );
+                      },
                       icon: Icon(Icons.delete),
                     ),
                     IconButton(
