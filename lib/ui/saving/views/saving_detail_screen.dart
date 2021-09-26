@@ -41,31 +41,39 @@ class SavingDetailScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 12),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SvgPicture.asset(
-                        iconAssetByCategory(_saving.category ?? 'Other'),
-                        width: 35,
-                        height: 35,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _saving.name ?? '',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                              ),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            iconAssetByCategory(_saving.category ?? 'Other'),
+                            width: 35,
+                            height: 35,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            _saving.name ?? '',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
                             ),
-                            Text(_saving.category ?? ''),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Type'),
+                          Text(
+                            _saving.category ?? '',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
                         children: [
                           Text('Created'),
                           Text(
