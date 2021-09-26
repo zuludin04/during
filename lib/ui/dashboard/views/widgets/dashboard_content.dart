@@ -108,7 +108,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
               Icons.settings_outlined,
               size: 30,
             ),
-            onPressed: () {},
+            onPressed: () => Get.toNamed(RoutePath.SETTINGS),
           ),
         ],
       ),
