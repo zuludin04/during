@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 class TransactionCreateController extends GetxController {
   final DuringRepository _repository = Get.find();
 
+  String? transactionType;
   SavingEntity saving = SavingEntity();
 
   var name = ''.obs;
@@ -16,11 +17,20 @@ class TransactionCreateController extends GetxController {
   var date = 0.obs;
   var type = 'Income'.obs;
   var pickedSaving = 'Choose Saving'.obs;
+  var transactionId = 0;
+
+  TransactionCreateController(String? transaction) {
+    this.transactionType = transaction;
+  }
 
   @override
   void onInit() {
     super.onInit();
-    date.value = DateTime.now().millisecondsSinceEpoch;
+    if (transactionType! == 'Update') {
+      _loadInitialValue(Get.arguments);
+    } else {
+      date.value = DateTime.now().millisecondsSinceEpoch;
+    }
   }
 
   void createTransaction() async {
@@ -34,7 +44,11 @@ class TransactionCreateController extends GetxController {
       savingId: saving.id,
     );
 
-    await _repository.saveTransaction(transaction);
+    if (transactionType! == 'Update') {
+      await _repository.updateTransaction(transaction..id = transactionId);
+    } else {
+      await _repository.saveTransaction(transaction);
+    }
     await _repository.updateSavingBalance(saving.id, savingBalance());
     Get.back(result: type.value);
   }
@@ -56,6 +70,21 @@ class TransactionCreateController extends GetxController {
     } else {
       category.value = 'Education';
     }
+  }
+
+  void _loadInitialValue(TransactionEntity transaction) async {
+    transactionId = transaction.id!;
+    name.value = transaction.name!;
+    nominal.value = transaction.nominal!.toPriceFormat();
+    type.value = transaction.type!;
+    category.value = transaction.category!;
+    date.value = transaction.date!;
+
+    var savingResult =
+        await _repository.loadSingleSaving(transaction.savingId!);
+    saving = savingResult;
+    pickedSaving.value =
+        '${savingResult.name} - (Rp ${savingResult.balance!.toPriceFormat()})';
   }
 
   int savingBalance() {

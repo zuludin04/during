@@ -42,7 +42,7 @@ class TransactionCreateScreen extends StatelessWidget {
             }
           },
           child: Text(
-            'Add',
+            _controller.transactionType!,
             style: TextStyle(fontSize: 16),
           ),
         ),
@@ -100,18 +100,23 @@ class TransactionCreateScreen extends StatelessWidget {
                     hint: 'Total',
                     onSaved: _controller.nominal,
                     keyboardType: TextInputType.number,
+                    text: _controller.nominal.value,
                     currencyFormat: true,
                   ),
                   SizedBox(height: 16),
                   InputTextField(
                     title: 'Name',
                     hint: 'Name',
+                    text: _controller.name.value,
                     onSaved: _controller.name,
                   ),
                   SizedBox(height: 16),
-                  DateDialog((int date) {
-                    _controller.date.value = date;
-                  }),
+                  DateDialog(
+                    (int date) {
+                      _controller.date.value = date;
+                    },
+                    DateTime.fromMillisecondsSinceEpoch(_controller.date.value),
+                  ),
                 ],
               ),
             ),

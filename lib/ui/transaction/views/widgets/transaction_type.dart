@@ -11,7 +11,17 @@ class TransactionType extends StatefulWidget {
 }
 
 class _TransactionTypeState extends State<TransactionType> {
-  List<bool> _typeSelected = [true, false];
+  late List<bool> _typeSelected;
+
+  @override
+  void initState() {
+    if (widget.controller.type.value == 'Income') {
+      _typeSelected = [true, false];
+    } else {
+      _typeSelected = [false, true];
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

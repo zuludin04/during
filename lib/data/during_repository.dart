@@ -8,6 +8,8 @@ abstract class DuringRepository {
 
   Future<void> deleteTransaction(int? id);
 
+  Future<void> updateTransaction(TransactionEntity transaction);
+
   Future<List<TransactionEntity>> loadTodayTransaction();
 
   Future<int> countTotalIncome();
@@ -34,6 +36,10 @@ class DuringRepositoryImpl extends DuringRepository {
 
   @override
   Future<void> deleteTransaction(int? id) => _dbProvider.deleteTransaction(id);
+
+  @override
+  Future<void> updateTransaction(TransactionEntity transaction) =>
+      _dbProvider.updateTransaction(transaction);
 
   @override
   Future<List<TransactionEntity>> loadTodayTransaction() async {

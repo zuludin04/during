@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class TransactionCreateBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => TransactionCreateController());
+    String? transaction = Get.parameters['transaction'];
+    Get.lazyPut(() => TransactionCreateController(transaction));
   }
 }

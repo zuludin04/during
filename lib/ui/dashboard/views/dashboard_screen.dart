@@ -11,7 +11,8 @@ class DashboardScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          var result = await Get.toNamed(RoutePath.TRANSACTION_CREATE);
+          var result = await Get.toNamed(RoutePath.TRANSACTION_CREATE,
+              parameters: {'transaction': 'Create'});
           DashboardController controller = Get.find();
           if (result != null) {
             if (result == 'Income') {
@@ -28,12 +29,6 @@ class DashboardScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: DashboardContent(),
-    );
-  }
-
-  Widget bottomNavScreen(String screen) {
-    return Center(
-      child: Text(screen),
     );
   }
 }

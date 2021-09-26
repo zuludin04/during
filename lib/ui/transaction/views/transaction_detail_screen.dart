@@ -89,7 +89,7 @@ class TransactionDetailScreen extends StatelessWidget {
                       icon: Icon(Icons.delete),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: _controller.updateTransaction,
                       icon: Icon(Icons.edit),
                     ),
                   ],

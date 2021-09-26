@@ -5,8 +5,9 @@ import 'package:intl/intl.dart';
 
 class DateDialog extends StatefulWidget {
   final Function(int dateInMillisecond) selectedDate;
+  final DateTime currentDate;
 
-  DateDialog(this.selectedDate);
+  DateDialog(this.selectedDate, this.currentDate);
 
   @override
   _DateDialogState createState() => _DateDialogState();
@@ -21,7 +22,7 @@ class _DateDialogState extends State<DateDialog> {
   @override
   void initState() {
     super.initState();
-    _currentDate = DateTime.now();
+    _currentDate = widget.currentDate;
     _currentTime =
         TimeOfDay(hour: _currentDate.hour, minute: _currentDate.minute);
     _changeDateTime();

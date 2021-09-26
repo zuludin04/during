@@ -5,15 +5,19 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class InputTextField extends StatelessWidget {
+  final TextEditingController controller = TextEditingController();
+
   final String? hint;
   final RxString? onSaved;
   final TextInputType? keyboardType;
   final TextCapitalization capitalization;
   final bool currencyFormat;
   final String title;
+  final String text;
 
   InputTextField({
     required this.title,
+    this.text = '',
     this.hint,
     this.onSaved,
     this.keyboardType = TextInputType.text,
@@ -29,6 +33,7 @@ class InputTextField extends StatelessWidget {
         SizedBox(height: 8),
         Container(
           child: TextFormField(
+            controller: controller..text = text,
             decoration: InputDecoration(
               hintText: hint,
               contentPadding: EdgeInsets.symmetric(horizontal: 8),

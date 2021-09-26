@@ -59,6 +59,12 @@ class DuringDbProvider {
     await db.delete('duringTransaction', where: 'id = ?', whereArgs: [id]);
   }
 
+  Future<void> updateTransaction(TransactionEntity transaction) async {
+    final Database db = await database;
+    await db.update('duringTransaction', transaction.toMap(),
+        where: 'id = ?', whereArgs: [transaction.id]);
+  }
+
   Future<List<TransactionEntity>> loadDuringTransactions() async {
     final Database db = await database;
     List<Map<String, dynamic>> result =
