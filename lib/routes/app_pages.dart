@@ -1,7 +1,9 @@
 import 'package:during/ui/dashboard/bindings/dashboard_binding.dart';
 import 'package:during/ui/dashboard/views/dashboard_screen.dart';
+import 'package:during/ui/saving/bindings/saving_detail_binding.dart';
 import 'package:during/ui/saving/bindings/saving_insert_binding.dart';
 import 'package:during/ui/saving/bindings/saving_list_binding.dart';
+import 'package:during/ui/saving/views/saving_detail_screen.dart';
 import 'package:during/ui/saving/views/saving_insert_screen.dart';
 import 'package:during/ui/saving/views/saving_list_screen.dart';
 import 'package:during/ui/transaction/bindings/transaction_create_binding.dart';
@@ -49,6 +51,11 @@ class AppPages {
       name: _Path.SAVING_LIST,
       page: () => SavingListScreen(),
       binding: SavingListBinding(),
+    ),
+    GetPage(
+      name: _Path.SAVING_DETAIL,
+      page: () => SavingDetailScreen(),
+      binding: SavingDetailBinding(),
     ),
   ];
 }

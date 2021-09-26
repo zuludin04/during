@@ -75,6 +75,16 @@ class DuringDbProvider {
     return transactions;
   }
 
+  Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db.query('duringTransaction',
+        where: 'savingId = ?', whereArgs: [savingId]);
+    List<TransactionEntity> transactions = result.isEmpty
+        ? []
+        : result.map((e) => TransactionEntity.fromMap(e)).toList();
+    return transactions;
+  }
+
   Future<List<int>> totalIncome() async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db

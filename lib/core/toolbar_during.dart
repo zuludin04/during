@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ToolbarDuring {
-  static AppBar defaultToolbar(String title) {
+  static AppBar defaultToolbar(String title,
+      {List<Widget> actions = const []}) {
     return AppBar(
       leading: IconButton(
         onPressed: () => Get.back(),
@@ -18,6 +19,7 @@ class ToolbarDuring {
       ),
       centerTitle: true,
       elevation: 0,
+      actions: actions,
     );
   }
 }

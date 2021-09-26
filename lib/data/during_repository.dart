@@ -12,6 +12,8 @@ abstract class DuringRepository {
 
   Future<List<TransactionEntity>> loadTodayTransaction();
 
+  Future<List<TransactionEntity>> loadSavingTransactions(int savingId);
+
   Future<int> countTotalIncome();
 
   Future<int> countTotalExpense();
@@ -44,11 +46,13 @@ class DuringRepositoryImpl extends DuringRepository {
   @override
   Future<List<TransactionEntity>> loadTodayTransaction() async {
     var result = await _dbProvider.loadDuringTransactions();
-    if (result.isEmpty) {
-      return result;
-    } else {
-      return result;
-    }
+    return result;
+  }
+
+  @override
+  Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
+    var result = await _dbProvider.loadSavingTransactions(savingId);
+    return result;
   }
 
   @override

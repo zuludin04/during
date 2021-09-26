@@ -9,6 +9,7 @@ abstract class RoutePath {
   static const TRANSACTION_DETAIL = _Path.TRANSACTION_DETAIL;
   static const SAVING_INSERT = _Path.SAVING_INSERT;
   static const SAVING_LIST = _Path.SAVING_LIST;
+  static const SAVING_DETAIL = _Path.SAVING_DETAIL;
 }
 
 abstract class _Path {
@@ -18,4 +19,5 @@ abstract class _Path {
   static const TRANSACTION_DETAIL = '/transaction_detail';
   static const SAVING_INSERT = '/saving_insert';
   static const SAVING_LIST = '/saving_list';
+  static const SAVING_DETAIL = '/saving_detail';
 }
