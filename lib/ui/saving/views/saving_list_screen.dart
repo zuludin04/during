@@ -1,3 +1,4 @@
+import 'package:during/core/constants.dart';
 import 'package:during/core/helper.dart';
 import 'package:during/core/string_extension.dart';
 import 'package:during/core/toolbar_during.dart';
@@ -11,6 +12,7 @@ import 'package:get/get.dart';
 
 class SavingListScreen extends StatelessWidget {
   final SavingListController _controller = Get.find();
+  final String type = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,11 @@ class SavingListScreen extends StatelessWidget {
   Widget _savingItem(SavingEntity saving) {
     return GestureDetector(
       onTap: () {
-        Get.back(result: saving);
+        if (type == SAVING_PICKED_TYPE) {
+          Get.back(result: saving);
+        } else {
+          Get.toNamed(RoutePath.SAVING_DETAIL, arguments: saving);
+        }
       },
       child: Container(
         padding: EdgeInsets.all(8),

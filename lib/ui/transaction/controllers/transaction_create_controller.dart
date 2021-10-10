@@ -1,3 +1,4 @@
+import 'package:during/core/constants.dart';
 import 'package:during/core/string_extension.dart';
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
@@ -54,7 +55,8 @@ class TransactionCreateController extends GetxController {
   }
 
   void pickSaving() async {
-    var result = await Get.toNamed(RoutePath.SAVING_LIST);
+    var result =
+        await Get.toNamed(RoutePath.SAVING_LIST, arguments: SAVING_PICKED_TYPE);
     if (result != null) {
       if (result is SavingEntity) {
         saving = result;

@@ -1,3 +1,4 @@
+import 'package:during/core/constants.dart';
 import 'package:during/core/toolbar_during.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,8 @@ class SettingsScreen extends StatelessWidget {
           _settingItem(
             'Saving',
             Icons.account_balance_wallet,
-            () => Get.toNamed(RoutePath.SAVING_LIST),
+            () => Get.toNamed(RoutePath.SAVING_LIST,
+                arguments: SAVING_DETAIL_TYPE),
           ),
           SizedBox(height: 15),
           _settingItem(
