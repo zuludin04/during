@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:during/core/color_extension.dart';
 import 'package:during/core/helper.dart';
 import 'package:during/core/string_extension.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
@@ -49,7 +50,7 @@ class SavingSlider extends StatelessWidget {
       onTap: () => Get.toNamed(RoutePath.SAVING_DETAIL, arguments: saving),
       child: Container(
         decoration: BoxDecoration(
-          color: Color(int.parse('0x${saving.color!}')),
+          color: saving.color!.convertStringToColor(),
           borderRadius: BorderRadius.circular(10),
         ),
         padding: EdgeInsets.all(12),
@@ -59,7 +60,11 @@ class SavingSlider extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 'Rp ${saving.balance!.toPriceFormat()}',
-                style: TextStyle(fontSize: 17),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: saving.color!.dynamicTextColor(),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             Positioned(
@@ -71,6 +76,7 @@ class SavingSlider extends StatelessWidget {
                     iconAssetByCategory(saving.category ?? 'Other'),
                     width: 25,
                     height: 25,
+                    color: saving.color!.dynamicTextColor(),
                   ),
                   SizedBox(width: 5),
                   Text(
@@ -78,6 +84,7 @@ class SavingSlider extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
+                      color: saving.color!.dynamicTextColor(),
                     ),
                   ),
                 ],
@@ -89,12 +96,16 @@ class SavingSlider extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Type'),
+                  Text(
+                    'Type',
+                    style: TextStyle(color: saving.color!.dynamicTextColor()),
+                  ),
                   Text(
                     saving.category!,
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
+                      color: saving.color!.dynamicTextColor(),
                     ),
                   ),
                 ],
@@ -106,12 +117,16 @@ class SavingSlider extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Created'),
+                  Text(
+                    'Created',
+                    style: TextStyle(color: saving.color!.dynamicTextColor()),
+                  ),
                   Text(
                     saving.date!.changeDateFormat('MM/yy'),
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
+                      color: saving.color!.dynamicTextColor(),
                     ),
                   ),
                 ],
