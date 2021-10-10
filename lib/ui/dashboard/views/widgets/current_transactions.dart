@@ -1,4 +1,4 @@
-import 'package:during/core/transaction_item.dart';
+import 'package:during/core/widgets/transaction_item.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,4 @@
-import 'package:during/core/custom_theme.dart';
+import 'package:during/core/utils/custom_theme.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/service/repository_service.dart';
 import 'package:flutter/material.dart';

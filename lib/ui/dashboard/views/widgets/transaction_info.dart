@@ -1,5 +1,5 @@
+import 'package:during/core/extensions/string_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:during/core/string_extension.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TransactionInfo extends StatelessWidget {

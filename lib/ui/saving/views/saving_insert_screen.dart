@@ -1,8 +1,8 @@
-import 'package:during/core/category_picker.dart';
-import 'package:during/core/color_dialog.dart';
-import 'package:during/core/helper.dart';
-import 'package:during/core/input_text_field.dart';
-import 'package:during/core/toolbar_during.dart';
+import 'package:during/core/utils/helper.dart';
+import 'package:during/core/widgets/category_picker.dart';
+import 'package:during/core/widgets/color_dialog.dart';
+import 'package:during/core/widgets/input_text_field.dart';
+import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/ui/saving/controllers/saving_insert_controller.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';

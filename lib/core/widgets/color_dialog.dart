@@ -1,6 +1,7 @@
-import 'package:during/core/header_text.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
+
+import 'header_text.dart';
 
 class ColorDialog extends StatefulWidget {
   final Function(Color color) selectedColor;

@@ -1,5 +1,6 @@
-import 'package:during/core/header_text.dart';
 import 'package:flutter/material.dart';
+
+import 'header_text.dart';
 
 class FormFieldSpinner extends StatefulWidget {
   final List<String> items;

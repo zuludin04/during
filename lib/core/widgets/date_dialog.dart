@@ -1,7 +1,8 @@
-import 'package:during/core/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+
+import 'header_text.dart';
 
 class DateDialog extends StatefulWidget {
   final Function(int dateInMillisecond) selectedDate;

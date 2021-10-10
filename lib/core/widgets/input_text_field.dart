@@ -1,8 +1,9 @@
-import 'package:during/core/currency_formatter.dart';
-import 'package:during/core/header_text.dart';
+import 'package:during/core/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
+import 'header_text.dart';
 
 class InputTextField extends StatelessWidget {
   final TextEditingController controller = TextEditingController();

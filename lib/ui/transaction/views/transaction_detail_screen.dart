@@ -1,7 +1,7 @@
-import 'package:during/core/color_extension.dart';
-import 'package:during/core/header_text.dart';
-import 'package:during/core/string_extension.dart';
-import 'package:during/core/toolbar_during.dart';
+import 'package:during/core/extensions/color_extension.dart';
+import 'package:during/core/extensions/string_extension.dart';
+import 'package:during/core/widgets/header_text.dart';
+import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/ui/transaction/controllers/transaction_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

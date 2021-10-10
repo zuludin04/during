@@ -1,7 +1,7 @@
-import 'package:during/core/constants.dart';
-import 'package:during/core/helper.dart';
-import 'package:during/core/string_extension.dart';
-import 'package:during/core/toolbar_during.dart';
+import 'package:during/core/extensions/string_extension.dart';
+import 'package:during/core/utils/constants.dart';
+import 'package:during/core/utils/helper.dart';
+import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';

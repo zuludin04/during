@@ -1,5 +1,5 @@
-import 'package:during/core/constants.dart';
-import 'package:during/core/toolbar_during.dart';
+import 'package:during/core/utils/constants.dart';
+import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
