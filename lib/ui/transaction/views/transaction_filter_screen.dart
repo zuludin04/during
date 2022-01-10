@@ -1,4 +1,5 @@
 import 'package:during/core/widgets/toolbar_during.dart';
+import 'package:during/core/widgets/transaction_item.dart';
 import 'package:during/data/model/filter_transaction.dart';
 import 'package:during/ui/transaction/controllers/transaction_filter_controller.dart';
 import 'package:during/ui/transaction/views/widgets/filter_bottom_sheet.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TransactionFilterScreen extends StatelessWidget {
+  final TransactionFilterController _controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +38,23 @@ class TransactionFilterScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return Text('Text #$index');
-        },
-        itemCount: 20,
+      body: Center(
+        child: Obx(() {
+          if (_controller.emptyTransaction.value) {
+            return Container(
+              height: 300,
+              alignment: Alignment.center,
+              child: Text('Empty Transaction'),
+            );
+          } else {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return TransactionItem(_controller.todayTransaction[index]);
+              },
+              itemCount: _controller.todayTransaction.length,
+            );
+          }
+        }),
       ),
     );
   }
