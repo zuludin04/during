@@ -25,6 +25,9 @@ abstract class DuringRepository {
   Future<SavingEntity> loadSingleSaving(int id);
 
   Future<void> updateSavingBalance(int? savingId, int? balance);
+
+  Future<List<TransactionEntity>> filterTransactions(
+      String range, String? type, String? category);
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -89,4 +92,21 @@ class DuringRepositoryImpl extends DuringRepository {
   @override
   Future<void> updateSavingBalance(int? savingId, int? balance) =>
       _dbProvider.updateSavingBalance(savingId, balance);
+
+  @override
+  Future<List<TransactionEntity>> filterTransactions(
+      String range, String? type, String? category) async {
+    var query = 'SELECT * FROM duringTransaction WHERE date BETWEEN $range';
+
+    if (type != null) {
+      query = query + ' AND type = $type';
+    }
+
+    if (category != null) {
+      query = query = ' AND category = $category';
+    }
+
+    var results = await _dbProvider.filterTransactions(query);
+    return results;
+  }
 }

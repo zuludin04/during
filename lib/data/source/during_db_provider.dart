@@ -134,4 +134,13 @@ class DuringDbProvider {
     await db.update('duringSaving', {'balance': balance},
         where: 'id=?', whereArgs: [savingId]);
   }
+
+  Future<List<TransactionEntity>> filterTransactions(String query) async {
+    final Database db = await database;
+    List<Map<String, dynamic>> results = await db.rawQuery(query);
+    List<TransactionEntity> transactions = results.isEmpty
+        ? []
+        : results.map((e) => TransactionEntity.fromMap(e)).toList();
+    return transactions;
+  }
 }
