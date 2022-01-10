@@ -49,9 +49,9 @@ class TransactionFilterScreen extends StatelessWidget {
           } else {
             return ListView.builder(
               itemBuilder: (context, index) {
-                return TransactionItem(_controller.todayTransaction[index]);
+                return TransactionItem(_controller.transactions[index]);
               },
-              itemCount: _controller.todayTransaction.length,
+              itemCount: _controller.transactions.length,
             );
           }
         }),

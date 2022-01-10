@@ -76,15 +76,4 @@ class FilterBottomSheet extends StatelessWidget {
       ),
     );
   }
-
-  Widget _emptySaving() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        HeaderText(title: 'Saving', showTrailing: false, titleSize: 14),
-        SizedBox(height: 5),
-        Text('Your saving still empty'),
-      ],
-    );
-  }
 }

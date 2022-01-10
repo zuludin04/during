@@ -96,14 +96,14 @@ class DuringRepositoryImpl extends DuringRepository {
   @override
   Future<List<TransactionEntity>> filterTransactions(
       String range, String? type, String? category) async {
-    var query = 'SELECT * FROM duringTransaction WHERE date BETWEEN $range';
+    var query = "SELECT * FROM duringTransaction WHERE date BETWEEN $range";
 
     if (type != null) {
-      query = query + ' AND type = $type';
+      query = query + " AND type = '$type'";
     }
 
     if (category != null) {
-      query = query = ' AND category = $category';
+      query = query + " AND category = '$category'";
     }
 
     var results = await _dbProvider.filterTransactions(query);

@@ -49,7 +49,7 @@ final expenseCategories = [
 ];
 final incomeCategories = ['Fee', 'Bonus', 'Selling'];
 final savingCategories = ['Bank', 'E-Money', 'Cash'];
-final dateRangeFilters = ['All', 'Daily', 'Weekly', 'Monthly'];
+final dateRangeFilters = ['Daily', 'Weekly', 'Monthly'];
 
 List<FilterChoice> chipsCategory(List<String> list) {
   List<FilterChoice> filters = [];

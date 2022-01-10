@@ -1,12 +1,14 @@
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/model/filter_transaction.dart';
+import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:get/get.dart';
 
 class TransactionFilterController extends GetxController {
   final DuringRepository _repository = Get.find();
 
-  var todayTransaction = <TransactionEntity>[].obs;
+  var transactions = <TransactionEntity>[].obs;
+  var currentDate = DateTime.now();
 
   FilterTransaction filtered = FilterTransaction(
     range: 1,
@@ -18,6 +20,9 @@ class TransactionFilterController extends GetxController {
   var filterType = 0;
   var typed = 0.obs;
   var filterCategory = 0;
+
+  var transactionType;
+  var transactionCategory;
 
   var emptyTransaction = false.obs;
 
@@ -33,11 +38,11 @@ class TransactionFilterController extends GetxController {
       emptyTransaction.value = true;
     } else {
       emptyTransaction.value = false;
-      todayTransaction.value = result;
+      transactions.value = result;
     }
   }
 
-  void filterTransaction() {
+  void filterTransaction() async {
     FilterTransaction filter = FilterTransaction(
       range: filterRange,
       type: filterType,
@@ -45,19 +50,46 @@ class TransactionFilterController extends GetxController {
     );
     filtered = filter;
 
+    var result = await _repository.filterTransactions(
+        _getFilterRange(filterRange), transactionType, transactionCategory);
+    if (result.isEmpty) {
+      emptyTransaction.value = true;
+    } else {
+      emptyTransaction.value = false;
+      transactions.value = result;
+    }
+
     Get.back(result: filtered);
   }
 
-  void changeFilterRange(int range) {
+  void changeFilterRange(int range, String title) {
     filterRange = range;
   }
 
-  void changeFilterType(int type) {
+  void changeFilterType(int type, String title) {
     filterType = type;
     typed.value = type;
+    transactionType = title;
   }
 
-  void changeFilterCategory(int category) {
+  void changeFilterCategory(int category, String title) {
     filterCategory = category;
+    transactionCategory = title;
+  }
+
+  String _getFilterRange(int range) {
+    var start =
+        DateTime(currentDate.year, currentDate.month, currentDate.day, 0, 0);
+    var end = start.add(Duration(hours: 23, minutes: 59));
+
+    if (range == 1) {
+      end = start.add(Duration(hours: 23, minutes: 59));
+    } else if (range == 2) {
+      end = start.add(Duration(days: 7));
+    } else if (range == 3) {
+      end = start.add(Duration(days: 30));
+    }
+
+    return '${start.millisecondsSinceEpoch} AND ${end.millisecondsSinceEpoch}';
   }
 }

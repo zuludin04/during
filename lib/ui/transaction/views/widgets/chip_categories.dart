@@ -6,7 +6,7 @@ class ChipCategories extends StatefulWidget {
   final String title;
   final List<String> categories;
   final int selected;
-  final Function(int id)? onSelected;
+  final Function(int id, String title)? onSelected;
 
   ChipCategories({
     required this.title,
@@ -46,7 +46,7 @@ class _ChipCategoriesState extends State<ChipCategories> {
                     selected: e.id == _idSelected,
                     onSelected: (_) => setState(() {
                       _idSelected = e.id!;
-                      widget.onSelected!(e.id!);
+                      widget.onSelected!(e.id!, e.title!);
                     }),
                     selectedColor: Color(0xffFFA400),
                   ))
