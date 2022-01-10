@@ -1,13 +1,9 @@
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/model/filter_transaction.dart';
-import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:get/get.dart';
 
 class TransactionFilterController extends GetxController {
   final DuringRepository _repository = Get.find();
-
-  var savings = <SavingEntity>[].obs;
-  var emptySaving = false.obs;
 
   FilterTransaction filtered = FilterTransaction(
     range: 1,
@@ -27,9 +23,7 @@ class TransactionFilterController extends GetxController {
   }
 
   void loadSavingList() async {
-    var result = await _repository.loadSaving();
-    emptySaving.value = result.isEmpty;
-    if (result.isNotEmpty) savings.value = result;
+    
   }
 
   void filterTransaction() {

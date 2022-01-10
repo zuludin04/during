@@ -61,17 +61,6 @@ class FilterBottomSheet extends StatelessWidget {
                       onSelected: _controller.changeFilterCategory,
                     ),
                   ),
-                  SizedBox(height: 12),
-                  Obx(() {
-                    if (_controller.emptySaving.value) {
-                      return _emptySaving();
-                    } else {
-                      return ChipCategories(
-                          title: 'Saving',
-                          categories:
-                              _controller.savings.map((e) => e.name!).toList());
-                    }
-                  }),
                 ],
               ),
             ),
