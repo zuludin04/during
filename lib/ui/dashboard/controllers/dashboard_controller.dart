@@ -12,6 +12,8 @@ class DashboardController extends GetxController {
   var incomes = 0.obs;
   var expenses = 0.obs;
 
+  var navIndex = 2;
+
   @override
   void onInit() {
     super.onInit();
@@ -19,6 +21,11 @@ class DashboardController extends GetxController {
     loadIncomes();
     loadExpenses();
     loadTodayTransaction();
+  }
+
+  void changeNavIndex(int index) {
+    navIndex = index;
+    update();
   }
 
   void loadSavingList() async {
