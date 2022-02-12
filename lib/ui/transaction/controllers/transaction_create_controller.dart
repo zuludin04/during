@@ -30,6 +30,7 @@ class TransactionCreateController extends GetxController {
     if (transactionType! == 'Update') {
       _loadInitialValue(Get.arguments);
     } else {
+      type.value = Get.parameters['type'] ?? "Income";
       date.value = DateTime.now().millisecondsSinceEpoch;
     }
   }

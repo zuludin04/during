@@ -1,9 +1,11 @@
 import 'package:during/core/widgets/bottom_navigation.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
+import 'package:during/ui/dashboard/views/widgets/add_transaction_dialog.dart';
 import 'package:during/ui/dashboard/views/widgets/dashboard_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -32,7 +34,18 @@ class DashboardScreen extends StatelessWidget {
           // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           bottomNavigationBar: BottomNavigation(
             currentIndex: controller.navIndex,
-            onSelectedMenu: controller.changeNavIndex,
+            onSelectedMenu: (index) {
+              if (index == 2) {
+                showMaterialModalBottomSheet(
+                  expand: false,
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => AddTransactionDialog(),
+                );
+              } else {
+                controller.changeNavIndex(index);
+              }
+            },
             navMenus: [
               NavMenu(label: 'Home', icon: 'icon_home'),
               NavMenu(label: 'Transaction', icon: 'icon_transaction'),

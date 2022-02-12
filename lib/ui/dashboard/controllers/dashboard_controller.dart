@@ -12,7 +12,7 @@ class DashboardController extends GetxController {
   var incomes = 0.obs;
   var expenses = 0.obs;
 
-  var navIndex = 2;
+  var navIndex = 0;
 
   @override
   void onInit() {
