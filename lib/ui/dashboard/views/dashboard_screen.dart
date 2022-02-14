@@ -1,8 +1,10 @@
 import 'package:during/core/widgets/bottom_navigation.dart';
-import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
+import 'package:during/ui/dashboard/views/nav/home_navigation.dart';
+import 'package:during/ui/dashboard/views/nav/saving_navigation.dart';
+import 'package:during/ui/dashboard/views/nav/setting_navigation.dart';
+import 'package:during/ui/dashboard/views/nav/transaction_navigation.dart';
 import 'package:during/ui/dashboard/views/widgets/add_transaction_dialog.dart';
-import 'package:during/ui/dashboard/views/widgets/dashboard_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -14,24 +16,6 @@ class DashboardScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () async {
-          //     var result = await Get.toNamed(RoutePath.TRANSACTION_CREATE,
-          //         parameters: {'transaction': 'Create'});
-          //     if (result != null) {
-          //       if (result == 'Income') {
-          //         controller.loadIncomes();
-          //         controller.loadTodayTransaction();
-          //       } else if (result == 'Expense') {
-          //         controller.loadExpenses();
-          //         controller.loadTodayTransaction();
-          //       }
-          //       controller.loadSavingList();
-          //     }
-          //   },
-          //   child: Icon(Icons.add),
-          // ),
-          // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           bottomNavigationBar: BottomNavigation(
             currentIndex: controller.navIndex,
             onSelectedMenu: (index) {
@@ -54,7 +38,16 @@ class DashboardScreen extends StatelessWidget {
               NavMenu(label: 'Setting', icon: 'icon_settings'),
             ],
           ),
-          body: DashboardContent(),
+          body: IndexedStack(
+            index: controller.navIndex,
+            children: [
+              HomeNavigation(),
+              TransactionNavigation(),
+              Container(),
+              SavingNavigation(),
+              SettingNavigation(),
+            ],
+          ),
         );
       },
     );
