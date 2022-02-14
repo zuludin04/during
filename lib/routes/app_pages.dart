@@ -28,7 +28,8 @@ class AppPages {
       bindings: [
         DashboardBinding(),
         TransactionFilterBinding(),
-      ]
+        SavingListBinding(),
+      ],
     ),
     GetPage(
       name: _Path.TRANSACTION_CREATE,
@@ -53,7 +54,6 @@ class AppPages {
     GetPage(
       name: _Path.SAVING_LIST,
       page: () => SavingListScreen(),
-      binding: SavingListBinding(),
     ),
     GetPage(
       name: _Path.SAVING_DETAIL,
