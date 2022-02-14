@@ -11,6 +11,7 @@ class HomeController extends GetxController {
   var emptyTransaction = false.obs;
   var incomes = 0.obs;
   var expenses = 0.obs;
+  var emptySaving = true.obs;
 
   @override
   void onInit() {
@@ -24,6 +25,7 @@ class HomeController extends GetxController {
   void loadSavingList() async {
     var result = await _repository.loadSaving();
     savings.value = result;
+    emptySaving.value = result.isEmpty;
   }
 
   void loadTodayTransaction() async {

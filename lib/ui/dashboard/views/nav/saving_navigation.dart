@@ -2,18 +2,18 @@ import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/helper.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
-import 'package:during/ui/saving/controllers/saving_list_controller.dart';
+import 'package:during/ui/dashboard/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class SavingNavigation extends StatelessWidget {
-  final SavingListController _controller = Get.find();
+  final HomeController _controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (_controller.empty.value) {
+      if (_controller.emptySaving.value) {
         return Text('Saving is Empty');
       } else {
         return ListView.builder(
@@ -27,8 +27,14 @@ class SavingNavigation extends StatelessWidget {
 
   Widget _savingItem(SavingEntity saving) {
     return GestureDetector(
-      onTap: () {
-        Get.toNamed(RoutePath.SAVING_DETAIL, arguments: saving);
+      onTap: () async {
+        var result =
+            await Get.toNamed(RoutePath.SAVING_DETAIL, arguments: saving);
+        if (result != null) {
+          if (result == true) {
+            _controller.loadSavingList();
+          }
+        }
       },
       child: Container(
         padding: EdgeInsets.all(8),
