@@ -2,13 +2,13 @@ import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/helper.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
-import 'package:during/ui/dashboard/controllers/home_controller.dart';
+import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class SavingNavigation extends StatelessWidget {
-  final HomeController _controller = Get.find();
+  final HomeNavigationController _controller = Get.find();
 
   @override
   Widget build(BuildContext context) {

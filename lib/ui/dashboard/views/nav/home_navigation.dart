@@ -1,5 +1,5 @@
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
-import 'package:during/ui/dashboard/controllers/home_controller.dart';
+import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/current_transactions.dart';
 import 'package:during/ui/dashboard/views/widgets/saving_slider.dart';
 import 'package:during/ui/dashboard/views/widgets/transaction_info.dart';
@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class HomeNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.find();
+    HomeNavigationController controller = Get.find();
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       slivers: [

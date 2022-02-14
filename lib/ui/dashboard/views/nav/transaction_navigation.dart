@@ -1,10 +1,10 @@
 import 'package:during/core/widgets/transaction_item.dart';
-import 'package:during/ui/transaction/controllers/transaction_filter_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TransactionNavigation extends StatelessWidget {
-  final TransactionFilterController _controller = Get.find();
+  final TransactionNavigationController _controller = Get.find();
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
-import 'package:during/ui/dashboard/controllers/home_controller.dart';
+import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/saving/controllers/saving_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +24,7 @@ class SavingListScreen extends StatelessWidget {
           if (result != null) {
             if (result == true) {
               _controller.loadSavings();
-              Get.find<HomeController>().loadSavingList();
+              Get.find<HomeNavigationController>().loadSavingList();
             }
           }
         },

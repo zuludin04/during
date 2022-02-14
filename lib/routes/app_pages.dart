@@ -1,5 +1,5 @@
 import 'package:during/ui/dashboard/bindings/dashboard_binding.dart';
-import 'package:during/ui/dashboard/bindings/home_binding.dart';
+import 'package:during/ui/dashboard/bindings/home_navigation_binding.dart';
 import 'package:during/ui/dashboard/views/dashboard_screen.dart';
 import 'package:during/ui/saving/bindings/saving_detail_binding.dart';
 import 'package:during/ui/saving/bindings/saving_insert_binding.dart';
@@ -10,7 +10,7 @@ import 'package:during/ui/saving/views/saving_list_screen.dart';
 import 'package:during/ui/settings/settings_screen.dart';
 import 'package:during/ui/transaction/bindings/transaction_create_binding.dart';
 import 'package:during/ui/transaction/bindings/transaction_detail_binding.dart';
-import 'package:during/ui/transaction/bindings/transaction_filter_binding.dart';
+import 'package:during/ui/dashboard/bindings/transaction_filter_binding.dart';
 import 'package:during/ui/transaction/views/transaction_create_screen.dart';
 import 'package:during/ui/transaction/views/transaction_detail_screen.dart';
 import 'package:get/get.dart';
@@ -28,8 +28,8 @@ class AppPages {
       page: () => DashboardScreen(),
       bindings: [
         DashboardBinding(),
-        HomeBinding(),
-        TransactionFilterBinding(),
+        HomeNavigationBinding(),
+        TransactionNavigationBinding(),
         SavingListBinding(),
       ],
     ),
@@ -38,11 +38,6 @@ class AppPages {
       page: () => TransactionCreateScreen(),
       binding: TransactionCreateBinding(),
     ),
-    // GetPage(
-    //   name: _Path.TRANSACTION_RECORD,
-    //   page: () => TransactionFilterScreen(),
-    //   binding: TransactionFilterBinding(),
-    // ),
     GetPage(
       name: _Path.TRANSACTION_DETAIL,
       page: () => TransactionDetailScreen(),

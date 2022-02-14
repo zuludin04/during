@@ -3,7 +3,7 @@ import 'package:during/data/model/filter_transaction.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:get/get.dart';
 
-class TransactionFilterController extends GetxController {
+class TransactionNavigationController extends GetxController {
   final DuringRepository _repository = Get.find();
 
   var transactions = <TransactionEntity>[].obs;
