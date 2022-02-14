@@ -33,21 +33,7 @@ class DashboardScreen extends StatelessWidget {
             actions: [
               if (controller.navIndex == 1)
                 IconButton(
-                  onPressed: () async {
-                    var result = await Get.bottomSheet(
-                      FilterBottomSheet(),
-                      isScrollControlled: true,
-                      ignoreSafeArea: false,
-                    );
-                    if (result != null) {
-                      if (result is FilterTransaction) {
-                        print('Filter range is ${result.range}');
-                      }
-                    } else {
-                      var c = Get.find<TransactionFilterController>();
-                      c.typed.value = c.filtered.type!;
-                    }
-                  },
+                  onPressed: controller.filterTransaction,
                   icon: Icon(
                     Icons.filter_list,
                     color: Color(0xff373A36),
@@ -55,15 +41,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
               if (controller.navIndex == 3)
                 IconButton(
-                  onPressed: () async {
-                    var result = await Get.toNamed(RoutePath.SAVING_INSERT);
-                    if (result != null) {
-                      if (result == true) {
-                        // Get.find<SavingListController>().loadSavings();
-                        Get.find<HomeController>().loadSavingList();
-                      }
-                    }
-                  },
+                  onPressed: controller.addSaving,
                   icon: Icon(
                     Icons.add,
                     color: Color(0xff373A36),
