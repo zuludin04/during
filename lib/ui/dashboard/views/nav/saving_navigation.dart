@@ -16,12 +16,10 @@ class SavingNavigation extends StatelessWidget {
       if (_controller.empty.value) {
         return Text('Saving is Empty');
       } else {
-        return Expanded(
-          child: ListView.builder(
-            itemBuilder: (context, index) =>
-                _savingItem(_controller.savings[index]),
-            itemCount: _controller.savings.length,
-          ),
+        return ListView.builder(
+          itemBuilder: (context, index) =>
+              _savingItem(_controller.savings[index]),
+          itemCount: _controller.savings.length,
         );
       }
     });

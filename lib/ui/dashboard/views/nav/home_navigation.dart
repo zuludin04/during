@@ -1,4 +1,5 @@
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
+import 'package:during/ui/dashboard/controllers/home_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/current_transactions.dart';
 import 'package:during/ui/dashboard/views/widgets/saving_slider.dart';
 import 'package:during/ui/dashboard/views/widgets/transaction_info.dart';
@@ -8,14 +9,14 @@ import 'package:get/get.dart';
 class HomeNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    DashboardController controller = Get.find();
+    HomeController controller = Get.find();
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       slivers: [
         SliverList(
           delegate: SliverChildListDelegate([
             SizedBox(height: 26),
-            SavingSlider(controller),
+            SavingSlider(),
             Obx(
               () => TransactionInfo(
                 controller.incomes.value,
@@ -38,7 +39,8 @@ class HomeNavigation extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => controller.changeNavIndex(1),
+                    onTap: () =>
+                        Get.find<DashboardController>().changeNavIndex(1),
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -62,48 +64,8 @@ class HomeNavigation extends StatelessWidget {
             SizedBox(height: 8),
           ]),
         ),
-        CurrentTransaction(controller),
+        CurrentTransaction(),
       ],
     );
   }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      padding: EdgeInsets.all(12),
-      color: Colors.white,
-      child: Container(
-        height: 40,
-        width: 40,
-        decoration: BoxDecoration(
-          color: Color(0xff373A36),
-          shape: BoxShape.circle,
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          'ZM',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Color(0xffFFA400),
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-        ),
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => 64;
-
-  @override
-  double get minExtent => 64;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      true;
 }

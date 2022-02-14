@@ -1,12 +1,10 @@
 import 'package:during/core/widgets/transaction_item.dart';
-import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
+import 'package:during/ui/dashboard/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CurrentTransaction extends StatelessWidget {
-  final DashboardController controller;
-
-  CurrentTransaction(this.controller);
+  final HomeController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {

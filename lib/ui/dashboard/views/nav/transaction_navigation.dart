@@ -10,19 +10,15 @@ class TransactionNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (_controller.emptyTransaction.value) {
-        return Expanded(
-          child: Center(
-            child: Text('Empty Transaction'),
-          ),
+        return Center(
+          child: Text('Empty Transaction'),
         );
       } else {
-        return Expanded(
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return TransactionItem(_controller.transactions[index]);
-            },
-            itemCount: _controller.transactions.length,
-          ),
+        return ListView.builder(
+          itemBuilder: (context, index) {
+            return TransactionItem(_controller.transactions[index]);
+          },
+          itemCount: _controller.transactions.length,
         );
       }
     });

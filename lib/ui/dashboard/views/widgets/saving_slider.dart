@@ -4,15 +4,13 @@ import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/helper.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
-import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
+import 'package:during/ui/dashboard/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class SavingSlider extends StatelessWidget {
-  final DashboardController controller;
-
-  SavingSlider(this.controller);
+  final HomeController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
