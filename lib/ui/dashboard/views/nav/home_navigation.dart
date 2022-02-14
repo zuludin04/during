@@ -9,68 +9,61 @@ class HomeNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DashboardController controller = Get.find();
-    return SafeArea(
-      child: CustomScrollView(
-        physics: BouncingScrollPhysics(),
-        slivers: [
-          SliverPersistentHeader(
-            pinned: true,
-            floating: true,
-            delegate: _SliverAppBarDelegate(),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              SizedBox(height: 10),
-              SavingSlider(controller),
-              Obx(
-                () => TransactionInfo(
-                  controller.incomes.value,
-                  controller.expenses.value,
-                ),
+    return CustomScrollView(
+      physics: BouncingScrollPhysics(),
+      slivers: [
+        SliverList(
+          delegate: SliverChildListDelegate([
+            SizedBox(height: 26),
+            SavingSlider(controller),
+            Obx(
+              () => TransactionInfo(
+                controller.incomes.value,
+                controller.expenses.value,
               ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Recent Transactions',
-                      style: TextStyle(
-                        color: Color(0xffFFA400).withOpacity(0.9),
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Recent Transactions',
+                    style: TextStyle(
+                      color: Color(0xffFFA400).withOpacity(0.9),
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
                     ),
-                    GestureDetector(
-                      onTap: () => controller.changeNavIndex(1),
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                        decoration: BoxDecoration(
-                          color: Color(0xffFFA400),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          'See All',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Color(0xff373A36),
-                            fontWeight: FontWeight.w500,
-                          ),
+                  ),
+                  GestureDetector(
+                    onTap: () => controller.changeNavIndex(1),
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      decoration: BoxDecoration(
+                        color: Color(0xffFFA400),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        'See All',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xff373A36),
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SizedBox(height: 8),
-            ]),
-          ),
-          CurrentTransaction(controller),
-        ],
-      ),
+            ),
+            SizedBox(height: 8),
+          ]),
+        ),
+        CurrentTransaction(controller),
+      ],
     );
   }
 }
