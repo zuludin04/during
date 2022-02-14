@@ -12,7 +12,6 @@ import 'package:during/ui/transaction/bindings/transaction_detail_binding.dart';
 import 'package:during/ui/transaction/bindings/transaction_filter_binding.dart';
 import 'package:during/ui/transaction/views/transaction_create_screen.dart';
 import 'package:during/ui/transaction/views/transaction_detail_screen.dart';
-import 'package:during/ui/transaction/views/transaction_filter_screen.dart';
 import 'package:get/get.dart';
 
 part 'app_routes.dart';
@@ -26,18 +25,21 @@ class AppPages {
     GetPage(
       name: INITIAL,
       page: () => DashboardScreen(),
-      binding: DashboardBinding(),
+      bindings: [
+        DashboardBinding(),
+        TransactionFilterBinding(),
+      ]
     ),
     GetPage(
       name: _Path.TRANSACTION_CREATE,
       page: () => TransactionCreateScreen(),
       binding: TransactionCreateBinding(),
     ),
-    GetPage(
-      name: _Path.TRANSACTION_RECORD,
-      page: () => TransactionFilterScreen(),
-      binding: TransactionFilterBinding(),
-    ),
+    // GetPage(
+    //   name: _Path.TRANSACTION_RECORD,
+    //   page: () => TransactionFilterScreen(),
+    //   binding: TransactionFilterBinding(),
+    // ),
     GetPage(
       name: _Path.TRANSACTION_DETAIL,
       page: () => TransactionDetailScreen(),
