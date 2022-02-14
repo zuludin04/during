@@ -1,4 +1,3 @@
-import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/current_transactions.dart';
 import 'package:during/ui/dashboard/views/widgets/saving_slider.dart';
@@ -25,7 +24,9 @@ class HomeNavigation extends StatelessWidget {
               SavingSlider(controller),
               Obx(
                 () => TransactionInfo(
-                    controller.incomes.value, controller.expenses.value),
+                  controller.incomes.value,
+                  controller.expenses.value,
+                ),
               ),
               SizedBox(height: 20),
               Padding(
@@ -43,7 +44,7 @@ class HomeNavigation extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => Get.toNamed(RoutePath.TRANSACTION_RECORD),
+                      onTap: () => controller.changeNavIndex(1),
                       child: Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -79,38 +80,26 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-      alignment: Alignment.center,
+      alignment: Alignment.centerLeft,
       padding: EdgeInsets.all(12),
       color: Colors.white,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              color: Color(0xff373A36),
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              'ZM',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xffFFA400),
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
+      child: Container(
+        height: 40,
+        width: 40,
+        decoration: BoxDecoration(
+          color: Color(0xff373A36),
+          shape: BoxShape.circle,
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          'ZM',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Color(0xffFFA400),
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
           ),
-          IconButton(
-            icon: Icon(
-              Icons.settings_outlined,
-              size: 30,
-            ),
-            onPressed: () => Get.toNamed(RoutePath.SETTINGS),
-          ),
-        ],
+        ),
       ),
     );
   }
