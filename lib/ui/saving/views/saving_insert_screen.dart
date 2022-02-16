@@ -15,35 +15,32 @@ class SavingInsertScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ToolbarDuring.defaultToolbar('Insert'),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        width: double.infinity,
-        padding: EdgeInsets.all(12),
-        child: ElevatedButton(
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              _formKey.currentState!.save();
-              _controller.insertSaving();
-            } else {
-              Get.rawSnackbar(message: 'Field can\'t be empty');
-            }
-          },
-          child: Text(
-            'Insert',
-            style: TextStyle(fontSize: 16),
+      appBar: ToolbarDuring.defaultToolbar(
+        'Insert',
+        actions: [
+          IconButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                _controller.insertSaving();
+              }
+            },
+            icon: Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
           ),
-        ),
+        ],
       ),
       body: SingleChildScrollView(
-        child: Obx(
-          () => Padding(
-            padding: const EdgeInsets.all(12),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  CategoryPicker(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Obx(
+                  () => CategoryPicker(
                     title: 'Category',
                     dialogTitle: 'Saving Category',
                     value: _controller.category.value,
@@ -51,28 +48,27 @@ class SavingInsertScreen extends StatelessWidget {
                     onSelectedCategory: (cat) =>
                         _controller.category.value = cat,
                   ),
-                  SizedBox(height: 16),
-                  SizedBox(height: 16),
-                  InputTextField(
-                    title: 'Name',
-                    hint: 'Name',
-                    onSaved: _controller.name,
-                  ),
-                  SizedBox(height: 16),
-                  InputTextField(
-                    title: 'Balance',
-                    hint: '${_controller.balance.value}',
-                    onSaved: _controller.balance,
-                    keyboardType: TextInputType.number,
-                    currencyFormat: true,
-                  ),
-                  SizedBox(height: 16),
-                  ColorDialog((Color color) {
-                    _controller.color.value = ColorTools.colorCode(color);
-                  }),
-                  SizedBox(height: 16),
-                ],
-              ),
+                ),
+                SizedBox(height: 16),
+                InputTextField(
+                  title: 'Name',
+                  hint: 'Name',
+                  onSaved: _controller.name,
+                ),
+                SizedBox(height: 16),
+                InputTextField(
+                  title: 'Balance',
+                  hint: 'Balance',
+                  onSaved: _controller.balance,
+                  keyboardType: TextInputType.number,
+                  currencyFormat: true,
+                ),
+                SizedBox(height: 16),
+                ColorDialog((Color color) {
+                  _controller.color.value = ColorTools.colorCode(color);
+                }),
+                SizedBox(height: 16),
+              ],
             ),
           ),
         ),
