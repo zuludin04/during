@@ -26,7 +26,7 @@ class CategoryPicker extends StatelessWidget {
       children: [
         HeaderText(title: title, showTrailing: false),
         SizedBox(height: 8),
-        GestureDetector(
+        InkWell(
           onTap: () async {
             String? category = await Get.bottomSheet(_categoryList());
             if (category != null) {
@@ -76,7 +76,7 @@ class CategoryPicker extends StatelessWidget {
               gridDelegate:
                   SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
               itemBuilder: (context, index) {
-                return GestureDetector(
+                return InkWell(
                   onTap: () {
                     Get.back(result: categories[index]);
                   },

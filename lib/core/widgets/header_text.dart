@@ -35,7 +35,7 @@ class HeaderText extends StatelessWidget {
         ),
         Visibility(
           visible: showTrailing,
-          child: GestureDetector(
+          child: InkWell(
             onTap: onTrailingTap,
             child: trailing ?? _trailingMoreWidget(),
           ),

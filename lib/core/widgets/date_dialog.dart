@@ -39,7 +39,7 @@ class _DateDialogState extends State<DateDialog> {
             children: [
               HeaderText(title: 'Date', showTrailing: false),
               SizedBox(height: 8),
-              GestureDetector(
+              InkWell(
                 onTap: () async {
                   var date = await showDatePicker(
                     context: context,
@@ -79,7 +79,7 @@ class _DateDialogState extends State<DateDialog> {
             children: [
               HeaderText(title: 'Time', showTrailing: false),
               SizedBox(height: 8),
-              GestureDetector(
+              InkWell(
                 onTap: () async {
                   var selectedTime = await showTimePicker(
                     context: context,

@@ -47,7 +47,7 @@ class SavingListScreen extends StatelessWidget {
   }
 
   Widget _savingItem(SavingEntity saving) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         if (type == SAVING_PICKED_TYPE) {
           Get.back(result: saving);

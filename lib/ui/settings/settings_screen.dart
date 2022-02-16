@@ -40,7 +40,7 @@ class SettingsScreen extends StatelessWidget {
   }
 
   Widget _settingItem(String title, IconData icon, Function() onTap) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Column(
         children: [

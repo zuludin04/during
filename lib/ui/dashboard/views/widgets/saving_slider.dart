@@ -44,7 +44,7 @@ class SavingSlider extends StatelessWidget {
   }
 
   Widget _savingCardItem(SavingEntity saving) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => Get.toNamed(RoutePath.SAVING_DETAIL, arguments: saving),
       child: Container(
         decoration: BoxDecoration(

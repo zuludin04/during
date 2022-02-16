@@ -21,7 +21,7 @@ class _ColorDialogState extends State<ColorDialog> {
       children: [
         HeaderText(title: 'Color', showTrailing: false),
         SizedBox(height: 8),
-        GestureDetector(
+        InkWell(
           onTap: () {
             ColorPicker(
               color: color,

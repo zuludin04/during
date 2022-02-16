@@ -71,7 +71,7 @@ class TransactionCreateScreen extends StatelessWidget {
                 SizedBox(height: 16),
                 HeaderText(title: 'Saving', showTrailing: false),
                 SizedBox(height: 8),
-                GestureDetector(
+                InkWell(
                   onTap: () {
                     _controller.pickSaving();
                   },

@@ -26,7 +26,7 @@ class SavingNavigation extends StatelessWidget {
   }
 
   Widget _savingItem(SavingEntity saving) {
-    return GestureDetector(
+    return InkWell(
       onTap: () async {
         var result =
             await Get.toNamed(RoutePath.SAVING_DETAIL, arguments: saving);

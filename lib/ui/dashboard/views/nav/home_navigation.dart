@@ -38,7 +38,7 @@ class HomeNavigation extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  GestureDetector(
+                  InkWell(
                     onTap: () =>
                         Get.find<DashboardController>().changeNavIndex(1),
                     child: Container(

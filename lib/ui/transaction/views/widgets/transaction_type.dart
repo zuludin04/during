@@ -67,7 +67,7 @@ class CategoryType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GestureDetector(
+      child: InkWell(
         onTap: onTap,
         child: Container(
           padding: EdgeInsets.all(8),
