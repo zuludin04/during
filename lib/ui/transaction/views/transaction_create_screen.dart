@@ -17,47 +17,45 @@ class TransactionCreateScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: ToolbarDuring.defaultToolbar('Transaction'),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        width: double.infinity,
-        padding: EdgeInsets.all(12),
-        child: ElevatedButton(
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              _formKey.currentState!.save();
-              if (_controller.pickedSaving.value == 'Choose Saving') {
-                Get.rawSnackbar(message: 'Pick your account saving');
-                return;
-              }
+      appBar: ToolbarDuring.defaultToolbar(
+        'Transaction',
+        actions: [
+          IconButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                if (_controller.pickedSaving.value == 'Choose Saving') {
+                  Get.rawSnackbar(message: 'Pick your account saving');
+                  return;
+                }
 
-              if (_controller.savingBalance() < 0) {
-                Get.rawSnackbar(message: 'Your account balance will be minus.');
-                return;
-              }
+                if (_controller.savingBalance() < 0) {
+                  Get.rawSnackbar(
+                      message: 'Your account balance will be minus.');
+                  return;
+                }
 
-              _controller.createTransaction();
-            } else {
-              Get.rawSnackbar(message: 'Field can\'t be empty');
-            }
-          },
-          child: Text(
-            _controller.transactionType!,
-            style: TextStyle(fontSize: 16),
+                _controller.createTransaction();
+              }
+            },
+            icon: Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
           ),
-        ),
+        ],
       ),
       body: SingleChildScrollView(
-        child: Obx(
-          () => Padding(
-            padding: const EdgeInsets.all(12),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TransactionType(_controller),
-                  SizedBox(height: 16),
-                  CategoryPicker(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TransactionType(_controller),
+                SizedBox(height: 16),
+                Obx(
+                  () => CategoryPicker(
                     title: 'Category',
                     dialogTitle: _controller.type.value == 'Income'
                         ? 'Income Category'
@@ -69,56 +67,54 @@ class TransactionCreateScreen extends StatelessWidget {
                     onSelectedCategory: (cat) =>
                         _controller.category.value = cat,
                   ),
-                  SizedBox(height: 16),
-                  Column(
-                    children: [
-                      HeaderText(title: 'Saving', showTrailing: false),
-                      SizedBox(height: 8),
-                      GestureDetector(
-                        onTap: () {
-                          _controller.pickSaving();
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black38),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Text(
-                            _controller.pickedSaving.value,
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
+                ),
+                SizedBox(height: 16),
+                HeaderText(title: 'Saving', showTrailing: false),
+                SizedBox(height: 8),
+                GestureDetector(
+                  onTap: () {
+                    _controller.pickSaving();
+                  },
+                  child: Obx(
+                    () => Container(
+                      width: double.infinity,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black38),
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                    ],
+                      child: Text(
+                        _controller.pickedSaving.value,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
                   ),
-                  SizedBox(height: 16),
-                  InputTextField(
-                    title: 'Total',
-                    hint: 'Total',
-                    onSaved: _controller.nominal,
-                    keyboardType: TextInputType.number,
-                    text: _controller.nominal.value,
-                    currencyFormat: true,
-                  ),
-                  SizedBox(height: 16),
-                  InputTextField(
-                    title: 'Name',
-                    hint: 'Name',
-                    text: _controller.name.value,
-                    onSaved: _controller.name,
-                  ),
-                  SizedBox(height: 16),
-                  DateDialog(
-                    (int date) {
-                      _controller.date.value = date;
-                    },
-                    DateTime.fromMillisecondsSinceEpoch(_controller.date.value),
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(height: 16),
+                InputTextField(
+                  title: 'Total',
+                  hint: 'Total',
+                  onSaved: _controller.nominal,
+                  keyboardType: TextInputType.number,
+                  text: _controller.nominal.value,
+                  currencyFormat: true,
+                ),
+                SizedBox(height: 16),
+                InputTextField(
+                  title: 'Name',
+                  hint: 'Name',
+                  text: _controller.name.value,
+                  onSaved: _controller.name,
+                ),
+                SizedBox(height: 16),
+                DateDialog(
+                  (int date) {
+                    _controller.date.value = date;
+                  },
+                  DateTime.fromMillisecondsSinceEpoch(_controller.date.value),
+                ),
+              ],
             ),
           ),
         ),

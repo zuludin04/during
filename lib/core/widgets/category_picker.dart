@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'header_text.dart';
 
-class CategoryPicker extends StatefulWidget {
+class CategoryPicker extends StatelessWidget {
   final String title;
   final String dialogTitle;
   final String value;
@@ -21,20 +21,17 @@ class CategoryPicker extends StatefulWidget {
   });
 
   @override
-  _CategoryPickerState createState() => _CategoryPickerState();
-}
-
-class _CategoryPickerState extends State<CategoryPicker> {
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderText(title: widget.title, showTrailing: false),
+        HeaderText(title: title, showTrailing: false),
         SizedBox(height: 8),
         GestureDetector(
           onTap: () async {
-            var category = await Get.bottomSheet(_categoryList());
-            widget.onSelectedCategory(category);
+            String? category = await Get.bottomSheet(_categoryList());
+            if (category != null) {
+              onSelectedCategory(category);
+            }
           },
           child: Container(
             width: double.infinity,
@@ -44,7 +41,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
               borderRadius: BorderRadius.circular(5),
             ),
             child: Text(
-              widget.value,
+              value,
               style: TextStyle(fontSize: 16),
             ),
           ),
@@ -67,7 +64,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            widget.dialogTitle,
+            dialogTitle,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
@@ -81,7 +78,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    Get.back(result: widget.categories[index]);
+                    Get.back(result: categories[index]);
                   },
                   child: Column(
                     children: [
@@ -92,7 +89,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
                         ),
                         padding: EdgeInsets.all(12),
                         child: SvgPicture.asset(
-                          iconAssetByCategory(widget.categories[index]),
+                          iconAssetByCategory(categories[index]),
                           color: Color(0xff373a36),
                           width: 30,
                           height: 30,
@@ -100,14 +97,14 @@ class _CategoryPickerState extends State<CategoryPicker> {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        widget.categories[index],
+                        categories[index],
                         style: TextStyle(fontSize: 15),
                       ),
                     ],
                   ),
                 );
               },
-              itemCount: widget.categories.length,
+              itemCount: categories.length,
             ),
           ),
         ],

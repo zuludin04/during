@@ -30,7 +30,6 @@ class AppPages {
         DashboardBinding(),
         HomeNavigationBinding(),
         TransactionNavigationBinding(),
-        SavingListBinding(),
       ],
     ),
     GetPage(
@@ -51,6 +50,7 @@ class AppPages {
     GetPage(
       name: _Path.SAVING_LIST,
       page: () => SavingListScreen(),
+      binding: SavingListBinding(),
     ),
     GetPage(
       name: _Path.SAVING_DETAIL,
