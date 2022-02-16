@@ -33,7 +33,6 @@ class DashboardController extends GetxController {
     var result = await Get.toNamed(RoutePath.SAVING_INSERT);
     if (result != null) {
       if (result == true) {
-        // Get.find<SavingListController>().loadSavings();
         Get.find<HomeNavigationController>().loadSavingList();
       }
     }

@@ -31,6 +31,7 @@ class TransactionCreateController extends GetxController {
       _loadInitialValue(Get.arguments);
     } else {
       type.value = Get.parameters['type'] ?? "Income";
+      category.value = type.value == 'Income' ? 'Fee' : 'Education';
       date.value = DateTime.now().millisecondsSinceEpoch;
     }
   }
