@@ -28,10 +28,10 @@ class TransactionNavigationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _loadInitialTransactions();
+    loadInitialTransactions();
   }
 
-  void _loadInitialTransactions() async {
+  void loadInitialTransactions() async {
     var result = await _repository.loadTodayTransaction();
     if (result.isEmpty) {
       emptyTransaction.value = true;

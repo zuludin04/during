@@ -1,5 +1,6 @@
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,8 +30,11 @@ class AddTransactionDialog extends StatelessWidget {
       onTap: () async {
         Get.back();
         if (title != 'Sharing') {
-          var result = await Get.toNamed(RoutePath.TRANSACTION_CREATE,
-              parameters: {'transaction': 'Create', 'type': title});
+          var result =
+              await Get.toNamed(RoutePath.TRANSACTION_CREATE, parameters: {
+            'transaction': 'Create',
+            'type': title,
+          });
           if (result != null) {
             if (result == 'Income') {
               _controller.loadIncomes();
@@ -40,6 +44,8 @@ class AddTransactionDialog extends StatelessWidget {
               _controller.loadTodayTransaction();
             }
             _controller.loadSavingList();
+            Get.find<TransactionNavigationController>()
+                .loadInitialTransactions();
           }
         }
       },
