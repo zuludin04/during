@@ -1,7 +1,19 @@
+import 'package:during/service/cache_service.dart';
+import 'package:during/ui/dashboard/controllers/setting_navigation_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-class SettingNavigation extends StatelessWidget {
+class SettingNavigation extends StatefulWidget {
+  @override
+  State<SettingNavigation> createState() => _SettingNavigationState();
+}
+
+class _SettingNavigationState extends State<SettingNavigation> {
+  final SettingNavigationController _controller = Get.find();
+
+  bool showSlider = CacheService.to.showSlider;
+
   @override
   Widget build(BuildContext context) {
     return SettingsList(
@@ -13,9 +25,14 @@ class SettingNavigation extends StatelessWidget {
           title: Text('Common'),
           tiles: [
             SettingsTile.switchTile(
-              initialValue: false,
+              initialValue: showSlider,
               leading: Icon(Icons.credit_card),
-              onToggle: (value) {},
+              onToggle: (value) {
+                _controller.toggleSavingSlider(value);
+                setState(() {
+                  showSlider = value;
+                });
+              },
               title: Text('Hide Saving'),
               description: Text('Hide saving slider in home page'),
             ),

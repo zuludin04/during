@@ -1,10 +1,13 @@
 import 'package:during/core/utils/custom_theme.dart';
 import 'package:during/routes/app_pages.dart';
+import 'package:during/service/cache_service.dart';
 import 'package:during/service/repository_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(MyApp());
 }
 
@@ -16,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: CustomTheme.defaultTheme,
       initialBinding: BindingsBuilder(() {
         Get.put(RepositoryService());
+        Get.put(CacheService());
       }),
       getPages: AppPages.routes,
     );
