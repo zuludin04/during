@@ -13,6 +13,7 @@ class _SettingNavigationState extends State<SettingNavigation> {
   final SettingNavigationController _controller = Get.find();
 
   bool showSlider = CacheService.to.showSlider;
+  bool darkMode = CacheService.to.darkMode;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +38,16 @@ class _SettingNavigationState extends State<SettingNavigation> {
               description: Text('Hide saving slider in home page'),
             ),
             SettingsTile.switchTile(
-              initialValue: false,
-              onToggle: (value) {},
+              initialValue: darkMode,
+              onToggle: (value) {
+                _controller.toggleDarkTheme(value);
+                Get.isDarkMode
+                    ? Get.changeTheme(ThemeData.light())
+                    : Get.changeTheme(ThemeData.dark());
+                setState(() {
+                  darkMode = value;
+                });
+              },
               title: Text('Dark Theme'),
               leading: Icon(Icons.dark_mode),
             ),
