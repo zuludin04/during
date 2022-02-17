@@ -1,57 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:settings_ui/settings_ui.dart';
 
 class SettingNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        SizedBox(height: 5),
-        _settingItem(
-          'Rating',
-          Icons.star,
-          () {},
-        ),
-        _settingItem(
-          'Share',
-          Icons.share,
-          () {},
-        ),
-        _settingItem(
-          'Info',
-          Icons.info,
-          () {},
-        ),
-      ],
-    );
-  }
-
-  Widget _settingItem(String title, IconData icon, Function() onTap) {
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Container(
-            color: Colors.white,
-            padding: EdgeInsets.all(12),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(icon, size: 24),
-                SizedBox(width: 15),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-                Icon(Icons.keyboard_arrow_right_outlined),
-              ],
-            ),
-          ),
-          SizedBox(height: 2),
-        ],
+    return SettingsList(
+      lightTheme: SettingsThemeData(
+        settingsListBackground: Colors.white,
       ),
+      sections: [
+        SettingsSection(
+          title: Text('Common'),
+          tiles: [
+            SettingsTile.switchTile(
+              initialValue: false,
+              leading: Icon(Icons.credit_card),
+              onToggle: (value) {},
+              title: Text('Hide Saving'),
+              description: Text('Hide saving slider in home page'),
+            ),
+            SettingsTile.switchTile(
+              initialValue: false,
+              onToggle: (value) {},
+              title: Text('Dark Theme'),
+              leading: Icon(Icons.dark_mode),
+            ),
+            SettingsTile(
+              title: Text('Google Drive Backup'),
+              leading: Icon(Icons.backup),
+            ),
+            SettingsTile(
+              title: Text('Language'),
+              leading: Icon(Icons.language),
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text('Other'),
+          tiles: [
+            SettingsTile(
+              title: Text('Rating'),
+              leading: Icon(Icons.star),
+            ),
+            SettingsTile(
+              title: Text('Share'),
+              leading: Icon(Icons.share),
+            ),
+            SettingsTile(
+              title: Text('Info'),
+              leading: Icon(Icons.info),
+            ),
+          ],
+        )
+      ],
     );
   }
 }
