@@ -39,7 +39,7 @@ class TransactionCreateScreen extends StatelessWidget {
               }
             },
             icon: Icon(
-              Icons.add,
+              Icons.check,
               color: Colors.black,
             ),
           ),
