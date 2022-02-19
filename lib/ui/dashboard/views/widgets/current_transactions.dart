@@ -21,7 +21,7 @@ class CurrentTransaction extends StatelessWidget {
         return SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) =>
-                TransactionItem(controller.todayTransaction[index]),
+                TransactionItem(controller.todayTransaction[index], 'normal'),
             childCount: controller.todayTransaction.length > 8
                 ? 8
                 : controller.todayTransaction.length,

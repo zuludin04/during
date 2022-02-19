@@ -8,14 +8,15 @@ import 'package:get/get.dart';
 
 class TransactionItem extends StatelessWidget {
   final TransactionEntity transaction;
+  final String source;
 
-  TransactionItem(this.transaction);
+  TransactionItem(this.transaction, this.source);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () =>
-          Get.toNamed(RoutePath.TRANSACTION_DETAIL, arguments: transaction),
+      onTap: () => Get.toNamed(RoutePath.TRANSACTION_DETAIL,
+          arguments: transaction, parameters: {'source': source}),
       child: Column(
         children: [
           Container(
