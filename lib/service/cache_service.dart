@@ -11,7 +11,7 @@ class CacheService extends GetxService {
     _storage.write('SHOW_SLIDER', value);
   }
 
-  bool get darkMode => _storage.read('DARK_MODE');
+  bool get darkMode => _storage.read('DARK_MODE') ?? false;
   set darkMode(bool value) {
     _storage.write('DARK_MODE', value);
   }
