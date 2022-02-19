@@ -136,7 +136,7 @@ class SavingDetailScreen extends StatelessWidget {
   }
 
   Widget _loadTransactionIndicator(bool loading) {
-    return SliverToBoxAdapter(
+    return SliverFillRemaining(
       child: Center(
         child: loading
             ? CircularProgressIndicator()
