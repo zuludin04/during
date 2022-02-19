@@ -22,6 +22,7 @@ class TransactionNavigationController extends GetxController {
 
   var transactionType;
   var transactionCategory;
+  List<String> filterCategories = [];
 
   var emptyTransaction = false.obs;
 
@@ -50,7 +51,7 @@ class TransactionNavigationController extends GetxController {
     filtered = filter;
 
     var result = await _repository.filterTransactions(
-        _getFilterRange(filterRange), transactionType, transactionCategory);
+        _getFilterRange(filterRange), transactionType, filterCategories);
     if (result.isEmpty) {
       emptyTransaction.value = true;
     } else {
@@ -61,19 +62,21 @@ class TransactionNavigationController extends GetxController {
     Get.back(result: filtered);
   }
 
-  void changeFilterRange(int range, String title) {
+  void changeFilterRange(int range, String title, List<String> choices) {
     filterRange = range;
   }
 
-  void changeFilterType(int type, String title) {
+  void changeFilterType(int type, String title, List<String> choices) {
     filterType = type;
     typed.value = type;
     transactionType = title;
+    filterCategories.clear();
   }
 
-  void changeFilterCategory(int category, String title) {
+  void changeFilterCategory(int category, String title, List<String> choices) {
     filterCategory = category;
     transactionCategory = title;
+    filterCategories = choices;
   }
 
   String _getFilterRange(int range) {

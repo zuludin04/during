@@ -27,7 +27,7 @@ abstract class DuringRepository {
   Future<void> updateSavingBalance(int? savingId, int? balance);
 
   Future<List<TransactionEntity>> filterTransactions(
-      String range, String? type, String? category);
+      String range, String? type, List<String>? category);
 
   Future<void> deleteSaving(int? savingId);
 }
@@ -97,7 +97,7 @@ class DuringRepositoryImpl extends DuringRepository {
 
   @override
   Future<List<TransactionEntity>> filterTransactions(
-      String range, String? type, String? category) async {
+      String range, String? type, List<String>? category) async {
     var query = "SELECT * FROM duringTransaction WHERE date BETWEEN $range";
 
     if (type != null) {
@@ -105,7 +105,9 @@ class DuringRepositoryImpl extends DuringRepository {
     }
 
     if (category != null) {
-      query = query + " AND category = '$category'";
+      if (category.isNotEmpty) {
+        query = query + " AND category IN (${_joinText(category)})";
+      }
     }
 
     var results = await _dbProvider.filterTransactions(query);
@@ -115,5 +117,9 @@ class DuringRepositoryImpl extends DuringRepository {
   @override
   Future<void> deleteSaving(int? savingId) async {
     _dbProvider.deleteSaving(savingId);
+  }
+
+  String _joinText(List<String> values) {
+    return "'${values.join("','")}'";
   }
 }

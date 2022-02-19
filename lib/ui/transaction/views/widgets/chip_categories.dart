@@ -8,7 +8,7 @@ class ChipCategories extends StatefulWidget {
   final List<String> categories;
   final bool multiChoice;
   final int selected;
-  final Function(int id, String title)? onSelected;
+  final Function(int id, String title, List<String> choices)? onSelected;
 
   ChipCategories({
     required this.title,
@@ -70,8 +70,9 @@ class _ChipCategoriesState extends State<ChipCategories> {
               : _selectedChoices.add(e.title!);
         } else {
           _idSelected = e.id!;
-          widget.onSelected!(e.id!, e.title!);
         }
+        List<String> choices = widget.multiChoice ? _selectedChoices : [];
+        widget.onSelected!(e.id!, e.title!, choices);
       }),
       selectedColor: Color(0xffFFA400),
     );
