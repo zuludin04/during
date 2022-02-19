@@ -40,6 +40,7 @@ class FilterBottomSheet extends StatelessWidget {
                   ChipCategories(
                     title: 'Range',
                     categories: dateRangeFilters,
+                    multiChoice: false,
                     selected: _controller.filtered.range!,
                     onSelected: _controller.changeFilterRange,
                   ),
@@ -47,6 +48,7 @@ class FilterBottomSheet extends StatelessWidget {
                   ChipCategories(
                     title: 'Type',
                     categories: types,
+                    multiChoice: false,
                     selected: _controller.filtered.type!,
                     onSelected: _controller.changeFilterType,
                   ),
@@ -57,6 +59,7 @@ class FilterBottomSheet extends StatelessWidget {
                       categories: _controller.typed.value == 1
                           ? incomeCategories
                           : expenseCategories,
+                      multiChoice: true,
                       selected: _controller.filtered.category!,
                       onSelected: _controller.changeFilterCategory,
                     ),

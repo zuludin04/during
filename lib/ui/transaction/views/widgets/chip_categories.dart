@@ -1,16 +1,19 @@
 import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/header_text.dart';
+import 'package:during/data/model/filter_choice.dart';
 import 'package:flutter/material.dart';
 
 class ChipCategories extends StatefulWidget {
   final String title;
   final List<String> categories;
+  final bool multiChoice;
   final int selected;
   final Function(int id, String title)? onSelected;
 
   ChipCategories({
     required this.title,
     required this.categories,
+    required this.multiChoice,
     this.selected = 0,
     this.onSelected,
   });
@@ -21,10 +24,15 @@ class ChipCategories extends StatefulWidget {
 
 class _ChipCategoriesState extends State<ChipCategories> {
   late int _idSelected;
+  late List<String> _selectedChoices;
 
   @override
   void initState() {
-    _idSelected = widget.selected;
+    if (widget.multiChoice) {
+      _selectedChoices = [];
+    } else {
+      _idSelected = widget.selected;
+    }
     super.initState();
   }
 
@@ -37,23 +45,35 @@ class _ChipCategoriesState extends State<ChipCategories> {
         SizedBox(height: 5),
         Wrap(
           children: chipsCategory(widget.categories)
-              .map((e) => ChoiceChip(
-                    label: Text(
-                      e.title!,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-                    selected: e.id == _idSelected,
-                    onSelected: (_) => setState(() {
-                      _idSelected = e.id!;
-                      widget.onSelected!(e.id!, e.title!);
-                    }),
-                    selectedColor: Color(0xffFFA400),
-                  ))
+              .map((e) => _chipItem(e))
               .toList(),
           spacing: 8,
         ),
       ],
+    );
+  }
+
+  Widget _chipItem(FilterChoice e) {
+    return ChoiceChip(
+      label: Text(
+        e.title!,
+        style: TextStyle(color: Colors.white),
+      ),
+      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+      selected: widget.multiChoice
+          ? _selectedChoices.contains(e.title)
+          : e.id == _idSelected,
+      onSelected: (_) => setState(() {
+        if (widget.multiChoice) {
+          _selectedChoices.contains(e.title)
+              ? _selectedChoices.remove(e.title)
+              : _selectedChoices.add(e.title!);
+        } else {
+          _idSelected = e.id!;
+          widget.onSelected!(e.id!, e.title!);
+        }
+      }),
+      selectedColor: Color(0xffFFA400),
     );
   }
 }
