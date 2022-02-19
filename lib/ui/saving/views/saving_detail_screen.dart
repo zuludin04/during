@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 
 class SavingDetailScreen extends StatelessWidget {
   final SavingEntity _saving = Get.arguments;
+  final SavingDetailController _controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,27 @@ class SavingDetailScreen extends StatelessWidget {
         'Saving',
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.delete, color: Colors.black),
+            onPressed: () {
+              Get.defaultDialog(
+                title: 'Delete Saving',
+                content: Text('Are you sure want to delete saving?'),
+                confirm: TextButton(
+                  onPressed: () {
+                    Get.back();
+                    _controller.deleteSaving();
+                  },
+                  child: Text('OK'),
+                ),
+                cancel: TextButton(
+                  onPressed: () => Get.back(),
+                  child: Text('Cancel'),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.delete,
+              color: Colors.black,
+            ),
           ),
           IconButton(
             onPressed: () {},

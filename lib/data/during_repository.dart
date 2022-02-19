@@ -28,6 +28,8 @@ abstract class DuringRepository {
 
   Future<List<TransactionEntity>> filterTransactions(
       String range, String? type, String? category);
+
+  Future<void> deleteSaving(int? savingId);
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -108,5 +110,10 @@ class DuringRepositoryImpl extends DuringRepository {
 
     var results = await _dbProvider.filterTransactions(query);
     return results;
+  }
+
+  @override
+  Future<void> deleteSaving(int? savingId) async {
+    _dbProvider.deleteSaving(savingId);
   }
 }

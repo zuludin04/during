@@ -19,7 +19,7 @@ class TransactionDetailController extends GetxController {
 
   void loadTransactionSaving() async {
     var result = await _repository.loadSingleSaving(transaction.savingId!);
-    saving = result.name ?? '';
+    saving = result.name ?? '~';
     update();
   }
 

@@ -126,7 +126,11 @@ class DuringDbProvider {
     List<SavingEntity> balance = result.isEmpty
         ? []
         : result.map((e) => SavingEntity.fromMap(e)).toList();
-    return balance[0];
+    if (balance.isNotEmpty) {
+      return balance[0];
+    } else {
+      return SavingEntity();
+    }
   }
 
   Future<void> updateSavingBalance(int? savingId, int? balance) async {
@@ -142,5 +146,10 @@ class DuringDbProvider {
         ? []
         : results.map((e) => TransactionEntity.fromMap(e)).toList();
     return transactions;
+  }
+
+  Future<void> deleteSaving(int? id) async {
+    final Database db = await database;
+    await db.delete('duringSaving', where: 'id = ?', whereArgs: [id]);
   }
 }
