@@ -1,6 +1,8 @@
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/ui/share/views/widgets/payment_members.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class ShareGeneratedCodeScreen extends StatelessWidget {
   @override
@@ -10,7 +12,40 @@ class ShareGeneratedCodeScreen extends StatelessWidget {
         'Share Payment',
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.dialog(
+                AlertDialog(
+                  insetPadding: EdgeInsets.symmetric(horizontal: 20),
+                  content: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            'Scan this QR',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15.0),
+                        Container(
+                          width: 250,
+                          height: 250,
+                          child: QrImage(
+                            size: 250,
+                            errorStateBuilder: (context, error) =>
+                                Text(error.toString()),
+                            data: "some data",
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
             icon: Icon(
               Icons.qr_code_scanner,
               color: Colors.black,
