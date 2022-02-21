@@ -15,6 +15,7 @@ class InputTextField extends StatelessWidget {
   final bool currencyFormat;
   final String title;
   final String text;
+  final bool enable;
 
   InputTextField({
     required this.title,
@@ -24,6 +25,7 @@ class InputTextField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.capitalization = TextCapitalization.words,
     this.currencyFormat = false,
+    this.enable = true,
   });
 
   @override
@@ -34,6 +36,7 @@ class InputTextField extends StatelessWidget {
         SizedBox(height: 8),
         Container(
           child: TextFormField(
+            enabled: enable,
             controller: controller..text = text,
             decoration: InputDecoration(
               hintText: hint,

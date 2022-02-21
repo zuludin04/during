@@ -1,6 +1,8 @@
 import 'package:during/core/widgets/input_text_field.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SharePaymentScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -27,7 +29,9 @@ class SharePaymentScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(RoutePath.GENERATED_CODE);
+                  },
                   child: const Text('Generate Code'),
                 ),
               ],

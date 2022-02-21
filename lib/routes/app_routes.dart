@@ -12,6 +12,7 @@ abstract class RoutePath {
   static const SAVING_DETAIL = _Path.SAVING_DETAIL;
   static const SETTINGS = _Path.SETTINGS;
   static const SHARE_PAYMENT = _Path.SHARE_PAYMENT;
+  static const GENERATED_CODE = _Path.GENERATED_CODE;
 }
 
 abstract class _Path {
@@ -24,4 +25,5 @@ abstract class _Path {
   static const SAVING_DETAIL = '/saving_detail';
   static const SETTINGS = '/settings';
   static const SHARE_PAYMENT = '/share_payment';
+  static const GENERATED_CODE = '/generated_code';
 }
