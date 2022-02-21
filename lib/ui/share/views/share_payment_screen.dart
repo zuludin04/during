@@ -30,7 +30,7 @@ class SharePaymentScreen extends StatelessWidget {
                 const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
-                    Get.toNamed(RoutePath.GENERATED_CODE);
+                    Get.offNamed(RoutePath.GENERATED_CODE);
                   },
                   child: const Text('Generate Code'),
                 ),
