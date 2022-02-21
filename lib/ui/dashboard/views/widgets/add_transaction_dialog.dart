@@ -47,6 +47,8 @@ class AddTransactionDialog extends StatelessWidget {
             Get.find<TransactionNavigationController>()
                 .loadInitialTransactions();
           }
+        } else {
+          Get.toNamed(RoutePath.SHARE_PAYMENT);
         }
       },
       child: Column(

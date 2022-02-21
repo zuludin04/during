@@ -9,6 +9,7 @@ import 'package:during/ui/saving/views/saving_detail_screen.dart';
 import 'package:during/ui/saving/views/saving_insert_screen.dart';
 import 'package:during/ui/saving/views/saving_list_screen.dart';
 import 'package:during/ui/settings/settings_screen.dart';
+import 'package:during/ui/share/views/share_payment_screen.dart';
 import 'package:during/ui/transaction/bindings/transaction_create_binding.dart';
 import 'package:during/ui/transaction/bindings/transaction_detail_binding.dart';
 import 'package:during/ui/dashboard/bindings/transaction_filter_binding.dart';
@@ -62,6 +63,10 @@ class AppPages {
     GetPage(
       name: _Path.SETTINGS,
       page: () => SettingsScreen(),
+    ),
+    GetPage(
+      name: _Path.SHARE_PAYMENT,
+      page: () => SharePaymentScreen(),
     ),
   ];
 }
