@@ -14,6 +14,8 @@ class SavingListScreen extends StatelessWidget {
   final SavingListController _controller = Get.find();
   final String type = Get.arguments;
 
+  SavingListScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +30,12 @@ class SavingListScreen extends StatelessWidget {
             }
           }
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: Center(
         child: Obx(() {
           if (_controller.empty.value) {
-            return Text('Saving is Empty');
+            return const Text('Saving is Empty');
           } else {
             return ListView.builder(
               itemBuilder: (context, index) =>
@@ -56,13 +58,13 @@ class SavingListScreen extends StatelessWidget {
         }
       },
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Row(
           children: [
             Container(
               width: 40,
               height: 40,
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: Color(int.parse('0x${saving.color}')),
                 shape: BoxShape.circle,
@@ -72,13 +74,13 @@ class SavingListScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   saving.name ?? '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),

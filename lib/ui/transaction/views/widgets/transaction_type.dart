@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 class TransactionType extends StatefulWidget {
   final TransactionCreateController controller;
 
-  TransactionType(this.controller);
+  const TransactionType({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   _TransactionTypeState createState() => _TransactionTypeState();
@@ -26,7 +29,7 @@ class _TransactionTypeState extends State<TransactionType> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(4),
+      padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5),
@@ -34,8 +37,16 @@ class _TransactionTypeState extends State<TransactionType> {
       ),
       child: Row(
         children: [
-          CategoryType(() => changeTypeState(0), _typeSelected[0], 'Income'),
-          CategoryType(() => changeTypeState(1), _typeSelected[1], 'Expense'),
+          CategoryType(
+            onTap: () => changeTypeState(0),
+            isSelected: _typeSelected[0],
+            title: 'Income',
+          ),
+          CategoryType(
+            onTap: () => changeTypeState(1),
+            isSelected: _typeSelected[1],
+            title: 'Expense',
+          ),
         ],
       ),
     );
@@ -62,7 +73,12 @@ class CategoryType extends StatelessWidget {
   final bool isSelected;
   final String title;
 
-  CategoryType(this.onTap, this.isSelected, this.title);
+  const CategoryType({
+    Key? key,
+    required this.onTap,
+    required this.isSelected,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +86,7 @@ class CategoryType extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: isSelected
                 ? title == 'Income'
@@ -80,7 +96,7 @@ class CategoryType extends StatelessWidget {
             borderRadius: BorderRadius.circular(isSelected ? 5 : 0),
             boxShadow: isSelected
                 ? [
-                    BoxShadow(
+                    const BoxShadow(
                       blurRadius: 0,
                       spreadRadius: 1,
                       color: Colors.black26,

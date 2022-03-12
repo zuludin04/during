@@ -13,6 +13,8 @@ class SavingDetailScreen extends StatelessWidget {
   final SavingEntity _saving = Get.arguments;
   final SavingDetailController _controller = Get.find();
 
+  SavingDetailScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,28 +25,28 @@ class SavingDetailScreen extends StatelessWidget {
             onPressed: () {
               Get.defaultDialog(
                 title: 'Delete Saving',
-                content: Text('Are you sure want to delete saving?'),
+                content: const Text('Are you sure want to delete saving?'),
                 confirm: TextButton(
                   onPressed: () {
                     Get.back();
                     _controller.deleteSaving();
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
                 ),
                 cancel: TextButton(
                   onPressed: () => Get.back(),
-                  child: Text('Cancel'),
+                  child: const Text('Cancel'),
                 ),
               );
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.delete,
               color: Colors.black,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.edit, color: Colors.black),
+            icon: const Icon(Icons.edit, color: Colors.black),
           ),
         ],
       ),
@@ -57,9 +59,10 @@ class SavingDetailScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Rp ${_saving.balance!.toPriceFormat()}',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -70,10 +73,10 @@ class SavingDetailScreen extends StatelessWidget {
                             width: 35,
                             height: 35,
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Text(
                             _saving.name ?? '',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.w600,
@@ -83,10 +86,10 @@ class SavingDetailScreen extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Text('Type'),
+                          const Text('Type'),
                           Text(
                             _saving.category ?? '',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                             ),
@@ -95,10 +98,10 @@ class SavingDetailScreen extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Text('Created'),
+                          const Text('Created'),
                           Text(
                             _saving.date!.changeDateFormat('MM/yy'),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                             ),
@@ -107,8 +110,8 @@ class SavingDetailScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
-                  HeaderText(title: 'Transactions', showTrailing: false),
+                  const SizedBox(height: 16),
+                  const HeaderText(title: 'Transactions', showTrailing: false),
                 ],
               ),
             ),
@@ -141,8 +144,8 @@ class SavingDetailScreen extends StatelessWidget {
     return SliverFillRemaining(
       child: Center(
         child: loading
-            ? CircularProgressIndicator()
-            : Text('Transaction is Empty'),
+            ? const CircularProgressIndicator()
+            : const Text('Transaction is Empty'),
       ),
     );
   }

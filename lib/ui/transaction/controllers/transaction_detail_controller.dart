@@ -31,8 +31,9 @@ class TransactionDetailController extends GetxController {
     Get.find<HomeNavigationController>().loadIncomes();
     Get.find<HomeNavigationController>().loadExpenses();
     Get.find<TransactionNavigationController>().loadInitialTransactions();
-    if (source == 'saving')
+    if (source == 'saving') {
       Get.find<SavingDetailController>().loadSavingTransactions();
+    }
     Get.back();
   }
 

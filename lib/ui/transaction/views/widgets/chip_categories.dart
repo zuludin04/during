@@ -10,13 +10,14 @@ class ChipCategories extends StatefulWidget {
   final int selected;
   final Function(int id, String title, List<String> choices)? onSelected;
 
-  ChipCategories({
+  const ChipCategories({
+    Key? key,
     required this.title,
     required this.categories,
     required this.multiChoice,
     this.selected = 0,
     this.onSelected,
-  });
+  }) : super(key: key);
 
   @override
   _ChipCategoriesState createState() => _ChipCategoriesState();
@@ -42,7 +43,7 @@ class _ChipCategoriesState extends State<ChipCategories> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HeaderText(title: widget.title, showTrailing: false, titleSize: 14),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Wrap(
           children: chipsCategory(widget.categories)
               .map((e) => _chipItem(e))
@@ -57,9 +58,9 @@ class _ChipCategoriesState extends State<ChipCategories> {
     return ChoiceChip(
       label: Text(
         e.title!,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
-      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
       selected: widget.multiChoice
           ? _selectedChoices.contains(e.title)
           : e.id == _idSelected,
@@ -74,7 +75,7 @@ class _ChipCategoriesState extends State<ChipCategories> {
         List<String> choices = widget.multiChoice ? _selectedChoices : [];
         widget.onSelected!(e.id!, e.title!, choices);
       }),
-      selectedColor: Color(0xffFFA400),
+      selectedColor: const Color(0xffFFA400),
     );
   }
 }

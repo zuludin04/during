@@ -6,20 +6,24 @@ class TransactionInfo extends StatelessWidget {
   final int income;
   final int expense;
 
-  TransactionInfo(this.income, this.expense);
+  const TransactionInfo({
+    Key? key,
+    required this.income,
+    required this.expense,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 80,
       child: Row(
         children: [
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           _transaction(Colors.green, 'Income', income),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           _transaction(Colors.red, 'Expense', expense),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
         ],
       ),
     );
@@ -34,11 +38,11 @@ class TransactionInfo extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Container(
               width: 45,
               height: 45,
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: type == 'Income' ? Colors.green : Colors.red,
                 border: Border.all(
@@ -54,21 +58,21 @@ class TransactionInfo extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   type,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 13,
                   ),
                 ),
                 Text(
                   'Rp ${nominal.toPriceFormat()}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 16,

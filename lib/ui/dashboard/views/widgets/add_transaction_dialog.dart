@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 class AddTransactionDialog extends StatelessWidget {
   final HomeNavigationController _controller = Get.find();
 
+  AddTransactionDialog({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

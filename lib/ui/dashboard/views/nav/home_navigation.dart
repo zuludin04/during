@@ -7,23 +7,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeNavigation extends StatelessWidget {
+  const HomeNavigation({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     HomeNavigationController controller = Get.find();
     return CustomScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       slivers: [
         SliverList(
           delegate: SliverChildListDelegate([
-            SizedBox(height: 26),
+            const SizedBox(height: 26),
             SavingSlider(),
             Obx(
               () => TransactionInfo(
-                controller.incomes.value,
-                controller.expenses.value,
+                income: controller.incomes.value,
+                expense: controller.expenses.value,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
@@ -33,7 +35,7 @@ class HomeNavigation extends StatelessWidget {
                   Text(
                     'Recent Transactions',
                     style: TextStyle(
-                      color: Color(0xffFFA400).withOpacity(0.9),
+                      color: const Color(0xffFFA400).withOpacity(0.9),
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                     ),
@@ -42,13 +44,13 @@ class HomeNavigation extends StatelessWidget {
                     onTap: () =>
                         Get.find<DashboardController>().changeNavIndex(1),
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 12),
                       decoration: BoxDecoration(
-                        color: Color(0xffFFA400),
+                        color: const Color(0xffFFA400),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Text(
+                      child: const Text(
                         'See All',
                         style: TextStyle(
                           fontSize: 14,
@@ -61,7 +63,7 @@ class HomeNavigation extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
           ]),
         ),
         CurrentTransaction(),

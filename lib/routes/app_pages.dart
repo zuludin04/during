@@ -29,7 +29,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: initial,
-      page: () => DashboardScreen(),
+      page: () => const DashboardScreen(),
       bindings: [
         DashboardBinding(),
         HomeNavigationBinding(),
@@ -64,7 +64,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutePath.settings,
-      page: () => SettingsScreen(),
+      page: () => const SettingsScreen(),
     ),
     GetPage(
       name: RoutePath.sharePayment,
@@ -73,7 +73,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutePath.generatedCode,
-      page: () => ShareGeneratedCodeScreen(),
+      page: () => const ShareGeneratedCodeScreen(),
     ),
   ];
 }

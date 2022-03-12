@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 class CurrentTransaction extends StatelessWidget {
   final HomeNavigationController controller = Get.find();
 
+  CurrentTransaction({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -14,7 +16,7 @@ class CurrentTransaction extends StatelessWidget {
           child: Container(
             height: 300,
             alignment: Alignment.center,
-            child: Text('Empty Transaction'),
+            child: const Text('Empty Transaction'),
           ),
         );
       } else {

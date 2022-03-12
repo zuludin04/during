@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class TransactionCreateController extends GetxController {
   final DuringRepository _repository = Get.find();
 
-  String? transactionType;
+  String? transactionType = Get.parameters['transaction'];
   SavingEntity saving = SavingEntity();
 
   var name = ''.obs;
@@ -19,10 +19,6 @@ class TransactionCreateController extends GetxController {
   var type = 'Income'.obs;
   var pickedSaving = 'Choose Saving'.obs;
   var transactionId = 0;
-
-  TransactionCreateController(String? transaction) {
-    this.transactionType = transaction;
-  }
 
   @override
   void onInit() {

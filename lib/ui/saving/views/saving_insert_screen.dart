@@ -12,6 +12,8 @@ class SavingInsertScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final SavingInsertController _controller = Get.find();
 
+  SavingInsertScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +27,7 @@ class SavingInsertScreen extends StatelessWidget {
                 _controller.insertSaving();
               }
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.check,
               color: Colors.black,
             ),
@@ -49,13 +51,13 @@ class SavingInsertScreen extends StatelessWidget {
                         _controller.category.value = cat,
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 InputTextField(
                   title: 'Name',
                   hint: 'Name',
                   onSaved: _controller.name,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 InputTextField(
                   title: 'Balance',
                   hint: 'Balance',
@@ -63,11 +65,11 @@ class SavingInsertScreen extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   currencyFormat: true,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 ColorDialog(selectedColor: (Color color) {
                   _controller.color.value = ColorTools.colorCode(color);
                 }),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
               ],
             ),
           ),

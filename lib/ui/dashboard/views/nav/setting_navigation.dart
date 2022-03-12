@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class SettingNavigation extends StatefulWidget {
+  const SettingNavigation({Key? key}) : super(key: key);
+
   @override
   State<SettingNavigation> createState() => _SettingNavigationState();
 }
@@ -18,24 +20,24 @@ class _SettingNavigationState extends State<SettingNavigation> {
   @override
   Widget build(BuildContext context) {
     return SettingsList(
-      lightTheme: SettingsThemeData(
+      lightTheme: const SettingsThemeData(
         settingsListBackground: Colors.white,
       ),
       sections: [
         SettingsSection(
-          title: Text('Common'),
+          title: const Text('Common'),
           tiles: [
             SettingsTile.switchTile(
               initialValue: showSlider,
-              leading: Icon(Icons.credit_card),
+              leading: const Icon(Icons.credit_card),
               onToggle: (value) {
                 _controller.toggleSavingSlider(value);
                 setState(() {
                   showSlider = value;
                 });
               },
-              title: Text('Hide Saving'),
-              description: Text('Hide saving slider in home page'),
+              title: const Text('Hide Saving'),
+              description: const Text('Hide saving slider in home page'),
             ),
             SettingsTile.switchTile(
               initialValue: darkMode,
@@ -48,33 +50,33 @@ class _SettingNavigationState extends State<SettingNavigation> {
                   darkMode = value;
                 });
               },
-              title: Text('Dark Theme'),
-              leading: Icon(Icons.dark_mode),
+              title: const Text('Dark Theme'),
+              leading: const Icon(Icons.dark_mode),
             ),
             SettingsTile(
-              title: Text('Google Drive Backup'),
-              leading: Icon(Icons.backup),
+              title: const Text('Google Drive Backup'),
+              leading: const Icon(Icons.backup),
             ),
             SettingsTile(
-              title: Text('Language'),
-              leading: Icon(Icons.language),
+              title: const Text('Language'),
+              leading: const Icon(Icons.language),
             ),
           ],
         ),
         SettingsSection(
-          title: Text('Other'),
+          title: const Text('Other'),
           tiles: [
             SettingsTile(
-              title: Text('Rating'),
-              leading: Icon(Icons.star),
+              title: const Text('Rating'),
+              leading: const Icon(Icons.star),
             ),
             SettingsTile(
-              title: Text('Share'),
-              leading: Icon(Icons.share),
+              title: const Text('Share'),
+              leading: const Icon(Icons.share),
             ),
             SettingsTile(
-              title: Text('Info'),
-              leading: Icon(Icons.info),
+              title: const Text('Info'),
+              leading: const Icon(Icons.info),
             ),
           ],
         )

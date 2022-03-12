@@ -6,11 +6,13 @@ import 'package:get/get.dart';
 class TransactionNavigation extends StatelessWidget {
   final TransactionNavigationController _controller = Get.find();
 
+  TransactionNavigation({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (_controller.emptyTransaction.value) {
-        return Center(
+        return const Center(
           child: Text('Empty Transaction'),
         );
       } else {

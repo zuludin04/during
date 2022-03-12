@@ -9,6 +9,8 @@ class SharePaymentScreen extends StatelessWidget {
   final SharePaymentController _controller = Get.find();
   final _formKey = GlobalKey<FormState>();
 
+  SharePaymentScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

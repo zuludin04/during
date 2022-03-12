@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 class SavingSlider extends StatelessWidget {
   final HomeNavigationController controller = Get.find();
 
+  SavingSlider({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -19,7 +21,7 @@ class SavingSlider extends StatelessWidget {
         visible: controller.savings.isNotEmpty,
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 160,
               child: CarouselSlider.builder(
@@ -28,7 +30,7 @@ class SavingSlider extends StatelessWidget {
                   return _savingCardItem(controller.savings[realIndex]);
                 },
                 options: CarouselOptions(
-                  scrollPhysics: BouncingScrollPhysics(),
+                  scrollPhysics: const BouncingScrollPhysics(),
                   autoPlay: false,
                   aspectRatio: 2.0,
                   enlargeCenterPage: true,
@@ -36,7 +38,7 @@ class SavingSlider extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -51,7 +53,7 @@ class SavingSlider extends StatelessWidget {
           color: saving.color!.convertStringToColor(),
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Stack(
           children: [
             Align(
@@ -76,7 +78,7 @@ class SavingSlider extends StatelessWidget {
                     height: 25,
                     color: saving.color!.dynamicTextColor(),
                   ),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   Text(
                     saving.name!,
                     style: TextStyle(

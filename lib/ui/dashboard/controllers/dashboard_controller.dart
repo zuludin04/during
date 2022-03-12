@@ -3,6 +3,7 @@ import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/filter_bottom_sheet.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
@@ -21,7 +22,7 @@ class DashboardController extends GetxController {
     );
     if (result != null) {
       if (result is FilterTransaction) {
-        print('Filter range is ${result.range}');
+        debugPrint('Filter range is ${result.range}');
       }
     } else {
       var c = Get.find<TransactionNavigationController>();

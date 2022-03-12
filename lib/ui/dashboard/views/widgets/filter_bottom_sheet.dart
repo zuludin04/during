@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 class FilterBottomSheet extends StatelessWidget {
   final TransactionNavigationController _controller = Get.find();
 
+  FilterBottomSheet({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -15,8 +17,8 @@ class FilterBottomSheet extends StatelessWidget {
       top: true,
       child: Container(
         height: size.height * 0.80,
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(12),
+        decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(10),
@@ -29,11 +31,11 @@ class FilterBottomSheet extends StatelessWidget {
               title: 'Filter',
               showTrailing: true,
               trailing: IconButton(
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
                 onPressed: () => Get.back(),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Expanded(
               child: ListView(
                 children: [
@@ -44,7 +46,7 @@ class FilterBottomSheet extends StatelessWidget {
                     selected: _controller.filtered.range!,
                     onSelected: _controller.changeFilterRange,
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   ChipCategories(
                     title: 'Type',
                     categories: types,
@@ -52,7 +54,7 @@ class FilterBottomSheet extends StatelessWidget {
                     selected: _controller.filtered.type!,
                     onSelected: _controller.changeFilterType,
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Obx(
                     () => ChipCategories(
                       title: 'Category',
@@ -67,11 +69,11 @@ class FilterBottomSheet extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () => _controller.filterTransaction(),
-                child: Text('Filter'),
+                child: const Text('Filter'),
               ),
             ),
           ],

@@ -10,11 +10,13 @@ import 'package:get/get.dart';
 class SavingNavigation extends StatelessWidget {
   final HomeNavigationController _controller = Get.find();
 
+  SavingNavigation({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (_controller.emptySaving.value) {
-        return Center(
+        return const Center(
           child: Text('Saving is Empty'),
         );
       } else {
@@ -39,13 +41,13 @@ class SavingNavigation extends StatelessWidget {
         }
       },
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Row(
           children: [
             Container(
               width: 40,
               height: 40,
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: Color(int.parse('0x${saving.color}')),
                 shape: BoxShape.circle,
@@ -55,13 +57,13 @@ class SavingNavigation extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   saving.name ?? '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),

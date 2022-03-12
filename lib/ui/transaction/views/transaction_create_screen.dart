@@ -13,6 +13,8 @@ class TransactionCreateScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final TransactionCreateController _controller = Get.find();
 
+  TransactionCreateScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +40,7 @@ class TransactionCreateScreen extends StatelessWidget {
                 _controller.createTransaction();
               }
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.check,
               color: Colors.black,
             ),
@@ -52,8 +54,8 @@ class TransactionCreateScreen extends StatelessWidget {
             key: _formKey,
             child: Column(
               children: [
-                TransactionType(_controller),
-                SizedBox(height: 16),
+                TransactionType(controller: _controller),
+                const SizedBox(height: 16),
                 Obx(
                   () => CategoryPicker(
                     title: 'Category',
@@ -68,9 +70,9 @@ class TransactionCreateScreen extends StatelessWidget {
                         _controller.category.value = cat,
                   ),
                 ),
-                SizedBox(height: 16),
-                HeaderText(title: 'Saving', showTrailing: false),
-                SizedBox(height: 8),
+                const SizedBox(height: 16),
+                const HeaderText(title: 'Saving', showTrailing: false),
+                const SizedBox(height: 8),
                 InkWell(
                   onTap: () {
                     _controller.pickSaving();
@@ -78,20 +80,20 @@ class TransactionCreateScreen extends StatelessWidget {
                   child: Obx(
                     () => Container(
                       width: double.infinity,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 12),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black38),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
                         _controller.pickedSaving.value,
-                        style: TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 InputTextField(
                   title: 'Total',
                   hint: 'Total',
@@ -100,14 +102,14 @@ class TransactionCreateScreen extends StatelessWidget {
                   text: _controller.nominal.value,
                   currencyFormat: true,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 InputTextField(
                   title: 'Name',
                   hint: 'Name',
                   text: _controller.name.value,
                   onSaved: _controller.name,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 DateDialog(
                   selectedDate: (int date) {
                     _controller.date.value = date;

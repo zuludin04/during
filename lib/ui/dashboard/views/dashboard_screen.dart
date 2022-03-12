@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(
@@ -18,7 +20,7 @@ class DashboardScreen extends StatelessWidget {
           appBar: AppBar(
             elevation: 1,
             backgroundColor: Colors.white,
-            title: Text(
+            title: const Text(
               'During',
               style: TextStyle(
                 color: Color(0xff111410),
@@ -29,7 +31,7 @@ class DashboardScreen extends StatelessWidget {
               if (controller.navIndex == 1)
                 IconButton(
                   onPressed: controller.filterTransaction,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.filter_list,
                     color: Color(0xff373A36),
                   ),
@@ -37,7 +39,7 @@ class DashboardScreen extends StatelessWidget {
               if (controller.navIndex == 3)
                 IconButton(
                   onPressed: controller.addSaving,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.add,
                     color: Color(0xff373A36),
                   ),
@@ -70,11 +72,11 @@ class DashboardScreen extends StatelessWidget {
           body: IndexedStack(
             index: controller.navIndex,
             children: [
-              HomeNavigation(),
+              const HomeNavigation(),
               TransactionNavigation(),
               Container(),
               SavingNavigation(),
-              SettingNavigation(),
+              const SettingNavigation(),
             ],
           ),
         );

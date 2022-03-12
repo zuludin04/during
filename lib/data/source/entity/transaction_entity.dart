@@ -31,7 +31,7 @@ class TransactionEntity {
   }
 
   Map<String, dynamic> toMap() {
-    Map<String, dynamic> map = Map();
+    Map<String, dynamic> map = {};
     map['id'] = id;
     map['type'] = type;
     map['date'] = date;

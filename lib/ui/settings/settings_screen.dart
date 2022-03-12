@@ -5,20 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ToolbarDuring.defaultToolbar('Settings'),
       body: ListView(
         children: [
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           _settingItem(
             'Saving',
             Icons.account_balance_wallet,
             () =>
                 Get.toNamed(RoutePath.savingList, arguments: savingDetailType),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           _settingItem(
             'Rating',
             Icons.star,
@@ -46,24 +48,24 @@ class SettingsScreen extends StatelessWidget {
         children: [
           Container(
             color: Colors.white,
-            padding: EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Icon(icon, size: 24),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Expanded(
                   child: Text(
                     title,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ),
-                Icon(Icons.keyboard_arrow_right_outlined),
+                const Icon(Icons.keyboard_arrow_right_outlined),
               ],
             ),
           ),
-          SizedBox(height: 2),
+          const SizedBox(height: 2),
         ],
       ),
     );

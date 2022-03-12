@@ -25,7 +25,7 @@ class SavingEntity {
   }
 
   Map<String, dynamic> toMap() {
-    Map<String, dynamic> map = Map();
+    Map<String, dynamic> map = {};
     map['id'] = id;
     map['name'] = name;
     map['balance'] = balance;
