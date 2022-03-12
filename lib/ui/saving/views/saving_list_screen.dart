@@ -49,7 +49,7 @@ class SavingListScreen extends StatelessWidget {
   Widget _savingItem(SavingEntity saving) {
     return InkWell(
       onTap: () {
-        if (type == SAVING_PICKED_TYPE) {
+        if (type == savingPickedType) {
           Get.back(result: saving);
         } else {
           Get.toNamed(RoutePath.SAVING_DETAIL, arguments: saving);

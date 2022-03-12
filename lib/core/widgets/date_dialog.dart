@@ -8,7 +8,11 @@ class DateDialog extends StatefulWidget {
   final Function(int dateInMillisecond) selectedDate;
   final DateTime currentDate;
 
-  DateDialog(this.selectedDate, this.currentDate);
+  const DateDialog({
+    Key? key,
+    required this.selectedDate,
+    required this.currentDate,
+  }) : super(key: key);
 
   @override
   _DateDialogState createState() => _DateDialogState();
@@ -37,8 +41,8 @@ class _DateDialogState extends State<DateDialog> {
           flex: 2,
           child: Column(
             children: [
-              HeaderText(title: 'Date', showTrailing: false),
-              SizedBox(height: 8),
+              const HeaderText(title: 'Date', showTrailing: false),
+              const SizedBox(height: 8),
               InkWell(
                 onTap: () async {
                   var date = await showDatePicker(
@@ -58,27 +62,28 @@ class _DateDialogState extends State<DateDialog> {
                 },
                 child: Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black38),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Text(
                     _getCurrentDate(_currentDate),
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ),
               ),
             ],
           ),
         ),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Expanded(
           flex: 1,
           child: Column(
             children: [
-              HeaderText(title: 'Time', showTrailing: false),
-              SizedBox(height: 8),
+              const HeaderText(title: 'Time', showTrailing: false),
+              const SizedBox(height: 8),
               InkWell(
                 onTap: () async {
                   var selectedTime = await showTimePicker(
@@ -97,14 +102,15 @@ class _DateDialogState extends State<DateDialog> {
                 },
                 child: Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black38),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Text(
                     '${_currentTime.hour}:${_currentTime.minute}',
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ),
               ),

@@ -8,12 +8,13 @@ class FormFieldSpinner extends StatefulWidget {
   final Function(String) onSelect;
   final String title;
 
-  FormFieldSpinner(
-    this.items,
-    this.currentSelected,
-    this.onSelect,
-    this.title,
-  );
+  const FormFieldSpinner({
+    Key? key,
+    required this.items,
+    required this.currentSelected,
+    required this.onSelect,
+    required this.title,
+  }) : super(key: key);
 
   @override
   _FormFieldSpinnerState createState() => _FormFieldSpinnerState();
@@ -33,16 +34,17 @@ class _FormFieldSpinnerState extends State<FormFieldSpinner> {
     return Column(
       children: [
         HeaderText(title: widget.title, showTrailing: false),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         FormField<String>(
           builder: (FormFieldState<String> state) {
             return InputDecorator(
               decoration: InputDecoration(
-                errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+                errorStyle:
+                    const TextStyle(color: Colors.redAccent, fontSize: 16.0),
                 hintText: 'Please select expense',
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0)),
-                contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 8),
               ),
               isEmpty: selected == '',
               child: DropdownButtonHideUnderline(
@@ -54,7 +56,7 @@ class _FormFieldSpinnerState extends State<FormFieldSpinner> {
                       _changeValue(state, newValue);
                     });
                   },
-                  hint: Text('Select Category'),
+                  hint: const Text('Select Category'),
                   items: widget.items.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,

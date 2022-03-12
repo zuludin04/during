@@ -6,17 +6,18 @@ class BottomNavigation extends StatelessWidget {
   final List<NavMenu> navMenus;
   final Function(int) onSelectedMenu;
 
-  BottomNavigation({
+  const BottomNavigation({
+    Key? key,
     required this.currentIndex,
     required this.navMenus,
     required this.onSelectedMenu,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),
@@ -59,7 +60,7 @@ class _BottomNavItem extends StatelessWidget {
   final bool selected;
   final int index;
 
-  _BottomNavItem({
+  const _BottomNavItem({
     required this.menu,
     required this.index,
     this.selected = false,
@@ -84,7 +85,7 @@ class _BottomNavItem extends StatelessWidget {
                   ? null
                   : Colors.black,
         ),
-        SizedBox(height: 2),
+        const SizedBox(height: 2),
         Text(
           menu.label,
           style: TextStyle(
@@ -102,7 +103,7 @@ class _BottomNavItem extends StatelessWidget {
         color: Colors.blueAccent,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Icon(
+      child: const Icon(
         Icons.add,
         color: Colors.white,
       ),

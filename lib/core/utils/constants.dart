@@ -1,2 +1,2 @@
-const SAVING_PICKED_TYPE = 'saving_picked';
-const SAVING_DETAIL_TYPE = 'saving_detail';
+const savingPickedType = 'saving_picked';
+const savingDetailType = 'saving_detail';

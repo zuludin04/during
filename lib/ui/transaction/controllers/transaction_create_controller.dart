@@ -58,7 +58,7 @@ class TransactionCreateController extends GetxController {
 
   void pickSaving() async {
     var result =
-        await Get.toNamed(RoutePath.SAVING_LIST, arguments: SAVING_PICKED_TYPE);
+        await Get.toNamed(RoutePath.SAVING_LIST, arguments: savingPickedType);
     if (result != null) {
       if (result is SavingEntity) {
         saving = result;

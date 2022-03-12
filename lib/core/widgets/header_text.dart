@@ -9,7 +9,7 @@ class HeaderText extends StatelessWidget {
   final Widget? trailing;
   final Function()? onTrailingTap;
 
-  HeaderText({
+  const HeaderText({Key? key, 
     required this.title,
     required this.showTrailing,
     this.more = '',
@@ -17,7 +17,7 @@ class HeaderText extends StatelessWidget {
     this.moreSize = 13,
     this.trailing,
     this.onTrailingTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class HeaderText extends StatelessWidget {
       more,
       style: TextStyle(
         fontSize: moreSize,
-        color: Color(0xff757575),
+        color: const Color(0xff757575),
         fontWeight: FontWeight.w500,
       ),
     );

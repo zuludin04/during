@@ -10,7 +10,11 @@ class TransactionItem extends StatelessWidget {
   final TransactionEntity transaction;
   final String source;
 
-  TransactionItem(this.transaction, this.source);
+  const TransactionItem({
+    Key? key,
+    required this.transaction,
+    required this.source,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +30,11 @@ class TransactionItem extends StatelessWidget {
                 Container(
                   width: 50,
                   height: 50,
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: Color(int.parse('0x${transaction.color}')),
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         offset: Offset(2, 1),
                         blurRadius: 3,
@@ -42,7 +46,7 @@ class TransactionItem extends StatelessWidget {
                   child: SvgPicture.asset(
                       iconAssetByCategory(transaction.category ?? 'Other')),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,15 +54,15 @@ class TransactionItem extends StatelessWidget {
                     children: [
                       Text(
                         transaction.name ?? '',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(
                         transaction.category ?? 'Other',
-                        style: TextStyle(color: Colors.black54),
+                        style: const TextStyle(color: Colors.black54),
                       ),
                     ],
                   ),
@@ -77,10 +81,10 @@ class TransactionItem extends StatelessWidget {
                             : Colors.red,
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(
                       transaction.date!.changeDateFormat('dd MMM yyyy, HH:mm'),
-                      style: TextStyle(color: Colors.black87),
+                      style: const TextStyle(color: Colors.black87),
                     ),
                   ],
                 ),

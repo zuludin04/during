@@ -6,7 +6,10 @@ import 'header_text.dart';
 class ColorDialog extends StatefulWidget {
   final Function(Color color) selectedColor;
 
-  ColorDialog(this.selectedColor);
+  const ColorDialog({
+    Key? key,
+    required this.selectedColor,
+  }) : super(key: key);
 
   @override
   _ColorDialogState createState() => _ColorDialogState();
@@ -19,8 +22,8 @@ class _ColorDialogState extends State<ColorDialog> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderText(title: 'Color', showTrailing: false),
-        SizedBox(height: 8),
+        const HeaderText(title: 'Color', showTrailing: false),
+        const SizedBox(height: 8),
         InkWell(
           onTap: () {
             ColorPicker(
@@ -50,7 +53,7 @@ class _ColorDialogState extends State<ColorDialog> {
           },
           child: Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black38),
               borderRadius: BorderRadius.circular(5),
@@ -65,10 +68,10 @@ class _ColorDialogState extends State<ColorDialog> {
                     shape: BoxShape.circle,
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Text(
                   ColorTools.nameThatColor(color),
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ],
             ),

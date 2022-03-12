@@ -14,7 +14,7 @@ class ToolbarDuring {
           if (sharePayment) {
             Get.defaultDialog(
               title: 'Close Payment',
-              content: Text('All data will be erased. Are you sure?'),
+              content: const Text('All data will be erased. Are you sure?'),
               cancel: TextButton(
                 onPressed: Get.back,
                 child: const Text('Cancel'),
@@ -33,13 +33,16 @@ class ToolbarDuring {
         },
         icon: Icon(
           leadingIcon,
-          color: Color(0xff111410),
+          color: const Color(0xff111410),
         ),
       ),
       backgroundColor: Colors.white,
       title: Text(
         title,
-        style: TextStyle(color: Color(0xff111410), fontSize: 18),
+        style: const TextStyle(
+          color: Color(0xff111410),
+          fontSize: 18,
+        ),
       ),
       centerTitle: true,
       elevation: 0,
