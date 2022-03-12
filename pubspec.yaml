@@ -1,0 +1,48 @@
+name: during
+description: Money tracking application
+
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  get: ^4.3.0
+  sqflite: ^2.0.0+3
+  path: ^1.8.0
+  flex_color_picker: ^2.1.2
+  intl: ^0.17.0
+  flutter_svg: ^0.22.0
+  carousel_slider: ^4.0.0
+  percent_indicator: ^3.0.1
+  modal_bottom_sheet: ^2.0.0
+  settings_ui: ^2.0.2
+  get_storage: ^2.0.3
+  qr_flutter: ^4.0.0
+  cloud_firestore: ^3.1.10
+  firebase_core: ^1.13.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+
+assets:
+  - assets/
+  - assets/category/
+  - assets/saving/
+  - assets/navigation/
+
+fonts:
+  - family: NotoSans
+    fonts:
+      - asset: fonts/NotoSansJP-Regular.otf
