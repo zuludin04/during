@@ -36,13 +36,13 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-assets:
-  - assets/
-  - assets/category/
-  - assets/saving/
-  - assets/navigation/
+  assets:
+    - assets/
+    - assets/category/
+    - assets/saving/
+    - assets/navigation/
 
-fonts:
-  - family: NotoSans
-    fonts:
-      - asset: fonts/NotoSansJP-Regular.otf
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: fonts/NotoSansJP-Regular.otf
