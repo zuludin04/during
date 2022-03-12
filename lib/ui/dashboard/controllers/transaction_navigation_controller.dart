@@ -20,8 +20,8 @@ class TransactionNavigationController extends GetxController {
   var typed = 0.obs;
   var filterCategory = 0;
 
-  var transactionType;
-  var transactionCategory;
+  String transactionType = '';
+  String transactionCategory = '';
   List<String> filterCategories = [];
 
   var emptyTransaction = false.obs;
@@ -82,14 +82,14 @@ class TransactionNavigationController extends GetxController {
   String _getFilterRange(int range) {
     var start =
         DateTime(currentDate.year, currentDate.month, currentDate.day, 0, 0);
-    var end = start.add(Duration(hours: 23, minutes: 59));
+    var end = start.add(const Duration(hours: 23, minutes: 59));
 
     if (range == 1) {
-      end = start.add(Duration(hours: 23, minutes: 59));
+      end = start.add(const Duration(hours: 23, minutes: 59));
     } else if (range == 2) {
-      end = start.add(Duration(days: 7));
+      end = start.add(const Duration(days: 7));
     } else if (range == 3) {
-      end = start.add(Duration(days: 30));
+      end = start.add(const Duration(days: 30));
     }
 
     return '${start.millisecondsSinceEpoch} AND ${end.millisecondsSinceEpoch}';

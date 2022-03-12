@@ -19,7 +19,7 @@ class TransactionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed(RoutePath.TRANSACTION_DETAIL,
+      onTap: () => Get.toNamed(RoutePath.transactionDetail,
           arguments: transaction, parameters: {'source': source}),
       child: Column(
         children: [

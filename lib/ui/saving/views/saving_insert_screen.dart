@@ -64,7 +64,7 @@ class SavingInsertScreen extends StatelessWidget {
                   currencyFormat: true,
                 ),
                 SizedBox(height: 16),
-                ColorDialog((Color color) {
+                ColorDialog(selectedColor: (Color color) {
                   _controller.color.value = ColorTools.colorCode(color);
                 }),
                 SizedBox(height: 16),

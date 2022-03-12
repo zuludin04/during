@@ -31,7 +31,7 @@ class AddTransactionDialog extends StatelessWidget {
         Get.back();
         if (title != 'Sharing') {
           var result =
-              await Get.toNamed(RoutePath.TRANSACTION_CREATE, parameters: {
+              await Get.toNamed(RoutePath.transactionCreate, parameters: {
             'transaction': 'Create',
             'type': title,
           });
@@ -48,7 +48,7 @@ class AddTransactionDialog extends StatelessWidget {
                 .loadInitialTransactions();
           }
         } else {
-          Get.toNamed(RoutePath.SHARE_PAYMENT);
+          Get.toNamed(RoutePath.sharePayment);
         }
       },
       child: Column(

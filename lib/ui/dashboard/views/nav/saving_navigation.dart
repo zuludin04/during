@@ -31,7 +31,7 @@ class SavingNavigation extends StatelessWidget {
     return InkWell(
       onTap: () async {
         var result =
-            await Get.toNamed(RoutePath.SAVING_DETAIL, arguments: saving);
+            await Get.toNamed(RoutePath.savingDetail, arguments: saving);
         if (result != null) {
           if (result == true) {
             _controller.loadSavingList();

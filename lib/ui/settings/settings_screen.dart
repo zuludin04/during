@@ -15,8 +15,8 @@ class SettingsScreen extends StatelessWidget {
           _settingItem(
             'Saving',
             Icons.account_balance_wallet,
-            () => Get.toNamed(RoutePath.SAVING_LIST,
-                arguments: savingDetailType),
+            () =>
+                Get.toNamed(RoutePath.savingList, arguments: savingDetailType),
           ),
           SizedBox(height: 15),
           _settingItem(

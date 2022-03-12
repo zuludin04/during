@@ -16,7 +16,10 @@ class TransactionNavigation extends StatelessWidget {
       } else {
         return ListView.builder(
           itemBuilder: (context, index) {
-            return TransactionItem(_controller.transactions[index], 'normal');
+            return TransactionItem(
+              transaction: _controller.transactions[index],
+              source: 'normal',
+            );
           },
           itemCount: _controller.transactions.length,
         );

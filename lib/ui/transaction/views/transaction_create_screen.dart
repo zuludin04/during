@@ -109,10 +109,11 @@ class TransactionCreateScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
                 DateDialog(
-                  (int date) {
+                  selectedDate: (int date) {
                     _controller.date.value = date;
                   },
-                  DateTime.fromMillisecondsSinceEpoch(_controller.date.value),
+                  currentDate: DateTime.fromMillisecondsSinceEpoch(
+                      _controller.date.value),
                 ),
               ],
             ),

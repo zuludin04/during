@@ -37,7 +37,7 @@ class TransactionDetailController extends GetxController {
   }
 
   void updateTransaction() {
-    Get.toNamed(RoutePath.TRANSACTION_CREATE,
+    Get.toNamed(RoutePath.transactionCreate,
         arguments: transaction, parameters: {'transaction': 'Update'});
   }
 }

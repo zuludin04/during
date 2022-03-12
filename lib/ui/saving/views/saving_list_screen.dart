@@ -20,7 +20,7 @@ class SavingListScreen extends StatelessWidget {
       appBar: ToolbarDuring.defaultToolbar('Savings'),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          var result = await Get.toNamed(RoutePath.SAVING_INSERT);
+          var result = await Get.toNamed(RoutePath.savingInsert);
           if (result != null) {
             if (result == true) {
               _controller.loadSavings();
@@ -52,7 +52,7 @@ class SavingListScreen extends StatelessWidget {
         if (type == savingPickedType) {
           Get.back(result: saving);
         } else {
-          Get.toNamed(RoutePath.SAVING_DETAIL, arguments: saving);
+          Get.toNamed(RoutePath.savingDetail, arguments: saving);
         }
       },
       child: Container(

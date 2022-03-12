@@ -122,8 +122,10 @@ class SavingDetailScreen extends StatelessWidget {
               } else {
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (context, index) =>
-                        TransactionItem(controller.transactions[index], 'saving'),
+                    (context, index) => TransactionItem(
+                      transaction: controller.transactions[index],
+                      source: 'saving',
+                    ),
                     childCount: controller.transactions.length,
                   ),
                 );
