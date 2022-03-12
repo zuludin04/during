@@ -24,11 +24,11 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = _Path.DASHBOARD;
+  static const initial = RoutePath.dashboard;
 
   static final routes = [
     GetPage(
-      name: INITIAL,
+      name: initial,
       page: () => DashboardScreen(),
       bindings: [
         DashboardBinding(),
@@ -38,41 +38,41 @@ class AppPages {
       ],
     ),
     GetPage(
-      name: _Path.TRANSACTION_CREATE,
+      name: RoutePath.transactionCreate,
       page: () => TransactionCreateScreen(),
       binding: TransactionCreateBinding(),
     ),
     GetPage(
-      name: _Path.TRANSACTION_DETAIL,
+      name: RoutePath.transactionDetail,
       page: () => TransactionDetailScreen(),
       binding: TransactionDetailBinding(),
     ),
     GetPage(
-      name: _Path.SAVING_INSERT,
+      name: RoutePath.savingInsert,
       page: () => SavingInsertScreen(),
       binding: SavingInsertBinding(),
     ),
     GetPage(
-      name: _Path.SAVING_LIST,
+      name: RoutePath.savingList,
       page: () => SavingListScreen(),
       binding: SavingListBinding(),
     ),
     GetPage(
-      name: _Path.SAVING_DETAIL,
+      name: RoutePath.savingDetail,
       page: () => SavingDetailScreen(),
       binding: SavingDetailBinding(),
     ),
     GetPage(
-      name: _Path.SETTINGS,
+      name: RoutePath.settings,
       page: () => SettingsScreen(),
     ),
     GetPage(
-      name: _Path.SHARE_PAYMENT,
+      name: RoutePath.sharePayment,
       page: () => SharePaymentScreen(),
       binding: SharePaymentBinding(),
     ),
     GetPage(
-      name: _Path.GENERATED_CODE,
+      name: RoutePath.generatedCode,
       page: () => ShareGeneratedCodeScreen(),
     ),
   ];
