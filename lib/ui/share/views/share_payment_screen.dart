@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:during/core/widgets/input_text_field.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/ui/share/controllers/share_payment_controller.dart';
@@ -56,17 +56,17 @@ class SharePaymentScreen extends StatelessWidget {
   }
 
   void sharePayment() {
-    CollectionReference payments = FirebaseFirestore.instance
-        .collection('sharepayment')
-        .doc('userId')
-        .collection('sharing');
+    // CollectionReference payments = FirebaseFirestore.instance
+    //     .collection('sharepayment')
+    //     .doc('userId')
+    //     .collection('sharing');
 
-    payments.add({'restaurant': 'Hokben', 'price': 500000}).then((value) {
-      debugPrint('success create payment: ${value.id}');
-    }).catchError(
-      (error) {
-        debugPrint('error when creating payment: $error');
-      },
-    );
+    // payments.add({'restaurant': 'Hokben', 'price': 500000}).then((value) {
+    //   debugPrint('success create payment: ${value.id}');
+    // }).catchError(
+    //   (error) {
+    //     debugPrint('error when creating payment: $error');
+    //   },
+    // );
   }
 }
