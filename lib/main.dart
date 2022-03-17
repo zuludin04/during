@@ -30,10 +30,9 @@ class MyApp extends StatelessWidget {
         Get.put(CacheService());
       }),
       getPages: AppPages.routes,
-      translations: LanguageService(), // your translations
-      locale: const Locale(
-          'en', 'US'), // translations will be displayed in that locale
-      fallbackLocale: const Locale('en', 'US'), //
+      translations: LanguageService(),
+      locale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('en', 'US'),
     );
   }
 }
