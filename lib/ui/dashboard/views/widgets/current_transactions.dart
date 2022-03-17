@@ -1,3 +1,4 @@
+import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/transaction_item.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class CurrentTransaction extends StatelessWidget {
           child: Container(
             height: 300,
             alignment: Alignment.center,
-            child: Text('empty_transaction'.tr),
+            child: EmptyLayout(message: 'empty_transaction'.tr),
           ),
         );
       } else {

@@ -1,5 +1,6 @@
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/helper.dart';
+import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/header_text.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/core/widgets/transaction_item.dart';
@@ -145,7 +146,7 @@ class SavingDetailScreen extends StatelessWidget {
       child: Center(
         child: loading
             ? const CircularProgressIndicator()
-            : Text('empty_transaction'.tr),
+            : EmptyLayout(message: 'empty_transaction'.tr),
       ),
     );
   }

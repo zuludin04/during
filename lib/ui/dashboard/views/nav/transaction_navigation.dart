@@ -1,3 +1,4 @@
+import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/transaction_item.dart';
 import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class TransactionNavigation extends StatelessWidget {
     return Obx(() {
       if (_controller.emptyTransaction.value) {
         return Center(
-          child: Text('empty_transaction'.tr),
+          child: EmptyLayout(message: 'empty_transaction'.tr),
         );
       } else {
         return ListView.builder(

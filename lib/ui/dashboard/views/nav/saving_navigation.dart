@@ -1,5 +1,6 @@
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/helper.dart';
+import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
@@ -17,7 +18,7 @@ class SavingNavigation extends StatelessWidget {
     return Obx(() {
       if (_controller.emptySaving.value) {
         return Center(
-          child: Text('empty_saving'.tr),
+          child: EmptyLayout(message: 'empty_saving'.tr),
         );
       } else {
         return ListView.builder(

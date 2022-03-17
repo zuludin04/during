@@ -1,6 +1,7 @@
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/constants.dart';
 import 'package:during/core/utils/helper.dart';
+import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
@@ -35,7 +36,7 @@ class SavingListScreen extends StatelessWidget {
       body: Center(
         child: Obx(() {
           if (_controller.empty.value) {
-            return Text('empty_saving'.tr);
+            return EmptyLayout(message: 'empty_saving'.tr);
           } else {
             return ListView.builder(
               itemBuilder: (context, index) =>
