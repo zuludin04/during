@@ -1,5 +1,6 @@
 import 'package:during/data/model/filter_transaction.dart';
 import 'package:during/routes/app_pages.dart';
+import 'package:during/service/language_service.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/filter_bottom_sheet.dart';
@@ -12,6 +13,12 @@ class DashboardController extends GetxController {
   void changeNavIndex(int index) {
     navIndex = index;
     update();
+  }
+
+  @override
+  void onInit() {
+    Get.updateLocale(LanguageService.deviceLocale);
+    super.onInit();
   }
 
   void filterTransaction() async {
