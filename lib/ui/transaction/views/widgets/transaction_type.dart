@@ -1,5 +1,6 @@
 import 'package:during/ui/transaction/controllers/transaction_create_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TransactionType extends StatefulWidget {
   final TransactionCreateController controller;
@@ -105,7 +106,7 @@ class CategoryType extends StatelessWidget {
                 : null,
           ),
           child: Text(
-            title,
+            title.toLowerCase().tr,
             textAlign: TextAlign.center,
             style: TextStyle(color: isSelected ? Colors.white : Colors.black),
           ),

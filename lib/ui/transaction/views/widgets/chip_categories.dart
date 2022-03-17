@@ -2,6 +2,7 @@ import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/header_text.dart';
 import 'package:during/data/model/filter_choice.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChipCategories extends StatefulWidget {
   final String title;
@@ -57,7 +58,7 @@ class _ChipCategoriesState extends State<ChipCategories> {
   Widget _chipItem(FilterChoice e) {
     return ChoiceChip(
       label: Text(
-        e.title!,
+        e.title!.toLowerCase().tr,
         style: const TextStyle(color: Colors.white),
       ),
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),

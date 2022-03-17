@@ -33,7 +33,7 @@ class HomeNavigation extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Recent Transactions',
+                    'recent_transaction'.tr,
                     style: TextStyle(
                       color: const Color(0xffFFA400).withOpacity(0.9),
                       fontSize: 17,
@@ -50,9 +50,9 @@ class HomeNavigation extends StatelessWidget {
                         color: const Color(0xffFFA400),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Text(
-                        'See All',
-                        style: TextStyle(
+                      child: Text(
+                        'see_all'.tr,
+                        style: const TextStyle(
                           fontSize: 14,
                           color: Color(0xff373A36),
                           fontWeight: FontWeight.w500,

@@ -19,7 +19,7 @@ class SavingListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ToolbarDuring.defaultToolbar('Savings'),
+      appBar: ToolbarDuring.defaultToolbar('saving'.tr),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           var result = await Get.toNamed(RoutePath.savingInsert);
@@ -35,7 +35,7 @@ class SavingListScreen extends StatelessWidget {
       body: Center(
         child: Obx(() {
           if (_controller.empty.value) {
-            return const Text('Saving is Empty');
+            return Text('empty_saving'.tr);
           } else {
             return ListView.builder(
               itemBuilder: (context, index) =>

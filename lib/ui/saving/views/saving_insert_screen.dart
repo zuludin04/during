@@ -18,7 +18,7 @@ class SavingInsertScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ToolbarDuring.defaultToolbar(
-        'Insert',
+        'insert'.tr,
         actions: [
           IconButton(
             onPressed: () {
@@ -43,8 +43,8 @@ class SavingInsertScreen extends StatelessWidget {
               children: [
                 Obx(
                   () => CategoryPicker(
-                    title: 'Category',
-                    dialogTitle: 'Saving Category',
+                    title: 'category'.tr,
+                    dialogTitle: 'saving_category'.tr,
                     value: _controller.category.value,
                     categories: savingCategories,
                     onSelectedCategory: (cat) =>
@@ -53,14 +53,14 @@ class SavingInsertScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 InputTextField(
-                  title: 'Name',
-                  hint: 'Name',
+                  title: 'name'.tr,
+                  hint: 'name'.tr,
                   onSaved: _controller.name,
                 ),
                 const SizedBox(height: 16),
                 InputTextField(
-                  title: 'Balance',
-                  hint: 'Balance',
+                  title: 'balance'.tr,
+                  hint: 'balance'.tr,
                   onSaved: _controller.balance,
                   keyboardType: TextInputType.number,
                   currencyFormat: true,

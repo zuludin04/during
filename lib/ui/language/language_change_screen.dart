@@ -8,7 +8,7 @@ class LanguageChangeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ToolbarDuring.defaultToolbar('Language'),
+      appBar: ToolbarDuring.defaultToolbar('language'.tr),
       body: ListView(
         children: [
           ListTile(

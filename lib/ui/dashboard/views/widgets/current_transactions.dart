@@ -16,7 +16,7 @@ class CurrentTransaction extends StatelessWidget {
           child: Container(
             height: 300,
             alignment: Alignment.center,
-            child: const Text('Empty Transaction'),
+            child: Text('empty_transaction'.tr),
           ),
         );
       } else {

@@ -97,7 +97,7 @@ class SavingSlider extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Type',
+                    'type'.tr,
                     style: TextStyle(color: saving.color!.dynamicTextColor()),
                   ),
                   Text(
@@ -118,7 +118,7 @@ class SavingSlider extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Created',
+                    'created'.tr,
                     style: TextStyle(color: saving.color!.dynamicTextColor()),
                   ),
                   Text(

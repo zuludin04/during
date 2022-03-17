@@ -29,7 +29,7 @@ class _SettingNavigationState extends State<SettingNavigation> {
       ),
       sections: [
         SettingsSection(
-          title: const Text('Common'),
+          title: Text('common'.tr),
           tiles: [
             SettingsTile.switchTile(
               initialValue: showSlider,
@@ -40,8 +40,8 @@ class _SettingNavigationState extends State<SettingNavigation> {
                   showSlider = value;
                 });
               },
-              title: const Text('Hide Saving'),
-              description: const Text('Hide saving slider in home page'),
+              title: Text('hide_saving'.tr),
+              description: Text('hide_saving_desc'.tr),
             ),
             SettingsTile.switchTile(
               initialValue: darkMode,
@@ -54,25 +54,25 @@ class _SettingNavigationState extends State<SettingNavigation> {
                   darkMode = value;
                 });
               },
-              title: const Text('Dark Theme'),
+              title: Text('dark_theme'.tr),
               leading: const Icon(Icons.dark_mode),
             ),
             SettingsTile(
-              title: const Text('Google Drive Backup'),
+              title: Text('google_backup'.tr),
               leading: const Icon(Icons.backup),
             ),
             SettingsTile(
-              title: const Text('Language'),
+              title: Text('language'.tr),
               leading: const Icon(Icons.language),
               onPressed: (context) => Get.toNamed(RoutePath.language),
             ),
           ],
         ),
         SettingsSection(
-          title: const Text('Other'),
+          title: Text('other'.tr),
           tiles: [
             SettingsTile(
-              title: const Text('Rating'),
+              title: Text('rating'.tr),
               leading: const Icon(Icons.star),
               onPressed: (context) {
                 try {
@@ -87,7 +87,7 @@ class _SettingNavigationState extends State<SettingNavigation> {
               },
             ),
             SettingsTile(
-              title: const Text('Share'),
+              title: Text('share'.tr),
               leading: const Icon(Icons.share),
               onPressed: (context) {
                 Share.share(

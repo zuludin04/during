@@ -14,7 +14,7 @@ class TransactionDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ToolbarDuring.defaultToolbar('Transaction Detail'),
+      appBar: ToolbarDuring.defaultToolbar('detail_transaction'.tr),
       body: Container(
         width: double.infinity,
         margin: const EdgeInsets.all(16),
@@ -31,7 +31,7 @@ class TransactionDetailScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: RichText(
                       text: TextSpan(
-                          text: 'From ',
+                          text: 'from'.tr + '',
                           style: TextStyle(
                             fontSize: 16,
                             color: controller.transaction.color!
@@ -81,19 +81,18 @@ class TransactionDetailScreen extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       Get.defaultDialog(
-                        title: 'Delete Transaction',
-                        content: const Text(
-                            'Are you sure want to delete transaction?'),
+                        title: 'delete_transaction_title'.tr,
+                        content: Text('delete_transaction_description'.tr),
                         confirm: TextButton(
                           onPressed: () {
                             Get.back();
                             _controller.deleteTransaction();
                           },
-                          child: const Text('OK'),
+                          child: Text('ok'.tr),
                         ),
                         cancel: TextButton(
                           onPressed: () => Get.back(),
-                          child: const Text('Cancel'),
+                          child: Text('cancel'.tr),
                         ),
                       );
                     },
@@ -119,7 +118,11 @@ class TransactionDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 16),
-          HeaderText(title: header, showTrailing: false, titleSize: 15),
+          HeaderText(
+            title: header.toLowerCase().tr,
+            showTrailing: false,
+            titleSize: 15,
+          ),
           Text(
             item,
             style: const TextStyle(fontSize: 16),

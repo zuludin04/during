@@ -42,7 +42,7 @@ class CategoryPicker extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
             ),
             child: Text(
-              value,
+              value.toLowerCase().tr,
               style: const TextStyle(fontSize: 16),
             ),
           ),
@@ -98,7 +98,7 @@ class CategoryPicker extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        categories[index],
+                        categories[index].toLowerCase().tr,
                         style: const TextStyle(fontSize: 15),
                       ),
                     ],

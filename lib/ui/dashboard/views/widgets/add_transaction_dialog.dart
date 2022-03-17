@@ -61,7 +61,7 @@ class AddTransactionDialog extends StatelessWidget {
             icon,
             size: 32,
           ),
-          Text(title),
+          Text(title.toLowerCase().tr),
         ],
       ),
     );

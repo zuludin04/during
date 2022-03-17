@@ -1,5 +1,6 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'header_text.dart';
 
@@ -22,7 +23,7 @@ class _ColorDialogState extends State<ColorDialog> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const HeaderText(title: 'Color', showTrailing: false),
+        HeaderText(title: 'color'.tr, showTrailing: false),
         const SizedBox(height: 8),
         InkWell(
           onTap: () {
@@ -38,11 +39,11 @@ class _ColorDialogState extends State<ColorDialog> {
               height: 44,
               borderRadius: 22,
               heading: Text(
-                'Select color',
+                'select_color'.tr,
                 style: Theme.of(context).textTheme.headline5,
               ),
               subheading: Text(
-                'Select color shade',
+                'select_shade'.tr,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
             ).showPickerDialog(

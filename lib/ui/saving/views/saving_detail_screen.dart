@@ -19,23 +19,23 @@ class SavingDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ToolbarDuring.defaultToolbar(
-        'Saving',
+        'saving'.tr,
         actions: [
           IconButton(
             onPressed: () {
               Get.defaultDialog(
-                title: 'Delete Saving',
-                content: const Text('Are you sure want to delete saving?'),
+                title: 'delete_saving_title'.tr,
+                content: Text('delete_saving_description'.tr),
                 confirm: TextButton(
                   onPressed: () {
                     Get.back();
                     _controller.deleteSaving();
                   },
-                  child: const Text('OK'),
+                  child: Text('ok'.tr),
                 ),
                 cancel: TextButton(
                   onPressed: () => Get.back(),
-                  child: const Text('Cancel'),
+                  child: Text('cancel'.tr),
                 ),
               );
             },
@@ -86,7 +86,7 @@ class SavingDetailScreen extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          const Text('Type'),
+                          Text('type'.tr),
                           Text(
                             _saving.category ?? '',
                             style: const TextStyle(
@@ -98,7 +98,7 @@ class SavingDetailScreen extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          const Text('Created'),
+                          Text('created'.tr),
                           Text(
                             _saving.date!.changeDateFormat('MM/yy'),
                             style: const TextStyle(
@@ -111,7 +111,7 @@ class SavingDetailScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  const HeaderText(title: 'Transactions', showTrailing: false),
+                  HeaderText(title: 'transaction'.tr, showTrailing: false),
                 ],
               ),
             ),
@@ -145,7 +145,7 @@ class SavingDetailScreen extends StatelessWidget {
       child: Center(
         child: loading
             ? const CircularProgressIndicator()
-            : const Text('Transaction is Empty'),
+            : Text('empty_transaction'.tr),
       ),
     );
   }

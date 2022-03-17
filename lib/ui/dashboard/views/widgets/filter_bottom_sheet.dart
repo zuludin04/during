@@ -28,7 +28,7 @@ class FilterBottomSheet extends StatelessWidget {
         child: Column(
           children: [
             HeaderText(
-              title: 'Filter',
+              title: 'filter'.tr,
               showTrailing: true,
               trailing: IconButton(
                 icon: const Icon(Icons.close),
@@ -40,7 +40,7 @@ class FilterBottomSheet extends StatelessWidget {
               child: ListView(
                 children: [
                   ChipCategories(
-                    title: 'Range',
+                    title: 'range'.tr,
                     categories: dateRangeFilters,
                     multiChoice: false,
                     selected: _controller.filtered.range!,
@@ -48,7 +48,7 @@ class FilterBottomSheet extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   ChipCategories(
-                    title: 'Type',
+                    title: 'type'.tr,
                     categories: types,
                     multiChoice: false,
                     selected: _controller.filtered.type!,
@@ -57,7 +57,7 @@ class FilterBottomSheet extends StatelessWidget {
                   const SizedBox(height: 12),
                   Obx(
                     () => ChipCategories(
-                      title: 'Category',
+                      title: 'category'.tr,
                       categories: _controller.typed.value == 1
                           ? incomeCategories
                           : expenseCategories,
@@ -73,7 +73,7 @@ class FilterBottomSheet extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () => _controller.filterTransaction(),
-                child: const Text('Filter'),
+                child: Text('filter'.tr),
               ),
             ),
           ],

@@ -14,7 +14,7 @@ class SharePaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ToolbarDuring.defaultToolbar('Share Payment'),
+      appBar: ToolbarDuring.defaultToolbar('share_payment'.tr),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),
@@ -23,14 +23,14 @@ class SharePaymentScreen extends StatelessWidget {
             child: Column(
               children: [
                 InputTextField(
-                  title: 'Name',
-                  hint: 'Name',
+                  title: 'name'.tr,
+                  hint: 'name'.tr,
                   onSaved: _controller.paymentName,
                 ),
                 const SizedBox(height: 16),
                 InputTextField(
-                  title: 'Total Amount',
-                  hint: 'Total Amount',
+                  title: 'total_amount'.tr,
+                  hint: 'total_amount'.tr,
                   keyboardType: TextInputType.number,
                   currencyFormat: true,
                   onSaved: _controller.paymentNominal,
@@ -42,9 +42,9 @@ class SharePaymentScreen extends StatelessWidget {
                       _formKey.currentState!.save();
                     }
                   },
-                  child: const Text(
-                    'Create Payment',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  child: Text(
+                    'create_payment'.tr,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ],

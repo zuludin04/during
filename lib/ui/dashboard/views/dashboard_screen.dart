@@ -63,10 +63,10 @@ class DashboardScreen extends StatelessWidget {
             },
             navMenus: [
               NavMenu(label: 'home'.tr, icon: 'icon_home'),
-              NavMenu(label: 'Transaction', icon: 'icon_transaction'),
+              NavMenu(label: 'transaction'.tr, icon: 'icon_transaction'),
               NavMenu(label: '', icon: '', isCenter: true),
-              NavMenu(label: 'Saving', icon: 'icon_saving'),
-              NavMenu(label: 'Setting', icon: 'icon_settings'),
+              NavMenu(label: 'saving'.tr, icon: 'icon_saving'),
+              NavMenu(label: 'setting'.tr, icon: 'icon_settings'),
             ],
           ),
           body: IndexedStack(

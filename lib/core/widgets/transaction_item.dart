@@ -61,7 +61,7 @@ class TransactionItem extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        transaction.category ?? 'Other',
+                        transaction.category!.toLowerCase().tr,
                         style: const TextStyle(color: Colors.black54),
                       ),
                     ],

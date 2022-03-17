@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'header_text.dart';
@@ -41,7 +42,7 @@ class _DateDialogState extends State<DateDialog> {
           flex: 2,
           child: Column(
             children: [
-              const HeaderText(title: 'Date', showTrailing: false),
+              HeaderText(title: 'date'.tr, showTrailing: false),
               const SizedBox(height: 8),
               InkWell(
                 onTap: () async {
@@ -82,7 +83,7 @@ class _DateDialogState extends State<DateDialog> {
           flex: 1,
           child: Column(
             children: [
-              const HeaderText(title: 'Time', showTrailing: false),
+              HeaderText(title: 'time'.tr, showTrailing: false),
               const SizedBox(height: 8),
               InkWell(
                 onTap: () async {

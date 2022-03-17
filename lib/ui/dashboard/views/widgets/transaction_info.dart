@@ -1,6 +1,7 @@
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class TransactionInfo extends StatelessWidget {
   final int income;
@@ -64,7 +65,7 @@ class TransactionInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  type,
+                  type.toLowerCase().tr,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 13,

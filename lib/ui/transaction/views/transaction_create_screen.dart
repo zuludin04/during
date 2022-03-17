@@ -20,7 +20,7 @@ class TransactionCreateScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: ToolbarDuring.defaultToolbar(
-        'Transaction',
+        'transaction'.tr,
         actions: [
           IconButton(
             onPressed: () {
@@ -58,10 +58,10 @@ class TransactionCreateScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 Obx(
                   () => CategoryPicker(
-                    title: 'Category',
+                    title: 'category'.tr,
                     dialogTitle: _controller.type.value == 'Income'
-                        ? 'Income Category'
-                        : 'Expense Category',
+                        ? 'income_category'.tr
+                        : 'expense_category'.tr,
                     value: _controller.category.value,
                     categories: _controller.type.value == 'Income'
                         ? incomeCategories
@@ -71,7 +71,7 @@ class TransactionCreateScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                const HeaderText(title: 'Saving', showTrailing: false),
+                HeaderText(title: 'saving'.tr, showTrailing: false),
                 const SizedBox(height: 8),
                 InkWell(
                   onTap: () {
@@ -87,7 +87,9 @@ class TransactionCreateScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
-                        _controller.pickedSaving.value,
+                        _controller.pickedSaving.value == 'Choose Saving'
+                            ? 'choose_saving'.tr
+                            : _controller.pickedSaving.value,
                         style: const TextStyle(fontSize: 16),
                       ),
                     ),
@@ -95,8 +97,8 @@ class TransactionCreateScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 InputTextField(
-                  title: 'Total',
-                  hint: 'Total',
+                  title: 'total'.tr,
+                  hint: 'total'.tr,
                   onSaved: _controller.nominal,
                   keyboardType: TextInputType.number,
                   text: _controller.nominal.value,
@@ -104,8 +106,8 @@ class TransactionCreateScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 InputTextField(
-                  title: 'Name',
-                  hint: 'Name',
+                  title: 'name'.tr,
+                  hint: 'name'.tr,
                   text: _controller.name.value,
                   onSaved: _controller.name,
                 ),

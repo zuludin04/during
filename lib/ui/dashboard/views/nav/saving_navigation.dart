@@ -16,8 +16,8 @@ class SavingNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (_controller.emptySaving.value) {
-        return const Center(
-          child: Text('Saving is Empty'),
+        return Center(
+          child: Text('empty_saving'.tr),
         );
       } else {
         return ListView.builder(
