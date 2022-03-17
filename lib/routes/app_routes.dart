@@ -10,7 +10,6 @@ abstract class RoutePath {
   static const savingInsert = '/saving_insert';
   static const savingList = '/saving_list';
   static const savingDetail = '/saving_detail';
-  static const settings= '/settings';
   static const sharePayment = '/share_payment';
   static const generatedCode = '/generated_code';
   static const language = '/language';

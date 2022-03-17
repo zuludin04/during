@@ -9,7 +9,6 @@ import 'package:during/ui/saving/bindings/saving_list_binding.dart';
 import 'package:during/ui/saving/views/saving_detail_screen.dart';
 import 'package:during/ui/saving/views/saving_insert_screen.dart';
 import 'package:during/ui/saving/views/saving_list_screen.dart';
-import 'package:during/ui/settings/settings_screen.dart';
 import 'package:during/ui/share/bindings/share_payment_binding.dart';
 import 'package:during/ui/share/views/share_generated_code_screen.dart';
 import 'package:during/ui/share/views/share_payment_screen.dart';
@@ -62,10 +61,6 @@ class AppPages {
       name: RoutePath.savingDetail,
       page: () => SavingDetailScreen(),
       binding: SavingDetailBinding(),
-    ),
-    GetPage(
-      name: RoutePath.settings,
-      page: () => const SettingsScreen(),
     ),
     GetPage(
       name: RoutePath.sharePayment,
