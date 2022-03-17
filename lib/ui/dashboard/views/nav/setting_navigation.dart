@@ -1,3 +1,4 @@
+import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:during/ui/dashboard/controllers/setting_navigation_controller.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +64,7 @@ class _SettingNavigationState extends State<SettingNavigation> {
             SettingsTile(
               title: const Text('Language'),
               leading: const Icon(Icons.language),
+              onPressed: (context) => Get.toNamed(RoutePath.language),
             ),
           ],
         ),

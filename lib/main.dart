@@ -1,6 +1,7 @@
 import 'package:during/core/utils/custom_theme.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
+import 'package:during/service/language_service.dart';
 import 'package:during/service/repository_service.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ void main() async {
 
   // await Firebase.initializeApp();
   await GetStorage.init();
-  
+
   runApp(const MyApp());
 }
 
@@ -29,6 +30,10 @@ class MyApp extends StatelessWidget {
         Get.put(CacheService());
       }),
       getPages: AppPages.routes,
+      translations: LanguageService(), // your translations
+      locale: const Locale(
+          'en', 'US'), // translations will be displayed in that locale
+      fallbackLocale: const Locale('en', 'US'), //
     );
   }
 }

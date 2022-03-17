@@ -13,4 +13,5 @@ abstract class RoutePath {
   static const settings= '/settings';
   static const sharePayment = '/share_payment';
   static const generatedCode = '/generated_code';
+  static const language = '/language';
 }

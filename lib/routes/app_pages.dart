@@ -2,6 +2,7 @@ import 'package:during/ui/dashboard/bindings/dashboard_binding.dart';
 import 'package:during/ui/dashboard/bindings/home_navigation_binding.dart';
 import 'package:during/ui/dashboard/bindings/setting_navigation_binding.dart';
 import 'package:during/ui/dashboard/views/dashboard_screen.dart';
+import 'package:during/ui/language/language_change_screen.dart';
 import 'package:during/ui/saving/bindings/saving_detail_binding.dart';
 import 'package:during/ui/saving/bindings/saving_insert_binding.dart';
 import 'package:during/ui/saving/bindings/saving_list_binding.dart';
@@ -74,6 +75,10 @@ class AppPages {
     GetPage(
       name: RoutePath.generatedCode,
       page: () => const ShareGeneratedCodeScreen(),
+    ),
+    GetPage(
+      name: RoutePath.language,
+      page: () => const LanguageChangeScreen(),
     ),
   ];
 }
