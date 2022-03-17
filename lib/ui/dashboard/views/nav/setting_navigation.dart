@@ -1,8 +1,11 @@
 import 'package:during/service/cache_service.dart';
 import 'package:during/ui/dashboard/controllers/setting_navigation_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingNavigation extends StatefulWidget {
   const SettingNavigation({Key? key}) : super(key: key);
@@ -69,14 +72,25 @@ class _SettingNavigationState extends State<SettingNavigation> {
             SettingsTile(
               title: const Text('Rating'),
               leading: const Icon(Icons.star),
+              onPressed: (context) {
+                try {
+                  launch("market://details?id=com.app.zuludin.during.during");
+                } on PlatformException catch (_) {
+                  launch(
+                      "https://play.google.com/store/apps/details?id=com.app.zuludin.during.during");
+                } finally {
+                  launch(
+                      "https://play.google.com/store/apps/details?id=com.app.zuludin.during.during");
+                }
+              },
             ),
             SettingsTile(
               title: const Text('Share'),
               leading: const Icon(Icons.share),
-            ),
-            SettingsTile(
-              title: const Text('Info'),
-              leading: const Icon(Icons.info),
+              onPressed: (context) {
+                Share.share(
+                    'https://play.google.com/store/apps/details?id=com.app.zuludin.during.during');
+              },
             ),
           ],
         )
