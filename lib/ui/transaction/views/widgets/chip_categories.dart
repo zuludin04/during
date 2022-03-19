@@ -76,7 +76,7 @@ class _ChipCategoriesState extends State<ChipCategories> {
         List<String> choices = widget.multiChoice ? _selectedChoices : [];
         widget.onSelected!(e.id!, e.title!, choices);
       }),
-      selectedColor: const Color(0xffFFA400),
+      selectedColor: Colors.blue,
     );
   }
 }

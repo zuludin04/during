@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/header_text.dart';
 import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
@@ -73,7 +75,13 @@ class FilterBottomSheet extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () => _controller.filterTransaction(),
-                child: Text('filter'.tr),
+                child: Text(
+                  'filter'.tr,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
           ],
