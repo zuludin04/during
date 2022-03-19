@@ -43,20 +43,20 @@ class _SettingNavigationState extends State<SettingNavigation> {
               title: Text('hide_saving'.tr),
               description: Text('hide_saving_desc'.tr),
             ),
-            SettingsTile.switchTile(
-              initialValue: darkMode,
-              onToggle: (value) {
-                _controller.toggleDarkTheme(value);
-                Get.isDarkMode
-                    ? Get.changeTheme(ThemeData.light())
-                    : Get.changeTheme(ThemeData.dark());
-                setState(() {
-                  darkMode = value;
-                });
-              },
-              title: Text('dark_theme'.tr),
-              leading: const Icon(Icons.dark_mode),
-            ),
+            // SettingsTile.switchTile(
+            //   initialValue: darkMode,
+            //   onToggle: (value) {
+            //     _controller.toggleDarkTheme(value);
+            //     Get.isDarkMode
+            //         ? Get.changeThemeMode(ThemeMode.light)
+            //         : Get.changeThemeMode(ThemeMode.dark);
+            //     setState(() {
+            //       darkMode = value;
+            //     });
+            //   },
+            //   title: Text('dark_theme'.tr),
+            //   leading: const Icon(Icons.dark_mode),
+            // ),
             SettingsTile(
               title: Text('google_backup'.tr),
               leading: const Icon(Icons.backup),

@@ -18,15 +18,8 @@ class DashboardScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            elevation: 1,
-            backgroundColor: Colors.white,
-            title: const Text(
-              'During',
-              style: TextStyle(
-                color: Color(0xff111410),
-                fontSize: 18,
-              ),
-            ),
+            elevation: 0.5,
+            title: const Text('During'),
             actions: [
               if (controller.navIndex == 1)
                 IconButton(
