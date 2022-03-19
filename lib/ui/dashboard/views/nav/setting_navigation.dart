@@ -57,10 +57,10 @@ class _SettingNavigationState extends State<SettingNavigation> {
             //   title: Text('dark_theme'.tr),
             //   leading: const Icon(Icons.dark_mode),
             // ),
-            SettingsTile(
-              title: Text('google_backup'.tr),
-              leading: const Icon(Icons.backup),
-            ),
+            // SettingsTile(
+            //   title: Text('google_backup'.tr),
+            //   leading: const Icon(Icons.backup),
+            // ),
             SettingsTile(
               title: Text('language'.tr),
               leading: const Icon(Icons.language),
