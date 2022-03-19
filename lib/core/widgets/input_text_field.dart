@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:during/core/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,9 +42,14 @@ class InputTextField extends StatelessWidget {
           controller: controller..text = text,
           decoration: InputDecoration(
             hintText: hint,
+            hintStyle: const TextStyle(color: Colors.black45),
             contentPadding: const EdgeInsets.symmetric(horizontal: 8),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(),
+              borderSide: const BorderSide(color: Colors.black38),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.black38),
               borderRadius: BorderRadius.circular(5),
             ),
             focusedBorder: OutlineInputBorder(
@@ -50,6 +57,7 @@ class InputTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
             ),
           ),
+          cursorColor: Colors.blue,
           onSaved: (String? val) {
             if (currencyFormat) {
               String _onlyDigits = val!.replaceAll(RegExp('[^0-9]'), "");

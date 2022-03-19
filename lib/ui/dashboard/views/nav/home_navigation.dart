@@ -53,9 +53,8 @@ class HomeNavigation extends StatelessWidget {
                       child: Text(
                         'see_all'.tr,
                         style: const TextStyle(
-                          fontSize: 14,
-                          color: Color(0xff373A36),
-                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),

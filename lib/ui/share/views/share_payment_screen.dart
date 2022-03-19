@@ -44,7 +44,10 @@ class SharePaymentScreen extends StatelessWidget {
                   },
                   child: Text(
                     'create_payment'.tr,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],

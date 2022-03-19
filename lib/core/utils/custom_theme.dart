@@ -29,8 +29,7 @@ class CustomTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all<Color>(const Color(0xffffa400)),
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
         ),
       ),
     );
