@@ -49,6 +49,9 @@ class _DateDialogState extends State<DateDialog> {
                   var date = await showDatePicker(
                     context: context,
                     initialDate: _currentDate,
+                    helpText: '',
+                    cancelText: 'cancel'.tr,
+                    confirmText: 'ok'.tr,
                     firstDate: DateTime(2020),
                     lastDate: DateTime(2025),
                     builder: (context, child) {
@@ -104,6 +107,9 @@ class _DateDialogState extends State<DateDialog> {
                   var selectedTime = await showTimePicker(
                     context: context,
                     initialTime: _currentTime,
+                    helpText: '',
+                    cancelText: 'cancel'.tr,
+                    confirmText: 'ok'.tr,
                     builder: (context, child) {
                       return Theme(
                         data: Theme.of(context).copyWith(
