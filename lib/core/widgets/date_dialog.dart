@@ -51,6 +51,18 @@ class _DateDialogState extends State<DateDialog> {
                     initialDate: _currentDate,
                     firstDate: DateTime(2020),
                     lastDate: DateTime(2025),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: const ColorScheme.light(
+                            primary: Colors.blue,
+                            onPrimary: Colors.white,
+                            onSurface: Colors.grey,
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
                   );
                   if (date != null) {
                     setState(() {
@@ -63,8 +75,10 @@ class _DateDialogState extends State<DateDialog> {
                 },
                 child: Container(
                   width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black38),
                     borderRadius: BorderRadius.circular(5),
@@ -90,6 +104,18 @@ class _DateDialogState extends State<DateDialog> {
                   var selectedTime = await showTimePicker(
                     context: context,
                     initialTime: _currentTime,
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: const ColorScheme.light(
+                            primary: Colors.blue,
+                            onPrimary: Colors.white,
+                            onSurface: Colors.grey,
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
                   );
 
                   if (selectedTime != null) {
@@ -103,8 +129,10 @@ class _DateDialogState extends State<DateDialog> {
                 },
                 child: Container(
                   width: double.infinity,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black38),
                     borderRadius: BorderRadius.circular(5),
