@@ -20,18 +20,22 @@ class SavingListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ToolbarDuring.defaultToolbar('saving'.tr),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          var result = await Get.toNamed(RoutePath.savingInsert);
-          if (result != null) {
-            if (result == true) {
-              _controller.loadSavings();
-              Get.find<HomeNavigationController>().loadSavingList();
-            }
-          }
-        },
-        child: const Icon(Icons.add),
+      appBar: ToolbarDuring.defaultToolbar(
+        'saving'.tr,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              var result = await Get.toNamed(RoutePath.savingInsert);
+              if (result != null) {
+                if (result == true) {
+                  _controller.loadSavings();
+                  Get.find<HomeNavigationController>().loadSavingList();
+                }
+              }
+            },
+            icon: const Icon(Icons.add),
+          ),
+        ],
       ),
       body: Center(
         child: Obx(() {
