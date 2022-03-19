@@ -1,6 +1,7 @@
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
+import 'package:during/service/cache_service.dart';
 import 'package:get/get.dart';
 
 class HomeNavigationController extends GetxController {
@@ -12,10 +13,12 @@ class HomeNavigationController extends GetxController {
   var incomes = 0.obs;
   var expenses = 0.obs;
   var emptySaving = true.obs;
+  var hideSlider = true.obs;
 
   @override
   void onInit() {
     super.onInit();
+    hideSlider.value = CacheService.to.hideSlider;
     loadSavingList();
     loadIncomes();
     loadExpenses();

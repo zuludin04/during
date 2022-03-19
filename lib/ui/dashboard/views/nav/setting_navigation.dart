@@ -18,7 +18,7 @@ class SettingNavigation extends StatefulWidget {
 class _SettingNavigationState extends State<SettingNavigation> {
   final SettingNavigationController _controller = Get.find();
 
-  bool showSlider = CacheService.to.showSlider;
+  bool showSlider = CacheService.to.hideSlider;
   bool darkMode = CacheService.to.darkMode;
 
   @override

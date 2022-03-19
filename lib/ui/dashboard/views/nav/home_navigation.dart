@@ -18,7 +18,12 @@ class HomeNavigation extends StatelessWidget {
         SliverList(
           delegate: SliverChildListDelegate([
             const SizedBox(height: 26),
-            SavingSlider(),
+            Obx(
+              () => Visibility(
+                visible: !controller.hideSlider.value,
+                child: SavingSlider(),
+              ),
+            ),
             Obx(
               () => TransactionInfo(
                 income: controller.incomes.value,

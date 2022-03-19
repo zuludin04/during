@@ -6,9 +6,9 @@ class CacheService extends GetxService {
 
   final GetStorage _storage = GetStorage();
 
-  bool get showSlider => _storage.read('SHOW_SLIDER') ?? true;
-  set showSlider(bool value) {
-    _storage.write('SHOW_SLIDER', value);
+  bool get hideSlider => _storage.read('HIDE_SLIDER') ?? false;
+  set hideSlider(bool value) {
+    _storage.write('HIDE_SLIDER', value);
   }
 
   bool get darkMode => _storage.read('DARK_MODE') ?? false;
