@@ -25,18 +25,27 @@ class SavingDetailScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Get.defaultDialog(
-                title: 'delete_saving_title'.tr,
-                content: Text('delete_saving_description'.tr),
+                title: '',
+                content: Text(
+                  'delete_saving_message'.tr,
+                  textAlign: TextAlign.center,
+                ),
                 confirm: TextButton(
                   onPressed: () {
                     Get.back();
                     _controller.deleteSaving();
                   },
-                  child: Text('ok'.tr),
+                  child: Text(
+                    'ok'.tr,
+                    style: const TextStyle(color: Colors.blue),
+                  ),
                 ),
                 cancel: TextButton(
                   onPressed: () => Get.back(),
-                  child: Text('cancel'.tr),
+                  child: Text(
+                    'cancel'.tr,
+                    style: const TextStyle(color: Colors.blue),
+                  ),
                 ),
               );
             },

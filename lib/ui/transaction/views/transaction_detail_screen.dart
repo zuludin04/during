@@ -31,7 +31,7 @@ class TransactionDetailScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: RichText(
                       text: TextSpan(
-                          text: 'from'.tr + '',
+                          text: 'from'.tr + ' ',
                           style: TextStyle(
                             fontSize: 16,
                             color: controller.transaction.color!
@@ -81,18 +81,27 @@ class TransactionDetailScreen extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       Get.defaultDialog(
-                        title: 'delete_transaction_title'.tr,
-                        content: Text('delete_transaction_description'.tr),
+                        title: '',
+                        content: Text(
+                          'delete_transaction_message'.tr,
+                          textAlign: TextAlign.center,
+                        ),
                         confirm: TextButton(
                           onPressed: () {
                             Get.back();
                             _controller.deleteTransaction();
                           },
-                          child: Text('ok'.tr),
+                          child: Text(
+                            'ok'.tr,
+                            style: const TextStyle(color: Colors.blue),
+                          ),
                         ),
                         cancel: TextButton(
                           onPressed: () => Get.back(),
-                          child: Text('cancel'.tr),
+                          child: Text(
+                            'cancel'.tr,
+                            style: const TextStyle(color: Colors.blue),
+                          ),
                         ),
                       );
                     },
@@ -124,7 +133,7 @@ class TransactionDetailScreen extends StatelessWidget {
             titleSize: 15,
           ),
           Text(
-            item,
+            item.toLowerCase().tr,
             style: const TextStyle(fontSize: 16),
           ),
         ],
