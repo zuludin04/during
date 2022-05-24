@@ -23,7 +23,7 @@ class SavingSlider extends StatelessWidget {
           children: [
             SizedBox(
               width: double.infinity,
-              height: 160,
+              height: _responsiveSliderHeight(context),
               child: CarouselSlider.builder(
                 itemCount: controller.savings.length,
                 itemBuilder: (context, index, realIndex) {
@@ -136,5 +136,16 @@ class SavingSlider extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double _responsiveSliderHeight(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    if (size.width > 1000) {
+      return 240.0;
+    } else if (size.width >= 600 && size.width <= 1000) {
+      return 200.0;
+    } else {
+      return 160.0;
+    }
   }
 }

@@ -17,7 +17,7 @@ class TransactionInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 80,
+      height: _responsiveSliderHeight(context),
       child: Row(
         children: [
           const SizedBox(width: 10),
@@ -85,5 +85,16 @@ class TransactionInfo extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double _responsiveSliderHeight(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    if (size.width > 1000) {
+      return 140.0;
+    } else if (size.width >= 600 && size.width <= 1000) {
+      return 100.0;
+    } else {
+      return 80.0;
+    }
   }
 }

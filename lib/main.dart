@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         Get.put(RepositoryService());
         Get.put(CacheService());
       }),
+      debugShowCheckedModeBanner: false,
       getPages: AppPages.routes,
       translations: LanguageService(),
       locale: const Locale('en', 'US'),
