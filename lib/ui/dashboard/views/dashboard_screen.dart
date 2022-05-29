@@ -66,9 +66,9 @@ class DashboardScreen extends StatelessWidget {
             index: controller.navIndex,
             children: [
               const HomeNavigation(),
-              TransactionNavigation(),
+              const TransactionNavigation(),
               Container(),
-              SavingNavigation(),
+              const SavingNavigation(),
               const SettingNavigation(),
             ],
           ),
