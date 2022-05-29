@@ -39,27 +39,27 @@ class AppPages {
     ),
     GetPage(
       name: RoutePath.transactionCreate,
-      page: () => TransactionCreateScreen(),
+      page: () => const TransactionCreateScreen(),
       binding: TransactionCreateBinding(),
     ),
     GetPage(
       name: RoutePath.transactionDetail,
-      page: () => TransactionDetailScreen(),
+      page: () => const TransactionDetailScreen(),
       binding: TransactionDetailBinding(),
     ),
     GetPage(
       name: RoutePath.savingInsert,
-      page: () => SavingInsertScreen(),
+      page: () => const SavingInsertScreen(),
       binding: SavingInsertBinding(),
     ),
     GetPage(
       name: RoutePath.savingList,
-      page: () => SavingListScreen(),
+      page: () => const SavingListScreen(),
       binding: SavingListBinding(),
     ),
     GetPage(
       name: RoutePath.savingDetail,
-      page: () => SavingDetailScreen(),
+      page: () => const SavingDetailScreen(),
       binding: SavingDetailBinding(),
     ),
     GetPage(

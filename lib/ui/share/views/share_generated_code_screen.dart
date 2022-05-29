@@ -109,15 +109,15 @@ class ShareGeneratedCodeScreen extends StatelessWidget {
                   const SizedBox(width: 24),
                   ElevatedButton(
                     onPressed: () {},
-                    child: const Text(
-                      'Finish',
-                      style: TextStyle(color: Colors.white),
-                    ),
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Colors.lightBlue),
                         padding: MaterialStateProperty.all(
                             const EdgeInsets.all(12))),
+                    child: const Text(
+                      'Finish',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ],
               ),

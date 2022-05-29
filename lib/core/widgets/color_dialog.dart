@@ -13,7 +13,7 @@ class ColorDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ColorDialogState createState() => _ColorDialogState();
+  State<ColorDialog> createState() => _ColorDialogState();
 }
 
 class _ColorDialogState extends State<ColorDialog> {

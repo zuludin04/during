@@ -101,12 +101,12 @@ class DuringRepositoryImpl extends DuringRepository {
     var query = "SELECT * FROM duringTransaction WHERE date BETWEEN $range";
 
     if (type != null) {
-      query = query + " AND type = '$type'";
+      query = "$query AND type = '$type'";
     }
 
     if (category != null) {
       if (category.isNotEmpty) {
-        query = query + " AND category IN (${_joinText(category)})";
+        query = "$query AND category IN (${_joinText(category)})";
       }
     }
 

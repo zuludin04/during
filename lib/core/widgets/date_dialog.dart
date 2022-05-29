@@ -16,7 +16,7 @@ class DateDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DateDialogState createState() => _DateDialogState();
+  State<DateDialog> createState() => _DateDialogState();
 }
 
 class _DateDialogState extends State<DateDialog> {

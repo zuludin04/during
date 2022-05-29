@@ -76,13 +76,14 @@ class _SettingNavigationState extends State<SettingNavigation> {
               leading: const Icon(Icons.star),
               onPressed: (context) {
                 try {
-                  launch("market://details?id=com.app.zuludin.during.during");
+                  launchUrl(Uri.parse(
+                      "market://details?id=com.app.zuludin.during.during"));
                 } on PlatformException catch (_) {
-                  launch(
-                      "https://play.google.com/store/apps/details?id=com.app.zuludin.during.during");
+                  launchUrl(Uri.parse(
+                      "https://play.google.com/store/apps/details?id=com.app.zuludin.during.during"));
                 } finally {
-                  launch(
-                      "https://play.google.com/store/apps/details?id=com.app.zuludin.during.during");
+                  launchUrl(Uri.parse(
+                      "https://play.google.com/store/apps/details?id=com.app.zuludin.during.during"));
                 }
               },
             ),

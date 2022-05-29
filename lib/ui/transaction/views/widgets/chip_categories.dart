@@ -21,7 +21,7 @@ class ChipCategories extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ChipCategoriesState createState() => _ChipCategoriesState();
+  State<ChipCategories> createState() => _ChipCategoriesState();
 }
 
 class _ChipCategoriesState extends State<ChipCategories> {
@@ -46,10 +46,10 @@ class _ChipCategoriesState extends State<ChipCategories> {
         HeaderText(title: widget.title, showTrailing: false, titleSize: 14),
         const SizedBox(height: 5),
         Wrap(
+          spacing: 8,
           children: chipsCategory(widget.categories)
               .map((e) => _chipItem(e))
               .toList(),
-          spacing: 8,
         ),
       ],
     );

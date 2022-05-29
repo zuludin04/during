@@ -17,7 +17,7 @@ class FormFieldSpinner extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FormFieldSpinnerState createState() => _FormFieldSpinnerState();
+  State<FormFieldSpinner> createState() => _FormFieldSpinnerState();
 }
 
 class _FormFieldSpinnerState extends State<FormFieldSpinner> {

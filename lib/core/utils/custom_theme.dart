@@ -10,9 +10,9 @@ class CustomTheme {
       // backgroundColor: Colors.white,
       colorScheme: const ColorScheme(
         primary: Colors.white,
-        primaryVariant: Color(0xffcccccc),
+        primaryContainer: Color(0xffcccccc),
         secondary: Colors.blue,
-        secondaryVariant: Color(0xff0069c0),
+        secondaryContainer: Color(0xff0069c0),
         surface: Colors.white,
         background: Colors.white,
         error: Colors.redAccent,
@@ -39,9 +39,9 @@ class CustomTheme {
     return ThemeData(
       colorScheme: const ColorScheme(
         primary: Color(0xff252526),
-        primaryVariant: Colors.black,
+        primaryContainer: Colors.black,
         secondary: Color(0xffffa400),
-        secondaryVariant: Color(0xffc67500),
+        secondaryContainer: Color(0xffc67500),
         surface: Color(0xff252526),
         background: Color(0xff252526),
         error: Colors.redAccent,

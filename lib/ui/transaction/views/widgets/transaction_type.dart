@@ -11,7 +11,7 @@ class TransactionType extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TransactionTypeState createState() => _TransactionTypeState();
+  State<TransactionType> createState() => _TransactionTypeState();
 }
 
 class _TransactionTypeState extends State<TransactionType> {
