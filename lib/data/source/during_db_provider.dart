@@ -152,4 +152,19 @@ class DuringDbProvider {
     final Database db = await database;
     await db.delete('duringSaving', where: 'id = ?', whereArgs: [id]);
   }
+
+  Future<void> deleteSavingTransactions(List<TransactionEntity> transactions) async {
+    final Database db = await database;
+    Batch batch = db.batch();
+
+    for (var element in transactions) {
+      batch.delete(
+        'duringTransaction',
+        where: 'savingId = ?',
+        whereArgs: [element.savingId],
+      );
+    }
+
+    batch.commit();
+  }
 }

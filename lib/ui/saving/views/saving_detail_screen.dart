@@ -61,7 +61,7 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
           IconButton(
             onPressed: () {
               Get.defaultDialog(
-                title: '',
+                title: 'delete_saving_title'.tr,
                 content: Text(
                   'delete_saving_message'.tr,
                   textAlign: TextAlign.center,
