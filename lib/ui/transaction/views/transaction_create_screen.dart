@@ -1,3 +1,4 @@
+import 'package:during/core/utils/add_helper.dart';
 import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/category_picker.dart';
 import 'package:during/core/widgets/date_dialog.dart';
@@ -8,12 +9,51 @@ import 'package:during/ui/transaction/controllers/transaction_create_controller.
 import 'package:during/ui/transaction/views/widgets/transaction_type.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class TransactionCreateScreen extends StatelessWidget {
+class TransactionCreateScreen extends StatefulWidget {
+  const TransactionCreateScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TransactionCreateScreen> createState() =>
+      _TransactionCreateScreenState();
+}
+
+class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
   final _formKey = GlobalKey<FormState>();
   final TransactionCreateController _controller = Get.find();
 
-  TransactionCreateScreen({Key? key}) : super(key: key);
+  late BannerAd _bannerAd;
+  bool _isBannerReady = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _bannerAd = BannerAd(
+      size: AdSize.fullBanner,
+      adUnitId: AdHelper.bannerAdUnitId,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+            _isBannerReady = true;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          _isBannerReady = false;
+          _bannerAd.dispose();
+        },
+      ),
+      request: const AdRequest(),
+    );
+
+    _bannerAd.load();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +159,13 @@ class TransactionCreateScreen extends StatelessWidget {
                   currentDate: DateTime.fromMillisecondsSinceEpoch(
                       _controller.date.value),
                 ),
+                const SizedBox(height: 32),
+                if (_isBannerReady)
+                  SizedBox(
+                    width: _bannerAd.size.width.toDouble(),
+                    height: _bannerAd.size.height.toDouble(),
+                    child: AdWidget(ad: _bannerAd),
+                  )
               ],
             ),
           ),

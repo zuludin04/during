@@ -1,3 +1,4 @@
+import 'package:during/core/utils/add_helper.dart';
 import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/category_picker.dart';
 import 'package:during/core/widgets/color_dialog.dart';
@@ -7,12 +8,47 @@ import 'package:during/ui/saving/controllers/saving_insert_controller.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class SavingInsertScreen extends StatelessWidget {
+class SavingInsertScreen extends StatefulWidget {
+  const SavingInsertScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SavingInsertScreen> createState() => _SavingInsertScreenState();
+}
+
+class _SavingInsertScreenState extends State<SavingInsertScreen> {
   final _formKey = GlobalKey<FormState>();
   final SavingInsertController _controller = Get.find();
 
-  SavingInsertScreen({Key? key}) : super(key: key);
+  late BannerAd _bannerAd;
+  bool _isBannerReady = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _bannerAd = BannerAd(
+      size: AdSize.fullBanner,
+      adUnitId: AdHelper.bannerAdUnitId,
+      listener: BannerAdListener(onAdLoaded: (ad) {
+        setState(() {
+          _isBannerReady = true;
+        });
+      }, onAdFailedToLoad: (ad, err) {
+        _isBannerReady = false;
+        _bannerAd.dispose();
+      }),
+      request: const AdRequest(),
+    );
+
+    _bannerAd.load();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +105,13 @@ class SavingInsertScreen extends StatelessWidget {
                 ColorDialog(selectedColor: (Color color) {
                   _controller.color.value = ColorTools.colorCode(color);
                 }),
-                const SizedBox(height: 16),
+                const SizedBox(height: 32),
+                if (_isBannerReady)
+                  SizedBox(
+                    width: _bannerAd.size.width.toDouble(),
+                    height: _bannerAd.size.height.toDouble(),
+                    child: AdWidget(ad: _bannerAd),
+                  )
               ],
             ),
           ),
