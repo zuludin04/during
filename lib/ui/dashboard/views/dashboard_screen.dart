@@ -7,6 +7,7 @@ import 'package:during/ui/dashboard/views/nav/transaction_navigation.dart';
 import 'package:during/ui/dashboard/views/widgets/add_transaction_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -62,15 +63,20 @@ class DashboardScreen extends StatelessWidget {
               NavMenu(label: 'setting'.tr, icon: 'icon_settings'),
             ],
           ),
-          body: IndexedStack(
-            index: controller.navIndex,
-            children: [
-              const HomeNavigation(),
-              const TransactionNavigation(),
-              Container(),
-              const SavingNavigation(),
-              const SettingNavigation(),
-            ],
+          body: FutureBuilder<void>(
+            future: MobileAds.instance.initialize(),
+            builder: (context, snapshot) {
+              return IndexedStack(
+                index: controller.navIndex,
+                children: [
+                  const HomeNavigation(),
+                  const TransactionNavigation(),
+                  Container(),
+                  const SavingNavigation(),
+                  const SettingNavigation(),
+                ],
+              );
+            },
           ),
         );
       },
