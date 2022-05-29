@@ -11,6 +11,7 @@ class TransactionCreateController extends GetxController {
 
   String? transactionType = Get.parameters['transaction'];
   SavingEntity saving = SavingEntity();
+  var totalTransaction = 0;
 
   var name = ''.obs;
   var category = 'Fee'.obs;
@@ -23,6 +24,7 @@ class TransactionCreateController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    loadTransaction();
     if (transactionType! == 'Update') {
       _loadInitialValue(Get.arguments);
     } else {
@@ -50,6 +52,11 @@ class TransactionCreateController extends GetxController {
     }
     await _repository.updateSavingBalance(saving.id, savingBalance());
     Get.back(result: type.value);
+  }
+
+  void loadTransaction() async {
+    var transaction = await _repository.loadTodayTransaction();
+    totalTransaction = transaction.length + 1;
   }
 
   void pickSaving() async {

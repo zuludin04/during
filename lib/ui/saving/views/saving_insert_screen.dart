@@ -4,6 +4,7 @@ import 'package:during/core/widgets/category_picker.dart';
 import 'package:during/core/widgets/color_dialog.dart';
 import 'package:during/core/widgets/input_text_field.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/saving/controllers/saving_insert_controller.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,10 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
   final SavingInsertController _controller = Get.find();
 
   late BannerAd _bannerAd;
+  InterstitialAd? _interstitialAd;
+
   bool _isBannerReady = false;
+  bool _isInterstitialReady = false;
 
   @override
   void initState() {
@@ -42,11 +46,16 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
     );
 
     _bannerAd.load();
+
+    if (_controller.totalSaving % 2 == 0 && !_isInterstitialReady) {
+      _loadInterstitialAds();
+    }
   }
 
   @override
   void dispose() {
     _bannerAd.dispose();
+    _interstitialAd?.dispose();
     super.dispose();
   }
 
@@ -61,6 +70,9 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 _controller.insertSaving();
+                if (_controller.totalSaving % 2 == 0 && _isInterstitialReady) {
+                  _interstitialAd?.show();
+                }
               }
             },
             icon: const Icon(
@@ -116,6 +128,28 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void _loadInterstitialAds() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          _interstitialAd = ad;
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              Get.offAndToNamed(RoutePath.dashboard, result: true);
+            },
+          );
+
+          _isInterstitialReady = true;
+        },
+        onAdFailedToLoad: (err) {
+          _isInterstitialReady = false;
+        },
       ),
     );
   }

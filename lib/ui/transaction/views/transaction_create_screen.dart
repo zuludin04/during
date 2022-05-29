@@ -5,6 +5,7 @@ import 'package:during/core/widgets/date_dialog.dart';
 import 'package:during/core/widgets/header_text.dart';
 import 'package:during/core/widgets/input_text_field.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/transaction/controllers/transaction_create_controller.dart';
 import 'package:during/ui/transaction/views/widgets/transaction_type.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,10 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
   final TransactionCreateController _controller = Get.find();
 
   late BannerAd _bannerAd;
+  InterstitialAd? _interstitialAd;
+
   bool _isBannerReady = false;
+  bool _isInterstitialReady = false;
 
   @override
   void initState() {
@@ -47,11 +51,16 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
     );
 
     _bannerAd.load();
+
+    if (_controller.totalTransaction % 4 == 0 && !_isInterstitialReady) {
+      _loadInterstitialAds();
+    }
   }
 
   @override
   void dispose() {
     _bannerAd.dispose();
+    _interstitialAd?.dispose();
     super.dispose();
   }
 
@@ -76,8 +85,11 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
                       message: 'Your account balance will be minus.');
                   return;
                 }
-
                 _controller.createTransaction();
+                if (_controller.totalTransaction % 4 == 0 &&
+                    _isInterstitialReady) {
+                  _interstitialAd?.show();
+                }
               }
             },
             icon: const Icon(
@@ -170,6 +182,29 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void _loadInterstitialAds() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          _interstitialAd = ad;
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              Get.offAndToNamed(RoutePath.dashboard,
+                  result: _controller.type.value);
+            },
+          );
+
+          _isInterstitialReady = true;
+        },
+        onAdFailedToLoad: (err) {
+          _isInterstitialReady = false;
+        },
       ),
     );
   }

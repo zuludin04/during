@@ -7,10 +7,18 @@ import 'package:get/get.dart';
 class SavingInsertController extends GetxController {
   final DuringRepository _repository = Get.find();
 
+  var totalSaving = 0;
+
   var name = ''.obs;
   var balance = ''.obs;
   var color = ''.obs;
   var category = 'Bank'.obs;
+
+  @override
+  void onInit() {
+    loadSavings();
+    super.onInit();
+  }
 
   void insertSaving() async {
     if (color.value == '') color.value = ColorTools.colorCode(Colors.blue);
@@ -25,5 +33,10 @@ class SavingInsertController extends GetxController {
 
     await _repository.insertSaving(saving);
     Get.back(result: true);
+  }
+
+  void loadSavings() async {
+    var savings = await _repository.loadSaving();
+    totalSaving = savings.length + 1;
   }
 }
