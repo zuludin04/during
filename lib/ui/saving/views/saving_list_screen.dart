@@ -1,4 +1,5 @@
 import 'package:during/core/extensions/string_extension.dart';
+import 'package:during/core/utils/add_helper.dart';
 import 'package:during/core/utils/constants.dart';
 import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/empty_layout.dart';
@@ -10,12 +11,50 @@ import 'package:during/ui/saving/controllers/saving_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class SavingListScreen extends StatelessWidget {
+class SavingListScreen extends StatefulWidget {
+  const SavingListScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SavingListScreen> createState() => _SavingListScreenState();
+}
+
+class _SavingListScreenState extends State<SavingListScreen> {
   final SavingListController _controller = Get.find();
   final String type = Get.arguments;
 
-  SavingListScreen({Key? key}) : super(key: key);
+  late BannerAd _bannerAd;
+  bool _isBannerReady = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _bannerAd = BannerAd(
+      size: AdSize.fullBanner,
+      adUnitId: AdHelper.bannerAdUnitId,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+            _isBannerReady = true;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          _isBannerReady = false;
+          _bannerAd.dispose();
+        },
+      ),
+      request: const AdRequest(),
+    );
+
+    _bannerAd.load();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,18 +76,28 @@ class SavingListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Obx(() {
-          if (_controller.empty.value) {
-            return EmptyLayout(message: 'empty_saving'.tr);
-          } else {
-            return ListView.builder(
-              itemBuilder: (context, index) =>
-                  _savingItem(_controller.savings[index]),
-              itemCount: _controller.savings.length,
-            );
-          }
-        }),
+      body: Column(
+        children: [
+          Expanded(
+            child: Obx(() {
+              if (_controller.empty.value) {
+                return EmptyLayout(message: 'empty_saving'.tr);
+              } else {
+                return ListView.builder(
+                  itemBuilder: (context, index) =>
+                      _savingItem(_controller.savings[index]),
+                  itemCount: _controller.savings.length,
+                );
+              }
+            }),
+          ),
+          if (_isBannerReady)
+            SizedBox(
+              width: _bannerAd.size.width.toDouble(),
+              height: _bannerAd.size.height.toDouble(),
+              child: AdWidget(ad: _bannerAd),
+            )
+        ],
       ),
     );
   }
