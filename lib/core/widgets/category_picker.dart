@@ -1,4 +1,4 @@
-import 'package:during/core/utils/helper.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -9,8 +9,8 @@ class CategoryPicker extends StatelessWidget {
   final String title;
   final String dialogTitle;
   final String value;
-  final List<String> categories;
-  final Function(String selected) onSelectedCategory;
+  final List<CategoryEntity> categories;
+  final Function(CategoryEntity selected) onSelectedCategory;
 
   const CategoryPicker({
     Key? key,
@@ -29,7 +29,7 @@ class CategoryPicker extends StatelessWidget {
         const SizedBox(height: 8),
         InkWell(
           onTap: () async {
-            String? category = await Get.bottomSheet(_categoryList());
+            CategoryEntity? category = await Get.bottomSheet(_categoryList());
             if (category != null) {
               onSelectedCategory(category);
             }
@@ -90,7 +90,7 @@ class CategoryPicker extends StatelessWidget {
                         ),
                         padding: const EdgeInsets.all(12),
                         child: SvgPicture.asset(
-                          iconAssetByCategory(categories[index]),
+                          'assets/category/${categories[index].icon}',
                           color: const Color(0xff373a36),
                           width: 30,
                           height: 30,
@@ -98,7 +98,7 @@ class CategoryPicker extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        categories[index].toLowerCase().tr,
+                        categories[index].name ?? "",
                         style: const TextStyle(fontSize: 15),
                       ),
                     ],

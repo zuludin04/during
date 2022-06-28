@@ -94,9 +94,9 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
                     title: 'category'.tr,
                     dialogTitle: 'saving_category'.tr,
                     value: _controller.category.value,
-                    categories: savingCategories,
+                    categories: _controller.savingCategory,
                     onSelectedCategory: (cat) =>
-                        _controller.category.value = cat,
+                        _controller.category.value = cat.name ?? "",
                   ),
                 ),
                 const SizedBox(height: 16),

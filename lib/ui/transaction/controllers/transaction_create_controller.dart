@@ -1,6 +1,7 @@
 import 'package:during/core/utils/constants.dart';
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/data/during_repository.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
@@ -21,6 +22,9 @@ class TransactionCreateController extends GetxController {
   var pickedSaving = 'Choose Saving'.obs;
   var transactionId = 0;
 
+  var expenseCategory = <CategoryEntity>[].obs;
+  var incomeCategory = <CategoryEntity>[].obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -32,6 +36,9 @@ class TransactionCreateController extends GetxController {
       category.value = type.value == 'Income' ? 'Fee' : 'Education';
       date.value = DateTime.now().millisecondsSinceEpoch;
     }
+
+    loadCategory(2);
+    loadCategory(3);
   }
 
   void createTransaction() async {
@@ -98,5 +105,17 @@ class TransactionCreateController extends GetxController {
     return type.value == 'Income'
         ? saving.balance! + int.parse(nominal.value)
         : saving.balance! - int.parse(nominal.value);
+  }
+
+  void loadCategory(int type) async {
+    if (type == 2) {
+      var result = await _repository.loadCategoryType(type);
+      incomeCategory.value = result;
+    }
+
+    if (type == 3) {
+      var result = await _repository.loadCategoryType(type);
+      expenseCategory.value = result;
+    }
   }
 }

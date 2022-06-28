@@ -1,5 +1,4 @@
 import 'package:during/core/utils/add_helper.dart';
-import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/category_picker.dart';
 import 'package:during/core/widgets/date_dialog.dart';
 import 'package:during/core/widgets/header_text.dart';
@@ -116,10 +115,10 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
                         : 'expense_category'.tr,
                     value: _controller.category.value,
                     categories: _controller.type.value == 'Income'
-                        ? incomeCategories
-                        : expenseCategories,
+                        ? _controller.incomeCategory
+                        : _controller.expenseCategory,
                     onSelectedCategory: (cat) =>
-                        _controller.category.value = cat,
+                        _controller.category.value = cat.name ?? "",
                   ),
                 ),
                 const SizedBox(height: 16),

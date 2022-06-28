@@ -1,4 +1,5 @@
 import 'package:during/data/during_repository.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +14,12 @@ class SavingInsertController extends GetxController {
   var balance = ''.obs;
   var color = ''.obs;
   var category = 'Bank'.obs;
+  var savingCategory = <CategoryEntity>[].obs;
 
   @override
   void onInit() {
     loadSavings();
+    loadCategory();
     super.onInit();
   }
 
@@ -38,5 +41,10 @@ class SavingInsertController extends GetxController {
   void loadSavings() async {
     var savings = await _repository.loadSaving();
     totalSaving = savings.length + 1;
+  }
+
+  void loadCategory() async {
+    var result = await _repository.loadCategoryType(1);
+    savingCategory.value = result;
   }
 }

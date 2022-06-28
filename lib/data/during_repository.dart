@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:during/data/source/during_db_provider.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 
@@ -34,6 +35,8 @@ abstract class DuringRepository {
   Future<void> deleteSavingTransactions(List<TransactionEntity> transactions);
 
   Future<void> initialCategory();
+
+  Future<List<CategoryEntity>> loadCategoryType(int type);
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -133,6 +136,10 @@ class DuringRepositoryImpl extends DuringRepository {
   Future<void> initialCategory() async {
     await _dbProvider.addInitialCategory();
   }
+
+  @override
+  Future<List<CategoryEntity>> loadCategoryType(int type) =>
+      _dbProvider.loadCategoryByType(type);
 
   String _joinText(List<String> values) {
     return "'${values.join("','")}'";
