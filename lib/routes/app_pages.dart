@@ -1,4 +1,6 @@
+import 'package:during/ui/category/bindings/category_create_binding.dart';
 import 'package:during/ui/category/bindings/category_dashboard_binding.dart';
+import 'package:during/ui/category/views/category_create_screen.dart';
 import 'package:during/ui/category/views/category_dashboard_screen.dart';
 import 'package:during/ui/category/views/category_icons_screen.dart';
 import 'package:during/ui/dashboard/bindings/dashboard_binding.dart';
@@ -86,6 +88,11 @@ class AppPages {
     GetPage(
       name: RoutePath.categoryIcons,
       page: () => const CategoryIconsScreen(),
+    ),
+    GetPage(
+      name: RoutePath.categoryCreate,
+      page: () => const CategoryCreateScreen(),
+      binding: CategoryCreateBinding(),
     ),
   ];
 }

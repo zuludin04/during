@@ -15,4 +15,5 @@ abstract class RoutePath {
   static const language = '/language';
   static const category = '/category';
   static const categoryIcons = '/category_icons';
+  static const categoryCreate = '/category_create';
 }

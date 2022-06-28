@@ -61,3 +61,5 @@ var categories = [
   'icon_travel.svg',
   'icon_wallet.svg',
 ];
+
+var types = ['Saving', 'Income', 'Expense'];

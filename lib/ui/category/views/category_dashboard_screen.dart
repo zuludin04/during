@@ -1,4 +1,5 @@
 import 'package:during/core/widgets/toolbar_during.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/category/views/widgets/category_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ class CategoryDashboardScreen extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => Get.toNamed(RoutePath.categoryCreate),
           child: const Icon(Icons.add),
         ),
         body: const TabBarView(
