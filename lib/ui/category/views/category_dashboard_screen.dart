@@ -23,6 +23,10 @@ class CategoryDashboardScreen extends StatelessWidget {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add),
+        ),
         body: const TabBarView(
           children: [
             CategoryTab(type: 2),

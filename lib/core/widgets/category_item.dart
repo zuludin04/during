@@ -18,30 +18,29 @@ class CategoryItem extends StatelessWidget {
       onTap: () {
         onTap(category);
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                color: Color(0xffffa400),
-                shape: BoxShape.circle,
-              ),
-              padding: const EdgeInsets.all(12),
-              child: SvgPicture.asset(
-                'assets/category/${category.icon}',
-                color: const Color(0xff373a36),
-                width: 30,
-                height: 30,
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              color: Color(0xffffa400),
+              shape: BoxShape.circle,
             ),
-            const SizedBox(height: 5),
-            Text(
-              category.name ?? "",
-              style: const TextStyle(fontSize: 15),
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset(
+              'assets/category/${category.icon}',
+              color: const Color(0xff373a36),
+              width: 30,
+              height: 30,
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            category.name ?? "",
+            style: const TextStyle(fontSize: 15),
+          ),
+        ],
       ),
     );
   }
