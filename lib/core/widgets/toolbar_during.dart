@@ -7,6 +7,7 @@ class ToolbarDuring {
     List<Widget> actions = const [],
     bool sharePayment = false,
     IconData leadingIcon = Icons.chevron_left_rounded,
+    PreferredSizeWidget? tabs,
   }) {
     return AppBar(
       leading: IconButton(
@@ -47,6 +48,7 @@ class ToolbarDuring {
       centerTitle: true,
       elevation: 0,
       actions: actions,
+      bottom: tabs,
     );
   }
 }

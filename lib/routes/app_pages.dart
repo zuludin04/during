@@ -1,3 +1,5 @@
+import 'package:during/ui/category/bindings/category_dashboard_binding.dart';
+import 'package:during/ui/category/views/category_dashboard_screen.dart';
 import 'package:during/ui/dashboard/bindings/dashboard_binding.dart';
 import 'package:during/ui/dashboard/bindings/home_navigation_binding.dart';
 import 'package:during/ui/dashboard/bindings/setting_navigation_binding.dart';
@@ -74,6 +76,11 @@ class AppPages {
     GetPage(
       name: RoutePath.language,
       page: () => const LanguageChangeScreen(),
+    ),
+    GetPage(
+      name: RoutePath.category,
+      page: () => const CategoryDashboardScreen(),
+      binding: CategoryDashboardBinding(),
     ),
   ];
 }
