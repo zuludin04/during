@@ -37,6 +37,12 @@ abstract class DuringRepository {
   Future<void> initialCategory();
 
   Future<List<CategoryEntity>> loadCategoryType(int type);
+
+  Future<void> inserteCategroy(CategoryEntity category);
+
+  Future<void> deleteCategory(int? id);
+
+  Future<void> updateCategory(CategoryEntity category);
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -140,6 +146,21 @@ class DuringRepositoryImpl extends DuringRepository {
   @override
   Future<List<CategoryEntity>> loadCategoryType(int type) =>
       _dbProvider.loadCategoryByType(type);
+
+  @override
+  Future<void> deleteCategory(int? id) async {
+    await _dbProvider.deleteCategory(id);
+  }
+
+  @override
+  Future<void> inserteCategroy(CategoryEntity category) async {
+    await _dbProvider.insertCategory(category);
+  }
+
+  @override
+  Future<void> updateCategory(CategoryEntity category) async {
+    await _dbProvider.updateCategory(category);
+  }
 
   String _joinText(List<String> values) {
     return "'${values.join("','")}'";

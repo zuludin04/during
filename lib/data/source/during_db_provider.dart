@@ -223,4 +223,20 @@ class DuringDbProvider {
         : result.map((e) => CategoryEntity.fromMap(e)).toList();
     return categories;
   }
+
+  Future<void> insertCategory(CategoryEntity category) async {
+    final Database db = await database;
+    await db.insert('duringCategory', category.toMap());
+  }
+
+  Future<void> deleteCategory(int? id) async {
+    final Database db = await database;
+    await db.delete('duringCategory', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<void> updateCategory(CategoryEntity category) async {
+    final Database db = await database;
+    await db.update('duringCategory', category.toMap(),
+        where: 'id = ?', whereArgs: [category.id]);
+  }
 }
