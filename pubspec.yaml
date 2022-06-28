@@ -41,7 +41,6 @@ flutter:
   assets:
     - assets/
     - assets/category/
-    - assets/saving/
     - assets/navigation/
 
   fonts:

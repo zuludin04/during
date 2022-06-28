@@ -25,11 +25,11 @@ String iconAssetByCategory(String category) {
     case 'Selling':
       return 'assets/category/icon_selling.svg';
     case 'Bank':
-      return 'assets/saving/icon_bank.svg';
+      return 'assets/category/icon_bank.svg';
     case 'E-Money':
-      return 'assets/saving/icon_emoney.svg';
+      return 'assets/category/icon_emoney.svg';
     case 'Cash':
-      return 'assets/saving/icon_cash.svg';
+      return 'assets/category/icon_cash.svg';
     default:
       return 'assets/category/icon_other.svg';
   }
