@@ -14,4 +14,5 @@ abstract class RoutePath {
   static const generatedCode = '/generated_code';
   static const language = '/language';
   static const category = '/category';
+  static const categoryIcons = '/category_icons';
 }

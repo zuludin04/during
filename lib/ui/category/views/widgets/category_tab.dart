@@ -1,4 +1,5 @@
 import 'package:during/core/widgets/category_item.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/category/controllers/category_dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +40,9 @@ class _CategoryTabState extends State<CategoryTab>
                 crossAxisCount: 3),
             itemBuilder: (context, index) => CategoryItem(
               category: controller.categories[index],
-              onTap: (category) {},
+              onTap: (category) {
+                Get.toNamed(RoutePath.categoryIcons);
+              },
             ),
             itemCount: controller.categories.length,
           );

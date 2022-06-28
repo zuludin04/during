@@ -13,17 +13,4 @@ class CategoryDashboardController extends GetxController {
     categories = category;
     update([type]);
   }
-
-  String _updateKey(int type) {
-    switch (type) {
-      case 1:
-        return 'Saving';
-      case 2:
-        return 'Income';
-      case 3:
-        return 'Expense';
-      default:
-        return 'Expense';
-    }
-  }
 }
