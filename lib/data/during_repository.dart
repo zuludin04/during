@@ -32,6 +32,8 @@ abstract class DuringRepository {
   Future<void> deleteSaving(int? savingId);
 
   Future<void> deleteSavingTransactions(List<TransactionEntity> transactions);
+
+  Future<void> initialCategory();
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -125,6 +127,11 @@ class DuringRepositoryImpl extends DuringRepository {
   Future<void> deleteSavingTransactions(
       List<TransactionEntity> transactions) async {
     await _dbProvider.deleteSavingTransactions(transactions);
+  }
+
+  @override
+  Future<void> initialCategory() async {
+    await _dbProvider.addInitialCategory();
   }
 
   String _joinText(List<String> values) {

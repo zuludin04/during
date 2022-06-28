@@ -1,3 +1,5 @@
+import 'package:during/core/utils/constants.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:path/path.dart';
@@ -30,6 +32,18 @@ class DuringDbProvider {
   }
 
   Future _onCreate(Database db, int version) async {
+    // await db.execute("""
+    //     CREATE TABLE duringTransaction(id INTEGER PRIMARY KEY AUTOINCREMENT,
+    //     type TEXT,
+    //     date INTEGER,
+    //     nominal INTEGER,
+    //     categoryId INTEGER,
+    //     name TEXT,
+    //     color TEXT,
+    //     savingId INTEGER,
+    //     FOREIGN KEY (categoryId) REFERENCES duringCategory (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+    //     )
+    //     """);
     await db.execute(
         'CREATE TABLE duringTransaction (id INTEGER PRIMARY KEY AUTOINCREMENT, '
         'type TEXT, '
@@ -40,6 +54,16 @@ class DuringDbProvider {
         'color TEXT, '
         'savingId INTEGER)');
 
+    // await db.execute("""
+    //     CREATE TABLE duringSaving(id INTEGER PRIMARY KEY AUTOINCREMENT,
+    //     name TEXT,
+    //     balance INTEGER,
+    //     color TEXT,
+    //     date INTEGER,
+    //     categoryId INTEGER,
+    //     FOREIGN KEY (categoryId) REFERENCES duringCategory (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+    //     )
+    //     """);
     await db.execute(
         'CREATE TABLE duringSaving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
         'name TEXT, '
@@ -47,6 +71,12 @@ class DuringDbProvider {
         'color TEXT, '
         'date INTEGER, '
         'category TEXT)');
+
+    await db.execute(
+        'CREATE TABLE duringCategory (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+        'name TEXT, '
+        'icon TEXT, '
+        'type INTEGER)');
   }
 
   Future<void> saveTransaction(TransactionEntity transaction) async {
@@ -153,7 +183,8 @@ class DuringDbProvider {
     await db.delete('duringSaving', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<void> deleteSavingTransactions(List<TransactionEntity> transactions) async {
+  Future<void> deleteSavingTransactions(
+      List<TransactionEntity> transactions) async {
     final Database db = await database;
     Batch batch = db.batch();
 
@@ -166,5 +197,26 @@ class DuringDbProvider {
     }
 
     batch.commit();
+  }
+
+  Future<void> addInitialCategory() async {
+    final Database db = await database;
+    Batch batch = db.batch();
+
+    List<CategoryEntity> categories = initialCategories;
+    for (var category in categories) {
+      batch.insert('duringCategory', category.toMap());
+    }
+
+    await batch.commit();
+  }
+
+  Future<List<CategoryEntity>> loadCategory() async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db.query('duringCategory');
+    List<CategoryEntity> categories = result.isEmpty
+        ? []
+        : result.map((e) => CategoryEntity.fromMap(e)).toList();
+    return categories;
   }
 }
