@@ -1,6 +1,6 @@
+import 'package:during/core/widgets/category_item.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'header_text.dart';
@@ -77,33 +77,37 @@ class CategoryPicker extends StatelessWidget {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3),
               itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    Get.back(result: categories[index]);
-                  },
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          color: Color(0xffffa400),
-                          shape: BoxShape.circle,
-                        ),
-                        padding: const EdgeInsets.all(12),
-                        child: SvgPicture.asset(
-                          'assets/category/${categories[index].icon}',
-                          color: const Color(0xff373a36),
-                          width: 30,
-                          height: 30,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        categories[index].name ?? "",
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                    ],
-                  ),
+                return CategoryItem(
+                  category: categories[index],
+                  onTap: (category) {},
                 );
+                // return InkWell(
+                //   onTap: () {
+                //     Get.back(result: categories[index]);
+                //   },
+                //   child: Column(
+                //     children: [
+                //       Container(
+                //         decoration: const BoxDecoration(
+                //           color: Color(0xffffa400),
+                //           shape: BoxShape.circle,
+                //         ),
+                //         padding: const EdgeInsets.all(12),
+                //         child: SvgPicture.asset(
+                //           'assets/category/${categories[index].icon}',
+                //           color: const Color(0xff373a36),
+                //           width: 30,
+                //           height: 30,
+                //         ),
+                //       ),
+                //       const SizedBox(height: 5),
+                //       Text(
+                //         categories[index].name ?? "",
+                //         style: const TextStyle(fontSize: 15),
+                //       ),
+                //     ],
+                //   ),
+                // );
               },
               itemCount: categories.length,
             ),
