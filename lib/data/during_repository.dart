@@ -111,16 +111,14 @@ class DuringRepositoryImpl extends DuringRepository {
   @override
   Future<List<TransactionEntity>> filterTransactions(
       String range, String? type, List<String>? category) async {
-    var query = "SELECT * FROM duringTransaction WHERE date BETWEEN $range";
+    var query =
+        'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringTransaction.* '
+        'FROM duringTransaction INNER JOIN duringCategory '
+        'ON duringTransaction.categoryId = duringCategory.id ';
+        'WHERE date BETWEEN $range';
 
     if (type != null) {
-      query = "$query AND type = '$type'";
-    }
-
-    if (category != null) {
-      if (category.isNotEmpty) {
-        query = "$query AND category IN (${_joinText(category)})";
-      }
+      query = "$query AND duringTransaction.type = '$type'";
     }
 
     var results = await _dbProvider.filterTransactions(query);
@@ -163,6 +161,6 @@ class DuringRepositoryImpl extends DuringRepository {
   }
 
   String _joinText(List<String> values) {
-    return "'${values.join("','")}'";
+    return "'${values.join(",")}'";
   }
 }

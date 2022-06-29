@@ -183,7 +183,7 @@ class DuringDbProvider {
     List<Map<String, dynamic>> results = await db.rawQuery(query);
     List<TransactionEntity> transactions = results.isEmpty
         ? []
-        : results.map((e) => TransactionEntity.fromMap(e)).toList();
+        : results.map((e) => TransactionEntity.fromJoinDb(e)).toList();
     return transactions;
   }
 
