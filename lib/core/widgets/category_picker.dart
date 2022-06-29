@@ -42,7 +42,7 @@ class CategoryPicker extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
             ),
             child: Text(
-              value.toLowerCase().tr,
+              value,
               style: const TextStyle(fontSize: 16),
             ),
           ),
@@ -79,7 +79,9 @@ class CategoryPicker extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CategoryItem(
                   category: categories[index],
-                  onTap: (category) {},
+                  onTap: (category) {
+                    Get.back(result: category);
+                  },
                 );
                 // return InkWell(
                 //   onTap: () {
