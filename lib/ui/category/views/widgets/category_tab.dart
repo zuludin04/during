@@ -41,7 +41,10 @@ class _CategoryTabState extends State<CategoryTab>
             itemBuilder: (context, index) => CategoryItem(
               category: controller.categories[index],
               onTap: (category) {
-                Get.toNamed(RoutePath.categoryIcons);
+                Get.toNamed(RoutePath.categoryCreate, arguments: {
+                  'category': controller.categories[index],
+                  'update': true,
+                });
               },
             ),
             itemCount: controller.categories.length,

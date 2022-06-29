@@ -10,6 +10,18 @@ class CategoryCreateController extends GetxController {
   var icon = 'icon_wallet.svg'.obs;
   var type = 'Saving'.obs;
 
+  bool isUpdate = Get.arguments['update'];
+  CategoryEntity category = CategoryEntity();
+
+  @override
+  void onInit() {
+    if (isUpdate) {
+      category = Get.arguments['category'];
+      _initCategoryValue();
+    }
+    super.onInit();
+  }
+
   void insertCategory() async {
     var category = CategoryEntity(
       name: name.value,
@@ -17,11 +29,26 @@ class CategoryCreateController extends GetxController {
       type: _typeToInt(type.value),
     );
 
-    _repository.inserteCategroy(category).then((value) {
-      Get.find<CategoryDashboardController>()
-          .loadCategory(_typeToInt(type.value));
-      Get.back();
-    });
+    if (isUpdate) {
+      category.id = this.category.id;
+      _repository.updateCategory(category).then((value) {
+        Get.find<CategoryDashboardController>()
+            .loadCategory(_typeToInt(type.value));
+        Get.back();
+      });
+    } else {
+      _repository.inserteCategroy(category).then((value) {
+        Get.find<CategoryDashboardController>()
+            .loadCategory(_typeToInt(type.value));
+        Get.back();
+      });
+    }
+  }
+
+  void _initCategoryValue() {
+    name.value = category.name!;
+    icon.value = category.icon!;
+    type.value = _typeToString(category.type!);
   }
 
   int _typeToInt(String type) {
@@ -34,6 +61,19 @@ class CategoryCreateController extends GetxController {
         return 3;
       default:
         return 1;
+    }
+  }
+
+  String _typeToString(int type) {
+    switch (type) {
+      case 1:
+        return 'Saving';
+      case 2:
+        return 'Income';
+      case 3:
+        return 'Expense';
+      default:
+        return 'Saving';
     }
   }
 }

@@ -25,7 +25,10 @@ class CategoryDashboardScreen extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => Get.toNamed(RoutePath.categoryCreate),
+          onPressed: () => Get.toNamed(
+            RoutePath.categoryCreate,
+            arguments: {'update': false},
+          ),
           child: const Icon(Icons.add),
         ),
         body: const TabBarView(

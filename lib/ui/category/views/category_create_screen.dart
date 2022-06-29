@@ -52,6 +52,7 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                     child: InputTextField(
                       title: 'name'.tr,
                       hint: 'name'.tr,
+                      text: _controller.name.value,
                       onSaved: _controller.name,
                     ),
                   ),
