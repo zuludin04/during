@@ -29,9 +29,9 @@ class CategoryDashboardScreen extends StatelessWidget {
           } else {
             return CustomScrollView(
               slivers: [
-                _categoryTypes('Saving', controller.savingCategory),
-                _categoryTypes('Income', controller.incomeCategory),
-                _categoryTypes('Expense', controller.expenseCategory),
+                _categoryTypes('saving'.tr, controller.savingCategory),
+                _categoryTypes('income'.tr, controller.incomeCategory),
+                _categoryTypes('expense'.tr, controller.expenseCategory),
               ],
             );
           }
@@ -63,7 +63,7 @@ class CategoryDashboardScreen extends StatelessWidget {
             child: Container(
               height: 150,
               alignment: Alignment.center,
-              child: EmptyLayout(message: '$title Category is Empty'),
+              child: EmptyLayout(message: 'category_empty'.tr),
             ),
           ),
         if (categories.isNotEmpty)

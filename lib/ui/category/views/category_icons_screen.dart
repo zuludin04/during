@@ -10,7 +10,7 @@ class CategoryIconsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ToolbarDuring.defaultToolbar('Category Icons'),
+      appBar: ToolbarDuring.defaultToolbar('category_icon'.tr),
       body: GridView.count(
         crossAxisCount: 4,
         children: categories.map((e) => _category(e)).toList(),

@@ -23,7 +23,7 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ToolbarDuring.defaultToolbar(
-        'Category',
+        'category'.tr,
         actions: [
           IconButton(
             onPressed: () {
@@ -84,7 +84,7 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
               ],
             ),
             const SizedBox(height: 16),
-            const HeaderText(title: 'Type', showTrailing: false),
+            HeaderText(title: 'type'.tr, showTrailing: false),
             const SizedBox(height: 8),
             Container(
               decoration: BoxDecoration(
@@ -118,17 +118,42 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
               child: Align(
                 alignment: Alignment.center,
                 child: TextButton(
-                  onPressed: () => _controller.deleteCategory(),
+                  onPressed: () {
+                    Get.defaultDialog(
+                      title: 'delete_category_title'.tr,
+                      content: Text(
+                        'delete_category_message'.tr,
+                        textAlign: TextAlign.center,
+                      ),
+                      confirm: TextButton(
+                        onPressed: () {
+                          Get.back();
+                          _controller.deleteCategory();
+                        },
+                        child: Text(
+                          'ok'.tr,
+                          style: const TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                      cancel: TextButton(
+                        onPressed: () => Get.back(),
+                        child: Text(
+                          'cancel'.tr,
+                          style: const TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                    );
+                  },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(
+                    children: [
+                      const Icon(
                         Icons.delete_outlined,
                         color: Colors.red,
                       ),
                       Text(
-                        'Delete',
-                        style: TextStyle(
+                        'delete'.tr,
+                        style: const TextStyle(
                           color: Colors.redAccent,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
