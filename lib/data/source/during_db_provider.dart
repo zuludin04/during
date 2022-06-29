@@ -220,6 +220,15 @@ class DuringDbProvider {
     await batch.commit();
   }
 
+  Future<List<CategoryEntity>> loadCategories() async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db.query('duringCategory');
+    List<CategoryEntity> categories = result.isEmpty
+        ? []
+        : result.map((e) => CategoryEntity.fromMap(e)).toList();
+    return categories;
+  }
+
   Future<List<CategoryEntity>> loadCategoryByType(int type) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.query(

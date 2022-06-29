@@ -34,14 +34,12 @@ class CategoryCreateController extends GetxController {
     if (isUpdate) {
       category.id = this.category.id;
       _repository.updateCategory(category).then((value) {
-        Get.find<CategoryDashboardController>()
-            .loadCategory(_typeToInt(type.value));
+        Get.find<CategoryDashboardController>().loadCategory();
         Get.back();
       });
     } else {
       _repository.inserteCategroy(category).then((value) {
-        Get.find<CategoryDashboardController>()
-            .loadCategory(_typeToInt(type.value));
+        Get.find<CategoryDashboardController>().loadCategory();
         Get.back();
       });
     }
@@ -50,8 +48,7 @@ class CategoryCreateController extends GetxController {
   void deleteCategory() async {
     await _repository.deleteCategory(category.id);
 
-    Get.find<CategoryDashboardController>()
-        .loadCategory(_typeToInt(type.value));
+    Get.find<CategoryDashboardController>().loadCategory();
     Get.find<HomeNavigationController>().loadTodayTransaction();
     Get.find<HomeNavigationController>().loadIncomes();
     Get.find<HomeNavigationController>().loadExpenses();

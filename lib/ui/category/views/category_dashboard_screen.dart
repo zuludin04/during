@@ -1,44 +1,95 @@
+import 'package:during/core/widgets/category_item.dart';
+import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/routes/app_pages.dart';
-import 'package:during/ui/category/views/widgets/category_tab.dart';
+import 'package:during/ui/category/controllers/category_dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 class CategoryDashboardScreen extends StatelessWidget {
   const CategoryDashboardScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: ToolbarDuring.defaultToolbar(
-          'category'.tr,
-          tabs: TabBar(
-            unselectedLabelColor: Colors.grey,
-            labelColor: Colors.black,
-            tabs: [
-              Tab(text: 'income'.tr),
-              Tab(text: 'expense'.tr),
-              Tab(text: 'saving'.tr),
-            ],
-          ),
+    return Scaffold(
+      appBar: ToolbarDuring.defaultToolbar('category'.tr),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.toNamed(
+          RoutePath.categoryCreate,
+          arguments: {'update': false},
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Get.toNamed(
-            RoutePath.categoryCreate,
-            arguments: {'update': false},
-          ),
-          child: const Icon(Icons.add),
-        ),
-        body: const TabBarView(
-          children: [
-            CategoryTab(type: 2),
-            CategoryTab(type: 3),
-            CategoryTab(type: 1),
-          ],
-        ),
+        child: const Icon(Icons.add),
       ),
+      body: GetBuilder<CategoryDashboardController>(
+        builder: (controller) {
+          if (controller.loading) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return CustomScrollView(
+              slivers: [
+                _categoryTypes('Saving', controller.savingCategory),
+                _categoryTypes('Income', controller.incomeCategory),
+                _categoryTypes('Expense', controller.expenseCategory),
+              ],
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _categoryTypes(String title, List<CategoryEntity> categories) {
+    return MultiSliver(
+      children: [
+        SliverToBoxAdapter(
+          child: Container(
+            color: const Color(0xffF6F6F6),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+        if (categories.isEmpty)
+          SliverToBoxAdapter(
+            child: Container(
+              height: 150,
+              alignment: Alignment.center,
+              child: EmptyLayout(message: '$title Category is Empty'),
+            ),
+          ),
+        if (categories.isNotEmpty)
+          SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return CategoryItem(
+                  category: categories[index],
+                  onTap: (category) {
+                    Get.toNamed(RoutePath.categoryCreate, arguments: {
+                      'category': categories[index],
+                      'update': true,
+                    });
+                  },
+                );
+              },
+              childCount: categories.length,
+            ),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 0,
+              crossAxisSpacing: 0,
+              childAspectRatio: 1.1,
+            ),
+          ),
+      ],
     );
   }
 }

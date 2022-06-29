@@ -38,6 +38,8 @@ abstract class DuringRepository {
 
   Future<List<CategoryEntity>> loadCategoryType(int type);
 
+  Future<List<CategoryEntity>> loadCategories();
+
   Future<void> inserteCategroy(CategoryEntity category);
 
   Future<void> deleteCategory(int? id);
@@ -144,6 +146,9 @@ class DuringRepositoryImpl extends DuringRepository {
   @override
   Future<List<CategoryEntity>> loadCategoryType(int type) =>
       _dbProvider.loadCategoryByType(type);
+
+      @override
+  Future<List<CategoryEntity>> loadCategories() => _dbProvider.loadCategories();
 
   @override
   Future<void> deleteCategory(int? id) async {
