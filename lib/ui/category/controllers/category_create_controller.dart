@@ -45,6 +45,14 @@ class CategoryCreateController extends GetxController {
     }
   }
 
+  void deleteCategory() async {
+    _repository.deleteCategory(category.id).then((value) {
+        Get.find<CategoryDashboardController>()
+            .loadCategory(_typeToInt(type.value));
+        Get.back();
+      });
+  }
+
   void _initCategoryValue() {
     name.value = category.name!;
     icon.value = category.icon!;

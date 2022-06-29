@@ -112,6 +112,33 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                 }),
               ),
             ),
+            const SizedBox(height: 32),
+            Visibility(
+              visible: _controller.isUpdate,
+              child: Align(
+                alignment: Alignment.center,
+                child: TextButton(
+                  onPressed: () => _controller.deleteCategory(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(
+                        Icons.delete_outlined,
+                        color: Colors.red,
+                      ),
+                      Text(
+                        'Delete',
+                        style: TextStyle(
+                          color: Colors.redAccent,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
