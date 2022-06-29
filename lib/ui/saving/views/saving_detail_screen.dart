@@ -1,6 +1,5 @@
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/add_helper.dart';
-import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/header_text.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
@@ -118,8 +117,7 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                             Row(
                               children: [
                                 SvgPicture.asset(
-                                  iconAssetByCategory(
-                                      _saving.category ?? 'Other'),
+                                  'assets/category/${_saving.categoryIcon}',
                                   width: 35,
                                   height: 35,
                                 ),
@@ -138,7 +136,7 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                               children: [
                                 Text('type'.tr),
                                 Text(
-                                  _saving.category ?? '',
+                                  _saving.categoryName ?? '',
                                   style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,

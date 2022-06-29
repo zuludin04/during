@@ -1,7 +1,6 @@
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/add_helper.dart';
 import 'package:during/core/utils/constants.dart';
-import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
@@ -124,7 +123,7 @@ class _SavingListScreenState extends State<SavingListScreen> {
                 shape: BoxShape.circle,
               ),
               child: SvgPicture.asset(
-                iconAssetByCategory(saving.category ?? 'Other'),
+                'assets/category/${saving.categoryIcon}',
                 color: Colors.white,
               ),
             ),

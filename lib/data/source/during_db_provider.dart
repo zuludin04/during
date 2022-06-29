@@ -142,10 +142,13 @@ class DuringDbProvider {
 
   Future<List<SavingEntity>> loadSavings() async {
     final Database db = await database;
-    List<Map<String, dynamic>> result = await db.query('duringSaving');
+    List<Map<String, dynamic>> result = await db.rawQuery(
+        'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringSaving.* '
+        'FROM duringSaving, duringCategory '
+        'WHERE duringSaving.categoryId = duringCategory.id');
     List<SavingEntity> balance = result.isEmpty
         ? []
-        : result.map((e) => SavingEntity.fromMap(e)).toList();
+        : result.map((e) => SavingEntity.fromJoinDb(e)).toList();
     return balance;
   }
 
