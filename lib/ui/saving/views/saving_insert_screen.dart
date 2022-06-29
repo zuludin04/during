@@ -92,10 +92,10 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
                   () => CategoryPicker(
                     title: 'category'.tr,
                     dialogTitle: 'saving_category'.tr,
-                    value: _controller.category.value,
+                    value: _controller.selectedCategory.value.name ?? "",
                     categories: _controller.savingCategory,
                     onSelectedCategory: (cat) =>
-                        _controller.category.value = cat.name ?? "",
+                        _controller.selectedCategory.value = cat,
                   ),
                 ),
                 const SizedBox(height: 16),

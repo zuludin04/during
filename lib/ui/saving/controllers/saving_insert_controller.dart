@@ -13,7 +13,7 @@ class SavingInsertController extends GetxController {
   var name = ''.obs;
   var balance = ''.obs;
   var color = ''.obs;
-  var category = 'Bank'.obs;
+  var selectedCategory = CategoryEntity().obs;
   var savingCategory = <CategoryEntity>[].obs;
 
   @override
@@ -31,7 +31,7 @@ class SavingInsertController extends GetxController {
       balance: int.parse(balance.value),
       color: color.value,
       date: DateTime.now().millisecondsSinceEpoch,
-      category: category.value,
+      categoryId: selectedCategory.value.id,
     );
 
     await _repository.insertSaving(saving);
@@ -46,5 +46,6 @@ class SavingInsertController extends GetxController {
   void loadCategory() async {
     var result = await _repository.loadCategoryType(1);
     savingCategory.value = result;
+    selectedCategory.value = savingCategory[0];
   }
 }

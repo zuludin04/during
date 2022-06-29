@@ -32,45 +32,45 @@ class DuringDbProvider {
   }
 
   Future _onCreate(Database db, int version) async {
-    // await db.execute("""
-    //     CREATE TABLE duringTransaction(id INTEGER PRIMARY KEY AUTOINCREMENT,
-    //     type TEXT,
-    //     date INTEGER,
-    //     nominal INTEGER,
-    //     categoryId INTEGER,
-    //     name TEXT,
-    //     color TEXT,
-    //     savingId INTEGER,
-    //     FOREIGN KEY (categoryId) REFERENCES duringCategory (id) ON DELETE NO ACTION ON UPDATE NO ACTION
-    //     )
-    //     """);
-    await db.execute(
-        'CREATE TABLE duringTransaction (id INTEGER PRIMARY KEY AUTOINCREMENT, '
-        'type TEXT, '
-        'date INTEGER, '
-        'nominal INTEGER, '
-        'category TEXT, '
-        'name TEXT, '
-        'color TEXT, '
-        'savingId INTEGER)');
+    await db.execute("""
+        CREATE TABLE duringTransaction(id INTEGER PRIMARY KEY AUTOINCREMENT,
+        type TEXT,
+        date INTEGER,
+        nominal INTEGER,
+        categoryId INTEGER,
+        name TEXT,
+        color TEXT,
+        savingId INTEGER,
+        FOREIGN KEY (categoryId) REFERENCES duringCategory (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+        )
+        """);
+    // await db.execute(
+    //     'CREATE TABLE duringTransaction (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+    //     'type TEXT, '
+    //     'date INTEGER, '
+    //     'nominal INTEGER, '
+    //     'category TEXT, '
+    //     'name TEXT, '
+    //     'color TEXT, '
+    //     'savingId INTEGER)');
 
-    // await db.execute("""
-    //     CREATE TABLE duringSaving(id INTEGER PRIMARY KEY AUTOINCREMENT,
-    //     name TEXT,
-    //     balance INTEGER,
-    //     color TEXT,
-    //     date INTEGER,
-    //     categoryId INTEGER,
-    //     FOREIGN KEY (categoryId) REFERENCES duringCategory (id) ON DELETE NO ACTION ON UPDATE NO ACTION
-    //     )
-    //     """);
-    await db.execute(
-        'CREATE TABLE duringSaving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
-        'name TEXT, '
-        'balance INTEGER, '
-        'color TEXT, '
-        'date INTEGER, '
-        'category TEXT)');
+    await db.execute("""
+        CREATE TABLE duringSaving(id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        balance INTEGER,
+        color TEXT,
+        date INTEGER,
+        categoryId INTEGER,
+        FOREIGN KEY (categoryId) REFERENCES duringCategory (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+        )
+        """);
+    // await db.execute(
+    //     'CREATE TABLE duringSaving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+    //     'name TEXT, '
+    //     'balance INTEGER, '
+    //     'color TEXT, '
+    //     'date INTEGER, '
+    //     'category TEXT)');
 
     await db.execute(
         'CREATE TABLE duringCategory (id INTEGER PRIMARY KEY AUTOINCREMENT, '
