@@ -113,12 +113,12 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
                     dialogTitle: _controller.type.value == 'Income'
                         ? 'income_category'.tr
                         : 'expense_category'.tr,
-                    value: _controller.category.value,
+                    value: _controller.selectedCategory.value.name ?? "",
                     categories: _controller.type.value == 'Income'
                         ? _controller.incomeCategory
                         : _controller.expenseCategory,
                     onSelectedCategory: (cat) =>
-                        _controller.category.value = cat.name ?? "",
+                        _controller.selectedCategory.value = cat,
                   ),
                 ),
                 const SizedBox(height: 16),

@@ -15,11 +15,11 @@ class TransactionCreateController extends GetxController {
   var totalTransaction = 0;
 
   var name = ''.obs;
-  var category = 'Fee'.obs;
   var nominal = ''.obs;
   var date = 0.obs;
   var type = 'Income'.obs;
   var pickedSaving = 'Choose Saving'.obs;
+  var selectedCategory = CategoryEntity().obs;
   var transactionId = 0;
 
   var expenseCategory = <CategoryEntity>[].obs;
@@ -33,7 +33,6 @@ class TransactionCreateController extends GetxController {
       _loadInitialValue(Get.arguments);
     } else {
       type.value = Get.parameters['type'] ?? "Income";
-      category.value = type.value == 'Income' ? 'Fee' : 'Education';
       date.value = DateTime.now().millisecondsSinceEpoch;
     }
 
@@ -46,7 +45,7 @@ class TransactionCreateController extends GetxController {
       type: type.value,
       date: date.value,
       nominal: int.parse(nominal.value),
-      category: category.value,
+      categoryId: selectedCategory.value.id,
       name: name.value,
       color: saving.color,
       savingId: saving.id,
@@ -80,9 +79,9 @@ class TransactionCreateController extends GetxController {
 
   void changeCategoryList(String type) {
     if (type == 'Income') {
-      category.value = 'Fee';
+      selectedCategory.value = incomeCategory[0];
     } else {
-      category.value = 'Education';
+      selectedCategory.value = expenseCategory[0];
     }
   }
 
@@ -91,7 +90,6 @@ class TransactionCreateController extends GetxController {
     name.value = transaction.name!;
     nominal.value = transaction.nominal!.toPriceFormat();
     type.value = transaction.type!;
-    category.value = transaction.category!;
     date.value = transaction.date!;
 
     var savingResult =
@@ -111,11 +109,13 @@ class TransactionCreateController extends GetxController {
     if (type == 2) {
       var result = await _repository.loadCategoryType(type);
       incomeCategory.value = result;
+      changeCategoryList('Income');
     }
 
     if (type == 3) {
       var result = await _repository.loadCategoryType(type);
       expenseCategory.value = result;
+      changeCategoryList('Expense');
     }
   }
 }

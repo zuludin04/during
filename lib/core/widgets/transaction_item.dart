@@ -1,4 +1,3 @@
-import 'package:during/core/utils/helper.dart';
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
@@ -44,7 +43,7 @@ class TransactionItem extends StatelessWidget {
                     ],
                   ),
                   child: SvgPicture.asset(
-                      iconAssetByCategory(transaction.category ?? 'Other')),
+                      'assets/category/${transaction.categoryIcon}'),
                 ),
                 const SizedBox(width: 15),
                 Expanded(
@@ -61,7 +60,7 @@ class TransactionItem extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        transaction.category!.toLowerCase().tr,
+                        transaction.categoryName ?? "",
                         style: const TextStyle(color: Colors.black54),
                       ),
                     ],

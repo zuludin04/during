@@ -97,21 +97,27 @@ class DuringDbProvider {
 
   Future<List<TransactionEntity>> loadDuringTransactions() async {
     final Database db = await database;
-    List<Map<String, dynamic>> result =
-        await db.query('duringTransaction', orderBy: 'id DESC');
+    List<Map<String, dynamic>> result = await db.rawQuery(
+        'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringTransaction.* '
+        'FROM duringTransaction INNER JOIN duringCategory '
+        'ON duringTransaction.categoryId = duringCategory.id '
+        'ORDER BY duringTransaction.id DESC');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
-        : result.map((e) => TransactionEntity.fromMap(e)).toList();
+        : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
     return transactions;
   }
 
   Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
     final Database db = await database;
-    List<Map<String, dynamic>> result = await db.query('duringTransaction',
-        where: 'savingId = ?', whereArgs: [savingId]);
+    List<Map<String, dynamic>> result = await db.rawQuery(
+        'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringTransaction.* '
+        'FROM duringTransaction INNER JOIN duringCategory '
+        'ON duringTransaction.categoryId = duringCategory.id '
+        'WHERE duringTransaction.savingId = $savingId');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
-        : result.map((e) => TransactionEntity.fromMap(e)).toList();
+        : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
     return transactions;
   }
 

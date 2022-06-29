@@ -113,7 +113,7 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                   _transactionInfo('Name', '${_controller.transaction.name}'),
                   _transactionInfo('Type', '${_controller.transaction.type}'),
                   _transactionInfo(
-                      'Category', '${_controller.transaction.category}'),
+                      'Category', '${_controller.transaction.categoryName}'),
                   const SizedBox(height: 16),
                   const Divider(color: Colors.black12, thickness: 1),
                   Row(
