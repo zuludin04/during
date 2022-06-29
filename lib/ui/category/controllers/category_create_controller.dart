@@ -1,6 +1,8 @@
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/ui/category/controllers/category_dashboard_controller.dart';
+import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:get/get.dart';
 
 class CategoryCreateController extends GetxController {
@@ -46,11 +48,15 @@ class CategoryCreateController extends GetxController {
   }
 
   void deleteCategory() async {
-    _repository.deleteCategory(category.id).then((value) {
-        Get.find<CategoryDashboardController>()
-            .loadCategory(_typeToInt(type.value));
-        Get.back();
-      });
+    await _repository.deleteCategory(category.id);
+
+    Get.find<CategoryDashboardController>()
+        .loadCategory(_typeToInt(type.value));
+    Get.find<HomeNavigationController>().loadTodayTransaction();
+    Get.find<HomeNavigationController>().loadIncomes();
+    Get.find<HomeNavigationController>().loadExpenses();
+    Get.find<TransactionNavigationController>().loadInitialTransactions();
+    Get.back();
   }
 
   void _initCategoryValue() {

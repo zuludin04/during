@@ -115,7 +115,7 @@ class DuringRepositoryImpl extends DuringRepository {
         'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringTransaction.* '
         'FROM duringTransaction INNER JOIN duringCategory '
         'ON duringTransaction.categoryId = duringCategory.id ';
-        'WHERE date BETWEEN $range';
+    'WHERE date BETWEEN $range';
 
     if (type != null) {
       query = "$query AND duringTransaction.type = '$type'";

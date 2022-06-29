@@ -205,7 +205,7 @@ class DuringDbProvider {
       );
     }
 
-    batch.commit();
+    await batch.commit();
   }
 
   Future<void> addInitialCategory() async {
@@ -241,6 +241,8 @@ class DuringDbProvider {
   Future<void> deleteCategory(int? id) async {
     final Database db = await database;
     await db.delete('duringCategory', where: 'id = ?', whereArgs: [id]);
+    await db
+        .delete('duringTransaction', where: 'categoryId = ?', whereArgs: [id]);
   }
 
   Future<void> updateCategory(CategoryEntity category) async {
