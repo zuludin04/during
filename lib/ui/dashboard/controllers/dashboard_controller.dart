@@ -37,7 +37,7 @@ class DashboardController extends GetxController {
   void filterTransaction() async {
     var result = await Get.bottomSheet(
       FilterBottomSheet(),
-      isScrollControlled: true,
+      isScrollControlled: false,
       ignoreSafeArea: false,
     );
     if (result != null) {

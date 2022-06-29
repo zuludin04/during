@@ -12,11 +12,9 @@ class FilterBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return SafeArea(
       top: true,
       child: Container(
-        height: size.height * 0.80,
         padding: const EdgeInsets.all(12),
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -54,18 +52,18 @@ class FilterBottomSheet extends StatelessWidget {
                     selected: _controller.filtered.type!,
                     onSelected: _controller.changeFilterType,
                   ),
-                  const SizedBox(height: 12),
-                  Obx(
-                    () => ChipCategories(
-                      title: 'category'.tr,
-                      categories: _controller.typed.value == 1
-                          ? incomeCategories
-                          : expenseCategories,
-                      multiChoice: true,
-                      selected: _controller.filtered.category!,
-                      onSelected: _controller.changeFilterCategory,
-                    ),
-                  ),
+                  // const SizedBox(height: 12),
+                  // Obx(
+                  //   () => ChipCategories(
+                  //     title: 'category'.tr,
+                  //     categories: _controller.typed.value == 1
+                  //         ? incomeCategories
+                  //         : expenseCategories,
+                  //     multiChoice: true,
+                  //     selected: _controller.filtered.category!,
+                  //     onSelected: _controller.changeFilterCategory,
+                  //   ),
+                  // ),
                 ],
               ),
             ),
