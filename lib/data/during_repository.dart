@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:during/data/source/during_db_provider.dart';
+import 'package:during/data/source/entity/budget_entity.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
@@ -45,6 +46,14 @@ abstract class DuringRepository {
   Future<void> deleteCategory(int? id);
 
   Future<void> updateCategory(CategoryEntity category);
+
+  Future<void> addBudget(BudgetEntity budget);
+
+  Future<void> updateBudget(BudgetEntity budget);
+
+  Future<void> deleteBudget(int budgetId);
+
+  Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId);
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -147,7 +156,7 @@ class DuringRepositoryImpl extends DuringRepository {
   Future<List<CategoryEntity>> loadCategoryType(int type) =>
       _dbProvider.loadCategoryByType(type);
 
-      @override
+  @override
   Future<List<CategoryEntity>> loadCategories() => _dbProvider.loadCategories();
 
   @override
@@ -167,5 +176,24 @@ class DuringRepositoryImpl extends DuringRepository {
 
   String _joinText(List<String> values) {
     return "'${values.join(",")}'";
+  }
+
+  @override
+  Future<void> addBudget(BudgetEntity budget) async {
+    await _dbProvider.addBudgeting(budget);
+  }
+
+  @override
+  Future<void> deleteBudget(int budgetId) async {
+    await _dbProvider.deleteBudget(budgetId);
+  }
+
+  @override
+  Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId) =>
+      _dbProvider.loadBudgetTransactions(budgetId);
+
+  @override
+  Future<void> updateBudget(BudgetEntity budget) async {
+    await _dbProvider.updateBudget(budget);
   }
 }

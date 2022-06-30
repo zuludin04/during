@@ -1,4 +1,5 @@
 import 'package:during/core/utils/constants.dart';
+import 'package:during/data/source/entity/budget_entity.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
@@ -32,18 +33,17 @@ class DuringDbProvider {
   }
 
   Future _onCreate(Database db, int version) async {
-    await db.execute("""
-        CREATE TABLE transaction(id INTEGER PRIMARY KEY AUTOINCREMENT,
-        type TEXT,
-        date INTEGER,
-        nominal INTEGER,
-        categoryId INTEGER,
-        name TEXT,
-        color TEXT,
-        savingId INTEGER,
-        FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
-        )
-        """);
+    await db.execute(
+        'CREATE TABLE transaction(id INTEGER PRIMARY KEY AUTOINCREMENT, '
+        'type TEXT, '
+        'date INTEGER, '
+        'nominal INTEGER, '
+        'categoryId INTEGER, '
+        'name TEXT, '
+        'color TEXT, '
+        'savingId INTEGER, '
+        'FOREIGN KEY (savingId) REFERENCES saving (id) ON DELETE NO ACTION ON UPDATE NO ACTION, '
+        'FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
     // await db.execute(
     //     'CREATE TABLE transaction (id INTEGER PRIMARY KEY AUTOINCREMENT, '
     //     'type TEXT, '
@@ -54,16 +54,14 @@ class DuringDbProvider {
     //     'color TEXT, '
     //     'savingId INTEGER)');
 
-    await db.execute("""
-        CREATE TABLE saving(id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        balance INTEGER,
-        color TEXT,
-        date INTEGER,
-        categoryId INTEGER,
-        FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
-        )
-        """);
+    await db.execute(
+        'CREATE TABLE saving(id INTEGER PRIMARY KEY AUTOINCREMENT, '
+        'name TEXT, '
+        'balance INTEGER, '
+        'color TEXT, '
+        'date INTEGER, '
+        'categoryId INTEGER, '
+        'FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
     // await db.execute(
     //     'CREATE TABLE saving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
     //     'name TEXT, '
@@ -77,6 +75,25 @@ class DuringDbProvider {
             'name TEXT, '
             'icon TEXT, '
             'type INTEGER)');
+
+    await db.execute(
+        'CREATE TABLE budget (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+        'name TEXT, '
+        'color TEXT, '
+        'icon TEXT, '
+        'total INTEGER, '
+        'percent INTEGER, '
+        'used INTEGER, '
+        'finishDate INTEGER, '
+        'savingId, '
+        'FOREIGN KEY (savingId) REFERENCES saving (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
+
+    await db.execute(
+        'CREATE TABLE transactionBudget (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+        'transactionId INTEGER, '
+        'budgetId INTEGER, '
+        'FOREIGN KEY (transactionId) REFERENCES transaction (id) ON DELETE NO ACTION ON UPDATE NO ACTION, '
+        'FOREIGN KEY (budgetId) REFERENCES budget (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
   }
 
   Future<void> saveTransaction(TransactionEntity transaction) async {
@@ -257,5 +274,50 @@ class DuringDbProvider {
     final Database db = await database;
     await db.update('category', category.toMap(),
         where: 'id = ?', whereArgs: [category.id]);
+  }
+
+  Future<void> addBudgeting(BudgetEntity budget) async {
+    final Database db = await database;
+    await db.insert('budget', budget.toMap());
+  }
+
+  // todo delete transaction, budget, transactionBudget rows
+  Future<void> deleteBudget(int budgetId) async {
+    final Database db = await database;
+    await db.delete('budget', where: 'id = ?', whereArgs: [budgetId]);
+  }
+
+  Future<void> updateBudget(BudgetEntity budget) async {
+    final Database db = await database;
+    await db.update(
+      'budget',
+      budget.toMap(),
+      where: 'id = ?',
+      whereArgs: [budget.id],
+    );
+  }
+
+  Future<void> insertTransactionBudget(int transactionId, int budgetId) async {
+    final Database db = await database;
+    await db.insert('transactionBudget', {
+      'transactionId': transactionId,
+      'budgetId': budgetId,
+    });
+  }
+
+  Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId) async {
+    final Database db = await database;
+    List<Map<String, dynamic>> results =
+        await db.rawQuery('SELECT transaction.* '
+            'FROM budgetTransaction '
+            'INNER JOIN transaction '
+            'ON budgetTransaction.transactionId = transaction.id '
+            'INNER JOIN category '
+            'ON transaction.categoryId = category.id '
+            'WHERE budgetTransaction.budgetId = $budgetId');
+    List<TransactionEntity> transactions = results.isEmpty
+        ? []
+        : results.map((e) => TransactionEntity.fromMap(e)).toList();
+    return transactions;
   }
 }
