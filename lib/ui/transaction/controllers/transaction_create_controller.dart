@@ -41,6 +41,11 @@ class TransactionCreateController extends GetxController {
   }
 
   void createTransaction() async {
+    if (selectedCategory.value.name == 'category_empty'.tr) {
+      Get.rawSnackbar(message: 'Please choose saving category');
+      return;
+    }
+
     TransactionEntity transaction = TransactionEntity(
       type: type.value,
       date: date.value,

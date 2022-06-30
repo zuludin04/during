@@ -24,6 +24,10 @@ class SavingInsertController extends GetxController {
   }
 
   void insertSaving() async {
+    if (selectedCategory.value.name == 'category_empty'.tr) {
+      Get.rawSnackbar(message: 'Please choose saving category');
+      return;
+    }
     if (color.value == '') color.value = ColorTools.colorCode(Colors.blue);
 
     SavingEntity saving = SavingEntity(
