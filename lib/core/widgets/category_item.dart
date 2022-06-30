@@ -26,6 +26,14 @@ class CategoryItem extends StatelessWidget {
             decoration: const BoxDecoration(
               color: Color(0xffffa400),
               shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(1, 2),
+                  color: Colors.black26,
+                  blurRadius: 1,
+                  spreadRadius: 1,
+                ),
+              ],
             ),
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset(

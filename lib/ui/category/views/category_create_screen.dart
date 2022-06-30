@@ -104,6 +104,14 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                             decoration: BoxDecoration(
                               color: const Color(0xffffa400),
                               borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                  offset: Offset(1, 2),
+                                  color: Colors.black26,
+                                  blurRadius: 1,
+                                  spreadRadius: 1,
+                                ),
+                              ],
                             ),
                             padding: const EdgeInsets.all(9),
                             child: SvgPicture.asset(
