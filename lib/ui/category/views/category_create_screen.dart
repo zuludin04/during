@@ -139,9 +139,8 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                                     ),
                                   ))
                               .toList(),
-                          onChanged: (value) => setState(() {
-                            _controller.type.value = value ?? "Saving";
-                          }),
+                          onChanged: (value) =>
+                              _controller.type.value = value ?? "Saving",
                           isExpanded: true,
                         );
                       }),
