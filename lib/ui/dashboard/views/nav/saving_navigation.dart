@@ -1,6 +1,5 @@
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/add_helper.dart';
-import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
@@ -104,7 +103,7 @@ class _SavingNavigationState extends State<SavingNavigation> {
                 shape: BoxShape.circle,
               ),
               child: SvgPicture.asset(
-                iconAssetByCategory(saving.category ?? 'Other'),
+                'assets/category/${saving.categoryIcon}',
                 color: Colors.white,
               ),
             ),

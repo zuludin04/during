@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:during/core/extensions/color_extension.dart';
 import 'package:during/core/extensions/string_extension.dart';
-import 'package:during/core/utils/helper.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
@@ -73,7 +72,7 @@ class SavingSlider extends StatelessWidget {
               child: Row(
                 children: [
                   SvgPicture.asset(
-                    iconAssetByCategory(saving.category ?? 'Other'),
+                    'assets/category/${saving.categoryIcon}',
                     width: 25,
                     height: 25,
                     color: saving.color!.dynamicTextColor(),
@@ -101,7 +100,7 @@ class SavingSlider extends StatelessWidget {
                     style: TextStyle(color: saving.color!.dynamicTextColor()),
                   ),
                   Text(
-                    saving.category!,
+                    saving.categoryName!,
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

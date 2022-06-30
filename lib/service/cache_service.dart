@@ -20,4 +20,9 @@ class CacheService extends GetxService {
   set selectedLanguage(String value) {
     _storage.write('SELECTED_LANGUAGE', value);
   }
+
+  bool get loadInitialCategory => _storage.read('INITIAL_CATEGORY') ?? false;
+  set loadInitialCategory(bool value) {
+    _storage.write('INITIAL_CATEGORY', value);
+  }
 }

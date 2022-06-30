@@ -28,8 +28,7 @@ dependencies:
   share_plus: ^4.0.4
   google_mobile_ads: ^1.2.0
   collection: ^1.16.0
-  # cloud_firestore: ^3.1.10
-  # firebase_core: ^1.13.1
+  sliver_tools: ^0.2.7
 
 dev_dependencies:
   flutter_test:
@@ -43,7 +42,6 @@ flutter:
   assets:
     - assets/
     - assets/category/
-    - assets/saving/
     - assets/navigation/
 
   fonts:

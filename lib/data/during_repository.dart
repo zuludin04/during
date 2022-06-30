@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:during/data/source/during_db_provider.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 
@@ -32,6 +33,18 @@ abstract class DuringRepository {
   Future<void> deleteSaving(int? savingId);
 
   Future<void> deleteSavingTransactions(List<TransactionEntity> transactions);
+
+  Future<void> initialCategory();
+
+  Future<List<CategoryEntity>> loadCategoryType(int type);
+
+  Future<List<CategoryEntity>> loadCategories();
+
+  Future<void> inserteCategroy(CategoryEntity category);
+
+  Future<void> deleteCategory(int? id);
+
+  Future<void> updateCategory(CategoryEntity category);
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -100,16 +113,14 @@ class DuringRepositoryImpl extends DuringRepository {
   @override
   Future<List<TransactionEntity>> filterTransactions(
       String range, String? type, List<String>? category) async {
-    var query = "SELECT * FROM duringTransaction WHERE date BETWEEN $range";
+    var query =
+        'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringTransaction.* '
+        'FROM duringTransaction INNER JOIN duringCategory '
+        'ON duringTransaction.categoryId = duringCategory.id ';
+    'WHERE date BETWEEN $range';
 
     if (type != null) {
-      query = "$query AND type = '$type'";
-    }
-
-    if (category != null) {
-      if (category.isNotEmpty) {
-        query = "$query AND category IN (${_joinText(category)})";
-      }
+      query = "$query AND duringTransaction.type = '$type'";
     }
 
     var results = await _dbProvider.filterTransactions(query);
@@ -127,7 +138,34 @@ class DuringRepositoryImpl extends DuringRepository {
     await _dbProvider.deleteSavingTransactions(transactions);
   }
 
+  @override
+  Future<void> initialCategory() async {
+    await _dbProvider.addInitialCategory();
+  }
+
+  @override
+  Future<List<CategoryEntity>> loadCategoryType(int type) =>
+      _dbProvider.loadCategoryByType(type);
+
+      @override
+  Future<List<CategoryEntity>> loadCategories() => _dbProvider.loadCategories();
+
+  @override
+  Future<void> deleteCategory(int? id) async {
+    await _dbProvider.deleteCategory(id);
+  }
+
+  @override
+  Future<void> inserteCategroy(CategoryEntity category) async {
+    await _dbProvider.insertCategory(category);
+  }
+
+  @override
+  Future<void> updateCategory(CategoryEntity category) async {
+    await _dbProvider.updateCategory(category);
+  }
+
   String _joinText(List<String> values) {
-    return "'${values.join("','")}'";
+    return "'${values.join(",")}'";
   }
 }

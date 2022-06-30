@@ -1,4 +1,5 @@
 import 'package:during/data/during_repository.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +13,21 @@ class SavingInsertController extends GetxController {
   var name = ''.obs;
   var balance = ''.obs;
   var color = ''.obs;
-  var category = 'Bank'.obs;
+  var selectedCategory = CategoryEntity().obs;
+  var savingCategory = <CategoryEntity>[].obs;
 
   @override
   void onInit() {
     loadSavings();
+    loadCategory();
     super.onInit();
   }
 
   void insertSaving() async {
+    if (selectedCategory.value.name == 'category_empty'.tr) {
+      Get.rawSnackbar(message: 'Please choose saving category');
+      return;
+    }
     if (color.value == '') color.value = ColorTools.colorCode(Colors.blue);
 
     SavingEntity saving = SavingEntity(
@@ -28,7 +35,7 @@ class SavingInsertController extends GetxController {
       balance: int.parse(balance.value),
       color: color.value,
       date: DateTime.now().millisecondsSinceEpoch,
-      category: category.value,
+      categoryId: selectedCategory.value.id,
     );
 
     await _repository.insertSaving(saving);
@@ -38,5 +45,15 @@ class SavingInsertController extends GetxController {
   void loadSavings() async {
     var savings = await _repository.loadSaving();
     totalSaving = savings.length + 1;
+  }
+
+  void loadCategory() async {
+    var result = await _repository.loadCategoryType(1);
+    savingCategory.value = result;
+    if (savingCategory.isEmpty) {
+      selectedCategory.value = CategoryEntity(name: 'category_empty'.tr);
+    } else {
+      selectedCategory.value = savingCategory[0];
+    }
   }
 }

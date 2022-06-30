@@ -65,6 +65,13 @@ const Map<String, String> idID = {
   'share_payment': 'Bagi Pembayaran',
   'total_amount': 'Total Harga',
   'create_payment': 'Buat Pembayaran',
+  'delete': 'Hapus',
+  'category_empty': 'Kategori Kosong',
+  'category_icon': 'Ikon Kategori',
+  'delete_category_title': 'Hapus kategori ini?',
+  'delete_category_message':
+      'Semua transaksi dalam kategori akan ikut terhapus',
+  'create': 'Buat',
 };
 
 const Map<String, String> enUS = {
@@ -134,4 +141,11 @@ const Map<String, String> enUS = {
   'share_payment': 'Share Payment',
   'total_amount': 'Total Amount',
   'create_payment': 'Create Payment',
+  'delete': 'Delete',
+  'category_empty': 'Category is Empty',
+  'category_icon': 'Category Icons',
+  'delete_category_title': 'Delete this category?',
+  'delete_category_message':
+      'All transactions in this category will also be deleted',
+  'create': 'Create',
 };

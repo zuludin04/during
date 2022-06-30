@@ -3,17 +3,21 @@ class TransactionEntity {
   String? type;
   int? date;
   int? nominal;
-  String? category;
+  int? categoryId;
   String? name;
   String? color;
   int? savingId;
+
+  String? categoryName;
+  int? categoryType;
+  String? categoryIcon;
 
   TransactionEntity({
     this.id,
     this.type,
     this.date,
     this.nominal,
-    this.category,
+    this.categoryId,
     this.name,
     this.color,
     this.savingId,
@@ -24,7 +28,21 @@ class TransactionEntity {
     type = map['type'];
     date = map['date'];
     nominal = map['nominal'];
-    category = map['category'];
+    categoryId = map['categoryId'];
+    name = map['name'];
+    color = map['color'];
+    savingId = map['savingId'];
+  }
+
+  TransactionEntity.fromJoinDb(Map<String, dynamic> map) {
+    categoryName = map['categoryName'];
+    categoryType = map['categoryType'];
+    categoryIcon = map['categoryIcon'];
+    id = map['id'];
+    type = map['type'];
+    date = map['date'];
+    nominal = map['nominal'];
+    categoryId = map['categoryId'];
     name = map['name'];
     color = map['color'];
     savingId = map['savingId'];
@@ -36,7 +54,7 @@ class TransactionEntity {
     map['type'] = type;
     map['date'] = date;
     map['nominal'] = nominal;
-    map['category'] = category;
+    map['categoryId'] = categoryId;
     map['name'] = name;
     map['color'] = color;
     map['savingId'] = savingId;

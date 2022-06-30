@@ -1,6 +1,7 @@
 import 'package:during/core/utils/constants.dart';
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/data/during_repository.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
@@ -14,12 +15,15 @@ class TransactionCreateController extends GetxController {
   var totalTransaction = 0;
 
   var name = ''.obs;
-  var category = 'Fee'.obs;
   var nominal = ''.obs;
   var date = 0.obs;
   var type = 'Income'.obs;
   var pickedSaving = 'Choose Saving'.obs;
+  var selectedCategory = CategoryEntity().obs;
   var transactionId = 0;
+
+  var expenseCategory = <CategoryEntity>[].obs;
+  var incomeCategory = <CategoryEntity>[].obs;
 
   @override
   void onInit() {
@@ -29,17 +33,24 @@ class TransactionCreateController extends GetxController {
       _loadInitialValue(Get.arguments);
     } else {
       type.value = Get.parameters['type'] ?? "Income";
-      category.value = type.value == 'Income' ? 'Fee' : 'Education';
       date.value = DateTime.now().millisecondsSinceEpoch;
     }
+
+    loadCategory(2);
+    loadCategory(3);
   }
 
   void createTransaction() async {
+    if (selectedCategory.value.name == 'category_empty'.tr) {
+      Get.rawSnackbar(message: 'Please choose saving category');
+      return;
+    }
+
     TransactionEntity transaction = TransactionEntity(
       type: type.value,
       date: date.value,
       nominal: int.parse(nominal.value),
-      category: category.value,
+      categoryId: selectedCategory.value.id,
       name: name.value,
       color: saving.color,
       savingId: saving.id,
@@ -73,9 +84,17 @@ class TransactionCreateController extends GetxController {
 
   void changeCategoryList(String type) {
     if (type == 'Income') {
-      category.value = 'Fee';
+      if (incomeCategory.isEmpty) {
+        selectedCategory.value = CategoryEntity(name: 'category_empty'.tr);
+      } else {
+        selectedCategory.value = incomeCategory[0];
+      }
     } else {
-      category.value = 'Education';
+      if (expenseCategory.isEmpty) {
+        selectedCategory.value = CategoryEntity(name: 'category_empty'.tr);
+      } else {
+        selectedCategory.value = expenseCategory[0];
+      }
     }
   }
 
@@ -84,7 +103,6 @@ class TransactionCreateController extends GetxController {
     name.value = transaction.name!;
     nominal.value = transaction.nominal!.toPriceFormat();
     type.value = transaction.type!;
-    category.value = transaction.category!;
     date.value = transaction.date!;
 
     var savingResult =
@@ -98,5 +116,19 @@ class TransactionCreateController extends GetxController {
     return type.value == 'Income'
         ? saving.balance! + int.parse(nominal.value)
         : saving.balance! - int.parse(nominal.value);
+  }
+
+  void loadCategory(int type) async {
+    if (type == 2) {
+      var result = await _repository.loadCategoryType(type);
+      incomeCategory.value = result;
+      changeCategoryList('Income');
+    }
+
+    if (type == 3) {
+      var result = await _repository.loadCategoryType(type);
+      expenseCategory.value = result;
+      changeCategoryList('Expense');
+    }
   }
 }

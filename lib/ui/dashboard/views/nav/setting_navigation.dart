@@ -66,6 +66,11 @@ class _SettingNavigationState extends State<SettingNavigation> {
               leading: const Icon(Icons.language),
               onPressed: (context) => Get.toNamed(RoutePath.language),
             ),
+            SettingsTile(
+              title: Text('category'.tr),
+              leading: const Icon(Icons.dashboard_rounded),
+              onPressed: (context) => Get.toNamed(RoutePath.category),
+            ),
           ],
         ),
         SettingsSection(

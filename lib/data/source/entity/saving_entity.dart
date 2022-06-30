@@ -4,7 +4,11 @@ class SavingEntity {
   int? balance;
   String? color;
   int? date;
-  String? category;
+  int? categoryId;
+
+  String? categoryName;
+  int? categoryType;
+  String? categoryIcon;
 
   SavingEntity({
     this.id,
@@ -12,7 +16,7 @@ class SavingEntity {
     this.balance,
     this.color,
     this.date,
-    this.category,
+    this.categoryId,
   });
 
   SavingEntity.fromMap(Map<String, dynamic> map) {
@@ -21,7 +25,19 @@ class SavingEntity {
     balance = map['balance'];
     color = map['color'];
     date = map['date'];
-    category = map['category'];
+    categoryId = map['categoryId'];
+  }
+
+  SavingEntity.fromJoinDb(Map<String, dynamic> map) {
+    categoryName = map['categoryName'];
+    categoryType = map['categoryType'];
+    categoryIcon = map['categoryIcon'];
+    id = map['id'];
+    name = map['name'];
+    balance = map['balance'];
+    color = map['color'];
+    date = map['date'];
+    categoryId = map['categoryId'];
   }
 
   Map<String, dynamic> toMap() {
@@ -31,7 +47,7 @@ class SavingEntity {
     map['balance'] = balance;
     map['color'] = color;
     map['date'] = date;
-    map['category'] = category;
+    map['categoryId'] = categoryId;
     return map;
   }
 }
