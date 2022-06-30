@@ -16,6 +16,7 @@ class InputTextField extends StatelessWidget {
   final String title;
   final String text;
   final bool enable;
+  final bool enableValidation;
 
   InputTextField({
     Key? key,
@@ -27,6 +28,7 @@ class InputTextField extends StatelessWidget {
     this.capitalization = TextCapitalization.words,
     this.currencyFormat = false,
     this.enable = true,
+    this.enableValidation = true,
   }) : super(key: key);
 
   @override
@@ -64,7 +66,7 @@ class InputTextField extends StatelessWidget {
               onSaved?.value = val ?? '';
             }
           },
-          validator: _emptyValidator,
+          validator: enableValidation ? _emptyValidator : null,
           keyboardType: keyboardType,
           textCapitalization: capitalization,
           inputFormatters: currencyFormat ? _inputFormatters() : [],

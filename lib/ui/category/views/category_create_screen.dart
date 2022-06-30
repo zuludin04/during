@@ -58,10 +58,8 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                _controller.insertCategory();
-              }
+              _formKey.currentState!.save();
+              _controller.insertCategory();
             },
             icon: const Icon(
               Icons.check,
@@ -88,6 +86,7 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                             hint: 'name'.tr,
                             text: _controller.name.value,
                             onSaved: _controller.name,
+                            enableValidation: false,
                           ),
                         ),
                       ),

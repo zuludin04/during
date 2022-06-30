@@ -30,6 +30,10 @@ class CategoryCreateController extends GetxController {
   }
 
   void insertCategory() async {
+    if (name.value == '') {
+      Get.rawSnackbar(message: 'Category name cant be empty');
+      return;
+    }
     var category = CategoryEntity(
       name: name.value,
       icon: icon.value,
