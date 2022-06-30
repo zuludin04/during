@@ -23,6 +23,8 @@ class CategoryCreateController extends GetxController {
     if (isUpdate) {
       category = Get.arguments['category'];
       _initCategoryValue();
+    } else {
+      _setCategoryType();
     }
     super.onInit();
   }
@@ -76,7 +78,23 @@ class CategoryCreateController extends GetxController {
       case 'Saving Category':
         Get.find<SavingInsertController>().loadCategory();
         break;
+    }
+  }
+
+  void _setCategoryType() {
+    switch (source) {
+      case 'Income Category':
+        type.value = 'Income';
+        break;
+      case 'Expense Category':
+        type.value = 'Expense';
+        break;
+      case 'Saving Category':
+        type.value = 'Saving';
+        break;
       default:
+        type.value = 'Saving';
+        break;
     }
   }
 
