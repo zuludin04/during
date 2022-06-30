@@ -33,7 +33,7 @@ class DuringDbProvider {
 
   Future _onCreate(Database db, int version) async {
     await db.execute("""
-        CREATE TABLE duringTransaction(id INTEGER PRIMARY KEY AUTOINCREMENT,
+        CREATE TABLE transaction(id INTEGER PRIMARY KEY AUTOINCREMENT,
         type TEXT,
         date INTEGER,
         nominal INTEGER,
@@ -41,11 +41,11 @@ class DuringDbProvider {
         name TEXT,
         color TEXT,
         savingId INTEGER,
-        FOREIGN KEY (categoryId) REFERENCES duringCategory (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+        FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
         )
         """);
     // await db.execute(
-    //     'CREATE TABLE duringTransaction (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+    //     'CREATE TABLE transaction (id INTEGER PRIMARY KEY AUTOINCREMENT, '
     //     'type TEXT, '
     //     'date INTEGER, '
     //     'nominal INTEGER, '
@@ -55,53 +55,53 @@ class DuringDbProvider {
     //     'savingId INTEGER)');
 
     await db.execute("""
-        CREATE TABLE duringSaving(id INTEGER PRIMARY KEY AUTOINCREMENT,
+        CREATE TABLE saving(id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         balance INTEGER,
         color TEXT,
         date INTEGER,
         categoryId INTEGER,
-        FOREIGN KEY (categoryId) REFERENCES duringCategory (id) ON DELETE NO ACTION ON UPDATE NO ACTION
+        FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION
         )
         """);
     // await db.execute(
-    //     'CREATE TABLE duringSaving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+    //     'CREATE TABLE saving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
     //     'name TEXT, '
     //     'balance INTEGER, '
     //     'color TEXT, '
     //     'date INTEGER, '
     //     'category TEXT)');
 
-    await db.execute(
-        'CREATE TABLE duringCategory (id INTEGER PRIMARY KEY AUTOINCREMENT, '
-        'name TEXT, '
-        'icon TEXT, '
-        'type INTEGER)');
+    await db
+        .execute('CREATE TABLE category (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+            'name TEXT, '
+            'icon TEXT, '
+            'type INTEGER)');
   }
 
   Future<void> saveTransaction(TransactionEntity transaction) async {
     final Database db = await database;
-    await db.insert('duringTransaction', transaction.toMap());
+    await db.insert('transaction', transaction.toMap());
   }
 
   Future<void> deleteTransaction(int? id) async {
     final Database db = await database;
-    await db.delete('duringTransaction', where: 'id = ?', whereArgs: [id]);
+    await db.delete('transaction', where: 'id = ?', whereArgs: [id]);
   }
 
   Future<void> updateTransaction(TransactionEntity transaction) async {
     final Database db = await database;
-    await db.update('duringTransaction', transaction.toMap(),
+    await db.update('transaction', transaction.toMap(),
         where: 'id = ?', whereArgs: [transaction.id]);
   }
 
   Future<List<TransactionEntity>> loadDuringTransactions() async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringTransaction.* '
-        'FROM duringTransaction INNER JOIN duringCategory '
-        'ON duringTransaction.categoryId = duringCategory.id '
-        'ORDER BY duringTransaction.id DESC');
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transaction.* '
+        'FROM transaction INNER JOIN category '
+        'ON transaction.categoryId = category.id '
+        'ORDER BY transaction.id DESC');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
@@ -111,10 +111,10 @@ class DuringDbProvider {
   Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringTransaction.* '
-        'FROM duringTransaction INNER JOIN duringCategory '
-        'ON duringTransaction.categoryId = duringCategory.id '
-        'WHERE duringTransaction.savingId = $savingId');
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transaction.* '
+        'FROM transaction INNER JOIN category '
+        'ON transaction.categoryId = category.id '
+        'WHERE transaction.savingId = $savingId');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
@@ -123,8 +123,8 @@ class DuringDbProvider {
 
   Future<List<int>> totalIncome() async {
     final Database db = await database;
-    List<Map<String, dynamic>> result = await db
-        .rawQuery('SELECT * FROM duringTransaction WHERE type = \'Income\'');
+    List<Map<String, dynamic>> result =
+        await db.rawQuery('SELECT * FROM transaction WHERE type = \'Income\'');
     List<int> incomes = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();
@@ -133,8 +133,8 @@ class DuringDbProvider {
 
   Future<List<int>> totalExpense() async {
     final Database db = await database;
-    List<Map<String, dynamic>> result = await db
-        .rawQuery('SELECT * FROM duringTransaction WHERE type = \'Expense\'');
+    List<Map<String, dynamic>> result =
+        await db.rawQuery('SELECT * FROM transaction WHERE type = \'Expense\'');
     List<int> expenses = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();
@@ -143,15 +143,15 @@ class DuringDbProvider {
 
   Future<void> insertSaving(SavingEntity saving) async {
     final Database db = await database;
-    await db.insert('duringSaving', saving.toMap());
+    await db.insert('saving', saving.toMap());
   }
 
   Future<List<SavingEntity>> loadSavings() async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringSaving.* '
-        'FROM duringSaving, duringCategory '
-        'WHERE duringSaving.categoryId = duringCategory.id');
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.* '
+        'FROM saving, category '
+        'WHERE saving.categoryId = category.id');
     List<SavingEntity> balance = result.isEmpty
         ? []
         : result.map((e) => SavingEntity.fromJoinDb(e)).toList();
@@ -161,7 +161,7 @@ class DuringDbProvider {
   Future<SavingEntity> loadSingleSaving(int id) async {
     final Database db = await database;
     List<Map<String, dynamic>> result =
-        await db.rawQuery('SELECT * FROM duringSaving WHERE id = $id');
+        await db.rawQuery('SELECT * FROM saving WHERE id = $id');
     List<SavingEntity> balance = result.isEmpty
         ? []
         : result.map((e) => SavingEntity.fromMap(e)).toList();
@@ -174,7 +174,7 @@ class DuringDbProvider {
 
   Future<void> updateSavingBalance(int? savingId, int? balance) async {
     final Database db = await database;
-    await db.update('duringSaving', {'balance': balance},
+    await db.update('saving', {'balance': balance},
         where: 'id=?', whereArgs: [savingId]);
   }
 
@@ -189,7 +189,7 @@ class DuringDbProvider {
 
   Future<void> deleteSaving(int? id) async {
     final Database db = await database;
-    await db.delete('duringSaving', where: 'id = ?', whereArgs: [id]);
+    await db.delete('saving', where: 'id = ?', whereArgs: [id]);
   }
 
   Future<void> deleteSavingTransactions(
@@ -199,7 +199,7 @@ class DuringDbProvider {
 
     for (var element in transactions) {
       batch.delete(
-        'duringTransaction',
+        'transaction',
         where: 'savingId = ?',
         whereArgs: [element.savingId],
       );
@@ -214,7 +214,7 @@ class DuringDbProvider {
 
     List<CategoryEntity> categories = initialCategories;
     for (var category in categories) {
-      batch.insert('duringCategory', category.toMap());
+      batch.insert('category', category.toMap());
     }
 
     await batch.commit();
@@ -222,7 +222,7 @@ class DuringDbProvider {
 
   Future<List<CategoryEntity>> loadCategories() async {
     final Database db = await database;
-    List<Map<String, dynamic>> result = await db.query('duringCategory');
+    List<Map<String, dynamic>> result = await db.query('category');
     List<CategoryEntity> categories = result.isEmpty
         ? []
         : result.map((e) => CategoryEntity.fromMap(e)).toList();
@@ -232,7 +232,7 @@ class DuringDbProvider {
   Future<List<CategoryEntity>> loadCategoryByType(int type) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.query(
-      'duringCategory',
+      'category',
       where: 'type = ?',
       whereArgs: [type],
     );
@@ -244,19 +244,18 @@ class DuringDbProvider {
 
   Future<void> insertCategory(CategoryEntity category) async {
     final Database db = await database;
-    await db.insert('duringCategory', category.toMap());
+    await db.insert('category', category.toMap());
   }
 
   Future<void> deleteCategory(int? id) async {
     final Database db = await database;
-    await db.delete('duringCategory', where: 'id = ?', whereArgs: [id]);
-    await db
-        .delete('duringTransaction', where: 'categoryId = ?', whereArgs: [id]);
+    await db.delete('category', where: 'id = ?', whereArgs: [id]);
+    await db.delete('transaction', where: 'categoryId = ?', whereArgs: [id]);
   }
 
   Future<void> updateCategory(CategoryEntity category) async {
     final Database db = await database;
-    await db.update('duringCategory', category.toMap(),
+    await db.update('category', category.toMap(),
         where: 'id = ?', whereArgs: [category.id]);
   }
 }
