@@ -79,9 +79,17 @@ class TransactionCreateController extends GetxController {
 
   void changeCategoryList(String type) {
     if (type == 'Income') {
-      selectedCategory.value = incomeCategory[0];
+      if (incomeCategory.isEmpty) {
+        selectedCategory.value = CategoryEntity(name: 'category_empty'.tr);
+      } else {
+        selectedCategory.value = incomeCategory[0];
+      }
     } else {
-      selectedCategory.value = expenseCategory[0];
+      if (expenseCategory.isEmpty) {
+        selectedCategory.value = CategoryEntity(name: 'category_empty'.tr);
+      } else {
+        selectedCategory.value = expenseCategory[0];
+      }
     }
   }
 

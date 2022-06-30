@@ -46,6 +46,10 @@ class SavingInsertController extends GetxController {
   void loadCategory() async {
     var result = await _repository.loadCategoryType(1);
     savingCategory.value = result;
-    selectedCategory.value = savingCategory[0];
+    if (savingCategory.isEmpty) {
+      selectedCategory.value = CategoryEntity(name: 'category_empty'.tr);
+    } else {
+      selectedCategory.value = savingCategory[0];
+    }
   }
 }
