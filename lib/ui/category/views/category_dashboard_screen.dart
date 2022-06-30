@@ -47,7 +47,7 @@ class _CategoryDashboardScreenState extends State<CategoryDashboardScreen> {
     _bannerAd.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +55,10 @@ class _CategoryDashboardScreenState extends State<CategoryDashboardScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed(
           RoutePath.categoryCreate,
-          arguments: {'update': false},
+          arguments: {
+            'update': false,
+            'source': 'category',
+          },
         ),
         child: const Icon(Icons.add),
       ),
@@ -125,6 +128,7 @@ class _CategoryDashboardScreenState extends State<CategoryDashboardScreen> {
                     Get.toNamed(RoutePath.categoryCreate, arguments: {
                       'category': categories[index],
                       'update': true,
+                      'source': 'category',
                     });
                   },
                 );

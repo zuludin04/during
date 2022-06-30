@@ -3,6 +3,8 @@ import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/ui/category/controllers/category_dashboard_controller.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
+import 'package:during/ui/saving/controllers/saving_insert_controller.dart';
+import 'package:during/ui/transaction/controllers/transaction_create_controller.dart';
 import 'package:get/get.dart';
 
 class CategoryCreateController extends GetxController {
@@ -13,6 +15,7 @@ class CategoryCreateController extends GetxController {
   var type = 'Saving'.obs;
 
   bool isUpdate = Get.arguments['update'];
+  String source = Get.arguments['source'];
   CategoryEntity category = CategoryEntity();
 
   @override
@@ -34,12 +37,18 @@ class CategoryCreateController extends GetxController {
     if (isUpdate) {
       category.id = this.category.id;
       _repository.updateCategory(category).then((value) {
-        Get.find<CategoryDashboardController>().loadCategory();
+        if (source == 'category') {
+          Get.find<CategoryDashboardController>().loadCategory();
+        }
+        _updateCategoryListDialog();
         Get.back();
       });
     } else {
       _repository.inserteCategroy(category).then((value) {
-        Get.find<CategoryDashboardController>().loadCategory();
+        if (source == 'category') {
+          Get.find<CategoryDashboardController>().loadCategory();
+        }
+        _updateCategoryListDialog();
         Get.back();
       });
     }
@@ -54,6 +63,21 @@ class CategoryCreateController extends GetxController {
     Get.find<HomeNavigationController>().loadExpenses();
     Get.find<TransactionNavigationController>().loadInitialTransactions();
     Get.back();
+  }
+
+  void _updateCategoryListDialog() {
+    switch (source) {
+      case 'Income Category':
+        Get.find<TransactionCreateController>().loadCategory(2);
+        break;
+      case 'Expense Category':
+        Get.find<TransactionCreateController>().loadCategory(3);
+        break;
+      case 'Saving Category':
+        Get.find<SavingInsertController>().loadCategory();
+        break;
+      default:
+    }
   }
 
   void _initCategoryValue() {

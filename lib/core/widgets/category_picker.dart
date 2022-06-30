@@ -1,5 +1,7 @@
 import 'package:during/core/widgets/category_item.dart';
+import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/data/source/entity/category_entity.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -72,50 +74,49 @@ class CategoryPicker extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3),
-              itemBuilder: (context, index) {
-                return CategoryItem(
-                  category: categories[index],
-                  onTap: (category) {
-                    Get.back(result: category);
-                  },
-                );
-                // return InkWell(
-                //   onTap: () {
-                //     Get.back(result: categories[index]);
-                //   },
-                //   child: Column(
-                //     children: [
-                //       Container(
-                //         decoration: const BoxDecoration(
-                //           color: Color(0xffffa400),
-                //           shape: BoxShape.circle,
-                //         ),
-                //         padding: const EdgeInsets.all(12),
-                //         child: SvgPicture.asset(
-                //           'assets/category/${categories[index].icon}',
-                //           color: const Color(0xff373a36),
-                //           width: 30,
-                //           height: 30,
-                //         ),
-                //       ),
-                //       const SizedBox(height: 5),
-                //       Text(
-                //         categories[index].name ?? "",
-                //         style: const TextStyle(fontSize: 15),
-                //       ),
-                //     ],
-                //   ),
-                // );
-              },
-              itemCount: categories.length,
-            ),
-          ),
+          _categoryIcons(),
         ],
       ),
     );
+  }
+
+  Widget _categoryIcons() {
+    if (categories.isEmpty) {
+      return Column(
+        children: [
+          Container(
+            height: 150,
+            alignment: Alignment.center,
+            child: EmptyLayout(message: 'category_empty'.tr),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Get.back();
+              Get.toNamed(RoutePath.categoryCreate, arguments: {
+                'update': false,
+                'source': dialogTitle,
+              });
+            },
+            child: Text('create'.tr),
+          ),
+        ],
+      );
+    } else {
+      return Expanded(
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3),
+          itemBuilder: (context, index) {
+            return CategoryItem(
+              category: categories[index],
+              onTap: (category) {
+                Get.back(result: category);
+              },
+            );
+          },
+          itemCount: categories.length,
+        ),
+      );
+    }
   }
 }
