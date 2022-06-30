@@ -307,17 +307,17 @@ class DuringDbProvider {
 
   Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId) async {
     final Database db = await database;
-    List<Map<String, dynamic>> results =
-        await db.rawQuery('SELECT transaction.* '
-            'FROM budgetTransaction '
-            'INNER JOIN transaction '
-            'ON budgetTransaction.transactionId = transaction.id '
-            'INNER JOIN category '
-            'ON transaction.categoryId = category.id '
-            'WHERE budgetTransaction.budgetId = $budgetId');
+    List<Map<String, dynamic>> results = await db.rawQuery(
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transaction.* '
+        'FROM transaction '
+        'INNER JOIN transaction '
+        'ON transaction.transactionId = transaction.id '
+        'INNER JOIN category '
+        'ON transaction.categoryId = category.id '
+        'WHERE transaction.budgetId = $budgetId');
     List<TransactionEntity> transactions = results.isEmpty
         ? []
-        : results.map((e) => TransactionEntity.fromMap(e)).toList();
+        : results.map((e) => TransactionEntity.fromJoinDb(e)).toList();
     return transactions;
   }
 }
