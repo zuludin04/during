@@ -110,6 +110,10 @@ class TransactionCreateController extends GetxController {
     saving = savingResult;
     pickedSaving.value =
         '${savingResult.name} - (Rp ${savingResult.balance!.toPriceFormat()})';
+
+    var category =
+        await _repository.loadSingleCategory(transaction.categoryId!);
+    selectedCategory.value = category;
   }
 
   int savingBalance() {
