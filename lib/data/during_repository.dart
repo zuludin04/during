@@ -6,7 +6,7 @@ import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 
 abstract class DuringRepository {
-  Future<void> saveTransaction(TransactionEntity transaction);
+  Future<int> saveTransaction(TransactionEntity transaction);
 
   Future<void> deleteTransaction(int? id);
 
@@ -53,6 +53,10 @@ abstract class DuringRepository {
 
   Future<void> deleteBudget(int budgetId);
 
+  Future<void> insertTransactionBudget(int transactionId, int budgetId);
+
+  Future<List<BudgetEntity>> loadBudgets();
+
   Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId);
 }
 
@@ -62,7 +66,7 @@ class DuringRepositoryImpl extends DuringRepository {
   DuringRepositoryImpl(this._dbProvider);
 
   @override
-  Future<void> saveTransaction(TransactionEntity transaction) =>
+  Future<int> saveTransaction(TransactionEntity transaction) =>
       _dbProvider.saveTransaction(transaction);
 
   @override
@@ -183,6 +187,14 @@ class DuringRepositoryImpl extends DuringRepository {
   Future<void> deleteBudget(int budgetId) async {
     await _dbProvider.deleteBudget(budgetId);
   }
+
+  @override
+  Future<void> insertTransactionBudget(int transactionId, int budgetId) async {
+    await _dbProvider.insertTransactionBudget(transactionId, budgetId);
+  }
+
+  @override
+  Future<List<BudgetEntity>> loadBudgets() => _dbProvider.loadBudgets();
 
   @override
   Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId) =>

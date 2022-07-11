@@ -34,7 +34,7 @@ class DuringDbProvider {
 
   Future _onCreate(Database db, int version) async {
     await db.execute(
-        'CREATE TABLE transaction(id INTEGER PRIMARY KEY AUTOINCREMENT, '
+        'CREATE TABLE transactionDuring (id INTEGER PRIMARY KEY AUTOINCREMENT, '
         'type TEXT, '
         'date INTEGER, '
         'nominal INTEGER, '
@@ -45,7 +45,7 @@ class DuringDbProvider {
         'FOREIGN KEY (savingId) REFERENCES saving (id) ON DELETE NO ACTION ON UPDATE NO ACTION, '
         'FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
     // await db.execute(
-    //     'CREATE TABLE transaction (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+    //     'CREATE TABLE transactionDuring (id INTEGER PRIMARY KEY AUTOINCREMENT, '
     //     'type TEXT, '
     //     'date INTEGER, '
     //     'nominal INTEGER, '
@@ -55,7 +55,7 @@ class DuringDbProvider {
     //     'savingId INTEGER)');
 
     await db.execute(
-        'CREATE TABLE saving(id INTEGER PRIMARY KEY AUTOINCREMENT, '
+        'CREATE TABLE saving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
         'name TEXT, '
         'balance INTEGER, '
         'color TEXT, '
@@ -92,33 +92,34 @@ class DuringDbProvider {
         'CREATE TABLE transactionBudget (id INTEGER PRIMARY KEY AUTOINCREMENT, '
         'transactionId INTEGER, '
         'budgetId INTEGER, '
-        'FOREIGN KEY (transactionId) REFERENCES transaction (id) ON DELETE NO ACTION ON UPDATE NO ACTION, '
+        'FOREIGN KEY (transactionId) REFERENCES transactionDuring (id) ON DELETE NO ACTION ON UPDATE NO ACTION, '
         'FOREIGN KEY (budgetId) REFERENCES budget (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
   }
 
-  Future<void> saveTransaction(TransactionEntity transaction) async {
+  Future<int> saveTransaction(TransactionEntity transaction) async {
     final Database db = await database;
-    await db.insert('transaction', transaction.toMap());
+    var result = await db.insert('transactionDuring', transaction.toMap());
+    return result;
   }
 
   Future<void> deleteTransaction(int? id) async {
     final Database db = await database;
-    await db.delete('transaction', where: 'id = ?', whereArgs: [id]);
+    await db.delete('transactionDuring', where: 'id = ?', whereArgs: [id]);
   }
 
   Future<void> updateTransaction(TransactionEntity transaction) async {
     final Database db = await database;
-    await db.update('transaction', transaction.toMap(),
+    await db.update('transactionDuring', transaction.toMap(),
         where: 'id = ?', whereArgs: [transaction.id]);
   }
 
   Future<List<TransactionEntity>> loadDuringTransactions() async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transaction.* '
-        'FROM transaction INNER JOIN category '
-        'ON transaction.categoryId = category.id '
-        'ORDER BY transaction.id DESC');
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transactionDuring.* '
+        'FROM transactionDuring INNER JOIN category '
+        'ON transactionDuring.categoryId = category.id '
+        'ORDER BY transactionDuring.id DESC');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
@@ -128,10 +129,10 @@ class DuringDbProvider {
   Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transaction.* '
-        'FROM transaction INNER JOIN category '
-        'ON transaction.categoryId = category.id '
-        'WHERE transaction.savingId = $savingId');
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transactionDuring.* '
+        'FROM transactionDuring INNER JOIN category '
+        'ON transactionDuring.categoryId = category.id '
+        'WHERE transactionDuring.savingId = $savingId');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
@@ -140,8 +141,8 @@ class DuringDbProvider {
 
   Future<List<int>> totalIncome() async {
     final Database db = await database;
-    List<Map<String, dynamic>> result =
-        await db.rawQuery('SELECT * FROM transaction WHERE type = \'Income\'');
+    List<Map<String, dynamic>> result = await db
+        .rawQuery('SELECT * FROM transactionDuring WHERE type = \'Income\'');
     List<int> incomes = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();
@@ -150,8 +151,8 @@ class DuringDbProvider {
 
   Future<List<int>> totalExpense() async {
     final Database db = await database;
-    List<Map<String, dynamic>> result =
-        await db.rawQuery('SELECT * FROM transaction WHERE type = \'Expense\'');
+    List<Map<String, dynamic>> result = await db
+        .rawQuery('SELECT * FROM transactionDuring WHERE type = \'Expense\'');
     List<int> expenses = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();
@@ -216,7 +217,7 @@ class DuringDbProvider {
 
     for (var element in transactions) {
       batch.delete(
-        'transaction',
+        'transactionDuring',
         where: 'savingId = ?',
         whereArgs: [element.savingId],
       );
@@ -267,7 +268,8 @@ class DuringDbProvider {
   Future<void> deleteCategory(int? id) async {
     final Database db = await database;
     await db.delete('category', where: 'id = ?', whereArgs: [id]);
-    await db.delete('transaction', where: 'categoryId = ?', whereArgs: [id]);
+    await db
+        .delete('transactionDuring', where: 'categoryId = ?', whereArgs: [id]);
   }
 
   Future<void> updateCategory(CategoryEntity category) async {
@@ -305,16 +307,25 @@ class DuringDbProvider {
     });
   }
 
+  Future<List<BudgetEntity>> loadBudgets() async {
+    final Database db = await database;
+    List<Map<String, dynamic>> results = await db.query('budget');
+    List<BudgetEntity> budgets = results.isEmpty
+        ? []
+        : results.map((e) => BudgetEntity.fromMap(e)).toList();
+    return budgets;
+  }
+
   Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId) async {
     final Database db = await database;
     List<Map<String, dynamic>> results = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transaction.* '
-        'FROM transaction '
-        'INNER JOIN transaction '
-        'ON transaction.transactionId = transaction.id '
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transactionDuring.* '
+        'FROM transactionBudget '
+        'INNER JOIN transactionDuring '
+        'ON transactionBudget.transactionId = transactionDuring.id '
         'INNER JOIN category '
-        'ON transaction.categoryId = category.id '
-        'WHERE transaction.budgetId = $budgetId');
+        'ON transactionDuring.categoryId = category.id '
+        'WHERE transactionBudget.budgetId = $budgetId');
     List<TransactionEntity> transactions = results.isEmpty
         ? []
         : results.map((e) => TransactionEntity.fromJoinDb(e)).toList();
