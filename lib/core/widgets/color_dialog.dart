@@ -6,10 +6,12 @@ import 'header_text.dart';
 
 class ColorDialog extends StatefulWidget {
   final Function(Color color) selectedColor;
+  final Color currentColor;
 
   const ColorDialog({
     Key? key,
     required this.selectedColor,
+    this.currentColor = Colors.blue,
   }) : super(key: key);
 
   @override
@@ -17,7 +19,13 @@ class ColorDialog extends StatefulWidget {
 }
 
 class _ColorDialogState extends State<ColorDialog> {
-  Color color = Colors.blue;
+  late Color color;
+
+  @override
+  void initState() {
+    color = widget.currentColor;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

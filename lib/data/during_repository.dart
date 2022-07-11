@@ -28,6 +28,8 @@ abstract class DuringRepository {
 
   Future<void> updateSavingBalance(int? savingId, int? balance);
 
+  Future<void> updateSaving(SavingEntity saving);
+
   Future<List<TransactionEntity>> filterTransactions(
       String range, String? type, List<String>? category);
 
@@ -46,6 +48,8 @@ abstract class DuringRepository {
   Future<void> deleteCategory(int? id);
 
   Future<void> updateCategory(CategoryEntity category);
+
+  Future<CategoryEntity> loadSingleCategory(int categoryId);
 
   Future<void> addBudget(BudgetEntity budget);
 
@@ -124,6 +128,10 @@ class DuringRepositoryImpl extends DuringRepository {
       _dbProvider.updateSavingBalance(savingId, balance);
 
   @override
+  Future<void> updateSaving(SavingEntity saving) =>
+      _dbProvider.updateSaving(saving);
+
+  @override
   Future<List<TransactionEntity>> filterTransactions(
       String range, String? type, List<String>? category) async {
     var query =
@@ -172,6 +180,10 @@ class DuringRepositoryImpl extends DuringRepository {
   Future<void> inserteCategroy(CategoryEntity category) async {
     await _dbProvider.insertCategory(category);
   }
+
+  @override
+  Future<CategoryEntity> loadSingleCategory(int categoryId) =>
+      _dbProvider.loadSingleCategory(categoryId);
 
   @override
   Future<void> updateCategory(CategoryEntity category) async {

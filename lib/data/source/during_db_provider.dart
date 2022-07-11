@@ -196,6 +196,16 @@ class DuringDbProvider {
         where: 'id=?', whereArgs: [savingId]);
   }
 
+  Future<void> updateSaving(SavingEntity saving) async {
+    final Database db = await database;
+    await db.update(
+      'saving',
+      saving.toMap(),
+      where: 'id=?',
+      whereArgs: [saving.id],
+    );
+  }
+
   Future<List<TransactionEntity>> filterTransactions(String query) async {
     final Database db = await database;
     List<Map<String, dynamic>> results = await db.rawQuery(query);
@@ -276,6 +286,18 @@ class DuringDbProvider {
     final Database db = await database;
     await db.update('category', category.toMap(),
         where: 'id = ?', whereArgs: [category.id]);
+  }
+
+  Future<CategoryEntity> loadSingleCategory(int categoryId) async {
+    final Database db = await database;
+    List<Map<String, dynamic>> results = await db.query(
+      'category',
+      where: 'id = ?',
+      whereArgs: [categoryId],
+    );
+    List<CategoryEntity> categories =
+        results.map((e) => CategoryEntity.fromMap(e)).toList();
+    return categories.isEmpty ? CategoryEntity() : categories[0];
   }
 
   Future<void> addBudgeting(BudgetEntity budget) async {

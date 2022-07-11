@@ -103,6 +103,7 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
                   title: 'name'.tr,
                   hint: 'name'.tr,
                   onSaved: _controller.name,
+                  text: _controller.name.value,
                 ),
                 const SizedBox(height: 16),
                 InputTextField(
@@ -110,12 +111,16 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
                   hint: 'balance'.tr,
                   onSaved: _controller.balance,
                   keyboardType: TextInputType.number,
+                  text: _controller.balance.value,
                   currencyFormat: true,
                 ),
                 const SizedBox(height: 16),
-                ColorDialog(selectedColor: (Color color) {
-                  _controller.color.value = ColorTools.colorCode(color);
-                }),
+                ColorDialog(
+                  selectedColor: (Color color) {
+                    _controller.color.value = ColorTools.colorCode(color);
+                  },
+                  currentColor: Color(int.parse('0xff${_controller.color}')),
+                ),
                 const SizedBox(height: 32),
                 if (_isBannerReady)
                   SizedBox(

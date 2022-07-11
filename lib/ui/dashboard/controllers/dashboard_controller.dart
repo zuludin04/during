@@ -51,7 +51,9 @@ class DashboardController extends GetxController {
   }
 
   void addSaving() async {
-    var result = await Get.toNamed(RoutePath.savingInsert);
+    var result = await Get.toNamed(RoutePath.savingInsert, arguments: {
+      'status': 'create',
+    });
     if (result != null) {
       if (result == true) {
         Get.find<HomeNavigationController>().loadSavingList();
