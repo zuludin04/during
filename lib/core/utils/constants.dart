@@ -60,6 +60,19 @@ var categories = [
   'icon_transportation.svg',
   'icon_travel.svg',
   'icon_wallet.svg',
+  'icon_bus.svg',
+  'icon_cake.svg',
+  'icon_clock.svg',
+  'icon_folder.svg',
+  'icon_globe.svg',
+  'icon_monitor.svg',
+  'icon_receipt.svg',
+  'icon_scan.svg',
+  'icon_shop.svg',
+  'icon_star.svg',
+  'icon_tag.svg',
+  'icon_topup.svg',
+  'icon_unlimited.svg',
 ];
 
 var types = ['Saving', 'Income', 'Expense'];
