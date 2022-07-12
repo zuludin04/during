@@ -52,7 +52,6 @@ class TransactionCreateController extends GetxController {
       nominal: int.parse(nominal.value),
       categoryId: selectedCategory.value.id,
       name: name.value,
-      color: saving.color,
       savingId: saving.id,
     );
 

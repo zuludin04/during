@@ -38,21 +38,11 @@ class DuringDbProvider {
         'type TEXT, '
         'date INTEGER, '
         'nominal INTEGER, '
-        'categoryId INTEGER, '
         'name TEXT, '
-        'color TEXT, '
+        'categoryId INTEGER, '
         'savingId INTEGER, '
         'FOREIGN KEY (savingId) REFERENCES saving (id) ON DELETE NO ACTION ON UPDATE NO ACTION, '
         'FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
-    // await db.execute(
-    //     'CREATE TABLE transactionDuring (id INTEGER PRIMARY KEY AUTOINCREMENT, '
-    //     'type TEXT, '
-    //     'date INTEGER, '
-    //     'nominal INTEGER, '
-    //     'category TEXT, '
-    //     'name TEXT, '
-    //     'color TEXT, '
-    //     'savingId INTEGER)');
 
     await db.execute(
         'CREATE TABLE saving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
@@ -62,13 +52,6 @@ class DuringDbProvider {
         'date INTEGER, '
         'categoryId INTEGER, '
         'FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
-    // await db.execute(
-    //     'CREATE TABLE saving (id INTEGER PRIMARY KEY AUTOINCREMENT, '
-    //     'name TEXT, '
-    //     'balance INTEGER, '
-    //     'color TEXT, '
-    //     'date INTEGER, '
-    //     'category TEXT)');
 
     await db
         .execute('CREATE TABLE category (id INTEGER PRIMARY KEY AUTOINCREMENT, '
@@ -116,10 +99,12 @@ class DuringDbProvider {
   Future<List<TransactionEntity>> loadDuringTransactions() async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transactionDuring.* '
-        'FROM transactionDuring INNER JOIN category '
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.color AS savingColor, transactionDuring.* '
+        'FROM transactionDuring '
+        'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
-        'ORDER BY transactionDuring.id DESC');
+        'INNER JOIN saving '
+        'ON transactionDuring.savingId = saving.id');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
@@ -129,9 +114,12 @@ class DuringDbProvider {
   Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transactionDuring.* '
-        'FROM transactionDuring INNER JOIN category '
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.color AS savingColor, transactionDuring.* '
+        'FROM transactionDuring '
+        'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
+        'INNER JOIN saving '
+        'ON transactionDuring.savingId = saving.id '
         'WHERE transactionDuring.savingId = $savingId');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
