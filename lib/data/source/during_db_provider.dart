@@ -111,6 +111,23 @@ class DuringDbProvider {
     return transactions;
   }
 
+  Future<List<TransactionEntity>> loadDailyTransactions(
+      int start, int end) async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db.rawQuery(
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.color AS savingColor, transactionDuring.* '
+        'FROM transactionDuring '
+        'INNER JOIN category '
+        'ON transactionDuring.categoryId = category.id '
+        'INNER JOIN saving '
+        'ON transactionDuring.savingId = saving.id '
+        'WHERE transactionDuring.date BETWEEN $start AND $end');
+    List<TransactionEntity> transactions = result.isEmpty
+        ? []
+        : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
+    return transactions;
+  }
+
   Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
@@ -127,20 +144,20 @@ class DuringDbProvider {
     return transactions;
   }
 
-  Future<List<int>> totalIncome() async {
+  Future<List<int>> totalIncome(int start, int end) async {
     final Database db = await database;
-    List<Map<String, dynamic>> result = await db
-        .rawQuery('SELECT * FROM transactionDuring WHERE type = \'Income\'');
+    List<Map<String, dynamic>> result = await db.rawQuery(
+        'SELECT * FROM transactionDuring WHERE type = \'Income\' AND date BETWEEN $start AND $end');
     List<int> incomes = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();
     return incomes;
   }
 
-  Future<List<int>> totalExpense() async {
+  Future<List<int>> totalExpense(int start, int end) async {
     final Database db = await database;
-    List<Map<String, dynamic>> result = await db
-        .rawQuery('SELECT * FROM transactionDuring WHERE type = \'Expense\'');
+    List<Map<String, dynamic>> result = await db.rawQuery(
+        'SELECT * FROM transactionDuring WHERE type = \'Expense\' AND date BETWEEN $start AND $end');
     List<int> expenses = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();

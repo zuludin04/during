@@ -27,7 +27,7 @@ class TransactionDetailController extends GetxController {
 
   void deleteTransaction() async {
     await _repository.deleteTransaction(transaction.id);
-    Get.find<HomeNavigationController>().loadTodayTransaction();
+    Get.find<HomeNavigationController>().loadDailyTransactions();
     Get.find<HomeNavigationController>().loadIncomes();
     Get.find<HomeNavigationController>().loadExpenses();
     Get.find<TransactionNavigationController>().loadInitialTransactions();

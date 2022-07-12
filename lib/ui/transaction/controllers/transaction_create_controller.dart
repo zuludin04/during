@@ -65,7 +65,7 @@ class TransactionCreateController extends GetxController {
   }
 
   void loadTransaction() async {
-    var transaction = await _repository.loadTodayTransaction();
+    var transaction = await _repository.loadTransactions();
     totalTransaction = transaction.length + 1;
   }
 

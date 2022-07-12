@@ -64,7 +64,7 @@ class CategoryCreateController extends GetxController {
     await _repository.deleteCategory(category.id);
 
     Get.find<CategoryDashboardController>().loadCategory();
-    Get.find<HomeNavigationController>().loadTodayTransaction();
+    Get.find<HomeNavigationController>().loadDailyTransactions();
     Get.find<HomeNavigationController>().loadIncomes();
     Get.find<HomeNavigationController>().loadExpenses();
     Get.find<TransactionNavigationController>().loadInitialTransactions();

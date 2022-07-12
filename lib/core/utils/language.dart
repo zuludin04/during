@@ -6,7 +6,7 @@ const Map<String, String> idID = {
   'income': 'Pemasukan',
   'expense': 'Pengeluaran',
   'see_all': 'Lihat Semua',
-  'recent_transaction': 'Transaksi Terakhir',
+  'recent_transaction': 'Transaksi Harian',
   'empty_transaction': 'Transaksi Kosong',
   'sharing': 'Sharing',
   'filter': 'Filter',
@@ -72,6 +72,8 @@ const Map<String, String> idID = {
   'delete_category_message':
       'Semua transaksi dalam kategori akan ikut terhapus',
   'create': 'Buat',
+  'daily_income': 'Pemasukkan Harian',
+  'daily_expense': 'Pengeluaran Harian',
 };
 
 const Map<String, String> enUS = {
@@ -82,7 +84,7 @@ const Map<String, String> enUS = {
   'income': 'Income',
   'expense': 'Expense',
   'see_all': 'See All',
-  'recent_transaction': 'Recent Transaction',
+  'recent_transaction': 'Daily Transaction',
   'empty_transaction': 'Empty Transaction',
   'sharing': 'Sharing',
   'filter': 'Filter',
@@ -148,4 +150,6 @@ const Map<String, String> enUS = {
   'delete_category_message':
       'All transactions in this category will also be deleted',
   'create': 'Create',
+  'daily_income': 'Daily Income',
+  'daily_expense': 'Daily Expense',
 };
