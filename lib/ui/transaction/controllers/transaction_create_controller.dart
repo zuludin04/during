@@ -5,6 +5,8 @@ import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
+import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:get/get.dart';
 
 class TransactionCreateController extends GetxController {
@@ -12,6 +14,7 @@ class TransactionCreateController extends GetxController {
 
   String? transactionType = Get.parameters['transaction'];
   SavingEntity saving = SavingEntity();
+  TransactionEntity transaction = TransactionEntity();
   var totalTransaction = 0;
 
   var name = ''.obs;
@@ -30,7 +33,8 @@ class TransactionCreateController extends GetxController {
     super.onInit();
     loadTransaction();
     if (transactionType! == 'Update') {
-      _loadInitialValue(Get.arguments);
+      transaction = Get.arguments;
+      _loadInitialValue();
     } else {
       type.value = Get.parameters['type'] ?? "Income";
       date.value = DateTime.now().millisecondsSinceEpoch;
@@ -57,10 +61,17 @@ class TransactionCreateController extends GetxController {
 
     if (transactionType! == 'Update') {
       await _repository.updateTransaction(transaction..id = transactionId);
+      await _repository.updateSavingBalance(saving.id, savingBalance(true));
+      Get.find<HomeNavigationController>().loadDailyTransactions();
+      Get.find<HomeNavigationController>().loadSavingList();
+      Get.find<HomeNavigationController>().loadIncomes();
+      Get.find<HomeNavigationController>().loadExpenses();
+      Get.find<TransactionNavigationController>().loadInitialTransactions();
+      Get.back();
     } else {
       await _repository.saveTransaction(transaction);
+      await _repository.updateSavingBalance(saving.id, savingBalance(false));
     }
-    await _repository.updateSavingBalance(saving.id, savingBalance());
     Get.back(result: type.value);
   }
 
@@ -97,7 +108,7 @@ class TransactionCreateController extends GetxController {
     }
   }
 
-  void _loadInitialValue(TransactionEntity transaction) async {
+  void _loadInitialValue() async {
     transactionId = transaction.id!;
     name.value = transaction.name!;
     nominal.value = transaction.nominal!.toPriceFormat();
@@ -115,10 +126,16 @@ class TransactionCreateController extends GetxController {
     selectedCategory.value = category;
   }
 
-  int savingBalance() {
-    return type.value == 'Income'
-        ? saving.balance! + int.parse(nominal.value)
-        : saving.balance! - int.parse(nominal.value);
+  int savingBalance(bool update) {
+    if (update) {
+      return type.value == 'Income'
+          ? saving.balance! - (transaction.nominal! - int.parse(nominal.value))
+          : saving.balance! + (transaction.nominal! - int.parse(nominal.value));
+    } else {
+      return type.value == 'Income'
+          ? saving.balance! + int.parse(nominal.value)
+          : saving.balance! - int.parse(nominal.value);
+    }
   }
 
   void loadCategory(int type) async {

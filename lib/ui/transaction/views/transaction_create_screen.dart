@@ -79,7 +79,7 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
                   return;
                 }
 
-                if (_controller.savingBalance() < 0) {
+                if (_controller.savingBalance(false) < 0) {
                   Get.rawSnackbar(
                       message: 'Your account balance will be minus.');
                   return;
