@@ -59,24 +59,24 @@ class DuringDbProvider {
             'icon TEXT, '
             'type INTEGER)');
 
-    await db.execute(
-        'CREATE TABLE budget (id INTEGER PRIMARY KEY AUTOINCREMENT, '
-        'name TEXT, '
-        'color TEXT, '
-        'icon TEXT, '
-        'total INTEGER, '
-        'percent INTEGER, '
-        'used INTEGER, '
-        'finishDate INTEGER, '
-        'savingId, '
-        'FOREIGN KEY (savingId) REFERENCES saving (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
+    // await db.execute(
+    //     'CREATE TABLE budget (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+    //     'name TEXT, '
+    //     'color TEXT, '
+    //     'icon TEXT, '
+    //     'total INTEGER, '
+    //     'percent INTEGER, '
+    //     'used INTEGER, '
+    //     'finishDate INTEGER, '
+    //     'savingId, '
+    //     'FOREIGN KEY (savingId) REFERENCES saving (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
 
-    await db.execute(
-        'CREATE TABLE transactionBudget (id INTEGER PRIMARY KEY AUTOINCREMENT, '
-        'transactionId INTEGER, '
-        'budgetId INTEGER, '
-        'FOREIGN KEY (transactionId) REFERENCES transactionDuring (id) ON DELETE NO ACTION ON UPDATE NO ACTION, '
-        'FOREIGN KEY (budgetId) REFERENCES budget (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
+    // await db.execute(
+    //     'CREATE TABLE transactionBudget (id INTEGER PRIMARY KEY AUTOINCREMENT, '
+    //     'transactionId INTEGER, '
+    //     'budgetId INTEGER, '
+    //     'FOREIGN KEY (transactionId) REFERENCES transactionDuring (id) ON DELETE NO ACTION ON UPDATE NO ACTION, '
+    //     'FOREIGN KEY (budgetId) REFERENCES budget (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
   }
 
   Future<int> saveTransaction(TransactionEntity transaction) async {
@@ -357,5 +357,11 @@ class DuringDbProvider {
         ? []
         : results.map((e) => TransactionEntity.fromJoinDb(e)).toList();
     return transactions;
+  }
+
+  Future<void> deleteAllData() async {
+    final Database db = await database;
+    await db.rawDelete('delete from transactionDuring');
+    await db.rawDelete('delete from saving');
   }
 }

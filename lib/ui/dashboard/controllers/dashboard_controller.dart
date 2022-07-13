@@ -6,6 +6,7 @@ import 'package:during/service/language_service.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/filter_bottom_sheet.dart';
+import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -59,5 +60,16 @@ class DashboardController extends GetxController {
         Get.find<HomeNavigationController>().loadSavingList();
       }
     }
+  }
+
+  void resetData() async {
+    _repository.resetAllData().then((value) {
+      Get.find<TransactionNavigationController>().loadInitialTransactions();
+      Get.find<HomeNavigationController>().loadSavingList();
+      Get.find<HomeNavigationController>().loadIncomes();
+      Get.find<HomeNavigationController>().loadExpenses();
+      Get.find<HomeNavigationController>().loadDailyTransactions();
+      changeNavIndex(0);
+    });
   }
 }

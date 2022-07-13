@@ -64,6 +64,8 @@ abstract class DuringRepository {
   Future<List<BudgetEntity>> loadBudgets();
 
   Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId);
+
+  Future<void> resetAllData();
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -222,4 +224,7 @@ class DuringRepositoryImpl extends DuringRepository {
   Future<void> updateBudget(BudgetEntity budget) async {
     await _dbProvider.updateBudget(budget);
   }
+
+  @override
+  Future<void> resetAllData() => _dbProvider.deleteAllData();
 }
