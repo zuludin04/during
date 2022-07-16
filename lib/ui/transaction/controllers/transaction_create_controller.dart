@@ -40,8 +40,7 @@ class TransactionCreateController extends GetxController {
       date.value = DateTime.now().millisecondsSinceEpoch;
     }
 
-    loadCategory(2);
-    loadCategory(3);
+     loadCategory();
   }
 
   void createTransaction() async {
@@ -124,6 +123,8 @@ class TransactionCreateController extends GetxController {
     var category =
         await _repository.loadSingleCategory(transaction.categoryId!);
     selectedCategory.value = category;
+
+    changeCategoryList(type.value);
   }
 
   int savingBalance(bool update) {
@@ -138,17 +139,13 @@ class TransactionCreateController extends GetxController {
     }
   }
 
-  void loadCategory(int type) async {
-    if (type == 2) {
-      var result = await _repository.loadCategoryType(type);
-      incomeCategory.value = result;
-      changeCategoryList('Income');
-    }
+  Future<void> loadCategory() async {
+    var incomeResult = await _repository.loadCategoryType(2);
+    incomeCategory.value = incomeResult;
 
-    if (type == 3) {
-      var result = await _repository.loadCategoryType(type);
-      expenseCategory.value = result;
-      changeCategoryList('Expense');
-    }
+    var expenseResult = await _repository.loadCategoryType(3);
+    expenseCategory.value = expenseResult;
+
+    changeCategoryList(type.value);
   }
 }

@@ -74,10 +74,8 @@ class CategoryCreateController extends GetxController {
   void _updateCategoryListDialog() {
     switch (source) {
       case 'Income Category':
-        Get.find<TransactionCreateController>().loadCategory(2);
-        break;
       case 'Expense Category':
-        Get.find<TransactionCreateController>().loadCategory(3);
+        Get.find<TransactionCreateController>().loadCategory();
         break;
       case 'Saving Category':
         Get.find<SavingInsertController>().loadCategory();
