@@ -6,7 +6,6 @@ import 'package:during/service/language_service.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/filter_bottom_sheet.dart';
-import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
