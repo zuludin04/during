@@ -77,9 +77,8 @@ class _SettingNavigationState extends State<SettingNavigation> {
               leading: const Icon(Icons.replay),
               onPressed: (context) {
                 Get.defaultDialog(
-                  title: 'Reset Data',
-                  content:
-                      const Text('All data will be removed, are you sure?'),
+                  title: 'delete_data'.tr,
+                  content: Text('delete_data_message'.tr),
                   confirm: TextButton(
                     onPressed: () {
                       Get.back();

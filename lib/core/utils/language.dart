@@ -155,5 +155,5 @@ const Map<String, String> enUS = {
   'daily_income': 'Daily Income',
   'daily_expense': 'Daily Expense',
   'delete_data': 'Delete Data',
-  'delete_data_message': 'All data will be removed, are you sure?',
+  'delete_data_message': 'All data will be deleted, are you sure?',
 };
