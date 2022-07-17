@@ -151,7 +151,7 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
                   title: 'total'.tr,
                   hint: 'total'.tr,
                   onSaved: _controller.nominal,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.phone,
                   text: _controller.nominal.value,
                   currencyFormat: true,
                 ),

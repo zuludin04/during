@@ -110,7 +110,7 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
                   title: 'balance'.tr,
                   hint: 'balance'.tr,
                   onSaved: _controller.balance,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.phone,
                   text: _controller.balance.value,
                   currencyFormat: true,
                 ),
