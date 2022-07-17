@@ -54,6 +54,7 @@ class SavingInsertController extends GetxController {
       Get.find<HomeNavigationController>().loadSavingList();
       Get.find<HomeNavigationController>().loadDailyTransactions();
       Get.find<TransactionNavigationController>().loadInitialTransactions();
+      Get.back();
     } else {
       await _repository.insertSaving(saving);
     }
