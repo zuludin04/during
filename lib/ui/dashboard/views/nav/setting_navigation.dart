@@ -73,7 +73,7 @@ class _SettingNavigationState extends State<SettingNavigation> {
               onPressed: (context) => Get.toNamed(RoutePath.category),
             ),
             SettingsTile(
-              title: const Text('Reset Data'),
+              title: Text('delete_data'.tr),
               leading: const Icon(Icons.replay),
               onPressed: (context) {
                 Get.defaultDialog(

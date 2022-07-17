@@ -74,6 +74,8 @@ const Map<String, String> idID = {
   'create': 'Buat',
   'daily_income': 'Pemasukkan Harian',
   'daily_expense': 'Pengeluaran Harian',
+  'delete_data': 'Hapus Data',
+  'delete_data_message': 'Apakah kamu yakin akan menghapus semua data?',
 };
 
 const Map<String, String> enUS = {
@@ -152,4 +154,6 @@ const Map<String, String> enUS = {
   'create': 'Create',
   'daily_income': 'Daily Income',
   'daily_expense': 'Daily Expense',
+  'delete_data': 'Delete Data',
+  'delete_data_message': 'All data will be removed, are you sure?',
 };
