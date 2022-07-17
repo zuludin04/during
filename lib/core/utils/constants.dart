@@ -73,6 +73,8 @@ var categories = [
   'icon_tag.svg',
   'icon_topup.svg',
   'icon_unlimited.svg',
+  'icon_fitness.svg',
+  'icon_signpost.svg',
 ];
 
 var types = ['Saving', 'Income', 'Expense'];
