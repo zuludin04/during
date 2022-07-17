@@ -53,7 +53,7 @@ class _DateDialogState extends State<DateDialog> {
                     cancelText: 'cancel'.tr,
                     confirmText: 'ok'.tr,
                     firstDate: DateTime(2020),
-                    lastDate: DateTime(2025),
+                    lastDate: DateTime.now(),
                     builder: (context, child) {
                       return Theme(
                         data: Theme.of(context).copyWith(
