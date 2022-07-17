@@ -143,13 +143,15 @@ class DuringRepositoryImpl extends DuringRepository {
   Future<List<TransactionEntity>> filterTransactions(
       String range, String? type, List<String>? category) async {
     var query =
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, transaction.* '
-        'FROM transaction INNER JOIN category '
-        'ON transaction.categoryId = category.id ';
-    'WHERE date BETWEEN $range';
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.color AS savingColor, transactionDuring.* '
+        'FROM transactionDuring '
+        'INNER JOIN category '
+        'ON transactionDuring.categoryId = category.id '
+        'INNER JOIN saving '
+        'ON transactionDuring.savingId = saving.id';
 
     if (type != null) {
-      query = "$query AND transaction.type = '$type'";
+      query = "$query AND transactionDuring.type = '$type'";
     }
 
     var results = await _dbProvider.filterTransactions(query);
