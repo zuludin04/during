@@ -21,9 +21,9 @@ class TransactionInfo extends StatelessWidget {
       child: Row(
         children: [
           const SizedBox(width: 10),
-          _transaction(Colors.green, 'Income', income),
+          _transaction(Colors.green, 'daily_income', income),
           const SizedBox(width: 10),
-          _transaction(Colors.red, 'Expense', expense),
+          _transaction(Colors.red, 'daily_expense', expense),
           const SizedBox(width: 10),
         ],
       ),
@@ -45,7 +45,7 @@ class TransactionInfo extends StatelessWidget {
               height: 45,
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: type == 'Income' ? Colors.green : Colors.red,
+                color: type == 'daily_income' ? Colors.green : Colors.red,
                 border: Border.all(
                   color: Colors.white,
                   width: 2,
@@ -53,7 +53,7 @@ class TransactionInfo extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: SvgPicture.asset(
-                type == 'Income'
+                type == 'daily_income'
                     ? 'assets/icon_income.svg'
                     : 'assets/icon_expense.svg',
                 color: Colors.white,
@@ -65,7 +65,7 @@ class TransactionInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  type.toLowerCase().tr,
+                  type.tr,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 13,

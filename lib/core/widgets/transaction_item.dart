@@ -31,7 +31,7 @@ class TransactionItem extends StatelessWidget {
                   height: 50,
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: Color(int.parse('0x${transaction.color}')),
+                    color: Color(int.parse('0x${transaction.savingColor}')),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(

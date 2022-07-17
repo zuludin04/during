@@ -40,10 +40,10 @@ class AddTransactionDialog extends StatelessWidget {
           if (result != null) {
             if (result == 'Income') {
               _controller.loadIncomes();
-              _controller.loadTodayTransaction();
+              _controller.loadDailyTransactions();
             } else if (result == 'Expense') {
               _controller.loadExpenses();
-              _controller.loadTodayTransaction();
+              _controller.loadDailyTransactions();
             }
             _controller.loadSavingList();
             Get.find<TransactionNavigationController>()

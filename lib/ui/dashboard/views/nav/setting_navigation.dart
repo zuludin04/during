@@ -1,5 +1,6 @@
 import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
+import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/controllers/setting_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -70,6 +71,34 @@ class _SettingNavigationState extends State<SettingNavigation> {
               title: Text('category'.tr),
               leading: const Icon(Icons.dashboard_rounded),
               onPressed: (context) => Get.toNamed(RoutePath.category),
+            ),
+            SettingsTile(
+              title: Text('delete_data'.tr),
+              leading: const Icon(Icons.replay),
+              onPressed: (context) {
+                Get.defaultDialog(
+                  title: 'delete_data'.tr,
+                  content: Text('delete_data_message'.tr),
+                  confirm: TextButton(
+                    onPressed: () {
+                      Get.back();
+                      var controller = Get.find<DashboardController>();
+                      controller.resetData();
+                    },
+                    child: Text(
+                      'ok'.tr,
+                      style: const TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                  cancel: TextButton(
+                    onPressed: Get.back,
+                    child: Text(
+                      'cancel'.tr,
+                      style: const TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),

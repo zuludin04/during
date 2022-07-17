@@ -37,14 +37,14 @@ class FilterBottomSheet extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  ChipCategories(
-                    title: 'range'.tr,
-                    categories: dateRangeFilters,
-                    multiChoice: false,
-                    selected: _controller.filtered.range!,
-                    onSelected: _controller.changeFilterRange,
-                  ),
-                  const SizedBox(height: 12),
+                  // ChipCategories(
+                  //   title: 'range'.tr,
+                  //   categories: dateRangeFilters,
+                  //   multiChoice: false,
+                  //   selected: _controller.filtered.range!,
+                  //   onSelected: _controller.changeFilterRange,
+                  // ),
+                  // const SizedBox(height: 12),
                   ChipCategories(
                     title: 'type'.tr,
                     categories: types,

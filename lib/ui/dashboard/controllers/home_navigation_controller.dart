@@ -15,6 +15,8 @@ class HomeNavigationController extends GetxController {
   var emptySaving = true.obs;
   var hideSlider = true.obs;
 
+  var todayTime = DateTime.now();
+
   @override
   void onInit() {
     super.onInit();
@@ -22,7 +24,7 @@ class HomeNavigationController extends GetxController {
     loadSavingList();
     loadIncomes();
     loadExpenses();
-    loadTodayTransaction();
+    loadDailyTransactions();
   }
 
   void loadSavingList() async {
@@ -31,8 +33,11 @@ class HomeNavigationController extends GetxController {
     emptySaving.value = result.isEmpty;
   }
 
-  void loadTodayTransaction() async {
-    var result = await _repository.loadTodayTransaction();
+  void loadDailyTransactions() async {
+    var start = DateTime(todayTime.year, todayTime.month, todayTime.day, 0, 0);
+    var end = DateTime(todayTime.year, todayTime.month, todayTime.day, 23, 59);
+    var result = await _repository.loadDailyTransactions(
+        start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
     if (result.isEmpty) {
       emptyTransaction.value = true;
     } else {
@@ -42,12 +47,18 @@ class HomeNavigationController extends GetxController {
   }
 
   void loadIncomes() async {
-    var result = await _repository.countTotalIncome();
+    var start = DateTime(todayTime.year, todayTime.month, todayTime.day, 0, 0);
+    var end = DateTime(todayTime.year, todayTime.month, todayTime.day, 23, 59);
+    var result = await _repository.countTotalIncome(
+        start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
     incomes.value = result;
   }
 
   void loadExpenses() async {
-    var result = await _repository.countTotalExpense();
+    var start = DateTime(todayTime.year, todayTime.month, todayTime.day, 0, 0);
+    var end = DateTime(todayTime.year, todayTime.month, todayTime.day, 23, 59);
+    var result = await _repository.countTotalExpense(
+        start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
     expenses.value = result;
   }
 }

@@ -33,7 +33,7 @@ class TransactionNavigationController extends GetxController {
   }
 
   void loadInitialTransactions() async {
-    var result = await _repository.loadTodayTransaction();
+    var result = await _repository.loadTransactions();
     if (result.isEmpty) {
       emptyTransaction.value = true;
     } else {

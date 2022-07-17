@@ -5,6 +5,7 @@ import 'package:during/core/widgets/header_text.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/core/widgets/transaction_item.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -90,7 +91,12 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(RoutePath.savingInsert, arguments: {
+                'status': 'update',
+                'saving': Get.arguments,
+              });
+            },
             icon: const Icon(Icons.edit, color: Colors.black),
           ),
         ],
