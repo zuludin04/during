@@ -39,7 +39,7 @@ class SavingDetailController extends GetxController {
     await _repository.deleteSaving(saving.id);
     await _repository.deleteSavingTransactions(transactions);
     Get.find<HomeNavigationController>().loadSavingList();
-    Get.find<HomeNavigationController>().loadTodayTransaction();
+    Get.find<HomeNavigationController>().loadDailyTransactions();
     Get.find<HomeNavigationController>().loadIncomes();
     Get.find<HomeNavigationController>().loadExpenses();
     Get.find<TransactionNavigationController>().loadInitialTransactions();

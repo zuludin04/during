@@ -63,7 +63,10 @@ class _SavingListScreenState extends State<SavingListScreen> {
         actions: [
           IconButton(
             onPressed: () async {
-              var result = await Get.toNamed(RoutePath.savingInsert);
+              var result =
+                  await Get.toNamed(RoutePath.savingInsert, arguments: {
+                'status': 'create',
+              });
               if (result != null) {
                 if (result == true) {
                   _controller.loadSavings();

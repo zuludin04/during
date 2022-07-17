@@ -10,3 +10,7 @@ List<FilterChoice> chipsCategory(List<String> list) {
   }
   return filters;
 }
+
+String joinText(List<String> values) {
+  return "'${values.join(",")}'";
+}

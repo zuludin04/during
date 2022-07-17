@@ -5,12 +5,12 @@ class TransactionEntity {
   int? nominal;
   int? categoryId;
   String? name;
-  String? color;
   int? savingId;
 
   String? categoryName;
   int? categoryType;
   String? categoryIcon;
+  String? savingColor;
 
   TransactionEntity({
     this.id,
@@ -19,7 +19,6 @@ class TransactionEntity {
     this.nominal,
     this.categoryId,
     this.name,
-    this.color,
     this.savingId,
   });
 
@@ -30,7 +29,6 @@ class TransactionEntity {
     nominal = map['nominal'];
     categoryId = map['categoryId'];
     name = map['name'];
-    color = map['color'];
     savingId = map['savingId'];
   }
 
@@ -38,13 +36,13 @@ class TransactionEntity {
     categoryName = map['categoryName'];
     categoryType = map['categoryType'];
     categoryIcon = map['categoryIcon'];
+    savingColor = map['savingColor'];
     id = map['id'];
     type = map['type'];
     date = map['date'];
     nominal = map['nominal'];
     categoryId = map['categoryId'];
     name = map['name'];
-    color = map['color'];
     savingId = map['savingId'];
   }
 
@@ -56,7 +54,6 @@ class TransactionEntity {
     map['nominal'] = nominal;
     map['categoryId'] = categoryId;
     map['name'] = name;
-    map['color'] = color;
     map['savingId'] = savingId;
     return map;
   }

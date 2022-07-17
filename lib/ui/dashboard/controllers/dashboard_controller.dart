@@ -51,11 +51,24 @@ class DashboardController extends GetxController {
   }
 
   void addSaving() async {
-    var result = await Get.toNamed(RoutePath.savingInsert);
+    var result = await Get.toNamed(RoutePath.savingInsert, arguments: {
+      'status': 'create',
+    });
     if (result != null) {
       if (result == true) {
         Get.find<HomeNavigationController>().loadSavingList();
       }
     }
+  }
+
+  void resetData() async {
+    _repository.resetAllData().then((value) {
+      Get.find<TransactionNavigationController>().loadInitialTransactions();
+      Get.find<HomeNavigationController>().loadSavingList();
+      Get.find<HomeNavigationController>().loadIncomes();
+      Get.find<HomeNavigationController>().loadExpenses();
+      Get.find<HomeNavigationController>().loadDailyTransactions();
+      changeNavIndex(0);
+    });
   }
 }

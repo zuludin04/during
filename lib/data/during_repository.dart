@@ -1,23 +1,26 @@
 import 'package:collection/collection.dart';
 import 'package:during/data/source/during_db_provider.dart';
+import 'package:during/data/source/entity/budget_entity.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 
 abstract class DuringRepository {
-  Future<void> saveTransaction(TransactionEntity transaction);
+  Future<int> saveTransaction(TransactionEntity transaction);
 
   Future<void> deleteTransaction(int? id);
 
   Future<void> updateTransaction(TransactionEntity transaction);
 
-  Future<List<TransactionEntity>> loadTodayTransaction();
+  Future<List<TransactionEntity>> loadTransactions();
+
+  Future<List<TransactionEntity>> loadDailyTransactions(int start, int end);
 
   Future<List<TransactionEntity>> loadSavingTransactions(int savingId);
 
-  Future<int> countTotalIncome();
+  Future<int> countTotalIncome(int start, int end);
 
-  Future<int> countTotalExpense();
+  Future<int> countTotalExpense(int start, int end);
 
   Future<void> insertSaving(SavingEntity saving);
 
@@ -26,6 +29,8 @@ abstract class DuringRepository {
   Future<SavingEntity> loadSingleSaving(int id);
 
   Future<void> updateSavingBalance(int? savingId, int? balance);
+
+  Future<void> updateSaving(SavingEntity saving);
 
   Future<List<TransactionEntity>> filterTransactions(
       String range, String? type, List<String>? category);
@@ -45,6 +50,22 @@ abstract class DuringRepository {
   Future<void> deleteCategory(int? id);
 
   Future<void> updateCategory(CategoryEntity category);
+
+  Future<CategoryEntity> loadSingleCategory(int categoryId);
+
+  Future<void> addBudget(BudgetEntity budget);
+
+  Future<void> updateBudget(BudgetEntity budget);
+
+  Future<void> deleteBudget(int budgetId);
+
+  Future<void> insertTransactionBudget(int transactionId, int budgetId);
+
+  Future<List<BudgetEntity>> loadBudgets();
+
+  Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId);
+
+  Future<void> resetAllData();
 }
 
 class DuringRepositoryImpl extends DuringRepository {
@@ -53,7 +74,7 @@ class DuringRepositoryImpl extends DuringRepository {
   DuringRepositoryImpl(this._dbProvider);
 
   @override
-  Future<void> saveTransaction(TransactionEntity transaction) =>
+  Future<int> saveTransaction(TransactionEntity transaction) =>
       _dbProvider.saveTransaction(transaction);
 
   @override
@@ -64,10 +85,14 @@ class DuringRepositoryImpl extends DuringRepository {
       _dbProvider.updateTransaction(transaction);
 
   @override
-  Future<List<TransactionEntity>> loadTodayTransaction() async {
+  Future<List<TransactionEntity>> loadTransactions() async {
     var result = await _dbProvider.loadDuringTransactions();
     return result;
   }
+
+  @override
+  Future<List<TransactionEntity>> loadDailyTransactions(int start, int end) =>
+      _dbProvider.loadDailyTransactions(start, end);
 
   @override
   Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
@@ -76,8 +101,8 @@ class DuringRepositoryImpl extends DuringRepository {
   }
 
   @override
-  Future<int> countTotalExpense() async {
-    var result = await _dbProvider.totalExpense();
+  Future<int> countTotalExpense(int start, int end) async {
+    var result = await _dbProvider.totalExpense(start, end);
     if (result.isEmpty) {
       return 0;
     } else {
@@ -86,8 +111,8 @@ class DuringRepositoryImpl extends DuringRepository {
   }
 
   @override
-  Future<int> countTotalIncome() async {
-    var result = await _dbProvider.totalIncome();
+  Future<int> countTotalIncome(int start, int end) async {
+    var result = await _dbProvider.totalIncome(start, end);
     if (result.isEmpty) {
       return 0;
     } else {
@@ -111,16 +136,22 @@ class DuringRepositoryImpl extends DuringRepository {
       _dbProvider.updateSavingBalance(savingId, balance);
 
   @override
+  Future<void> updateSaving(SavingEntity saving) =>
+      _dbProvider.updateSaving(saving);
+
+  @override
   Future<List<TransactionEntity>> filterTransactions(
       String range, String? type, List<String>? category) async {
     var query =
-        'SELECT duringCategory.name AS categoryName, duringCategory.icon AS categoryIcon, duringCategory.type AS categoryType, duringTransaction.* '
-        'FROM duringTransaction INNER JOIN duringCategory '
-        'ON duringTransaction.categoryId = duringCategory.id ';
-    'WHERE date BETWEEN $range';
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.color AS savingColor, transactionDuring.* '
+        'FROM transactionDuring '
+        'INNER JOIN category '
+        'ON transactionDuring.categoryId = category.id '
+        'INNER JOIN saving '
+        'ON transactionDuring.savingId = saving.id';
 
     if (type != null) {
-      query = "$query AND duringTransaction.type = '$type'";
+      query = "$query AND transactionDuring.type = '$type'";
     }
 
     var results = await _dbProvider.filterTransactions(query);
@@ -147,7 +178,7 @@ class DuringRepositoryImpl extends DuringRepository {
   Future<List<CategoryEntity>> loadCategoryType(int type) =>
       _dbProvider.loadCategoryByType(type);
 
-      @override
+  @override
   Future<List<CategoryEntity>> loadCategories() => _dbProvider.loadCategories();
 
   @override
@@ -161,11 +192,41 @@ class DuringRepositoryImpl extends DuringRepository {
   }
 
   @override
+  Future<CategoryEntity> loadSingleCategory(int categoryId) =>
+      _dbProvider.loadSingleCategory(categoryId);
+
+  @override
   Future<void> updateCategory(CategoryEntity category) async {
     await _dbProvider.updateCategory(category);
   }
 
-  String _joinText(List<String> values) {
-    return "'${values.join(",")}'";
+  @override
+  Future<void> addBudget(BudgetEntity budget) async {
+    await _dbProvider.addBudgeting(budget);
   }
+
+  @override
+  Future<void> deleteBudget(int budgetId) async {
+    await _dbProvider.deleteBudget(budgetId);
+  }
+
+  @override
+  Future<void> insertTransactionBudget(int transactionId, int budgetId) async {
+    await _dbProvider.insertTransactionBudget(transactionId, budgetId);
+  }
+
+  @override
+  Future<List<BudgetEntity>> loadBudgets() => _dbProvider.loadBudgets();
+
+  @override
+  Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId) =>
+      _dbProvider.loadBudgetTransactions(budgetId);
+
+  @override
+  Future<void> updateBudget(BudgetEntity budget) async {
+    await _dbProvider.updateBudget(budget);
+  }
+
+  @override
+  Future<void> resetAllData() => _dbProvider.deleteAllData();
 }

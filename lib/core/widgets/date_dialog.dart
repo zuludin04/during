@@ -53,7 +53,7 @@ class _DateDialogState extends State<DateDialog> {
                     cancelText: 'cancel'.tr,
                     confirmText: 'ok'.tr,
                     firstDate: DateTime(2020),
-                    lastDate: DateTime(2025),
+                    lastDate: DateTime.now(),
                     builder: (context, child) {
                       return Theme(
                         data: Theme.of(context).copyWith(
@@ -144,7 +144,7 @@ class _DateDialogState extends State<DateDialog> {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Text(
-                    '${_currentTime.hour}:${_currentTime.minute}',
+                    _timeFormat(),
                     style: const TextStyle(fontSize: 16),
                   ),
                 ),
@@ -159,6 +159,25 @@ class _DateDialogState extends State<DateDialog> {
   void _changeDateTime() {
     _selectedDateTime = DateTime(_currentDate.year, _currentDate.month,
         _currentDate.day, _currentTime.hour, _currentTime.minute);
+  }
+
+  String _timeFormat() {
+    String hour = '00';
+    String minute = '00';
+
+    if (_currentTime.hour < 10) {
+      hour = '0${_currentTime.hour}';
+    } else {
+      hour = '${_currentTime.hour}';
+    }
+
+    if (_currentTime.minute < 10) {
+      minute = '0${_currentTime.minute}';
+    } else {
+      minute = '${_currentTime.minute}';
+    }
+
+    return '$hour:$minute';
   }
 
   String _getCurrentDate(DateTime date) {
