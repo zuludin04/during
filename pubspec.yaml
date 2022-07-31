@@ -2,7 +2,7 @@ name: during
 description: Money tracking application
 
 publish_to: "none"
-version: 1.1.1+5
+version: 1.1.1+6
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
