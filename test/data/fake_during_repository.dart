@@ -97,9 +97,9 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<List<BudgetEntity>> loadBudgets() {
-    // TODO: implement loadBudgets
-    throw UnimplementedError();
+  Future<List<BudgetEntity>> loadBudgets() async {
+    var results = await dbProvider.loadBudgets();
+    return results;
   }
 
   @override

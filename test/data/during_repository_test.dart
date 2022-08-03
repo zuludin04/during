@@ -1,4 +1,5 @@
 import 'package:during/data/source/during_db_provider.dart';
+import 'package:during/data/source/entity/budget_entity.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
@@ -25,8 +26,13 @@ void main() {
   ];
 
   var mockCategory = [
-    CategoryEntity(id: 1, name: 'Saving 1'),
-    CategoryEntity(id: 2, name: 'Saving 2'),
+    CategoryEntity(id: 1, name: 'Category 1'),
+    CategoryEntity(id: 2, name: 'Category 2'),
+  ];
+
+  var mockBudget = [
+    BudgetEntity(id: 1, name: 'Budget 1'),
+    BudgetEntity(id: 2, name: 'Budget 2'),
   ];
 
   group('test daily expense and income', () {
@@ -156,7 +162,8 @@ void main() {
     });
 
     test('load categories by type', () async {
-      when(dbProvider.loadCategoryByType(any)).thenAnswer((_) async => mockCategory);
+      when(dbProvider.loadCategoryByType(any))
+          .thenAnswer((_) async => mockCategory);
       repository.loadCategoryType(1);
 
       verify(repository.loadCategoryType(1));
@@ -167,8 +174,9 @@ void main() {
       expect(categories.length, mockCategory.length);
     });
 
-    test('load category detail data', () async  {
-       when(dbProvider.loadSingleCategory(any)).thenAnswer((_) async => mockCategory[0]);
+    test('load category detail data', () async {
+      when(dbProvider.loadSingleCategory(any))
+          .thenAnswer((_) async => mockCategory[0]);
       repository.loadSingleCategory(1);
 
       verify(repository.loadSingleCategory(1));
@@ -176,6 +184,20 @@ void main() {
       var categories = await repository.loadSingleCategory(1);
       expect(categories, mockCategory[0]);
       expect(categories.id, mockCategory[0].id);
+    });
+  });
+
+  group('test to budget items', () {
+    test('load all budgets', () async {
+      when(dbProvider.loadBudgets()).thenAnswer((_) async => mockBudget);
+      repository.loadBudgets();
+
+      verify(repository.loadBudgets());
+
+      var budgets = await repository.loadBudgets();
+      expect(budgets, mockBudget);
+      expect(budgets.isNotEmpty, true);
+      expect(budgets.length, mockBudget.length);
     });
   });
 }
