@@ -11,10 +11,8 @@ class FakeDuringRepository extends DuringRepository {
   FakeDuringRepository(this.dbProvider);
 
   @override
-  Future<void> addBudget(BudgetEntity budget) {
-    // TODO: implement addBudget
-    throw UnimplementedError();
-  }
+  Future<void> addBudget(BudgetEntity budget) =>
+      dbProvider.addBudgeting(budget);
 
   @override
   Future<int> countTotalExpense(int start, int end) async {
@@ -29,34 +27,20 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<void> deleteBudget(int budgetId) {
-    // TODO: implement deleteBudget
-    throw UnimplementedError();
-  }
+  Future<void> deleteBudget(int budgetId) => dbProvider.deleteBudget(budgetId);
 
   @override
-  Future<void> deleteCategory(int? id) {
-    // TODO: implement deleteCategory
-    throw UnimplementedError();
-  }
+  Future<void> deleteCategory(int? id) => dbProvider.deleteCategory(id);
 
   @override
-  Future<void> deleteSaving(int? savingId) {
-    // TODO: implement deleteSaving
-    throw UnimplementedError();
-  }
+  Future<void> deleteSaving(int? savingId) => dbProvider.deleteSaving(savingId);
 
   @override
-  Future<void> deleteSavingTransactions(List<TransactionEntity> transactions) {
-    // TODO: implement deleteSavingTransactions
-    throw UnimplementedError();
-  }
+  Future<void> deleteSavingTransactions(List<TransactionEntity> transactions) =>
+      dbProvider.deleteSavingTransactions(transactions);
 
   @override
-  Future<void> deleteTransaction(int? id) {
-    // TODO: implement deleteTransaction
-    throw UnimplementedError();
-  }
+  Future<void> deleteTransaction(int? id) => dbProvider.deleteTransaction(id);
 
   @override
   Future<List<TransactionEntity>> filterTransactions(
@@ -67,28 +51,19 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<void> initialCategory() {
-    // TODO: implement initialCategory
-    throw UnimplementedError();
-  }
+  Future<void> initialCategory() => dbProvider.addInitialCategory();
 
   @override
-  Future<void> insertSaving(SavingEntity saving) {
-    // TODO: implement insertSaving
-    throw UnimplementedError();
-  }
+  Future<void> insertSaving(SavingEntity saving) =>
+      dbProvider.insertSaving(saving);
 
   @override
-  Future<void> insertTransactionBudget(int transactionId, int budgetId) {
-    // TODO: implement insertTransactionBudget
-    throw UnimplementedError();
-  }
+  Future<void> insertTransactionBudget(int transactionId, int budgetId) =>
+      insertTransactionBudget(transactionId, budgetId);
 
   @override
-  Future<void> inserteCategroy(CategoryEntity category) {
-    // TODO: implement inserteCategroy
-    throw UnimplementedError();
-  }
+  Future<void> inserteCategroy(CategoryEntity category) =>
+      dbProvider.insertCategory(category);
 
   @override
   Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId) async {
@@ -152,44 +127,29 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<void> resetAllData() {
-    // TODO: implement resetAllData
-    throw UnimplementedError();
-  }
+  Future<void> resetAllData() => dbProvider.deleteAllData();
 
   @override
-  Future<int> saveTransaction(TransactionEntity transaction) {
-    // TODO: implement saveTransaction
-    throw UnimplementedError();
-  }
+  Future<int> saveTransaction(TransactionEntity transaction) =>
+      dbProvider.saveTransaction(transaction);
 
   @override
-  Future<void> updateBudget(BudgetEntity budget) {
-    // TODO: implement updateBudget
-    throw UnimplementedError();
-  }
+  Future<void> updateBudget(BudgetEntity budget) =>
+      dbProvider.updateBudget(budget);
 
   @override
-  Future<void> updateCategory(CategoryEntity category) {
-    // TODO: implement updateCategory
-    throw UnimplementedError();
-  }
+  Future<void> updateCategory(CategoryEntity category) =>
+      dbProvider.updateCategory(category);
 
   @override
-  Future<void> updateSaving(SavingEntity saving) {
-    // TODO: implement updateSaving
-    throw UnimplementedError();
-  }
+  Future<void> updateSaving(SavingEntity saving) =>
+      dbProvider.updateSaving(saving);
 
   @override
-  Future<void> updateSavingBalance(int? savingId, int? balance) {
-    // TODO: implement updateSavingBalance
-    throw UnimplementedError();
-  }
+  Future<void> updateSavingBalance(int? savingId, int? balance) =>
+      dbProvider.updateSavingBalance(savingId, balance);
 
   @override
-  Future<void> updateTransaction(TransactionEntity transaction) {
-    // TODO: implement updateTransaction
-    throw UnimplementedError();
-  }
+  Future<void> updateTransaction(TransactionEntity transaction) =>
+      dbProvider.updateTransaction(transaction);
 }
