@@ -103,21 +103,13 @@ class DuringRepositoryImpl extends DuringRepository {
   @override
   Future<int> countTotalExpense(int start, int end) async {
     var result = await _dbProvider.totalExpense(start, end);
-    if (result.isEmpty) {
-      return 0;
-    } else {
-      return result.sum;
-    }
+    return result;
   }
 
   @override
   Future<int> countTotalIncome(int start, int end) async {
     var result = await _dbProvider.totalIncome(start, end);
-    if (result.isEmpty) {
-      return 0;
-    } else {
-      return result.sum;
-    }
+    return result;
   }
 
   @override

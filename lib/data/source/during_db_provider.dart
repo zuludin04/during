@@ -144,24 +144,42 @@ class DuringDbProvider {
     return transactions;
   }
 
-  Future<List<int>> totalIncome(int start, int end) async {
+  Future<int> totalIncome(int start, int end) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
         'SELECT * FROM transactionDuring WHERE type = \'Income\' AND date BETWEEN $start AND $end');
     List<int> incomes = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();
-    return incomes;
+
+    if (incomes.isEmpty) {
+      return 0;
+    } else {
+      var total = 0;
+      for (var element in incomes) {
+        total += element;
+      }
+      return total;
+    }
   }
 
-  Future<List<int>> totalExpense(int start, int end) async {
+  Future<int> totalExpense(int start, int end) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
         'SELECT * FROM transactionDuring WHERE type = \'Expense\' AND date BETWEEN $start AND $end');
     List<int> expenses = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromMap(e).nominal!).toList();
-    return expenses;
+
+    if (expenses.isEmpty) {
+      return 0;
+    } else {
+      var total = 0;
+      for (var element in expenses) {
+        total += element;
+      }
+      return total;
+    }
   }
 
   Future<void> insertSaving(SavingEntity saving) async {
