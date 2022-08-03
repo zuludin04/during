@@ -122,9 +122,9 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<List<SavingEntity>> loadSaving() {
-    // TODO: implement loadSaving
-    throw UnimplementedError();
+  Future<List<SavingEntity>> loadSaving() async {
+    var results = await dbProvider.loadSavings();
+    return results;
   }
 
   @override
@@ -140,9 +140,9 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<SavingEntity> loadSingleSaving(int id) {
-    // TODO: implement loadSingleSaving
-    throw UnimplementedError();
+  Future<SavingEntity> loadSingleSaving(int id) async {
+    var result = await dbProvider.loadSingleSaving(id);
+    return result;
   }
 
   @override

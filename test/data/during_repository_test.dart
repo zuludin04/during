@@ -1,4 +1,5 @@
 import 'package:during/data/source/during_db_provider.dart';
+import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -15,6 +16,11 @@ void main() {
   var mockTransactions = [
     TransactionEntity(id: 1, name: 'Hallo 1'),
     TransactionEntity(id: 2, name: 'Hallo 2'),
+  ];
+
+  var mockSavings = [
+    SavingEntity(id: 1, name: 'Saving 1'),
+    SavingEntity(id: 2, name: 'Saving 2'),
   ];
 
   group('test daily expense and income', () {
@@ -101,6 +107,31 @@ void main() {
       expect(results, mockTransactions);
       expect(results.isNotEmpty, true);
       expect(results.length, mockTransactions.length);
+    });
+  });
+
+  group('test to get saving list and detail data', () {
+    test('load all savings item', () async {
+      when(dbProvider.loadSavings()).thenAnswer((_) async => mockSavings);
+      repository.loadSaving();
+
+      verify(repository.loadSaving());
+
+      var results = await repository.loadSaving();
+      expect(results, mockSavings);
+      expect(results.isNotEmpty, true);
+      expect(results.length, mockSavings.length);
+    });
+
+    test('laod detail saving', () async {
+      when(dbProvider.loadSingleSaving(any)).thenAnswer((_) async => mockSavings[0]);
+      repository.loadSingleSaving(1);
+
+      verify(repository.loadSingleSaving(1));
+
+      var result = await repository.loadSingleSaving(1);
+      expect(result, mockSavings[0]);
+      expect(result.id, mockSavings[0].id);
     });
   });
 }
