@@ -1,4 +1,5 @@
 import 'package:during/data/source/during_db_provider.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,6 +22,11 @@ void main() {
   var mockSavings = [
     SavingEntity(id: 1, name: 'Saving 1'),
     SavingEntity(id: 2, name: 'Saving 2'),
+  ];
+
+  var mockCategory = [
+    CategoryEntity(id: 1, name: 'Saving 1'),
+    CategoryEntity(id: 2, name: 'Saving 2'),
   ];
 
   group('test daily expense and income', () {
@@ -124,7 +130,8 @@ void main() {
     });
 
     test('laod detail saving', () async {
-      when(dbProvider.loadSingleSaving(any)).thenAnswer((_) async => mockSavings[0]);
+      when(dbProvider.loadSingleSaving(any))
+          .thenAnswer((_) async => mockSavings[0]);
       repository.loadSingleSaving(1);
 
       verify(repository.loadSingleSaving(1));
@@ -132,6 +139,43 @@ void main() {
       var result = await repository.loadSingleSaving(1);
       expect(result, mockSavings[0]);
       expect(result.id, mockSavings[0].id);
+    });
+  });
+
+  group('test to get all category data', () {
+    test('load all category items', () async {
+      when(dbProvider.loadCategories()).thenAnswer((_) async => mockCategory);
+      repository.loadCategories();
+
+      verify(repository.loadCategories());
+
+      var categories = await repository.loadCategories();
+      expect(categories, mockCategory);
+      expect(categories.isNotEmpty, true);
+      expect(categories.length, mockCategory.length);
+    });
+
+    test('load categories by type', () async {
+      when(dbProvider.loadCategoryByType(any)).thenAnswer((_) async => mockCategory);
+      repository.loadCategoryType(1);
+
+      verify(repository.loadCategoryType(1));
+
+      var categories = await repository.loadCategoryType(1);
+      expect(categories, mockCategory);
+      expect(categories.isNotEmpty, true);
+      expect(categories.length, mockCategory.length);
+    });
+
+    test('load category detail data', () async  {
+       when(dbProvider.loadSingleCategory(any)).thenAnswer((_) async => mockCategory[0]);
+      repository.loadSingleCategory(1);
+
+      verify(repository.loadSingleCategory(1));
+
+      var categories = await repository.loadSingleCategory(1);
+      expect(categories, mockCategory[0]);
+      expect(categories.id, mockCategory[0].id);
     });
   });
 }

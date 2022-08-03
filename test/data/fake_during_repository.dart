@@ -103,15 +103,15 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<List<CategoryEntity>> loadCategories() {
-    // TODO: implement loadCategories
-    throw UnimplementedError();
+  Future<List<CategoryEntity>> loadCategories() async {
+    var results = await dbProvider.loadCategories();
+    return results;
   }
 
   @override
-  Future<List<CategoryEntity>> loadCategoryType(int type) {
-    // TODO: implement loadCategoryType
-    throw UnimplementedError();
+  Future<List<CategoryEntity>> loadCategoryType(int type) async {
+    var results = await dbProvider.loadCategoryByType(type);
+    return results;
   }
 
   @override
@@ -134,9 +134,9 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<CategoryEntity> loadSingleCategory(int categoryId) {
-    // TODO: implement loadSingleCategory
-    throw UnimplementedError();
+  Future<CategoryEntity> loadSingleCategory(int categoryId) async {
+    var result = await dbProvider.loadSingleCategory(categoryId);
+    return result;
   }
 
   @override
