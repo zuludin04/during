@@ -60,9 +60,10 @@ class FakeDuringRepository extends DuringRepository {
 
   @override
   Future<List<TransactionEntity>> filterTransactions(
-      String range, String? type, List<String>? category) {
-    // TODO: implement filterTransactions
-    throw UnimplementedError();
+      String range, String? type, List<String>? category) async {
+    var query = '$range $type';
+    var results = await dbProvider.filterTransactions(query);
+    return results;
   }
 
   @override
@@ -90,9 +91,9 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId) {
-    // TODO: implement loadBudgetTransactions
-    throw UnimplementedError();
+  Future<List<TransactionEntity>> loadBudgetTransactions(int budgetId) async {
+    var results = await dbProvider.loadBudgetTransactions(budgetId);
+    return results;
   }
 
   @override
@@ -114,9 +115,10 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<List<TransactionEntity>> loadDailyTransactions(int start, int end) {
-    // TODO: implement loadDailyTransactions
-    throw UnimplementedError();
+  Future<List<TransactionEntity>> loadDailyTransactions(
+      int start, int end) async {
+    var results = await dbProvider.loadDailyTransactions(start, end);
+    return results;
   }
 
   @override
@@ -126,9 +128,9 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<List<TransactionEntity>> loadSavingTransactions(int savingId) {
-    // TODO: implement loadSavingTransactions
-    throw UnimplementedError();
+  Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
+    var results = await dbProvider.loadSavingTransactions(savingId);
+    return results;
   }
 
   @override
@@ -144,9 +146,9 @@ class FakeDuringRepository extends DuringRepository {
   }
 
   @override
-  Future<List<TransactionEntity>> loadTransactions() {
-    // TODO: implement loadTransactions
-    throw UnimplementedError();
+  Future<List<TransactionEntity>> loadTransactions() async {
+    var results = await dbProvider.loadDuringTransactions();
+    return results;
   }
 
   @override
