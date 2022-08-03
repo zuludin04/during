@@ -1,12 +1,9 @@
 import 'package:during/data/source/during_db_provider.dart';
-import 'package:during/data/source/entity/budget_entity.dart';
-import 'package:during/data/source/entity/category_entity.dart';
-import 'package:during/data/source/entity/saving_entity.dart';
-import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../utils/dummy_data.dart';
 import 'during_repository_test.mocks.dart';
 import 'fake_during_repository.dart';
 
@@ -14,26 +11,6 @@ import 'fake_during_repository.dart';
 void main() {
   var dbProvider = MockDuringDbProvider();
   var repository = FakeDuringRepository(dbProvider);
-
-  var mockTransactions = [
-    TransactionEntity(id: 1, name: 'Hallo 1'),
-    TransactionEntity(id: 2, name: 'Hallo 2'),
-  ];
-
-  var mockSavings = [
-    SavingEntity(id: 1, name: 'Saving 1'),
-    SavingEntity(id: 2, name: 'Saving 2'),
-  ];
-
-  var mockCategory = [
-    CategoryEntity(id: 1, name: 'Category 1'),
-    CategoryEntity(id: 2, name: 'Category 2'),
-  ];
-
-  var mockBudget = [
-    BudgetEntity(id: 1, name: 'Budget 1'),
-    BudgetEntity(id: 2, name: 'Budget 2'),
-  ];
 
   group('test daily expense and income', () {
     test('load daily expense', () async {
