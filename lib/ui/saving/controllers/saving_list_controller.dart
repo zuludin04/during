@@ -14,7 +14,7 @@ class SavingListController extends GetxController {
     loadSavings();
   }
 
-  void loadSavings() async {
+  Future<void> loadSavings() async {
     var result = await _repository.loadSaving();
     if (result.isEmpty) {
       empty.value = true;
