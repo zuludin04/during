@@ -16,7 +16,7 @@ class CategoryDashboardController extends GetxController {
     super.onInit();
   }
 
-  void loadCategory() async {
+  Future<void> loadCategory() async {
     loading = true;
 
     var category = await _repository.loadCategories();

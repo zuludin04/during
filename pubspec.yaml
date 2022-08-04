@@ -28,6 +28,7 @@ dependencies:
   share_plus: ^4.0.4
   google_mobile_ads: ^1.2.0
   sliver_tools: ^0.2.7
+  mocktail: ^0.3.0
 
 dev_dependencies:
   flutter_test:
