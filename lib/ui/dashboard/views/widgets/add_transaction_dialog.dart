@@ -31,26 +31,21 @@ class AddTransactionDialog extends StatelessWidget {
     return InkWell(
       onTap: () async {
         Get.back();
-        if (title != 'Sharing') {
-          var result =
-              await Get.toNamed(RoutePath.transactionCreate, parameters: {
-            'transaction': 'Create',
-            'type': title,
-          });
-          if (result != null) {
-            if (result == 'Income') {
-              _controller.loadIncomes();
-              _controller.loadDailyTransactions();
-            } else if (result == 'Expense') {
-              _controller.loadExpenses();
-              _controller.loadDailyTransactions();
-            }
-            _controller.loadSavingList();
-            Get.find<TransactionNavigationController>()
-                .loadInitialTransactions();
+        var result =
+            await Get.toNamed(RoutePath.transactionCreate, parameters: {
+          'transaction': 'Create',
+          'type': title,
+        });
+        if (result != null) {
+          if (result == 'Income') {
+            _controller.loadIncomes();
+            _controller.loadDailyTransactions();
+          } else if (result == 'Expense') {
+            _controller.loadExpenses();
+            _controller.loadDailyTransactions();
           }
-        } else {
-          Get.toNamed(RoutePath.sharePayment);
+          _controller.loadSavingList();
+          Get.find<TransactionNavigationController>().loadInitialTransactions();
         }
       },
       child: Column(
