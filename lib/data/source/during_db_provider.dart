@@ -104,7 +104,8 @@ class DuringDbProvider {
         'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
         'INNER JOIN saving '
-        'ON transactionDuring.savingId = saving.id');
+        'ON transactionDuring.savingId = saving.id '
+        'ORDER BY transactionDuring.date DESC');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
@@ -121,7 +122,8 @@ class DuringDbProvider {
         'ON transactionDuring.categoryId = category.id '
         'INNER JOIN saving '
         'ON transactionDuring.savingId = saving.id '
-        'WHERE transactionDuring.date BETWEEN $start AND $end');
+        'WHERE transactionDuring.date BETWEEN $start AND $end '
+        'ORDER BY transactionDuring.date DESC');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
@@ -137,7 +139,8 @@ class DuringDbProvider {
         'ON transactionDuring.categoryId = category.id '
         'INNER JOIN saving '
         'ON transactionDuring.savingId = saving.id '
-        'WHERE transactionDuring.savingId = $savingId');
+        'WHERE transactionDuring.savingId = $savingId '
+        'ORDER BY transactionDuring.date DESC');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
         : result.map((e) => TransactionEntity.fromJoinDb(e)).toList();
@@ -370,7 +373,8 @@ class DuringDbProvider {
         'ON transactionBudget.transactionId = transactionDuring.id '
         'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
-        'WHERE transactionBudget.budgetId = $budgetId');
+        'WHERE transactionBudget.budgetId = $budgetId '
+        'ORDER BY transactionDuring.date DESC');
     List<TransactionEntity> transactions = results.isEmpty
         ? []
         : results.map((e) => TransactionEntity.fromJoinDb(e)).toList();
