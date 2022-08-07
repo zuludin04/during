@@ -10,18 +10,20 @@ import 'package:get/get.dart';
 class TransactionDetailController extends GetxController {
   final DuringRepository _repository = Get.find();
 
-  TransactionEntity transaction = Get.arguments;
+  final TransactionEntity transaction;
+  final String source;
   SavingEntity saving = SavingEntity();
-  String source = Get.parameters['source'] ?? 'normal';
+
+  TransactionDetailController(this.transaction, this.source);
 
   @override
   void onInit() {
     super.onInit();
-    loadTransactionSaving();
+    loadTransactionSaving(transaction.id ?? 1);
   }
 
-  void loadTransactionSaving() async {
-    var result = await _repository.loadSingleSaving(transaction.savingId!);
+  Future<void> loadTransactionSaving(int savingId) async {
+    var result = await _repository.loadSingleSaving(savingId);
     saving = result;
     update();
   }
