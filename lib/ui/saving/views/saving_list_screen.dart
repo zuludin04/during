@@ -1,3 +1,4 @@
+import 'package:during/core/extensions/color_extension.dart';
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/add_helper.dart';
 import 'package:during/core/utils/constants.dart';
@@ -127,7 +128,7 @@ class _SavingListScreenState extends State<SavingListScreen> {
               ),
               child: SvgPicture.asset(
                 'assets/category/${saving.categoryIcon}',
-                color: Colors.white,
+                color: saving.color!.dynamicTextColor(),
               ),
             ),
             const SizedBox(width: 10),

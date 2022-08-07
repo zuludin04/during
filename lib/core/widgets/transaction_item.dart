@@ -1,3 +1,4 @@
+import 'package:during/core/extensions/color_extension.dart';
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
@@ -43,7 +44,9 @@ class TransactionItem extends StatelessWidget {
                     ],
                   ),
                   child: SvgPicture.asset(
-                      'assets/category/${transaction.categoryIcon}'),
+                    'assets/category/${transaction.categoryIcon}',
+                    color: transaction.savingColor!.dynamicTextColor(),
+                  ),
                 ),
                 const SizedBox(width: 15),
                 Expanded(
