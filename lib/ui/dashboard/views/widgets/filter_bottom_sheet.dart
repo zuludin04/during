@@ -1,6 +1,7 @@
 import 'package:during/core/utils/helper.dart';
 import 'package:during/core/widgets/header_text.dart';
 import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
+import 'package:during/ui/dashboard/views/widgets/date_selector.dart';
 import 'package:during/ui/transaction/views/widgets/chip_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,14 +38,48 @@ class FilterBottomSheet extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  // ChipCategories(
-                  //   title: 'range'.tr,
-                  //   categories: dateRangeFilters,
-                  //   multiChoice: false,
-                  //   selected: _controller.filtered.range!,
-                  //   onSelected: _controller.changeFilterRange,
-                  // ),
-                  // const SizedBox(height: 12),
+                  HeaderText(
+                    title: 'range'.tr,
+                    showTrailing: false,
+                    titleSize: 14,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Start'),
+                            const SizedBox(height: 4),
+                            DateSelector(
+                              selectedDate: (date) {
+                                _controller.startDate = date;
+                              },
+                              currentDate: DateTime.now(),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('End'),
+                            const SizedBox(height: 4),
+                            DateSelector(
+                              selectedDate: (date) {
+                                _controller.endDate = date;
+                              },
+                              currentDate: DateTime.now(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
                   ChipCategories(
                     title: 'type'.tr,
                     categories: types,

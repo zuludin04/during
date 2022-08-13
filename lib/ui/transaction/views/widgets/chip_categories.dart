@@ -27,7 +27,6 @@ class _ChipCategoriesState extends State<ChipCategories> {
 
   @override
   void initState() {
-    print('selected cat ${widget.selected}');
     _idSelected = widget.selected;
     super.initState();
   }

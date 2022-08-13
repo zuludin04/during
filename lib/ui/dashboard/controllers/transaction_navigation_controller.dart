@@ -8,7 +8,9 @@ class TransactionNavigationController extends GetxController {
   final DuringRepository _repository = Get.find();
 
   var transactions = <TransactionEntity>[].obs;
-  var currentDate = DateTime.now();
+
+  var startDate = DateTime.now();
+  var endDate = DateTime.now();
 
   FilterTransaction filtered = FilterTransaction(
     range: 1,
@@ -64,7 +66,7 @@ class TransactionNavigationController extends GetxController {
     filtered = filter;
 
     var result = await _repository.filterTransactions(
-        _getFilterRange(filterRange), transactionType, transactionCategory);
+        _getFilterRange(), transactionType, transactionCategory);
     if (result.isEmpty) {
       emptyTransaction.value = true;
     } else {
@@ -93,18 +95,9 @@ class TransactionNavigationController extends GetxController {
     transactionCategory = title;
   }
 
-  String _getFilterRange(int range) {
-    var start =
-        DateTime(currentDate.year, currentDate.month, currentDate.day, 0, 0);
-    var end = start.add(const Duration(hours: 23, minutes: 59));
-
-    if (range == 1) {
-      end = start.add(const Duration(hours: 23, minutes: 59));
-    } else if (range == 2) {
-      end = start.add(const Duration(days: 7));
-    } else if (range == 3) {
-      end = start.add(const Duration(days: 30));
-    }
+  String _getFilterRange() {
+    var start = DateTime(startDate.year, startDate.month, startDate.day, 0, 0);
+    var end = DateTime(endDate.year, endDate.month, endDate.day, 23, 59);
 
     return '${start.millisecondsSinceEpoch} AND ${end.millisecondsSinceEpoch}';
   }

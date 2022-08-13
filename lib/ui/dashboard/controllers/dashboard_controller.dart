@@ -35,7 +35,7 @@ class DashboardController extends GetxController {
   void filterTransaction() {
     Get.bottomSheet(
       FilterBottomSheet(),
-      isScrollControlled: false,
+      isScrollControlled: true,
       ignoreSafeArea: false,
     );
   }

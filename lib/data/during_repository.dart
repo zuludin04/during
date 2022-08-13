@@ -139,7 +139,8 @@ class DuringRepositoryImpl extends DuringRepository {
         'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
         'INNER JOIN saving '
-        'ON transactionDuring.savingId = saving.id';
+        'ON transactionDuring.savingId = saving.id '
+        'WHERE transactionDuring.date BETWEEN $range';
 
     if (type != null) {
       query = "$query AND transactionDuring.type = '$type'";
