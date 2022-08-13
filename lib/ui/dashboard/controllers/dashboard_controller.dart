@@ -1,12 +1,10 @@
 import 'package:during/data/during_repository.dart';
-import 'package:during/data/model/filter_transaction.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:during/service/language_service.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/filter_bottom_sheet.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
@@ -34,20 +32,12 @@ class DashboardController extends GetxController {
     }
   }
 
-  void filterTransaction() async {
-    var result = await Get.bottomSheet(
+  void filterTransaction() {
+    Get.bottomSheet(
       FilterBottomSheet(),
       isScrollControlled: false,
       ignoreSafeArea: false,
     );
-    if (result != null) {
-      if (result is FilterTransaction) {
-        debugPrint('Filter range is ${result.range}');
-      }
-    } else {
-      var c = Get.find<TransactionNavigationController>();
-      c.typed.value = c.filtered.type!;
-    }
   }
 
   void addSaving() async {

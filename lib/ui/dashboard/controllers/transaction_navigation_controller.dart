@@ -1,5 +1,6 @@
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/model/filter_transaction.dart';
+import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:get/get.dart';
 
@@ -11,25 +12,29 @@ class TransactionNavigationController extends GetxController {
 
   FilterTransaction filtered = FilterTransaction(
     range: 1,
-    type: 0,
+    type: 1,
     category: 0,
   );
 
   var filterRange = 1;
-  var filterType = 0;
-  var typed = 0.obs;
-  var filterCategory = 0;
+  var filterType = 1;
+  var typed = 1.obs;
+  var filterCategory = 0.obs;
 
-  String transactionType = '';
-  String transactionCategory = '';
-  List<String> filterCategories = [];
+  String transactionType = 'Income';
+  String? transactionCategory;
+  String filterCategories = '';
 
   var emptyTransaction = false.obs;
+
+  List<CategoryEntity> incomeCategories = [];
+  List<CategoryEntity> expenseCategories = [];
 
   @override
   void onInit() {
     super.onInit();
     loadInitialTransactions();
+    loadFilterCategories();
   }
 
   void loadInitialTransactions() async {
@@ -42,16 +47,24 @@ class TransactionNavigationController extends GetxController {
     }
   }
 
+  void loadFilterCategories() async {
+    var incomes = await _repository.loadCategoryType(2);
+    incomeCategories = incomes;
+
+    var expenses = await _repository.loadCategoryType(3);
+    expenseCategories = expenses;
+  }
+
   void filterTransaction() async {
     FilterTransaction filter = FilterTransaction(
       range: filterRange,
       type: filterType,
-      category: filterCategory,
+      category: filterCategory.value,
     );
     filtered = filter;
 
     var result = await _repository.filterTransactions(
-        _getFilterRange(filterRange), transactionType, filterCategories);
+        _getFilterRange(filterRange), transactionType, transactionCategory);
     if (result.isEmpty) {
       emptyTransaction.value = true;
     } else {
@@ -59,24 +72,25 @@ class TransactionNavigationController extends GetxController {
       transactions.value = result;
     }
 
-    Get.back(result: filtered);
+    filterCategory.value = 0;
+    transactionCategory = null;
+    Get.back();
   }
 
-  void changeFilterRange(int range, String title, List<String> choices) {
+  void changeFilterRange(int range, String title) {
     filterRange = range;
   }
 
-  void changeFilterType(int type, String title, List<String> choices) {
+  void changeFilterType(int type, String title) {
     filterType = type;
     typed.value = type;
     transactionType = title;
-    filterCategories.clear();
+    filterCategory.value = 0;
   }
 
-  void changeFilterCategory(int category, String title, List<String> choices) {
-    filterCategory = category;
+  void changeFilterCategory(int category, String title) {
+    filterCategory.value = category;
     transactionCategory = title;
-    filterCategories = choices;
   }
 
   String _getFilterRange(int range) {

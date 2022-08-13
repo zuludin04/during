@@ -48,22 +48,24 @@ class FilterBottomSheet extends StatelessWidget {
                   ChipCategories(
                     title: 'type'.tr,
                     categories: types,
-                    multiChoice: false,
                     selected: _controller.filtered.type!,
                     onSelected: _controller.changeFilterType,
                   ),
-                  // const SizedBox(height: 12),
-                  // Obx(
-                  //   () => ChipCategories(
-                  //     title: 'category'.tr,
-                  //     categories: _controller.typed.value == 1
-                  //         ? incomeCategories
-                  //         : expenseCategories,
-                  //     multiChoice: true,
-                  //     selected: _controller.filtered.category!,
-                  //     onSelected: _controller.changeFilterCategory,
-                  //   ),
-                  // ),
+                  const SizedBox(height: 12),
+                  Obx(
+                    () => ChipCategories(
+                      title: 'category'.tr,
+                      categories: _controller.typed.value == 1
+                          ? _controller.incomeCategories
+                              .map((e) => e.name!)
+                              .toList()
+                          : _controller.expenseCategories
+                              .map((e) => e.name!)
+                              .toList(),
+                      selected: _controller.filterCategory.value,
+                      onSelected: _controller.changeFilterCategory,
+                    ),
+                  ),
                 ],
               ),
             ),
