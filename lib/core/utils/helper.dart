@@ -1,7 +1,7 @@
 import 'package:during/data/model/filter_choice.dart';
 
 final types = ['Income', 'Expense'];
-final dateRangeFilters = ['Daily', 'Weekly', 'Monthly'];
+final dateRangeFilters = ['Daily', 'Weekly', 'Monthly', 'Custom'];
 
 List<FilterChoice> chipsCategory(List<String> list) {
   List<FilterChoice> filters = [];

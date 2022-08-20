@@ -152,8 +152,6 @@ class DuringRepositoryImpl extends DuringRepository {
 
     query = "$query ORDER BY transactionDuring.date DESC";
 
-    print(query);
-
     var results = await _dbProvider.filterTransactions(query);
     return results;
   }

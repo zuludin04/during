@@ -36,7 +36,14 @@ class _ChipCategoriesState extends State<ChipCategories> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HeaderText(title: widget.title, showTrailing: false, titleSize: 14),
+        Visibility(
+          visible: widget.title != '',
+          child: HeaderText(
+            title: widget.title,
+            showTrailing: false,
+            titleSize: 14,
+          ),
+        ),
         const SizedBox(height: 5),
         Wrap(
           spacing: 8,

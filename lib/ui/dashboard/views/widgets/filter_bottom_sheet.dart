@@ -6,10 +6,23 @@ import 'package:during/ui/transaction/views/widgets/chip_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FilterBottomSheet extends StatelessWidget {
+class FilterBottomSheet extends StatefulWidget {
+  const FilterBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<FilterBottomSheet> createState() => _FilterBottomSheetState();
+}
+
+class _FilterBottomSheetState extends State<FilterBottomSheet> {
   final TransactionNavigationController _controller = Get.find();
 
-  FilterBottomSheet({Key? key}) : super(key: key);
+  bool showDateRange = false;
+
+  @override
+  void initState() {
+    if (_controller.filtered.range == 4) showDateRange = true;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +42,12 @@ class FilterBottomSheet extends StatelessWidget {
             HeaderText(
               title: 'filter'.tr,
               showTrailing: true,
-              trailing: IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () => Get.back(),
+              trailing: TextButton(
+                onPressed: _controller.resetFilter,
+                child: Text(
+                  'reset'.tr,
+                  style: TextStyle(color: Get.theme.primaryColor),
+                ),
               ),
             ),
             const SizedBox(height: 16),
@@ -44,49 +60,67 @@ class FilterBottomSheet extends StatelessWidget {
                     titleSize: 14,
                   ),
                   const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Start'),
-                            const SizedBox(height: 4),
-                            DateSelector(
-                              selectedDate: (date) {
-                                _controller.startDate = date;
-                              },
-                              currentDate: DateTime.now(),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('End'),
-                            const SizedBox(height: 4),
-                            DateSelector(
-                              selectedDate: (date) {
-                                _controller.endDate = date;
-                              },
-                              currentDate: DateTime.now(),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  ChipCategories(
+                    title: '',
+                    categories: dateRangeFilters,
+                    selected: _controller.filtered.range!,
+                    onSelected: (id, title) {
+                      _controller.changeFilterRange(id, title);
+                      setState(() {
+                        if (title == 'Custom') {
+                          showDateRange = true;
+                        } else {
+                          showDateRange = false;
+                        }
+                      });
+                    },
                   ),
-                  const SizedBox(height: 12),
+                  Visibility(
+                    visible: showDateRange,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('start'.tr),
+                              const SizedBox(height: 4),
+                              DateSelector(
+                                selectedDate: (date) {
+                                  _controller.startDate = date;
+                                },
+                                currentDate: DateTime.now(),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('end'.tr),
+                              const SizedBox(height: 4),
+                              DateSelector(
+                                selectedDate: (date) {
+                                  _controller.endDate = date;
+                                },
+                                currentDate: DateTime.now(),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
                   ChipCategories(
                     title: 'type'.tr,
                     categories: types,
                     selected: _controller.filtered.type!,
                     onSelected: _controller.changeFilterType,
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 24),
                   Obx(
                     () => ChipCategories(
                       title: 'category'.tr,
@@ -97,7 +131,7 @@ class FilterBottomSheet extends StatelessWidget {
                           : _controller.expenseCategories
                               .map((e) => e.name!)
                               .toList(),
-                      selected: _controller.filterCategory.value,
+                      selected: _controller.filtered.category!,
                       onSelected: _controller.changeFilterCategory,
                     ),
                   ),

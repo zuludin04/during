@@ -76,6 +76,10 @@ const Map<String, String> idID = {
   'daily_expense': 'Pengeluaran Harian',
   'delete_data': 'Hapus Data',
   'delete_data_message': 'Apakah kamu yakin akan menghapus semua data?',
+  'custom': 'Custom',
+  'end': 'Akhir',
+  'start': 'Awal',
+  'reset': 'Reset',
 };
 
 const Map<String, String> enUS = {
@@ -156,4 +160,8 @@ const Map<String, String> enUS = {
   'daily_expense': 'Daily Expense',
   'delete_data': 'Delete Data',
   'delete_data_message': 'All data will be deleted, are you sure?',
+  'custom': 'Custom',
+  'end': 'End',
+  'start': 'Start',
+  'reset': 'Reset',
 };

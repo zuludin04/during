@@ -32,12 +32,17 @@ class DashboardController extends GetxController {
     }
   }
 
-  void filterTransaction() {
-    Get.bottomSheet(
-      FilterBottomSheet(),
+  void filterTransaction() async {
+    var result = await Get.bottomSheet(
+      const FilterBottomSheet(),
       isScrollControlled: true,
       ignoreSafeArea: false,
     );
+
+    if (result != null) {
+      var c = Get.find<TransactionNavigationController>();
+      c.filtered = result;
+    }
   }
 
   void addSaving() async {

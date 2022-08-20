@@ -13,21 +13,17 @@ class TransactionNavigationController extends GetxController {
   var endDate = DateTime.now();
 
   FilterTransaction filtered = FilterTransaction(
-    range: 1,
-    type: 1,
+    range: 0,
+    type: 0,
     category: 0,
   );
 
-  var filterRange = 1;
-  var filterType = 1;
   var typed = 1.obs;
-  var filterCategory = 0.obs;
+  var emptyTransaction = false.obs;
 
+  // * This is for SQL Query arguments
   String transactionType = 'Income';
   String? transactionCategory;
-  String filterCategories = '';
-
-  var emptyTransaction = false.obs;
 
   List<CategoryEntity> incomeCategories = [];
   List<CategoryEntity> expenseCategories = [];
@@ -58,13 +54,6 @@ class TransactionNavigationController extends GetxController {
   }
 
   void filterTransaction() async {
-    FilterTransaction filter = FilterTransaction(
-      range: filterRange,
-      type: filterType,
-      category: filterCategory.value,
-    );
-    filtered = filter;
-
     var result = await _repository.filterTransactions(
         _getFilterRange(), transactionType, transactionCategory);
     if (result.isEmpty) {
@@ -74,30 +63,53 @@ class TransactionNavigationController extends GetxController {
       transactions.value = result;
     }
 
-    filterCategory.value = 0;
-    transactionCategory = null;
+    Get.back(result: filtered);
+  }
+
+  void resetFilter() {
+    loadInitialTransactions();
+    filtered = FilterTransaction(
+      range: 0,
+      type: 0,
+      category: 0,
+    );
+
     Get.back();
   }
 
+  // * To handle every chips changing * //
   void changeFilterRange(int range, String title) {
-    filterRange = range;
+    filtered.range = range;
   }
 
   void changeFilterType(int type, String title) {
-    filterType = type;
+    filtered.type = type;
     typed.value = type;
     transactionType = title;
-    filterCategory.value = 0;
   }
 
   void changeFilterCategory(int category, String title) {
-    filterCategory.value = category;
+    filtered.category = category;
     transactionCategory = title;
   }
+  // * * //
 
   String _getFilterRange() {
+    if (filtered.range != 4) {
+      startDate = DateTime.now();
+      endDate = DateTime.now();
+    }
+
     var start = DateTime(startDate.year, startDate.month, startDate.day, 0, 0);
     var end = DateTime(endDate.year, endDate.month, endDate.day, 23, 59);
+
+    if (filtered.range == 2) {
+      start = start.subtract(const Duration(days: 7));
+    }
+
+    if (filtered.range == 3) {
+      start = start.subtract(const Duration(days: 30));
+    }
 
     return '${start.millisecondsSinceEpoch} AND ${end.millisecondsSinceEpoch}';
   }
