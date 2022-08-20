@@ -4,6 +4,8 @@ import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:get/get.dart';
 
+import '../../../data/source/entity/saving_entity.dart';
+
 class TransactionNavigationController extends GetxController {
   final DuringRepository _repository = Get.find();
 
@@ -12,11 +14,12 @@ class TransactionNavigationController extends GetxController {
   var startDate = DateTime.now();
   var endDate = DateTime.now();
 
-  FilterTransaction filtered = FilterTransaction(
-    range: 0,
-    type: 0,
-    category: 0,
-  );
+  FilterTransaction filtered = FilterTransaction();
+
+  var range = 0;
+  var type = 0;
+  var category = 0;
+  var saving = 0;
 
   var typed = 1.obs;
   var emptyTransaction = false.obs;
@@ -27,11 +30,13 @@ class TransactionNavigationController extends GetxController {
 
   List<CategoryEntity> incomeCategories = [];
   List<CategoryEntity> expenseCategories = [];
+  List<SavingEntity> savings = [];
 
   @override
   void onInit() {
     super.onInit();
     loadInitialTransactions();
+    loadSavings();
     loadFilterCategories();
   }
 
@@ -53,7 +58,16 @@ class TransactionNavigationController extends GetxController {
     expenseCategories = expenses;
   }
 
+  void loadSavings() async {
+    var results = await _repository.loadSaving();
+    savings = results;
+  }
+
   void filterTransaction() async {
+    var filter = FilterTransaction(
+        range: range, type: type, category: category, saving: saving);
+    filtered = filter;
+
     var result = await _repository.filterTransactions(
         _getFilterRange(), transactionType, transactionCategory);
     if (result.isEmpty) {
@@ -68,28 +82,33 @@ class TransactionNavigationController extends GetxController {
 
   void resetFilter() {
     loadInitialTransactions();
-    filtered = FilterTransaction(
-      range: 0,
-      type: 0,
-      category: 0,
-    );
+    filtered = FilterTransaction(range: 0, type: 0, category: 0, saving: 0);
+    range = 0;
+    type = 0;
+    category = 0;
+    saving = 0;
 
-    Get.back();
+    Get.back(result: filtered);
   }
 
   // * To handle every chips changing * //
   void changeFilterRange(int range, String title) {
-    filtered.range = range;
+    this.range = range;
   }
 
   void changeFilterType(int type, String title) {
-    filtered.type = type;
+    this.type = type;
     typed.value = type;
     transactionType = title;
   }
 
+  void changeFilterSaving(int saving, String title) {
+    this.saving = saving;
+    transactionCategory = title;
+  }
+
   void changeFilterCategory(int category, String title) {
-    filtered.category = category;
+    this.category = category;
     transactionCategory = title;
   }
   // * * //

@@ -121,6 +121,14 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     onSelected: _controller.changeFilterType,
                   ),
                   const SizedBox(height: 24),
+                  ChipCategories(
+                    title: 'saving'.tr,
+                    categories:
+                        _controller.savings.map((e) => e.name!).toList(),
+                    selected: _controller.filtered.saving!,
+                    onSelected: _controller.changeFilterSaving,
+                  ),
+                  const SizedBox(height: 24),
                   Obx(
                     () => ChipCategories(
                       title: 'category'.tr,
