@@ -36,11 +36,12 @@ void main() {
     test('load filter transactions', () async {
       when(dbProvider.filterTransactions(any))
           .thenAnswer((_) async => mockTransactions);
-      repository.filterTransactions('range', null, null);
+      repository.filterTransactions('range', null, null, null);
 
-      verify(repository.filterTransactions('range', null, null));
+      verify(repository.filterTransactions('range', null, null, null));
 
-      var results = await repository.filterTransactions('range', null, null);
+      var results =
+          await repository.filterTransactions('range', null, null, null);
       expect(results, mockTransactions);
       expect(results.isNotEmpty, true);
       expect(results.length, mockTransactions.length);

@@ -25,8 +25,9 @@ class TransactionNavigationController extends GetxController {
   var emptyTransaction = false.obs;
 
   // * This is for SQL Query arguments
-  String transactionType = 'Income';
+  String? transactionType;
   String? transactionCategory;
+  String? savingFilter;
 
   List<CategoryEntity> incomeCategories = [];
   List<CategoryEntity> expenseCategories = [];
@@ -69,7 +70,12 @@ class TransactionNavigationController extends GetxController {
     filtered = filter;
 
     var result = await _repository.filterTransactions(
-        _getFilterRange(), transactionType, transactionCategory);
+      range == 0 ? null : _getFilterRange(),
+      transactionType,
+      transactionCategory,
+      savingFilter,
+    );
+    
     if (result.isEmpty) {
       emptyTransaction.value = true;
     } else {
@@ -104,7 +110,7 @@ class TransactionNavigationController extends GetxController {
 
   void changeFilterSaving(int saving, String title) {
     this.saving = saving;
-    transactionCategory = title;
+    savingFilter = title;
   }
 
   void changeFilterCategory(int category, String title) {

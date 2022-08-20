@@ -44,7 +44,7 @@ class FakeDuringRepository extends DuringRepository {
 
   @override
   Future<List<TransactionEntity>> filterTransactions(
-      String range, String? type, String? category) async {
+      String? range, String? type, String? category, String? saving) async {
     var query = '$range $type';
     var results = await dbProvider.filterTransactions(query);
     return results;

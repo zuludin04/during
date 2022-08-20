@@ -32,7 +32,7 @@ abstract class DuringRepository {
   Future<void> updateSaving(SavingEntity saving);
 
   Future<List<TransactionEntity>> filterTransactions(
-      String range, String? type, String? category);
+      String? range, String? type, String? category, String? saving);
 
   Future<void> deleteSaving(int? savingId);
 
@@ -132,18 +132,25 @@ class DuringRepositoryImpl extends DuringRepository {
 
   @override
   Future<List<TransactionEntity>> filterTransactions(
-      String range, String? type, String? category) async {
+      String? range, String? type, String? category, String? saving) async {
     var query =
         'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.color AS savingColor, transactionDuring.* '
         'FROM transactionDuring '
         'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
         'INNER JOIN saving '
-        'ON transactionDuring.savingId = saving.id '
-        'WHERE transactionDuring.date BETWEEN $range';
+        'ON transactionDuring.savingId = saving.id';
+
+    if (range != null) {
+      query = '$query WHERE transactionDuring.date BETWEEN $range';
+    }
 
     if (type != null) {
       query = "$query AND transactionDuring.type = '$type'";
+    }
+
+    if (saving != null) {
+      query = "$query AND saving.name = '$saving'";
     }
 
     if (category != null) {
