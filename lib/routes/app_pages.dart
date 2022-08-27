@@ -19,6 +19,8 @@ import 'package:during/ui/transaction/bindings/transaction_detail_binding.dart';
 import 'package:during/ui/dashboard/bindings/transaction_filter_binding.dart';
 import 'package:during/ui/transaction/views/transaction_create_screen.dart';
 import 'package:during/ui/transaction/views/transaction_detail_screen.dart';
+import 'package:during/ui/transfer/bindings/transfer_binding.dart';
+import 'package:during/ui/transfer/views/transfer_screen.dart';
 import 'package:get/get.dart';
 
 part 'app_routes.dart';
@@ -81,6 +83,11 @@ class AppPages {
       name: RoutePath.categoryCreate,
       page: () => const CategoryCreateScreen(),
       binding: CategoryCreateBinding(),
+    ),
+    GetPage(
+      name: RoutePath.transfer,
+      page: () => const TransferScreen(),
+      binding: TransferBinding(),
     ),
   ];
 }

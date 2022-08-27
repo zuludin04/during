@@ -14,4 +14,5 @@ abstract class RoutePath {
   static const category = '/category';
   static const categoryIcons = '/category_icons';
   static const categoryCreate = '/category_create';
+  static const transfer = '/transfer';
 }

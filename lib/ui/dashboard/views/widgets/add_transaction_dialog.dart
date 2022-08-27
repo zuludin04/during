@@ -21,7 +21,7 @@ class AddTransactionDialog extends StatelessWidget {
         children: [
           _transactionMenu('Income', Icons.download),
           _transactionMenu('Expense', Icons.upload),
-          // _transactionMenu('Sharing', Icons.share),
+          _transactionMenu('Transfer', Icons.compare_arrows),
         ],
       ),
     );
