@@ -20,7 +20,7 @@ class HomeNavigation extends StatelessWidget {
             Obx(
               () => Visibility(
                 visible: !controller.hideSlider.value,
-                child: SavingSlider(),
+                child: const SavingSlider(),
               ),
             ),
             Padding(

@@ -9,12 +9,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class SavingSlider extends StatelessWidget {
-  final HomeNavigationController controller = Get.find();
-
-  SavingSlider({Key? key}) : super(key: key);
+  const SavingSlider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    HomeNavigationController controller = Get.find();
+
     return Obx(
       () => Visibility(
         visible: controller.savings.isNotEmpty,

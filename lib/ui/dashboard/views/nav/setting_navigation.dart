@@ -1,7 +1,6 @@
 import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
-import 'package:during/ui/dashboard/controllers/setting_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,9 +16,6 @@ class SettingNavigation extends StatefulWidget {
 }
 
 class _SettingNavigationState extends State<SettingNavigation> {
-  final SettingNavigationController _controller = Get.find();
-
-  bool showSlider = CacheService.to.hideSlider;
   bool darkMode = CacheService.to.darkMode;
 
   @override
@@ -32,18 +28,6 @@ class _SettingNavigationState extends State<SettingNavigation> {
         SettingsSection(
           title: Text('common'.tr),
           tiles: [
-            SettingsTile.switchTile(
-              initialValue: showSlider,
-              leading: const Icon(Icons.credit_card),
-              onToggle: (value) {
-                _controller.toggleSavingSlider(value);
-                setState(() {
-                  showSlider = value;
-                });
-              },
-              title: Text('hide_saving'.tr),
-              description: Text('hide_saving_desc'.tr),
-            ),
             // SettingsTile.switchTile(
             //   initialValue: darkMode,
             //   onToggle: (value) {

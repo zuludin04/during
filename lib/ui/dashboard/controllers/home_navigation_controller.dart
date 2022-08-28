@@ -1,7 +1,6 @@
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
-import 'package:during/service/cache_service.dart';
 import 'package:get/get.dart';
 
 class HomeNavigationController extends GetxController {
@@ -18,7 +17,6 @@ class HomeNavigationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    hideSlider.value = CacheService.to.hideSlider;
     loadSavingList();
     loadDailyTransactions();
   }
