@@ -8,6 +8,7 @@ const savingDetailType = 'saving_detail';
 /// 2 = income
 /// 3 = expense
 var initialCategories = [
+  CategoryEntity(name: 'Transfer', icon: 'icon_transfer.svg', type: 4),
   CategoryEntity(name: 'Bank', icon: 'icon_bank.svg', type: 1),
   CategoryEntity(name: 'E-Money', icon: 'icon_emoney.svg', type: 1),
   CategoryEntity(name: 'Cash', icon: 'icon_cash.svg', type: 1),
