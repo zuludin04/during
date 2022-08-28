@@ -10,8 +10,6 @@ class HomeNavigationController extends GetxController {
   var todayTransaction = <TransactionEntity>[].obs;
   var savings = <SavingEntity>[].obs;
   var emptyTransaction = false.obs;
-  var incomes = 0.obs;
-  var expenses = 0.obs;
   var emptySaving = true.obs;
   var hideSlider = true.obs;
 
@@ -22,8 +20,6 @@ class HomeNavigationController extends GetxController {
     super.onInit();
     hideSlider.value = CacheService.to.hideSlider;
     loadSavingList();
-    loadIncomes();
-    loadExpenses();
     loadDailyTransactions();
   }
 
@@ -44,21 +40,5 @@ class HomeNavigationController extends GetxController {
       emptyTransaction.value = false;
       todayTransaction.value = result;
     }
-  }
-
-  void loadIncomes() async {
-    var start = DateTime(todayTime.year, todayTime.month, todayTime.day, 0, 0);
-    var end = DateTime(todayTime.year, todayTime.month, todayTime.day, 23, 59);
-    var result = await _repository.countTotalIncome(
-        start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
-    incomes.value = result;
-  }
-
-  void loadExpenses() async {
-    var start = DateTime(todayTime.year, todayTime.month, todayTime.day, 0, 0);
-    var end = DateTime(todayTime.year, todayTime.month, todayTime.day, 23, 59);
-    var result = await _repository.countTotalExpense(
-        start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
-    expenses.value = result;
   }
 }

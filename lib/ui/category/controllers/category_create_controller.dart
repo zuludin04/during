@@ -65,8 +65,6 @@ class CategoryCreateController extends GetxController {
 
     Get.find<CategoryDashboardController>().loadCategory();
     Get.find<HomeNavigationController>().loadDailyTransactions();
-    Get.find<HomeNavigationController>().loadIncomes();
-    Get.find<HomeNavigationController>().loadExpenses();
     Get.find<TransactionNavigationController>().loadInitialTransactions();
     Get.back();
   }

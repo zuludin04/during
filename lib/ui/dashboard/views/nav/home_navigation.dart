@@ -2,7 +2,6 @@ import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/current_transactions.dart';
 import 'package:during/ui/dashboard/views/widgets/saving_slider.dart';
-import 'package:during/ui/dashboard/views/widgets/transaction_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,13 +23,6 @@ class HomeNavigation extends StatelessWidget {
                 child: SavingSlider(),
               ),
             ),
-            Obx(
-              () => TransactionInfo(
-                income: controller.incomes.value,
-                expense: controller.expenses.value,
-              ),
-            ),
-            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(

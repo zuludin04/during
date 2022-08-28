@@ -60,8 +60,6 @@ class DashboardController extends GetxController {
     _repository.resetAllData().then((value) {
       Get.find<TransactionNavigationController>().loadInitialTransactions();
       Get.find<HomeNavigationController>().loadSavingList();
-      Get.find<HomeNavigationController>().loadIncomes();
-      Get.find<HomeNavigationController>().loadExpenses();
       Get.find<HomeNavigationController>().loadDailyTransactions();
       changeNavIndex(0);
     });

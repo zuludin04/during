@@ -63,8 +63,6 @@ class TransactionCreateController extends GetxController {
       await _repository.updateSavingBalance(saving.id, savingBalance(true));
       Get.find<HomeNavigationController>().loadDailyTransactions();
       Get.find<HomeNavigationController>().loadSavingList();
-      Get.find<HomeNavigationController>().loadIncomes();
-      Get.find<HomeNavigationController>().loadExpenses();
       Get.find<TransactionNavigationController>().loadInitialTransactions();
       Get.back();
     } else {

@@ -54,8 +54,6 @@ class TransferController extends GetxController {
         target ? targetSaving.id : sourceSaving.id, savingBalance(target));
     Get.find<HomeNavigationController>().loadDailyTransactions();
     Get.find<HomeNavigationController>().loadSavingList();
-    Get.find<HomeNavigationController>().loadIncomes();
-    Get.find<HomeNavigationController>().loadExpenses();
     Get.find<TransactionNavigationController>().loadInitialTransactions();
     Get.back();
   }
