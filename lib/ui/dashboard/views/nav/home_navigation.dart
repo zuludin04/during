@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/dashboard_controller.dart';
+import '../../controllers/home_navigation_controller.dart';
 import '../widgets/current_transactions.dart';
 import '../widgets/saving_slider.dart';
 
@@ -10,6 +11,8 @@ class HomeNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeNavigationController controller = Get.find();
+
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
@@ -17,7 +20,7 @@ class HomeNavigation extends StatelessWidget {
           delegate: SliverChildListDelegate([
             const SizedBox(height: 26),
             const SavingSlider(),
-            const SizedBox(height: 26),
+            Obx(() => SizedBox(height: controller.savings.isEmpty ? 26 : 0)),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
