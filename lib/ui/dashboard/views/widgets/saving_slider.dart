@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:during/core/extensions/color_extension.dart';
 import 'package:during/core/extensions/string_extension.dart';
@@ -16,31 +18,60 @@ class SavingSlider extends StatelessWidget {
     HomeNavigationController controller = Get.find();
 
     return Obx(
-      () => Visibility(
-        visible: controller.savings.isNotEmpty,
-        child: Column(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              height: _responsiveSliderHeight(context),
-              child: CarouselSlider.builder(
-                itemCount: controller.savings.length,
-                itemBuilder: (context, index, realIndex) {
-                  return _savingCardItem(controller.savings[realIndex]);
-                },
-                options: CarouselOptions(
-                  scrollPhysics: const BouncingScrollPhysics(),
-                  autoPlay: false,
-                  aspectRatio: 2.0,
-                  enlargeCenterPage: true,
-                  enableInfiniteScroll: false,
+      () {
+        if (controller.savings.isEmpty) {
+          return Container(
+            width: double.infinity,
+            height: _responsiveSliderHeight(context),
+            margin: const EdgeInsets.symmetric(horizontal: 26),
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(1, 1),
+                  blurRadius: 3,
+                  spreadRadius: 1,
+                  color: Colors.black38,
+                ),
+              ],
+            ),
+            child: const Center(
+              child: Text(
+                'Add Your Saving',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-          ],
-        ),
-      ),
+          );
+        } else {
+          return Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: _responsiveSliderHeight(context),
+                child: CarouselSlider.builder(
+                  itemCount: controller.savings.length,
+                  itemBuilder: (context, index, realIndex) {
+                    return _savingCardItem(controller.savings[realIndex]);
+                  },
+                  options: CarouselOptions(
+                    scrollPhysics: const BouncingScrollPhysics(),
+                    autoPlay: false,
+                    aspectRatio: 2.0,
+                    enlargeCenterPage: true,
+                    enableInfiniteScroll: false,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
+          );
+        }
+      },
     );
   }
 

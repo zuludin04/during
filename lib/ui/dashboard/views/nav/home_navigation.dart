@@ -1,28 +1,23 @@
-import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
-import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
-import 'package:during/ui/dashboard/views/widgets/current_transactions.dart';
-import 'package:during/ui/dashboard/views/widgets/saving_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../controllers/dashboard_controller.dart';
+import '../widgets/current_transactions.dart';
+import '../widgets/saving_slider.dart';
 
 class HomeNavigation extends StatelessWidget {
   const HomeNavigation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    HomeNavigationController controller = Get.find();
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
         SliverList(
           delegate: SliverChildListDelegate([
             const SizedBox(height: 26),
-            Obx(
-              () => Visibility(
-                visible: !controller.hideSlider.value,
-                child: const SavingSlider(),
-              ),
-            ),
+            const SavingSlider(),
+            const SizedBox(height: 26),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
