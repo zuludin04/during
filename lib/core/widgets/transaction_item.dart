@@ -60,6 +60,8 @@ class TransactionItem extends StatelessWidget {
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 5),
                       Text(
@@ -73,15 +75,29 @@ class TransactionItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      'Rp ${transaction.nominal!.toPriceFormat()}',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: transaction.type == 'Income'
-                            ? Colors.green
-                            : Colors.red,
-                      ),
+                    Row(
+                      children: [
+                        Icon(
+                          transaction.type == 'Income'
+                              ? Icons.add
+                              : Icons.remove,
+                          size: 18,
+                          color: transaction.type == 'Income'
+                              ? Colors.green
+                              : Colors.red,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          'Rp ${transaction.nominal!.toPriceFormat()}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: transaction.type == 'Income'
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 5),
                     Text(
