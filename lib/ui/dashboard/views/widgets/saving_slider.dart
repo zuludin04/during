@@ -1,10 +1,9 @@
-import 'dart:ui';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:during/core/extensions/color_extension.dart';
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
+import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,30 +19,49 @@ class SavingSlider extends StatelessWidget {
     return Obx(
       () {
         if (controller.savings.isEmpty) {
-          return Container(
-            width: double.infinity,
-            height: _responsiveSliderHeight(context),
-            margin: const EdgeInsets.symmetric(horizontal: 26),
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  offset: Offset(1, 1),
-                  blurRadius: 3,
-                  spreadRadius: 1,
-                  color: Colors.black38,
+          return GestureDetector(
+            onTap: () {
+              Get.find<DashboardController>().addSaving();
+            },
+            child: Container(
+              width: double.infinity,
+              height: _responsiveSliderHeight(context),
+              margin: const EdgeInsets.symmetric(horizontal: 26),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                image: const DecorationImage(
+                  image: AssetImage('assets/saving_placeholder.jpg'),
+                  fit: BoxFit.fill,
+                  opacity: 0.5,
                 ),
-              ],
-            ),
-            child: const Center(
-              child: Text(
-                'Add Your Saving',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: const [
+                  BoxShadow(
+                    offset: Offset(1, 1),
+                    blurRadius: 1,
+                    spreadRadius: 1,
+                    color: Colors.black12,
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'assets/navigation/icon_saving.svg',
+                    width: 35,
+                    color: const Color(0xff000000).withOpacity(0.8),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Add Your Saving',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xff000000).withOpacity(0.8),
+                    ),
+                  ),
+                ],
               ),
             ),
           );
