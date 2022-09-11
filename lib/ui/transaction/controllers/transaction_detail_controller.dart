@@ -19,7 +19,7 @@ class TransactionDetailController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    loadTransactionSaving(transaction.id ?? 1);
+    loadTransactionSaving(transaction.savingId ?? 1);
   }
 
   Future<void> loadTransactionSaving(int savingId) async {

@@ -80,6 +80,7 @@ const Map<String, String> idID = {
   'end': 'Akhir',
   'start': 'Awal',
   'reset': 'Reset',
+  'delete_transfer_message': 'Apa anda yakin akan menghapus transfer ini?',
 };
 
 const Map<String, String> enUS = {
@@ -164,4 +165,5 @@ const Map<String, String> enUS = {
   'end': 'End',
   'start': 'Start',
   'reset': 'Reset',
+  'delete_transfer_message': 'Are you sure wanto to delete transfer?',
 };

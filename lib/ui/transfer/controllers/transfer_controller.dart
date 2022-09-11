@@ -32,23 +32,10 @@ class TransferController extends GetxController {
       date: date.value,
       nominal: int.parse(nominal.value),
       categoryId: 1,
-      name: target ? 'From ${sourceSaving.name}' : 'To ${targetSaving.name}',
+      name: 'From ${sourceSaving.name} To ${targetSaving.name}',
       savingId: target ? targetSaving.id : sourceSaving.id,
     );
 
-    // if (transactionType! == 'Update') {
-    //   await _repository.updateTransaction(transaction..id = transactionId);
-    //   await _repository.updateSavingBalance(savingId, savingBalance(true));
-    //   Get.find<HomeNavigationController>().loadDailyTransactions();
-    //   Get.find<HomeNavigationController>().loadSavingList();
-    //   Get.find<HomeNavigationController>().loadIncomes();
-    //   Get.find<HomeNavigationController>().loadExpenses();
-    //   Get.find<TransactionNavigationController>().loadInitialTransactions();
-    //   Get.back();
-    // } else {
-    //   await _repository.saveTransaction(transaction);
-    //   await _repository.updateSavingBalance(savingId, savingBalance(false));
-    // }
     await _repository.saveTransaction(transaction);
     await _repository.updateSavingBalance(
         target ? targetSaving.id : sourceSaving.id, savingBalance(target));

@@ -124,7 +124,9 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                           Get.defaultDialog(
                             title: '',
                             content: Text(
-                              'delete_transaction_message'.tr,
+                              _deleteMessage(
+                                  _controller.transaction.categoryName ==
+                                      'Transfer'),
                               textAlign: TextAlign.center,
                             ),
                             confirm: TextButton(
@@ -148,9 +150,13 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                         },
                         icon: const Icon(Icons.delete),
                       ),
-                      IconButton(
-                        onPressed: _controller.updateTransaction,
-                        icon: const Icon(Icons.edit),
+                      Visibility(
+                        visible:
+                            _controller.transaction.categoryName != 'Transfer',
+                        child: IconButton(
+                          onPressed: _controller.updateTransaction,
+                          icon: const Icon(Icons.edit),
+                        ),
                       ),
                     ],
                   ),
@@ -188,5 +194,11 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
         ],
       ),
     );
+  }
+
+  String _deleteMessage(bool transfer) {
+    return transfer
+        ? 'delete_transfer_message'.tr
+        : 'delete_transaction_message'.tr;
   }
 }
