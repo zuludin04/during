@@ -187,10 +187,7 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
             showTrailing: false,
             titleSize: 15,
           ),
-          Text(
-            item.toLowerCase().tr,
-            style: const TextStyle(fontSize: 16),
-          ),
+          Text(item, style: const TextStyle(fontSize: 16)),
         ],
       ),
     );

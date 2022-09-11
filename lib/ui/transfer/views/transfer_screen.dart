@@ -51,7 +51,7 @@ class _TransferScreenState extends State<TransferScreen> {
                     Expanded(
                       child: Column(
                         children: [
-                          const HeaderText(title: 'Dari', showTrailing: false),
+                          HeaderText(title: 'from'.tr, showTrailing: false),
                           const SizedBox(height: 8),
                           InkWell(
                             onTap: () => _controller.pickSaving(false),
@@ -81,7 +81,7 @@ class _TransferScreenState extends State<TransferScreen> {
                     Expanded(
                       child: Column(
                         children: [
-                          const HeaderText(title: 'Ke', showTrailing: false),
+                          HeaderText(title: 'to'.tr, showTrailing: false),
                           const SizedBox(height: 8),
                           InkWell(
                             onTap: () => _controller.pickSaving(true),
@@ -127,8 +127,8 @@ class _TransferScreenState extends State<TransferScreen> {
                 ),
                 const SizedBox(height: 16),
                 InputTextField(
-                  title: 'fee'.tr,
-                  hint: 'fee'.tr,
+                  title: 'admin_fee'.tr,
+                  hint: 'admin_fee'.tr,
                   onSaved: '0'.obs,
                   keyboardType: TextInputType.phone,
                   currencyFormat: true,

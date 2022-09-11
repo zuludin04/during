@@ -44,6 +44,7 @@ const Map<String, String> idID = {
   'hide_saving_desc': 'Sembunyikan kartu simpanan di halaman depan',
   'common': 'Umum',
   'from': 'Dari',
+  'to': 'Ke',
   'created': 'Dibuat',
   'delete_transaction_title': 'Hapus Transaksi',
   'delete_transaction_message': 'Apa anda yakin akan menghapus transaksi ini?',
@@ -81,6 +82,8 @@ const Map<String, String> idID = {
   'start': 'Awal',
   'reset': 'Reset',
   'delete_transfer_message': 'Apa anda yakin akan menghapus transfer ini?',
+  'transfer': 'Transfer',
+  'admin_fee': 'Biaya Admin',
 };
 
 const Map<String, String> enUS = {
@@ -129,6 +132,7 @@ const Map<String, String> enUS = {
   'hide_saving_desc': 'Hide saving slider in home page',
   'common': 'Common',
   'from': 'From',
+  'to': 'To',
   'created': 'Created',
   'delete_transaction_title': 'Delete Transaction',
   'delete_transaction_message': 'Are you sure want to delete transaction?',
@@ -166,4 +170,6 @@ const Map<String, String> enUS = {
   'start': 'Start',
   'reset': 'Reset',
   'delete_transfer_message': 'Are you sure wanto to delete transfer?',
+  'transfer': 'Transfer',
+  'admin_fee': 'Admin Fee',
 };
