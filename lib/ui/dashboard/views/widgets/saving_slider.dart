@@ -45,9 +45,9 @@ class SavingSlider extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
-                    'assets/navigation/icon_saving.svg',
-                    width: 35,
+                  Image.asset(
+                    'assets/navigation/icon_account.png',
+                    width: 80,
                     color: const Color(0xff000000).withOpacity(0.8),
                   ),
                   const SizedBox(height: 4),

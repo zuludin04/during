@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavigation extends StatelessWidget {
   final int currentIndex;
@@ -75,17 +74,16 @@ class _BottomNavItem extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(
-          'assets/navigation/${menu.icon}.svg',
-          width: 18,
-          height: 18,
+        Image.asset(
+          'assets/navigation/${menu.icon}.png',
+          width: 24,
+          height: 24,
           color: selected && index != 2
               ? Colors.blue
               : index == 2
                   ? null
                   : Colors.black,
         ),
-        const SizedBox(height: 2),
         Text(
           menu.label,
           style: TextStyle(
