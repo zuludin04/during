@@ -1,10 +1,10 @@
 import 'package:during/core/widgets/bottom_navigation.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/views/nav/home_navigation.dart';
 import 'package:during/ui/dashboard/views/nav/saving_navigation.dart';
 import 'package:during/ui/dashboard/views/nav/setting_navigation.dart';
 import 'package:during/ui/dashboard/views/nav/transaction_navigation.dart';
-import 'package:during/ui/dashboard/views/widgets/add_transaction_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -58,16 +58,14 @@ class DashboardScreen extends StatelessWidget {
               ),
             ),
           ),
-          backgroundColor: Colors.white,
           bottomNavigationBar: BottomNavigation(
             currentIndex: controller.navIndex,
-            onSelectedMenu: (index) {
+            onSelectedMenu: (index) async {
               if (index == 2) {
-                showBottomSheet(
-                    context: context,
-                    builder: (context) {
-                      return AddTransactionDialog();
-                    });
+                Get.toNamed(RoutePath.transactionCreate, parameters: {
+                  'transaction': 'Create',
+                  'type': 'Expense',
+                });
               } else {
                 controller.changeNavIndex(index);
               }

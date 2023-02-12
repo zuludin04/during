@@ -24,6 +24,7 @@ class TransactionItem extends StatelessWidget {
       child: Column(
         children: [
           Container(
+            color: Colors.white,
             padding: const EdgeInsets.all(12),
             child: Row(
               children: [
@@ -108,10 +109,6 @@ class TransactionItem extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          Divider(
-            thickness: 1,
-            color: Colors.grey.withOpacity(0.4),
           ),
         ],
       ),

@@ -17,7 +17,6 @@ class HomeNavigationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    loadSavingList();
     loadDailyTransactions();
   }
 
@@ -28,10 +27,7 @@ class HomeNavigationController extends GetxController {
   }
 
   void loadDailyTransactions() async {
-    var start = DateTime(todayTime.year, todayTime.month, todayTime.day, 0, 0);
-    var end = DateTime(todayTime.year, todayTime.month, todayTime.day, 23, 59);
-    var result = await _repository.loadDailyTransactions(
-        start.millisecondsSinceEpoch, end.millisecondsSinceEpoch);
+    var result = await _repository.loadTransactions();
     if (result.isEmpty) {
       emptyTransaction.value = true;
     } else {
