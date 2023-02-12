@@ -84,6 +84,8 @@ const Map<String, String> idID = {
   'delete_transfer_message': 'Apa anda yakin akan menghapus transfer ini?',
   'transfer': 'Transfer',
   'admin_fee': 'Biaya Admin',
+  'statistic': 'Statistik',
+  'account': 'Akun',
 };
 
 const Map<String, String> enUS = {
@@ -172,4 +174,6 @@ const Map<String, String> enUS = {
   'delete_transfer_message': 'Are you sure wanto to delete transfer?',
   'transfer': 'Transfer',
   'admin_fee': 'Admin Fee',
+  'statistic': 'Statistic',
+  'account': 'Account',
 };

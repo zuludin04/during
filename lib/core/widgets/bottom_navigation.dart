@@ -76,14 +76,15 @@ class _BottomNavItem extends StatelessWidget {
       children: [
         Image.asset(
           'assets/navigation/${menu.icon}.png',
-          width: 24,
-          height: 24,
+          width: 20,
+          height: 20,
           color: selected && index != 2
               ? Colors.blue
               : index == 2
                   ? null
                   : Colors.black,
         ),
+        const SizedBox(height: 2),
         Text(
           menu.label,
           style: TextStyle(
