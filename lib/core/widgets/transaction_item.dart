@@ -102,7 +102,7 @@ class TransactionItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      transaction.date!.changeDateFormat('dd MMM yyyy, HH:mm'),
+                      transaction.date!.changeDateFormat('HH:mm'),
                       style: const TextStyle(color: Colors.black87),
                     ),
                   ],
