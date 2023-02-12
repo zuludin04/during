@@ -40,27 +40,29 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
             ],
-            bottom: PreferredSize(
-              preferredSize: const Size(double.infinity, 40),
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(16, 0, 8, 8),
-                width: double.infinity,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/category/icon_emoney.svg',
-                      width: 30,
+            bottom: controller.navIndex == 0
+                ? PreferredSize(
+                    preferredSize: const Size(double.infinity, 40),
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 8, 8),
+                      width: double.infinity,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            'assets/category/icon_emoney.svg',
+                            width: 30,
+                          ),
+                          const SizedBox(width: 12),
+                          Obx(
+                            () => Text(
+                                'Rp ${controller.totalBalance.value.toPriceFormat()}'),
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(width: 12),
-                    Obx(
-                      () => Text(
-                          'Rp ${controller.totalBalance.value.toPriceFormat()}'),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                  )
+                : null,
           ),
           bottomNavigationBar: BottomNavigation(
             currentIndex: controller.navIndex,
