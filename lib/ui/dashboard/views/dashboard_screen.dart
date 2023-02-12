@@ -8,7 +8,6 @@ import 'package:during/ui/dashboard/views/widgets/add_transaction_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -45,12 +44,9 @@ class DashboardScreen extends StatelessWidget {
             currentIndex: controller.navIndex,
             onSelectedMenu: (index) {
               if (index == 2) {
-                showMaterialModalBottomSheet(
-                  expand: false,
-                  context: context,
-                  backgroundColor: Colors.transparent,
-                  builder: (context) => AddTransactionDialog(),
-                );
+                showBottomSheet(context: context, builder: (context) {
+                  return AddTransactionDialog();
+                });
               } else {
                 controller.changeNavIndex(index);
               }
