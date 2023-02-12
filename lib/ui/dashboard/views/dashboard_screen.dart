@@ -56,7 +56,10 @@ class DashboardScreen extends StatelessWidget {
                           const SizedBox(width: 12),
                           Obx(
                             () => Text(
-                                'Rp ${controller.totalBalance.value.toPriceFormat()}'),
+                              'Rp ${controller.totalBalance.value.toPriceFormat()}',
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ],
                       ),
