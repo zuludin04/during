@@ -25,6 +25,8 @@ abstract class DuringRepository {
 
   Future<List<SavingEntity>> loadSaving();
 
+  Future<int> loadTotalSavingBalance();
+
   Future<SavingEntity> loadSingleSaving(int id);
 
   Future<void> updateSavingBalance(int? savingId, int? balance);
@@ -234,4 +236,7 @@ class DuringRepositoryImpl extends DuringRepository {
 
   @override
   Future<void> resetAllData() => _dbProvider.deleteAllData();
+
+  @override
+  Future<int> loadTotalSavingBalance() => _dbProvider.loadSavingBalance();
 }

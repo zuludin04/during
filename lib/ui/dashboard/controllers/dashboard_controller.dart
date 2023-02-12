@@ -11,6 +11,7 @@ class DashboardController extends GetxController {
   final DuringRepository _repository = Get.find();
 
   var navIndex = 0;
+  var totalBalance = 0.obs;
 
   void changeNavIndex(int index) {
     navIndex = index;
@@ -21,6 +22,7 @@ class DashboardController extends GetxController {
   void onInit() {
     Get.updateLocale(LanguageService.deviceLocale);
     loadInitialCategory();
+    loadSavingTotalBalance();
     super.onInit();
   }
 
@@ -30,6 +32,11 @@ class DashboardController extends GetxController {
           .initialCategory()
           .then((value) => CacheService.to.loadInitialCategory = true);
     }
+  }
+
+  void loadSavingTotalBalance() async {
+    var balance = await _repository.loadTotalSavingBalance();
+    totalBalance.value = balance;
   }
 
   void filterTransaction() async {

@@ -1,3 +1,4 @@
+import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/widgets/bottom_navigation.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
@@ -52,7 +53,10 @@ class DashboardScreen extends StatelessWidget {
                       width: 30,
                     ),
                     const SizedBox(width: 12),
-                    const Text('Balance: Rp 6.000.000'),
+                    Obx(
+                      () => Text(
+                          'Rp ${controller.totalBalance.value.toPriceFormat()}'),
+                    ),
                   ],
                 ),
               ),

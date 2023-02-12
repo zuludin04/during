@@ -202,6 +202,24 @@ class DuringDbProvider {
     return balance;
   }
 
+  Future<int> loadSavingBalance() async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db.query('saving');
+    List<int> savings = result.isEmpty
+        ? []
+        : result.map((e) => SavingEntity.fromMap(e).balance!).toList();
+
+    if (savings.isEmpty) {
+      return 0;
+    } else {
+      var total = 0;
+      for (var element in savings) {
+        total += element;
+      }
+      return total;
+    }
+  }
+
   Future<SavingEntity> loadSingleSaving(int id) async {
     final Database db = await database;
     List<Map<String, dynamic>> result =
