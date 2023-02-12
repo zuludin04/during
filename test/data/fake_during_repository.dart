@@ -152,4 +152,7 @@ class FakeDuringRepository extends DuringRepository {
   @override
   Future<void> updateTransaction(TransactionEntity transaction) =>
       dbProvider.updateTransaction(transaction);
+
+  @override
+  Future<int> loadTotalSavingBalance() => dbProvider.loadSavingBalance();
 }
