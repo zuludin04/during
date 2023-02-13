@@ -33,6 +33,8 @@ class StatisticNavigationController extends GetxController {
         total += element.nominal!;
       }
       income.value = total;
+    } else {
+      income.value = 0;
     }
 
     if (expenses.isNotEmpty) {
@@ -41,6 +43,8 @@ class StatisticNavigationController extends GetxController {
         total += element.nominal!;
       }
       expense.value = total;
+    } else {
+      expense.value = 0;
     }
 
     total.value = income.value - expense.value;
