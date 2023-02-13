@@ -6,6 +6,8 @@ import 'package:during/ui/category/views/category_icons_screen.dart';
 import 'package:during/ui/dashboard/bindings/dashboard_binding.dart';
 import 'package:during/ui/dashboard/bindings/home_navigation_binding.dart';
 import 'package:during/ui/dashboard/bindings/setting_navigation_binding.dart';
+import 'package:during/ui/dashboard/bindings/statistic_navigation_binding.dart';
+import 'package:during/ui/dashboard/bindings/transaction_filter_binding.dart';
 import 'package:during/ui/dashboard/views/dashboard_screen.dart';
 import 'package:during/ui/language/language_change_screen.dart';
 import 'package:during/ui/saving/bindings/saving_detail_binding.dart';
@@ -16,7 +18,6 @@ import 'package:during/ui/saving/views/saving_insert_screen.dart';
 import 'package:during/ui/saving/views/saving_list_screen.dart';
 import 'package:during/ui/transaction/bindings/transaction_create_binding.dart';
 import 'package:during/ui/transaction/bindings/transaction_detail_binding.dart';
-import 'package:during/ui/dashboard/bindings/transaction_filter_binding.dart';
 import 'package:during/ui/transaction/views/transaction_create_screen.dart';
 import 'package:during/ui/transaction/views/transaction_detail_screen.dart';
 import 'package:during/ui/transfer/bindings/transfer_binding.dart';
@@ -39,6 +40,7 @@ class AppPages {
         HomeNavigationBinding(),
         TransactionNavigationBinding(),
         SettingNavigationBinding(),
+        StatisticNavigationBinding(),
       ],
     ),
     GetPage(
