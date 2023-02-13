@@ -149,7 +149,9 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
     return AspectRatio(
       aspectRatio: 1.8,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          const SizedBox(width: 32),
           Expanded(
             child: Obx(
               () => PieChart(
@@ -176,32 +178,56 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
               ),
             ),
           ),
-          Obx(
-            () => Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.transactions
-                  .map(
-                    (element) => Indicator(
-                      color: Color(int.parse('0x${element.savingColor}')),
-                      text: element.name ?? "-",
-                      isSquare: false,
-                    ),
-                  )
-                  .toList(),
+          const SizedBox(width: 32),
+          Expanded(
+            child: Obx(
+              () => Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: widget.transactions.isEmpty
+                    ? [
+                        const Indicator(
+                          color: Colors.grey,
+                          text: "-",
+                          isSquare: false,
+                        )
+                      ]
+                    : widget.transactions
+                        .map(
+                          (element) => Indicator(
+                            color: Color(int.parse('0x${element.savingColor}')),
+                            text: element.name ?? "-",
+                            isSquare: false,
+                          ),
+                        )
+                        .toList(),
+              ),
             ),
           ),
-          const SizedBox(width: 28),
         ],
       ),
     );
   }
 
   List<PieChartSectionData> showingSections() {
+    if (widget.transactions.isEmpty) {
+      return [
+        PieChartSectionData(
+          color: Colors.grey,
+          value: 100,
+          radius: 50,
+          title: '0',
+          titleStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ];
+    }
     return widget.transactions.map((element) {
       var index = widget.transactions.indexOf(element);
       final isTouched = index == touchedIndex;
-      final fontSize = isTouched ? 25.0 : 16.0;
       final radius = isTouched ? 60.0 : 50.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
@@ -212,8 +238,8 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
         value: percent,
         title: '${percent.round()} %',
         radius: radius,
-        titleStyle: TextStyle(
-          fontSize: fontSize,
+        titleStyle: const TextStyle(
+          fontSize: 16,
           fontWeight: FontWeight.bold,
           color: Colors.white,
           shadows: shadows,
