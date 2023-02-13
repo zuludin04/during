@@ -43,14 +43,14 @@ class StatisticNavigation extends StatelessWidget {
             title: 'Expense Structure',
             child: TransactionPieStatistic(
               transactions: controller.expenseTransactions,
-              totalTransaction: controller.expense.value,
+              totalTransaction: controller.expense,
             ),
           ),
           _StatisticSection(
             title: 'Income Structure',
             child: TransactionPieStatistic(
               transactions: controller.incomeTransactions,
-              totalTransaction: controller.income.value,
+              totalTransaction: controller.income,
             ),
           ),
           const SizedBox(height: 8),
@@ -129,7 +129,7 @@ class _StatisticSection extends StatelessWidget {
 
 class TransactionPieStatistic extends StatefulWidget {
   final RxList<TransactionEntity> transactions;
-  final int totalTransaction;
+  final RxInt totalTransaction;
 
   const TransactionPieStatistic({
     Key? key,
@@ -205,7 +205,7 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
       final radius = isTouched ? 60.0 : 50.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
-      var percent = element.nominal! / widget.totalTransaction * 100;
+      var percent = element.nominal! / widget.totalTransaction.value * 100;
 
       return PieChartSectionData(
         color: Colors.blue,
@@ -215,7 +215,7 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
         titleStyle: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
-          color: Colors.blue,
+          color: Colors.white,
           shadows: shadows,
         ),
       );

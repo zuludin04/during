@@ -2,11 +2,11 @@ import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/widgets/bottom_navigation.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
+import 'package:during/ui/dashboard/controllers/statistic_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/nav/home_navigation.dart';
 import 'package:during/ui/dashboard/views/nav/saving_navigation.dart';
 import 'package:during/ui/dashboard/views/nav/setting_navigation.dart';
 import 'package:during/ui/dashboard/views/nav/statistic_navigation.dart';
-import 'package:during/ui/dashboard/views/nav/transaction_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -131,6 +131,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
               onPressed: () {
                 setState(() {
                   showMonth = DateTime(showMonth.year, showMonth.month - 1);
+                  var startMonth = DateTime(showMonth.year, showMonth.month, 1);
+                  var endMonth =
+                      DateTime(showMonth.year, showMonth.month + 1, 0);
+
+                  Get.find<StatisticNavigationController>().loadStatisticData(
+                      startMonth.millisecondsSinceEpoch,
+                      endMonth.millisecondsSinceEpoch);
                 });
               },
               icon: const Icon(Icons.chevron_left),
@@ -150,6 +157,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 setState(() {
                   showMonth = DateTime(showMonth.year, showMonth.month + 1);
                 });
+                var startMonth = DateTime(showMonth.year, showMonth.month, 1);
+                var endMonth = DateTime(showMonth.year, showMonth.month + 1, 0);
+
+                Get.find<StatisticNavigationController>().loadStatisticData(
+                    startMonth.millisecondsSinceEpoch,
+                    endMonth.millisecondsSinceEpoch);
               },
               icon: const Icon(Icons.chevron_right),
             ),
