@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 extension ColorExtension on String {
   Color convertStringToColor() {
-    return Color(int.parse('0x${this}'));
+    return Color(int.parse('0x$this'));
   }
 
   Color dynamicTextColor() {

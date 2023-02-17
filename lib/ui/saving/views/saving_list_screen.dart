@@ -128,7 +128,10 @@ class _SavingListScreenState extends State<SavingListScreen> {
               ),
               child: SvgPicture.asset(
                 'assets/category/${saving.categoryIcon}',
-                color: saving.color!.dynamicTextColor(),
+                colorFilter: ColorFilter.mode(
+                  saving.color!.dynamicTextColor(),
+                  BlendMode.srcIn,
+                ),
               ),
             ),
             const SizedBox(width: 10),

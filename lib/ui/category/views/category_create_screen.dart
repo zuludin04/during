@@ -116,7 +116,10 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                             padding: const EdgeInsets.all(9),
                             child: SvgPicture.asset(
                               'assets/category/${_controller.icon.value}',
-                              color: const Color(0xff373a36),
+                              colorFilter: const ColorFilter.mode(
+                                Color(0xff373a36),
+                                BlendMode.srcIn,
+                              ),
                               width: 30,
                               height: 30,
                             ),

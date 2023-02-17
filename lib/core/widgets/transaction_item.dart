@@ -46,7 +46,10 @@ class TransactionItem extends StatelessWidget {
                   ),
                   child: SvgPicture.asset(
                     'assets/category/${transaction.categoryIcon}',
-                    color: transaction.savingColor!.dynamicTextColor(),
+                    colorFilter: ColorFilter.mode(
+                      transaction.savingColor!.dynamicTextColor(),
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 15),

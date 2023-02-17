@@ -40,7 +40,10 @@ class CategoryIconsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: SvgPicture.asset(
           'assets/category/$path',
-          color: const Color(0xff373a36),
+          colorFilter: const ColorFilter.mode(
+            Color(0xff373a36),
+            BlendMode.srcIn,
+          ),
           width: 30,
           height: 30,
         ),
