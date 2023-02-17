@@ -18,6 +18,7 @@ class HomeNavigationController extends GetxController {
   void onInit() {
     super.onInit();
     loadDailyTransactions();
+    loadSavingList();
   }
 
   void loadSavingList() async {
