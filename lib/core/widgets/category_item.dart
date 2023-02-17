@@ -23,10 +23,10 @@ class CategoryItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            decoration: const BoxDecoration(
-              color: Color(0xffffa400),
+            decoration: BoxDecoration(
+              color: Color(int.parse('0xff${category.color}')),
               shape: BoxShape.circle,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   offset: Offset(1, 2),
                   color: Colors.black26,
@@ -38,8 +38,11 @@ class CategoryItem extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset(
               'assets/category/${category.icon}',
-              colorFilter: const ColorFilter.mode(
-                Color(0xff373a36),
+              colorFilter: ColorFilter.mode(
+                Color(int.parse('0xff${category.color}')).computeLuminance() >
+                        0.5
+                    ? Colors.black
+                    : Colors.white,
                 BlendMode.srcIn,
               ),
               width: 30,

@@ -8,22 +8,37 @@ const savingDetailType = 'saving_detail';
 /// 2 = income
 /// 3 = expense
 var initialCategories = [
-  CategoryEntity(name: 'Transfer', icon: 'icon_transfer.svg', type: 4),
-  CategoryEntity(name: 'Bank', icon: 'icon_bank.svg', type: 1),
-  CategoryEntity(name: 'E-Money', icon: 'icon_emoney.svg', type: 1),
-  CategoryEntity(name: 'Cash', icon: 'icon_cash.svg', type: 1),
-  CategoryEntity(name: 'Fee', icon: 'icon_fee.svg', type: 2),
-  CategoryEntity(name: 'Bonus', icon: 'icon_bonus.svg', type: 2),
-  CategoryEntity(name: 'Selling', icon: 'icon_selling.svg', type: 2),
-  CategoryEntity(name: 'Education', icon: 'icon_education.svg', type: 3),
-  CategoryEntity(name: 'Food', icon: 'icon_food.svg', type: 3),
-  CategoryEntity(name: 'Grocery', icon: 'icon_groceries.svg', type: 3),
-  CategoryEntity(name: 'Health', icon: 'icon_health.svg', type: 3),
-  CategoryEntity(name: 'Home', icon: 'icon_home.svg', type: 3),
-  CategoryEntity(name: 'Subscription', icon: 'icon_subcription.svg', type: 3),
   CategoryEntity(
-      name: 'Transportation', icon: 'icon_transportation.svg', type: 3),
-  CategoryEntity(name: 'Travel', icon: 'icon_travel.svg', type: 3),
+      name: 'Transfer', icon: 'icon_transfer.svg', type: 4, color: '9E9E9E'),
+  CategoryEntity(name: 'Bank', icon: 'icon_bank.svg', type: 1, color: '2196F3'),
+  CategoryEntity(
+      name: 'E-Money', icon: 'icon_emoney.svg', type: 1, color: '009688'),
+  CategoryEntity(name: 'Cash', icon: 'icon_cash.svg', type: 1, color: 'FFC107'),
+  CategoryEntity(name: 'Fee', icon: 'icon_fee.svg', type: 2, color: '2196F3'),
+  CategoryEntity(
+      name: 'Bonus', icon: 'icon_bonus.svg', type: 2, color: '009688'),
+  CategoryEntity(
+      name: 'Selling', icon: 'icon_selling.svg', type: 2, color: 'FFC107'),
+  CategoryEntity(
+      name: 'Education', icon: 'icon_education.svg', type: 3, color: '2196F3'),
+  CategoryEntity(name: 'Food', icon: 'icon_food.svg', type: 3, color: '009688'),
+  CategoryEntity(
+      name: 'Grocery', icon: 'icon_groceries.svg', type: 3, color: 'FFC107'),
+  CategoryEntity(
+      name: 'Health', icon: 'icon_health.svg', type: 3, color: '9C27B0'),
+  CategoryEntity(name: 'Home', icon: 'icon_home.svg', type: 3, color: '3F51B5'),
+  CategoryEntity(
+      name: 'Subscription',
+      icon: 'icon_subcription.svg',
+      type: 3,
+      color: '607D8B'),
+  CategoryEntity(
+      name: 'Transportation',
+      icon: 'icon_transportation.svg',
+      type: 3,
+      color: 'F44336'),
+  CategoryEntity(
+      name: 'Travel', icon: 'icon_travel.svg', type: 3, color: '3F51B5'),
 ];
 
 var categories = [
@@ -81,23 +96,23 @@ var categories = [
 var types = ['Saving', 'Income', 'Expense'];
 
 const categoryColors = [
-  'F44336',
-  'E91E63',
-  '9C27B0',
-  '673AB7',
-  '3F51B5',
-  '2196F3',
-  '03A9F4',
-  '00BCD4',
-  '009688',
-  '4CAF50',
-  '8BC34A',
-  'CDDC39',
-  'FFEB3B',
-  'FFC107',
-  'FF9800',
-  'FF5722',
-  '795548',
-  '9E9E9E',
-  '607D8B',
+  'F44336', // red
+  'E91E63', // pink
+  '9C27B0', // purple
+  '673AB7', // deep purple
+  '3F51B5', // indigo
+  '2196F3', // blue
+  '03A9F4', // light blue
+  '00BCD4', // cyan
+  '009688', // teal
+  '4CAF50', // green
+  '8BC34A', // light green
+  'CDDC39', // lime
+  'FFEB3B', // yellow
+  'FFC107', // amber
+  'FF9800', // orange
+  'FF5722', // deep orange
+  '795548', // brown
+  '9E9E9E', // grey
+  '607D8B', // blue grey
 ];
