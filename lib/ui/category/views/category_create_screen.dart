@@ -156,6 +156,41 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                       }),
                     ),
                   ),
+                  const SizedBox(height: 16),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: Obx(() {
+                        return DropdownButton<String>(
+                          value: _controller.color.value,
+                          items: categoryColors
+                              .map((e) => DropdownMenuItem<String>(
+                                    value: e,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 72,
+                                        decoration: BoxDecoration(
+                                          color: Color(int.parse('0xff$e')),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            _controller.color.value = value ?? "F44336";
+                          },
+                          isExpanded: true,
+                        );
+                      }),
+                    ),
+                  ),
                   const SizedBox(height: 32),
                   Visibility(
                     visible: _controller.isUpdate,

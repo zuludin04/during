@@ -57,6 +57,7 @@ class DuringDbProvider {
         .execute('CREATE TABLE category (id INTEGER PRIMARY KEY AUTOINCREMENT, '
             'name TEXT, '
             'icon TEXT, '
+            'color TEXT, '
             'type INTEGER)');
 
     // await db.execute(
@@ -99,7 +100,7 @@ class DuringDbProvider {
   Future<List<TransactionEntity>> loadDuringTransactions() async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.color AS savingColor, transactionDuring.* '
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, category.color AS categoryColor, saving.color AS savingColor, transactionDuring.* '
         'FROM transactionDuring '
         'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
@@ -116,7 +117,7 @@ class DuringDbProvider {
       int start, int end) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.color AS savingColor, transactionDuring.* '
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, category.color AS categoryColor, saving.color AS savingColor, transactionDuring.* '
         'FROM transactionDuring '
         'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
@@ -133,7 +134,7 @@ class DuringDbProvider {
   Future<List<TransactionEntity>> loadSavingTransactions(int savingId) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, saving.color AS savingColor, transactionDuring.* '
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, category.color AS categoryColor, saving.color AS savingColor, transactionDuring.* '
         'FROM transactionDuring '
         'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '

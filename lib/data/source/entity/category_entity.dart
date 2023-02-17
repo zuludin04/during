@@ -3,12 +3,14 @@ class CategoryEntity {
   String? name;
   String? icon;
   int? type;
+  String? color;
 
   CategoryEntity({
     this.id,
     this.name,
     this.icon,
     this.type,
+    this.color,
   });
 
   CategoryEntity.fromMap(Map<String, dynamic> map) {
@@ -16,6 +18,7 @@ class CategoryEntity {
     name = map['name'];
     icon = map['icon'];
     type = map['type'];
+    color = map['color'];
   }
 
   Map<String, dynamic> toMap() {
@@ -24,6 +27,7 @@ class CategoryEntity {
     map['name'] = name;
     map['type'] = type;
     map['icon'] = icon;
+    map['color'] = color;
     return map;
   }
 }

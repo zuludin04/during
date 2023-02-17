@@ -195,7 +195,8 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
                     : widget.transactions
                         .map(
                           (element) => Indicator(
-                            color: Color(int.parse('0x${element.savingColor}')),
+                            color:
+                                Color(int.parse('0x${element.categoryColor}')),
                             text: element.name ?? "-",
                             isSquare: false,
                           ),

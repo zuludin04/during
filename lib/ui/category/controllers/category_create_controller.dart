@@ -13,6 +13,7 @@ class CategoryCreateController extends GetxController {
   var name = ''.obs;
   var icon = 'icon_wallet.svg'.obs;
   var type = 'Saving'.obs;
+  var color = 'F44336'.obs;
 
   bool isUpdate = Get.arguments['update'];
   String source = Get.arguments['source'];
@@ -38,6 +39,7 @@ class CategoryCreateController extends GetxController {
       name: name.value,
       icon: icon.value,
       type: _typeToInt(type.value),
+      color: color.value,
     );
 
     if (isUpdate) {

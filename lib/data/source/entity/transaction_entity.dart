@@ -10,6 +10,7 @@ class TransactionEntity {
   String? categoryName;
   int? categoryType;
   String? categoryIcon;
+  String? categoryColor;
   String? savingColor;
 
   TransactionEntity({
@@ -36,6 +37,7 @@ class TransactionEntity {
     categoryName = map['categoryName'];
     categoryType = map['categoryType'];
     categoryIcon = map['categoryIcon'];
+    categoryColor = map['categoryColor'];
     savingColor = map['savingColor'];
     id = map['id'];
     type = map['type'];

@@ -67,7 +67,7 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                       return Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(8),
-                        color: controller.transaction.savingColor!
+                        color: controller.transaction.categoryColor!
                             .convertStringToColor(),
                         alignment: Alignment.center,
                         child: RichText(
@@ -75,14 +75,14 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                               text: '${'from'.tr} ',
                               style: TextStyle(
                                 fontSize: 16,
-                                color: controller.transaction.savingColor!
+                                color: controller.transaction.categoryColor!
                                     .dynamicTextColor(),
                               ),
                               children: [
                                 TextSpan(
                                   text: controller.saving.name,
                                   style: TextStyle(
-                                    color: controller.transaction.savingColor!
+                                    color: controller.transaction.categoryColor!
                                         .dynamicTextColor(),
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,

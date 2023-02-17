@@ -33,7 +33,7 @@ class TransactionItem extends StatelessWidget {
                   height: 50,
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: Color(int.parse('0x${transaction.savingColor}')),
+                    color: Color(int.parse('0x${transaction.categoryColor}')),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
@@ -47,7 +47,7 @@ class TransactionItem extends StatelessWidget {
                   child: SvgPicture.asset(
                     'assets/category/${transaction.categoryIcon}',
                     colorFilter: ColorFilter.mode(
-                      transaction.savingColor!.dynamicTextColor(),
+                      transaction.categoryColor!.dynamicTextColor(),
                       BlendMode.srcIn,
                     ),
                   ),
