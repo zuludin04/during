@@ -38,8 +38,7 @@ const Map<String, String> idID = {
   'rating': 'Rating',
   'share': 'Bagikan',
   'language': 'Bahasa',
-  'google_backup': 'Google Drive Backup',
-  'dark_theme': 'Tema Gelap',
+  'dark_theme': 'Mode Gelap',
   'hide_saving': 'Sembunyikan Simpanan',
   'hide_saving_desc': 'Sembunyikan kartu simpanan di halaman depan',
   'common': 'Umum',
@@ -86,6 +85,10 @@ const Map<String, String> idID = {
   'admin_fee': 'Biaya Admin',
   'statistic': 'Statistik',
   'account': 'Akun',
+  'management': 'Pengelolaan',
+  'budget': 'Anggaran',
+  'password': 'Kata Sandi',
+  'backup': 'Cadangkan'
 };
 
 const Map<String, String> enUS = {
@@ -128,8 +131,7 @@ const Map<String, String> enUS = {
   'rating': 'Rating',
   'share': 'Share',
   'language': 'Language',
-  'google_backup': 'Google Drive Backup',
-  'dark_theme': 'Dark Theme',
+  'dark_theme': 'Dark Mode',
   'hide_saving': 'Hide Saving',
   'hide_saving_desc': 'Hide saving slider in home page',
   'common': 'Common',
@@ -176,4 +178,8 @@ const Map<String, String> enUS = {
   'admin_fee': 'Admin Fee',
   'statistic': 'Statistic',
   'account': 'Account',
+  'management': 'Management',
+  'budget': 'Budget',
+  'password': 'Password',
+  'backup': 'Backup',
 };

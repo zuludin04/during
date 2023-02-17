@@ -26,35 +26,26 @@ class _SettingNavigationState extends State<SettingNavigation> {
       ),
       sections: [
         SettingsSection(
-          title: Text('common'.tr),
+          title: Text('management'.tr),
           tiles: [
-            // SettingsTile.switchTile(
-            //   initialValue: darkMode,
-            //   onToggle: (value) {
-            //     _controller.toggleDarkTheme(value);
-            //     Get.isDarkMode
-            //         ? Get.changeThemeMode(ThemeMode.light)
-            //         : Get.changeThemeMode(ThemeMode.dark);
-            //     setState(() {
-            //       darkMode = value;
-            //     });
-            //   },
-            //   title: Text('dark_theme'.tr),
-            //   leading: const Icon(Icons.dark_mode),
-            // ),
-            // SettingsTile(
-            //   title: Text('google_backup'.tr),
-            //   leading: const Icon(Icons.backup),
-            // ),
             SettingsTile(
-              title: Text('language'.tr),
-              leading: const Icon(Icons.language),
-              onPressed: (context) => Get.toNamed(RoutePath.language),
+              title: Text('account'.tr),
+              leading: const Icon(Icons.account_balance_wallet),
+              onPressed: (context) {},
             ),
             SettingsTile(
               title: Text('category'.tr),
               leading: const Icon(Icons.dashboard_rounded),
               onPressed: (context) => Get.toNamed(RoutePath.category),
+            ),
+            // SettingsTile(
+            //   title: Text('budget'.tr),
+            //   leading: const Icon(Icons.monetization_on),
+            //   onPressed: (context) => Get.toNamed(RoutePath.category),
+            // ),
+            SettingsTile(
+              title: Text('backup'.tr),
+              leading: const Icon(Icons.backup),
             ),
             SettingsTile(
               title: Text('delete_data'.tr),
@@ -83,6 +74,27 @@ class _SettingNavigationState extends State<SettingNavigation> {
                   ),
                 );
               },
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text('common'.tr),
+          tiles: [
+            SettingsTile.switchTile(
+              initialValue: darkMode,
+              onToggle: (value) {},
+              title: Text('dark_theme'.tr),
+              leading: const Icon(Icons.dark_mode),
+            ),
+            SettingsTile(
+              title: Text('language'.tr),
+              leading: const Icon(Icons.language),
+              onPressed: (context) => Get.toNamed(RoutePath.language),
+            ),
+            SettingsTile(
+              title: Text('password'.tr),
+              leading: const Icon(Icons.lock),
+              onPressed: (context) => Get.toNamed(RoutePath.language),
             ),
           ],
         ),
