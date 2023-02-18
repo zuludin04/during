@@ -104,6 +104,7 @@ class CategoryCreateController extends GetxController {
     name.value = category.name!;
     icon.value = category.icon!;
     type.value = _typeToString(category.type!);
+    color.value = category.color!;
   }
 
   int _typeToInt(String type) {
