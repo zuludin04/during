@@ -30,6 +30,7 @@ class _SettingNavigationState extends State<SettingNavigation> {
           tiles: [
             SettingsTile(
               title: Text('account'.tr),
+              description: const Text('Under construction'),
               leading: const Icon(Icons.account_balance_wallet),
               onPressed: (context) {},
             ),
@@ -38,14 +39,17 @@ class _SettingNavigationState extends State<SettingNavigation> {
               leading: const Icon(Icons.dashboard_rounded),
               onPressed: (context) => Get.toNamed(RoutePath.category),
             ),
-            // SettingsTile(
-            //   title: Text('budget'.tr),
-            //   leading: const Icon(Icons.monetization_on),
-            //   onPressed: (context) => Get.toNamed(RoutePath.category),
-            // ),
+            SettingsTile(
+              title: Text('budget'.tr),
+              description: const Text('Under construction'),
+              leading: const Icon(Icons.monetization_on),
+              onPressed: (context) {},
+            ),
             SettingsTile(
               title: Text('backup'.tr),
+              description: const Text('Under construction'),
               leading: const Icon(Icons.backup),
+              onPressed: (context) {},
             ),
             SettingsTile(
               title: Text('delete_data'.tr),
@@ -83,6 +87,7 @@ class _SettingNavigationState extends State<SettingNavigation> {
             SettingsTile.switchTile(
               initialValue: darkMode,
               onToggle: (value) {},
+              description: const Text('Under construction'),
               title: Text('dark_theme'.tr),
               leading: const Icon(Icons.dark_mode),
             ),
@@ -94,7 +99,8 @@ class _SettingNavigationState extends State<SettingNavigation> {
             SettingsTile(
               title: Text('password'.tr),
               leading: const Icon(Icons.lock),
-              onPressed: (context) => Get.toNamed(RoutePath.language),
+              description: const Text('Under construction'),
+              onPressed: (context) {},
             ),
           ],
         ),
