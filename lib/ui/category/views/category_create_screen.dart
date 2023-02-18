@@ -75,121 +75,111 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
+                  Form(
+                    key: _formKey,
+                    child: InputTextField(
+                      title: 'name'.tr,
+                      hint: 'name'.tr,
+                      text: _controller.name.value,
+                      onSaved: _controller.name,
+                      enableValidation: false,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
-                        child: Form(
-                          key: _formKey,
-                          child: InputTextField(
-                            title: 'name'.tr,
-                            hint: 'name'.tr,
-                            text: _controller.name.value,
-                            onSaved: _controller.name,
-                            enableValidation: false,
+                        child: _InputCategorySection(
+                          title: 'type'.tr,
+                          child: DropdownButtonHideUnderline(
+                            child: Obx(() {
+                              return DropdownButton<String>(
+                                value: _controller.type.value,
+                                items: types
+                                    .map((e) => DropdownMenuItem<String>(
+                                          value: e,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(e),
+                                          ),
+                                        ))
+                                    .toList(),
+                                onChanged: (value) =>
+                                    _controller.type.value = value ?? "Saving",
+                                isExpanded: true,
+                              );
+                            }),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _InputCategorySection(
+                          title: 'color'.tr,
+                          child: DropdownButtonHideUnderline(
+                            child: Obx(() {
+                              return DropdownButton<String>(
+                                value: _controller.color.value,
+                                items: categoryColors
+                                    .map((e) => DropdownMenuItem<String>(
+                                          value: e,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              width: double.infinity,
+                                              height: 72,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    Color(int.parse('0xff$e')),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                            ),
+                                          ),
+                                        ))
+                                    .toList(),
+                                onChanged: (value) {
+                                  _controller.color.value = value ?? "F44336";
+                                },
+                                isExpanded: true,
+                              );
+                            }),
                           ),
                         ),
                       ),
                       const SizedBox(width: 8),
                       Obx(() {
-                        return InkWell(
-                          onTap: () async {
-                            var result =
-                                await Get.toNamed(RoutePath.categoryIcons);
-                            if (result != null) {
-                              _controller.icon.value = result;
-                            }
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xffffa400),
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                  offset: Offset(1, 2),
-                                  color: Colors.black26,
-                                  blurRadius: 1,
-                                  spreadRadius: 1,
+                        return _InputCategorySection(
+                          title: 'icon'.tr,
+                          child: InkWell(
+                            onTap: () async {
+                              var result = await Get.toNamed(
+                                  RoutePath.categoryIcons,
+                                  arguments: {
+                                    'icon': _controller.icon.value,
+                                    'color': _controller.color.value,
+                                  });
+                              if (result != null) {
+                                _controller.icon.value = result;
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(9),
+                              child: SvgPicture.asset(
+                                'assets/category/${_controller.icon.value}',
+                                colorFilter: const ColorFilter.mode(
+                                  Color(0xff373a36),
+                                  BlendMode.srcIn,
                                 ),
-                              ],
-                            ),
-                            padding: const EdgeInsets.all(9),
-                            child: SvgPicture.asset(
-                              'assets/category/${_controller.icon.value}',
-                              colorFilter: const ColorFilter.mode(
-                                Color(0xff373a36),
-                                BlendMode.srcIn,
+                                width: 30,
+                                height: 30,
                               ),
-                              width: 30,
-                              height: 30,
                             ),
                           ),
                         );
                       }),
                     ],
-                  ),
-                  const SizedBox(height: 16),
-                  HeaderText(title: 'type'.tr, showTrailing: false),
-                  const SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black26),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: Obx(() {
-                        return DropdownButton<String>(
-                          value: _controller.type.value,
-                          items: types
-                              .map((e) => DropdownMenuItem<String>(
-                                    value: e,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(e),
-                                    ),
-                                  ))
-                              .toList(),
-                          onChanged: (value) =>
-                              _controller.type.value = value ?? "Saving",
-                          isExpanded: true,
-                        );
-                      }),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black26),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: Obx(() {
-                        return DropdownButton<String>(
-                          value: _controller.color.value,
-                          items: categoryColors
-                              .map((e) => DropdownMenuItem<String>(
-                                    value: e,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 72,
-                                        decoration: BoxDecoration(
-                                          color: Color(int.parse('0xff$e')),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
-                          onChanged: (value) {
-                            _controller.color.value = value ?? "F44336";
-                          },
-                          isExpanded: true,
-                        );
-                      }),
-                    ),
                   ),
                   const SizedBox(height: 32),
                   Visibility(
@@ -255,6 +245,31 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
             )
         ],
       ),
+    );
+  }
+}
+
+class _InputCategorySection extends StatelessWidget {
+  final String title;
+  final Widget child;
+
+  const _InputCategorySection({required this.title, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        HeaderText(title: title, showTrailing: false),
+        const SizedBox(height: 8),
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black26),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: child,
+        ),
+      ],
     );
   }
 }

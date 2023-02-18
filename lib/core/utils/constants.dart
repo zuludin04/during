@@ -42,6 +42,7 @@ var initialCategories = [
 ];
 
 var categories = [
+  'icon_wallet.svg',
   'icon_airplane.svg',
   'icon_bank.svg',
   'icon_barcode.svg',
@@ -75,7 +76,6 @@ var categories = [
   'icon_ticket.svg',
   'icon_transportation.svg',
   'icon_travel.svg',
-  'icon_wallet.svg',
   'icon_bus.svg',
   'icon_cake.svg',
   'icon_clock.svg',

@@ -79,7 +79,7 @@ class AppPages {
     ),
     GetPage(
       name: RoutePath.categoryIcons,
-      page: () => const CategoryIconsScreen(),
+      page: () => CategoryIconsScreen(),
     ),
     GetPage(
       name: RoutePath.categoryCreate,

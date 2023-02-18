@@ -25,7 +25,7 @@ class CategoryItem extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: Color(int.parse('0xff${category.color}')),
-              shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
                   offset: Offset(1, 2),
@@ -38,11 +38,8 @@ class CategoryItem extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset(
               'assets/category/${category.icon}',
-              colorFilter: ColorFilter.mode(
-                Color(int.parse('0xff${category.color}')).computeLuminance() >
-                        0.5
-                    ? Colors.black
-                    : Colors.white,
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
                 BlendMode.srcIn,
               ),
               width: 30,

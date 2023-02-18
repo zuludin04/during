@@ -51,16 +51,22 @@ class _CategoryDashboardScreenState extends State<CategoryDashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ToolbarDuring.defaultToolbar('category'.tr),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(
-          RoutePath.categoryCreate,
-          arguments: {
-            'update': false,
-            'source': 'category',
-          },
-        ),
-        child: const Icon(Icons.add),
+      appBar: ToolbarDuring.defaultToolbar(
+        'category'.tr,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed(
+                RoutePath.categoryCreate,
+                arguments: {
+                  'update': false,
+                  'source': 'category',
+                },
+              );
+            },
+            icon: const Icon(Icons.add),
+          ),
+        ],
       ),
       body: Column(
         children: [

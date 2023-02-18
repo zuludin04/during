@@ -5,7 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CategoryIconsScreen extends StatelessWidget {
-  const CategoryIconsScreen({Key? key}) : super(key: key);
+  final String color = Get.arguments['color'];
+  final String icon = Get.arguments['icon'];
+
+  CategoryIconsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +16,7 @@ class CategoryIconsScreen extends StatelessWidget {
       appBar: ToolbarDuring.defaultToolbar('category_icon'.tr),
       body: GridView.count(
         crossAxisCount: 4,
+        childAspectRatio: 1.25,
         children: categories.map((e) => _category(e)).toList(),
       ),
     );
@@ -24,28 +28,20 @@ class CategoryIconsScreen extends StatelessWidget {
         Get.back(result: path);
       },
       child: Container(
-        decoration: const BoxDecoration(
-          color: Color(0xffffa400),
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(1, 2),
-              color: Colors.black26,
-              blurRadius: 1,
-              spreadRadius: 1,
-            ),
-          ],
+        decoration: BoxDecoration(
+          color: icon == path
+              ? Color(int.parse('0xff$color'))
+              : Colors.grey.shade300,
+          borderRadius: BorderRadius.circular(10),
         ),
         margin: const EdgeInsets.all(16),
         padding: const EdgeInsets.all(12),
         child: SvgPicture.asset(
           'assets/category/$path',
-          colorFilter: const ColorFilter.mode(
-            Color(0xff373a36),
+          colorFilter: ColorFilter.mode(
+            icon == path ? Colors.white : const Color(0xff373a36),
             BlendMode.srcIn,
           ),
-          width: 30,
-          height: 30,
         ),
       ),
     );
