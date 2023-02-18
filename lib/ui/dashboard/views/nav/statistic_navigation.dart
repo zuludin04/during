@@ -196,7 +196,7 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
                         .map(
                           (element) => Indicator(
                             color:
-                                Color(int.parse('0x${element.categoryColor}')),
+                                Color(int.parse('0xff${element.categoryColor}')),
                             text: element.name ?? "-",
                             isSquare: false,
                           ),
@@ -235,7 +235,7 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
       var percent = element.nominal! / widget.totalTransaction.value * 100;
 
       return PieChartSectionData(
-        color: Colors.blue,
+        color: Color(int.parse('0xff${element.categoryColor}')),
         value: percent,
         title: '${percent.round()} %',
         radius: radius,
