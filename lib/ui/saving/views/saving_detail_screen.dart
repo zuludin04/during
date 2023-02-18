@@ -5,12 +5,15 @@ import 'package:during/core/widgets/header_text.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/core/widgets/transaction_item.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
+import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:grouped_list/sliver_grouped_list.dart';
+import 'package:intl/intl.dart';
 
 class SavingDetailScreen extends StatefulWidget {
   const SavingDetailScreen({Key? key}) : super(key: key);
@@ -178,14 +181,19 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                     } else if (controller.empty) {
                       return _loadTransactionIndicator(false);
                     } else {
-                      return SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) => TransactionItem(
-                            transaction: controller.transactions[index],
-                            source: 'saving',
-                          ),
-                          childCount: controller.transactions.length,
+                      return SliverGroupedListView<TransactionEntity, DateTime>(
+                        elements: _controller.transactions,
+                        groupBy: (element) {
+                          var date = DateTime.fromMillisecondsSinceEpoch(element.date!);
+                          return DateTime(date.year, date.month, date.day);
+                        },
+                        groupSeparatorBuilder: (DateTime groupByValue) =>
+                            _TransactionHeaderItem(date: groupByValue),
+                        itemBuilder: (context, element) => TransactionItem(
+                          transaction: element,
+                          source: 'normal',
                         ),
+                        order: GroupedListOrder.DESC,
                       );
                     }
                   },
@@ -210,6 +218,46 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
         child: loading
             ? const CircularProgressIndicator()
             : EmptyLayout(message: 'empty_transaction'.tr),
+      ),
+    );
+  }
+}
+
+class _TransactionHeaderItem extends StatelessWidget {
+  final DateTime date;
+
+  const _TransactionHeaderItem({required this.date});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(top: 16),
+      child: Row(
+        children: [
+          Text(
+            date.day.toString(),
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                DateFormat("EEEE").format(date),
+                style: const TextStyle(color: Colors.black),
+              ),
+              Text(
+                DateFormat("MMM yyyy").format(date),
+                style: const TextStyle(color: Colors.black45),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

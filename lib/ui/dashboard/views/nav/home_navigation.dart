@@ -34,7 +34,7 @@ class HomeNavigation extends StatelessWidget {
             transaction: element,
             source: 'normal',
           ),
-          order: GroupedListOrder.DESC, // optional
+          order: GroupedListOrder.DESC,
         );
       }
     });
