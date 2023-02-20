@@ -2,6 +2,8 @@ import 'package:during/data/source/entity/category_entity.dart';
 
 const savingPickedType = 'saving_picked';
 const savingDetailType = 'saving_detail';
+const emptySavingHash =
+    '6382e3553f60f84fd8819574ede44e5202883dbd'; // during empty saving
 
 /// category type
 /// 1 = saving

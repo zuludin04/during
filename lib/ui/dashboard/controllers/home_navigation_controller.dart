@@ -1,3 +1,4 @@
+import 'package:during/core/utils/constants.dart';
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
@@ -24,6 +25,7 @@ class HomeNavigationController extends GetxController {
   void loadSavingList() async {
     var result = await _repository.loadSaving();
     savings.value = result;
+    savings.add(SavingEntity(name: emptySavingHash));
     emptySaving.value = result.isEmpty;
   }
 

@@ -31,24 +31,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           appBar: AppBar(
             elevation: 0.5,
             title: const Text('During'),
-            actions: [
-              if (controller.navIndex == 1)
-                IconButton(
-                  onPressed: controller.filterTransaction,
-                  icon: const Icon(
-                    Icons.filter_list,
-                    color: Color(0xff373A36),
-                  ),
-                ),
-              if (controller.navIndex == 3)
-                IconButton(
-                  onPressed: controller.addSaving,
-                  icon: const Icon(
-                    Icons.add,
-                    color: Color(0xff373A36),
-                  ),
-                ),
-            ],
             bottom: _bottomToolbar(
               navIndex: controller.navIndex,
               balance: controller.totalBalance,

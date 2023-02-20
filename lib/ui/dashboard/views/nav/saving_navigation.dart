@@ -1,5 +1,6 @@
 import 'package:during/core/utils/add_helper.dart';
-import 'package:during/core/widgets/empty_layout.dart';
+import 'package:during/core/utils/constants.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/saving_card_item.dart';
 import 'package:flutter/material.dart';
@@ -50,51 +51,62 @@ class _SavingNavigationState extends State<SavingNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (_controller.emptySaving.value) {
-        return Column(
-          children: [
-            if (_isBannerReady)
-              SizedBox(
-                width: _bannerAd.size.width.toDouble(),
-                height: 72,
-                child: AdWidget(ad: _bannerAd),
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
+              if (_isBannerReady)
+                SizedBox(
+                  width: _bannerAd.size.width.toDouble(),
+                  height: 72,
+                  child: AdWidget(ad: _bannerAd),
+                ),
+            ],
+          ),
+        ),
+        Obx(
+          () => SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            sliver: SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  if (_controller.savings[index].name == emptySavingHash) {
+                    return _SavingEmptyItem();
+                  } else {
+                    return SavingCardItem(saving: _controller.savings[index]);
+                  }
+                },
+                childCount: _controller.savings.length,
               ),
-            Expanded(child: EmptyLayout(message: 'empty_saving'.tr)),
-          ],
-        );
-      } else {
-        return CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  if (_isBannerReady)
-                    SizedBox(
-                      width: _bannerAd.size.width.toDouble(),
-                      height: 72,
-                      child: AdWidget(ad: _bannerAd),
-                    ),
-                ],
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.7,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              sliver: SliverGrid(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  return SavingCardItem(saving: _controller.savings[index]);
-                }, childCount: _controller.savings.length),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.7,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-              ),
-            )
-          ],
-        );
-      }
-    });
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _SavingEmptyItem extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () =>
+          Get.toNamed(RoutePath.savingInsert, arguments: {'status': 'create'}),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.black45),
+        ),
+        padding: const EdgeInsets.all(12),
+        child: const Icon(Icons.add, size: 32),
+      ),
+    );
   }
 }
