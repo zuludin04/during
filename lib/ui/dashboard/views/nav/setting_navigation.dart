@@ -1,3 +1,4 @@
+import 'package:during/core/utils/constants.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
@@ -30,9 +31,11 @@ class _SettingNavigationState extends State<SettingNavigation> {
           tiles: [
             SettingsTile(
               title: Text('account'.tr),
-              description: const Text('Under construction'),
               leading: const Icon(Icons.account_balance_wallet),
-              onPressed: (context) {},
+              onPressed: (context) => Get.toNamed(
+                RoutePath.savingList,
+                arguments: savingDetailType,
+              ),
             ),
             SettingsTile(
               title: Text('category'.tr),
