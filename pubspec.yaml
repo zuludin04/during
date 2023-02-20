@@ -46,6 +46,14 @@ flutter:
     - assets/navigation/
 
   fonts:
-    - family: NotoSans
+    - family: PlusJakarta
       fonts:
-        - asset: fonts/NotoSansJP-Regular.otf
+        - asset: fonts/PlusJakartaSans.ttf
+        - asset: fonts/PlusJakartaSans-w300.ttf
+          weight: 300
+        - asset: fonts/PlusJakartaSans-w500.ttf
+          weight: 500
+        - asset: fonts/PlusJakartaSans-w700.ttf
+          weight: 700
+        - asset: fonts/PlusJakartaSans-w900.ttf
+          weight: 900

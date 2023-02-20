@@ -67,28 +67,35 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                       return Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(8),
-                        color: controller.transaction.categoryColor!
-                            .convertStringToColor(),
+                        decoration: BoxDecoration(
+                          color: controller.transaction.categoryColor!
+                              .convertStringToColor(),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(4),
+                            topRight: Radius.circular(4),
+                          ),
+                        ),
                         alignment: Alignment.center,
                         child: RichText(
                           text: TextSpan(
-                              text: '${'from'.tr} ',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: controller.transaction.categoryColor!
-                                    .dynamicTextColor(),
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: controller.saving.name,
-                                  style: TextStyle(
-                                    color: controller.transaction.categoryColor!
-                                        .dynamicTextColor(),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                            text: '${'from'.tr} ',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: controller.transaction.categoryColor!
+                                  .dynamicTextColor(),
+                            ),
+                            children: [
+                              TextSpan(
+                                text: controller.saving.name,
+                                style: TextStyle(
+                                  color: controller.transaction.categoryColor!
+                                      .dynamicTextColor(),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              ]),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

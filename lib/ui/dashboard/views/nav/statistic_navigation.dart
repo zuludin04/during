@@ -189,16 +189,14 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
                         const Indicator(
                           color: Colors.grey,
                           text: "-",
-                          isSquare: false,
                         )
                       ]
                     : widget.transactions
                         .map(
                           (element) => Indicator(
-                            color:
-                                Color(int.parse('0xff${element.categoryColor}')),
+                            color: Color(
+                                int.parse('0xff${element.categoryColor}')),
                             text: element.name ?? "-",
-                            isSquare: false,
                           ),
                         )
                         .toList(),
@@ -230,7 +228,6 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
       var index = widget.transactions.indexOf(element);
       final isTouched = index == touchedIndex;
       final radius = isTouched ? 60.0 : 50.0;
-      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
       var percent = element.nominal! / widget.totalTransaction.value * 100;
 
@@ -241,9 +238,8 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
         radius: radius,
         titleStyle: const TextStyle(
           fontSize: 16,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
           color: Colors.white,
-          shadows: shadows,
         ),
       );
     }).toList();
@@ -255,14 +251,11 @@ class Indicator extends StatelessWidget {
     Key? key,
     required this.color,
     required this.text,
-    required this.isSquare,
-    this.size = 16,
     this.textColor,
   }) : super(key: key);
+
   final Color color;
   final String text;
-  final bool isSquare;
-  final double size;
   final Color? textColor;
 
   @override
@@ -270,21 +263,19 @@ class Indicator extends StatelessWidget {
     return Row(
       children: <Widget>[
         Container(
-          width: size,
-          height: size,
+          width: 16,
+          height: 16,
           decoration: BoxDecoration(
-            shape: isSquare ? BoxShape.rectangle : BoxShape.circle,
+            shape: BoxShape.circle,
             color: color,
           ),
         ),
-        const SizedBox(
-          width: 4,
-        ),
+        const SizedBox(width: 4),
         Text(
           text,
+          maxLines: 1,
           style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
             color: textColor,
           ),
         )

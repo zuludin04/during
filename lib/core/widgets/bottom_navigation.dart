@@ -16,17 +16,17 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),
           ),
           boxShadow: [
             BoxShadow(
-              offset: Offset(0, -1),
-              blurRadius: 5,
-              color: Colors.black26,
+              offset: const Offset(0, -1),
+              blurRadius: 1,
+              color: Colors.black26.withOpacity(0.1),
             ),
           ]),
       child: Row(
@@ -89,6 +89,7 @@ class _BottomNavItem extends StatelessWidget {
           menu.label,
           style: TextStyle(
             fontSize: 12,
+            fontWeight: FontWeight.w500,
             color: selected ? Colors.blue : Colors.black,
           ),
         ),

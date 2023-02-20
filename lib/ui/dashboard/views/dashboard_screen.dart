@@ -8,6 +8,7 @@ import 'package:during/ui/dashboard/views/nav/saving_navigation.dart';
 import 'package:during/ui/dashboard/views/nav/setting_navigation.dart';
 import 'package:during/ui/dashboard/views/nav/statistic_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -34,6 +35,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             bottom: _bottomToolbar(
               navIndex: controller.navIndex,
               balance: controller.totalBalance,
+            ),
+            systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Colors.white,
+              statusBarIconBrightness: Brightness.dark,
             ),
           ),
           bottomNavigationBar: BottomNavigation(
