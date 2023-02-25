@@ -46,6 +46,7 @@ class CategoryCreateController extends GetxController {
       _repository.updateCategory(category).then((value) {
         if (source == 'category') {
           Get.find<CategoryDashboardController>().loadCategory();
+          Get.find<TransactionController>().loadDailyTransactions();
         }
         _updateCategoryListDialog();
         Get.back();
