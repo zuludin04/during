@@ -1,17 +1,15 @@
-import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/widgets/bottom_navigation.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
-import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/dashboard/controllers/statistic_controller.dart';
-import 'package:during/ui/dashboard/views/setting_navigation.dart';
-import 'package:during/ui/dashboard/views/transaction_navigation.dart';
+import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/dashboard/views/saving_navigation.dart';
+import 'package:during/ui/dashboard/views/setting_navigation.dart';
 import 'package:during/ui/dashboard/views/statistic_navigation.dart';
+import 'package:during/ui/dashboard/views/transaction_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
@@ -32,12 +30,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            elevation: 0.5,
+            elevation: controller.navIndex == 0 ? 0 : 0.5,
             title: const Text('During'),
-            bottom: _bottomToolbar(
-              navIndex: controller.navIndex,
-              balance: controller.totalBalance,
-            ),
+            bottom: _bottomToolbar(navIndex: controller.navIndex),
             systemOverlayStyle: const SystemUiOverlayStyle(
               statusBarColor: Colors.white,
               statusBarIconBrightness: Brightness.dark,
@@ -54,11 +49,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 });
 
                 if (result != null && result == 'OK') {
-                  controller.loadSavingTotalBalance();
+                  Get.find<TransactionController>().loadSavingTotalBalance();
                   Get.find<TransactionController>().loadDailyTransactions();
                   Get.find<SavingController>().loadSavingList();
-                  Get.find<StatisticController>()
-                      .loadInitialStatistic();
+                  Get.find<StatisticController>().loadInitialStatistic();
                 }
               } else {
                 controller.changeNavIndex(index);
@@ -92,35 +86,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  PreferredSizeWidget? _bottomToolbar({
-    required int navIndex,
-    required RxInt balance,
-  }) {
-    if (navIndex == 0) {
-      return PreferredSize(
-        preferredSize: const Size(double.infinity, 40),
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(16, 0, 8, 8),
-          width: double.infinity,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                'assets/category/icon_emoney.svg',
-                width: 30,
-              ),
-              const SizedBox(width: 12),
-              Obx(
-                () => Text(
-                  'Rp ${balance.value.toPriceFormat()}',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    } else if (navIndex == 1) {
+  PreferredSizeWidget? _bottomToolbar({required int navIndex}) {
+    if (navIndex == 1) {
       return PreferredSize(
         preferredSize: const Size(double.infinity, 40),
         child: Row(
