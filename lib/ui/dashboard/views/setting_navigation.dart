@@ -2,6 +2,7 @@ import 'package:during/core/utils/constants.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:during/ui/dashboard/controllers/setting_controller.dart';
+import 'package:during/ui/dashboard/views/widgets/change_language_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -94,7 +95,12 @@ class _SettingNavigationState extends State<SettingNavigation> {
             SettingsTile(
               title: Text('language'.tr),
               leading: const Icon(Icons.language),
-              onPressed: (context) => Get.toNamed(RoutePath.language),
+              onPressed: (context) {
+                Get.defaultDialog(
+                  title: '',
+                  content: const ChangeLanguageDialog(),
+                );
+              },
             ),
             SettingsTile(
               title: Text('password'.tr),

@@ -1,16 +1,15 @@
-import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LanguageChangeScreen extends StatefulWidget {
-  const LanguageChangeScreen({Key? key}) : super(key: key);
+class ChangeLanguageDialog extends StatefulWidget{
+  const ChangeLanguageDialog({Key? key}) : super(key: key);
 
   @override
-  State<LanguageChangeScreen> createState() => _LanguageChangeScreenState();
+  State<ChangeLanguageDialog> createState() => _ChangeLanguageDialogState();
 }
 
-class _LanguageChangeScreenState extends State<LanguageChangeScreen> {
+class _ChangeLanguageDialogState extends State<ChangeLanguageDialog> {
   late List<bool> _languageSelected;
 
   @override
@@ -26,30 +25,29 @@ class _LanguageChangeScreenState extends State<LanguageChangeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ToolbarDuring.defaultToolbar('language'.tr),
-      body: ListView(
-        children: [
-          _languageItem(
-            'English',
-            _languageSelected[0],
-            () {
-              changeTypeState(0);
-              CacheService.to.selectedLanguage = 'en_US';
-              Get.updateLocale(const Locale('en', 'US'));
-            },
-          ),
-          _languageItem(
-            'Bahasa Indonesia',
-            _languageSelected[1],
-            () {
-              changeTypeState(1);
-              CacheService.to.selectedLanguage = 'id_ID';
-              Get.updateLocale(const Locale('id', 'ID'));
-            },
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        _languageItem(
+          'English',
+          _languageSelected[0],
+              () {
+            changeTypeState(0);
+            CacheService.to.selectedLanguage = 'en_US';
+            Get.updateLocale(const Locale('en', 'US'));
+            Get.back();
+          },
+        ),
+        _languageItem(
+          'Bahasa Indonesia',
+          _languageSelected[1],
+              () {
+            changeTypeState(1);
+            CacheService.to.selectedLanguage = 'id_ID';
+            Get.updateLocale(const Locale('id', 'ID'));
+            Get.back();
+          },
+        ),
+      ],
     );
   }
 

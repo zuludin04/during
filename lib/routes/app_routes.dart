@@ -10,7 +10,6 @@ abstract class RoutePath {
   static const savingInsert = '/saving_insert';
   static const savingList = '/saving_list';
   static const savingDetail = '/saving_detail';
-  static const language = '/language';
   static const category = '/category';
   static const categoryIcons = '/category_icons';
   static const categoryCreate = '/category_create';

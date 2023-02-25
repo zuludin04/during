@@ -9,7 +9,6 @@ import 'package:during/ui/dashboard/bindings/setting_binding.dart';
 import 'package:during/ui/dashboard/bindings/statistic_binding.dart';
 import 'package:during/ui/dashboard/bindings/transaction_binding.dart';
 import 'package:during/ui/dashboard/views/dashboard_screen.dart';
-import 'package:during/ui/language/language_change_screen.dart';
 import 'package:during/ui/saving/bindings/saving_detail_binding.dart';
 import 'package:during/ui/saving/bindings/saving_insert_binding.dart';
 import 'package:during/ui/saving/bindings/saving_manage_binding.dart';
@@ -67,10 +66,6 @@ class AppPages {
       name: RoutePath.savingDetail,
       page: () => const SavingDetailScreen(),
       binding: SavingDetailBinding(),
-    ),
-    GetPage(
-      name: RoutePath.language,
-      page: () => const LanguageChangeScreen(),
     ),
     GetPage(
       name: RoutePath.category,
