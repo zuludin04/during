@@ -21,7 +21,7 @@ class StatisticNavigation extends StatelessWidget {
           decoration: const BoxDecoration(
             color: Colors.white,
             border: Border(
-              bottom: BorderSide(color: Colors.black38),
+              bottom: BorderSide(color: Colors.black26),
             ),
           ),
           child: GetBuilder<StatisticController>(
