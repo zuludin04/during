@@ -66,7 +66,6 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: ToolbarDuring.defaultToolbar(
         'transaction'.tr,
         actions: [
