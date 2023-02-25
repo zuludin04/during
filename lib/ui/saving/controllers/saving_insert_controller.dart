@@ -52,11 +52,12 @@ class SavingInsertController extends GetxController {
       Get.find<SavingDetailController>().loadSavingTransactions();
       Get.find<SavingController>().loadSavingList();
       Get.find<TransactionController>().loadDailyTransactions();
+      Get.find<TransactionController>().loadSavingTotalBalance();
       Get.back();
     } else {
       await _repository.insertSaving(saving);
+      Get.back(result: 'OK');
     }
-    Get.back(result: true);
   }
 
   void populateSavingData() async {

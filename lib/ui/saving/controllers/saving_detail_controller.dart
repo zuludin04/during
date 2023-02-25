@@ -40,6 +40,7 @@ class SavingDetailController extends GetxController {
     await _repository.deleteSavingTransactions(transactions);
     Get.find<SavingController>().loadSavingList();
     Get.find<TransactionController>().loadDailyTransactions();
+    Get.find<TransactionController>().loadSavingTotalBalance();
     Get.back();
   }
 }

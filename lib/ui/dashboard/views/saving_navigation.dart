@@ -2,6 +2,7 @@ import 'package:during/core/utils/add_helper.dart';
 import 'package:during/core/utils/constants.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/saving_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,7 +73,17 @@ class _SavingNavigationState extends State<SavingNavigation> {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   if (_controller.savings[index].name == emptySavingHash) {
-                    return _SavingEmptyItem();
+                    return _SavingEmptyItem(
+                      onTap: () async {
+                        var result = await Get.toNamed(RoutePath.savingInsert,
+                            arguments: {'status': 'create'});
+                        if (result != null && result == 'OK') {
+                          Get.find<TransactionController>()
+                              .loadSavingTotalBalance();
+                          _controller.loadSavingList();
+                        }
+                      },
+                    );
                   } else {
                     return SavingCardItem(saving: _controller.savings[index]);
                   }
@@ -94,11 +105,14 @@ class _SavingNavigationState extends State<SavingNavigation> {
 }
 
 class _SavingEmptyItem extends StatelessWidget {
+  final Function() onTap;
+
+  const _SavingEmptyItem({Key? key, required this.onTap}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () =>
-          Get.toNamed(RoutePath.savingInsert, arguments: {'status': 'create'}),
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
