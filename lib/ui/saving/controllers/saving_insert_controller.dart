@@ -4,6 +4,7 @@ import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
+import 'package:during/ui/saving/controllers/saving_list_controller.dart';
 import 'package:get/get.dart';
 
 class SavingInsertController extends GetxController {
@@ -48,6 +49,7 @@ class SavingInsertController extends GetxController {
       await _repository.updateSaving(saving);
       Get.find<SavingDetailController>().loadDetailSaving();
       Get.find<SavingController>().loadSavingList();
+      Get.find<SavingListController>().loadSavings();
       Get.find<TransactionController>().loadDailyTransactions();
       Get.find<TransactionController>().loadSavingTotalBalance();
       Get.back();

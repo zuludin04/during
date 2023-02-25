@@ -7,6 +7,7 @@ import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/saving/controllers/saving_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -68,11 +69,10 @@ class _SavingListScreenState extends State<SavingListScreen> {
                   await Get.toNamed(RoutePath.savingInsert, arguments: {
                 'status': 'create',
               });
-              if (result != null) {
-                if (result == true) {
-                  _controller.loadSavings();
-                  Get.find<SavingController>().loadSavingList();
-                }
+              if (result != null && result == 'OK') {
+                _controller.loadSavings();
+                Get.find<SavingController>().loadSavingList();
+                Get.find<TransactionController>().loadSavingTotalBalance();
               }
             },
             icon: const Icon(Icons.add),
@@ -83,7 +83,7 @@ class _SavingListScreenState extends State<SavingListScreen> {
         children: [
           Expanded(
             child: Obx(() {
-              if (_controller.empty.value) {
+              if (_controller.savings.isEmpty) {
                 return EmptyLayout(message: 'empty_saving'.tr);
               } else {
                 return ListView.builder(
@@ -123,7 +123,7 @@ class _SavingListScreenState extends State<SavingListScreen> {
               height: 40,
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Color(int.parse('0x${saving.color}')),
+                color: Color(int.parse('0xff${saving.color}')),
                 shape: BoxShape.circle,
               ),
               child: SvgPicture.asset(

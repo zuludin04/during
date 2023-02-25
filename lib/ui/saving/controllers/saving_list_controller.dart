@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 class SavingListController extends GetxController {
   final DuringRepository _repository = Get.find();
 
-  var empty = true.obs;
   var savings = <SavingEntity>[].obs;
 
   @override
@@ -16,11 +15,6 @@ class SavingListController extends GetxController {
 
   Future<void> loadSavings() async {
     var result = await _repository.loadSaving();
-    if (result.isEmpty) {
-      empty.value = true;
-    } else {
-      empty.value = false;
-      savings.value = result;
-    }
+    savings.value = result;
   }
 }

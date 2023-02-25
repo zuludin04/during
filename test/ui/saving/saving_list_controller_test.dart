@@ -31,7 +31,7 @@ void main() {
 
       expect(actual, matcher);
       expect(actual.length, matcher.length);
-      expect(controller.empty.value, isFalse);
+      expect(controller.savings.isEmpty, isFalse);
     });
 
     test('load savings with empty result', () async {
@@ -46,7 +46,7 @@ void main() {
       var matcher = [];
 
       expect(actual, matcher);
-      expect(controller.empty.value, isTrue);
+      expect(controller.savings.isEmpty, isTrue);
     });
   });
 }
