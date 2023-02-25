@@ -1,9 +1,9 @@
 import 'package:during/core/utils/add_helper.dart';
 import 'package:during/core/utils/constants.dart';
+import 'package:during/core/widgets/account_saving_item.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
-import 'package:during/ui/dashboard/views/widgets/saving_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -72,7 +72,8 @@ class _SavingNavigationState extends State<SavingNavigation> {
             sliver: SliverGrid(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  if (_controller.savings[index].name == emptySavingHash) {
+                  var saving = _controller.savings[index];
+                  if (saving.name == emptySavingHash) {
                     return _SavingEmptyItem(
                       onTap: () async {
                         var result = await Get.toNamed(RoutePath.savingInsert,
@@ -85,7 +86,12 @@ class _SavingNavigationState extends State<SavingNavigation> {
                       },
                     );
                   } else {
-                    return SavingCardItem(saving: _controller.savings[index]);
+                    return AccountSavingItem(
+                      onTap: () => Get.toNamed(RoutePath.savingDetail,
+                          arguments: saving.id),
+                      saving: saving,
+                      isCard: true,
+                    );
                   }
                 },
                 childCount: _controller.savings.length,

@@ -1,5 +1,6 @@
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/widgets/empty_layout.dart';
+import 'package:during/core/widgets/transaction_header_item.dart';
 import 'package:during/core/widgets/transaction_item.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:intl/intl.dart';
 
 class TransactionNavigation extends StatelessWidget {
   const TransactionNavigation({Key? key}) : super(key: key);
@@ -61,7 +61,7 @@ class TransactionNavigation extends StatelessWidget {
                   return DateTime(date.year, date.month, date.day);
                 },
                 groupSeparatorBuilder: (DateTime groupByValue) =>
-                    _TransactionHeaderItem(date: groupByValue),
+                    TransactionHeaderItem(date: groupByValue),
                 itemBuilder: (context, element) => TransactionItem(
                   transaction: element,
                   source: 'normal',
@@ -72,46 +72,6 @@ class TransactionNavigation extends StatelessWidget {
           }
         }),
       ],
-    );
-  }
-}
-
-class _TransactionHeaderItem extends StatelessWidget {
-  final DateTime date;
-
-  const _TransactionHeaderItem({required this.date});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(top: 16),
-      child: Row(
-        children: [
-          Text(
-            date.day.toString(),
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                DateFormat("EEEE").format(date),
-                style: const TextStyle(color: Colors.black),
-              ),
-              Text(
-                DateFormat("MMM yyyy").format(date),
-                style: const TextStyle(color: Colors.black45),
-              )
-            ],
-          ),
-        ],
-      ),
     );
   }
 }

@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+class TransactionHeaderItem extends StatelessWidget {
+  final DateTime date;
+
+  const TransactionHeaderItem({Key? key, required this.date}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(top: 16),
+      child: Row(
+        children: [
+          Text(
+            date.day.toString(),
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                DateFormat("EEEE").format(date),
+                style: const TextStyle(color: Colors.black),
+              ),
+              Text(
+                DateFormat("MMM yyyy").format(date),
+                style: const TextStyle(color: Colors.black45),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
