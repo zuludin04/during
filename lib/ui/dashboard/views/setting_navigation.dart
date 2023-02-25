@@ -22,9 +22,7 @@ class _SettingNavigationState extends State<SettingNavigation> {
   @override
   Widget build(BuildContext context) {
     return SettingsList(
-      lightTheme: const SettingsThemeData(
-        settingsListBackground: Colors.white,
-      ),
+      lightTheme: SettingsThemeData(settingsListBackground: Colors.grey[50]),
       sections: [
         SettingsSection(
           title: Text('management'.tr),
