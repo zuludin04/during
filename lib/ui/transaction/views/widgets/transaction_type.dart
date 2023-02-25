@@ -15,37 +15,27 @@ class TransactionType extends StatefulWidget {
 }
 
 class _TransactionTypeState extends State<TransactionType> {
-  late List<bool> _typeSelected;
-
-  @override
-  void initState() {
-    if (widget.controller.type.value == 'Income') {
-      _typeSelected = [true, false];
-    } else {
-      _typeSelected = [false, true];
-    }
-    super.initState();
-  }
+  var selectedType = 'Expense';
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(5),
         border: Border.all(color: Colors.grey),
       ),
       child: Row(
         children: [
           CategoryType(
-            onTap: () => changeTypeState(0),
-            isSelected: _typeSelected[0],
+            onTap: changeTypeState,
+            isSelected: selectedType == 'Income',
             title: 'Income',
           ),
           CategoryType(
-            onTap: () => changeTypeState(1),
-            isSelected: _typeSelected[1],
+            onTap: changeTypeState,
+            isSelected: selectedType == 'Expense',
             title: 'Expense',
           ),
         ],
@@ -53,24 +43,15 @@ class _TransactionTypeState extends State<TransactionType> {
     );
   }
 
-  void changeTypeState(int index) {
-    setState(() {
-      for (int indexBtn = 0; indexBtn < _typeSelected.length; indexBtn++) {
-        if (indexBtn == index) {
-          _typeSelected[indexBtn] = true;
-          widget.controller
-              .changeCategoryList(index == 0 ? 'Income' : 'Expense');
-          widget.controller.type.value = index == 0 ? 'Income' : 'Expense';
-        } else {
-          _typeSelected[indexBtn] = false;
-        }
-      }
-    });
+  void changeTypeState(String type) {
+    setState(() => selectedType = type);
+    widget.controller.changeCategoryList(type);
+    widget.controller.type.value = type;
   }
 }
 
 class CategoryType extends StatelessWidget {
-  final Function() onTap;
+  final Function(String type) onTap;
   final bool isSelected;
   final String title;
 
@@ -85,7 +66,7 @@ class CategoryType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: onTap,
+        onTap: () => onTap(title),
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
@@ -93,7 +74,7 @@ class CategoryType extends StatelessWidget {
                 ? title == 'Income'
                     ? Colors.green
                     : Colors.red
-                : Colors.white,
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(isSelected ? 5 : 0),
             boxShadow: isSelected
                 ? [
