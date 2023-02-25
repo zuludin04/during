@@ -7,7 +7,7 @@ import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
-import 'package:during/ui/dashboard/controllers/statistic_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/statistic_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:get/get.dart';
 
@@ -66,7 +66,7 @@ class TransactionCreateController extends GetxController {
       Get.find<DashboardController>().loadSavingTotalBalance();
       Get.find<TransactionController>().loadDailyTransactions();
       Get.find<SavingController>().loadSavingList();
-      Get.find<StatisticNavigationController>().loadInitialStatistic();
+      Get.find<StatisticController>().loadInitialStatistic();
       Get.back();
       Get.back();
     } else {

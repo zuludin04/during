@@ -1,6 +1,6 @@
 import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
-import 'package:during/ui/dashboard/controllers/statistic_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/statistic_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +10,7 @@ class StatisticNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<StatisticNavigationController>();
+    var controller = Get.find<StatisticController>();
 
     return SingleChildScrollView(
       child: Column(

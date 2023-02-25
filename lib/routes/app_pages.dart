@@ -5,8 +5,8 @@ import 'package:during/ui/category/views/category_dashboard_screen.dart';
 import 'package:during/ui/category/views/category_icons_screen.dart';
 import 'package:during/ui/dashboard/bindings/dashboard_binding.dart';
 import 'package:during/ui/dashboard/bindings/saving_binding.dart';
-import 'package:during/ui/dashboard/bindings/setting_navigation_binding.dart';
-import 'package:during/ui/dashboard/bindings/statistic_navigation_binding.dart';
+import 'package:during/ui/dashboard/bindings/setting_binding.dart';
+import 'package:during/ui/dashboard/bindings/statistic_binding.dart';
 import 'package:during/ui/dashboard/bindings/transaction_binding.dart';
 import 'package:during/ui/dashboard/views/dashboard_screen.dart';
 import 'package:during/ui/language/language_change_screen.dart';
@@ -39,8 +39,8 @@ class AppPages {
         DashboardBinding(),
         TransactionBinding(),
         SavingBinding(),
-        SettingNavigationBinding(),
-        StatisticNavigationBinding(),
+        SettingBinding(),
+        StatisticBinding(),
       ],
     ),
     GetPage(

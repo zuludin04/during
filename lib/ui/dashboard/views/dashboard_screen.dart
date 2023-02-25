@@ -4,7 +4,7 @@ import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
-import 'package:during/ui/dashboard/controllers/statistic_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/statistic_controller.dart';
 import 'package:during/ui/dashboard/views/setting_navigation.dart';
 import 'package:during/ui/dashboard/views/transaction_navigation.dart';
 import 'package:during/ui/dashboard/views/saving_navigation.dart';
@@ -57,7 +57,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   controller.loadSavingTotalBalance();
                   Get.find<TransactionController>().loadDailyTransactions();
                   Get.find<SavingController>().loadSavingList();
-                  Get.find<StatisticNavigationController>()
+                  Get.find<StatisticController>()
                       .loadInitialStatistic();
                 }
               } else {
@@ -133,7 +133,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   var endMonth =
                       DateTime(showMonth.year, showMonth.month + 1, 0);
 
-                  Get.find<StatisticNavigationController>().loadStatisticData(
+                  Get.find<StatisticController>().loadStatisticData(
                       startMonth.millisecondsSinceEpoch,
                       endMonth.millisecondsSinceEpoch);
                 });
@@ -158,7 +158,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 var startMonth = DateTime(showMonth.year, showMonth.month, 1);
                 var endMonth = DateTime(showMonth.year, showMonth.month + 1, 0);
 
-                Get.find<StatisticNavigationController>().loadStatisticData(
+                Get.find<StatisticController>().loadStatisticData(
                     startMonth.millisecondsSinceEpoch,
                     endMonth.millisecondsSinceEpoch);
               },

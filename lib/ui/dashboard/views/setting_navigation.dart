@@ -1,7 +1,7 @@
 import 'package:during/core/utils/constants.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
-import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
+import 'package:during/ui/dashboard/controllers/setting_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -64,8 +64,7 @@ class _SettingNavigationState extends State<SettingNavigation> {
                   confirm: TextButton(
                     onPressed: () {
                       Get.back();
-                      var controller = Get.find<DashboardController>();
-                      controller.resetData();
+                      Get.find<SettingController>().resetData();
                     },
                     child: Text(
                       'ok'.tr,

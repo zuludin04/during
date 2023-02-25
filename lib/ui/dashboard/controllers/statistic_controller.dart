@@ -2,7 +2,7 @@ import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:get/get.dart';
 
-class StatisticNavigationController extends GetxController {
+class StatisticController extends GetxController {
   final DuringRepository _repository = Get.find();
 
   var income = 0.obs;
