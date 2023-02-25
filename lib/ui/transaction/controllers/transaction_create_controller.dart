@@ -8,6 +8,7 @@ import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:during/ui/dashboard/controllers/statistic_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
+import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:get/get.dart';
 
 class TransactionCreateController extends GetxController {
@@ -66,6 +67,8 @@ class TransactionCreateController extends GetxController {
       Get.find<TransactionController>().loadDailyTransactions();
       Get.find<SavingController>().loadSavingList();
       Get.find<StatisticController>().loadInitialStatistic();
+      Get.find<SavingDetailController>().loadSavingTransactions();
+      Get.find<SavingDetailController>().loadDetailSaving();
       Get.back();
       Get.back();
     } else {

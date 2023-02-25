@@ -36,9 +36,10 @@ class TransactionDetailController extends GetxController {
     Get.find<TransactionController>().loadDailyTransactions();
     Get.find<SavingController>().loadSavingList();
     Get.find<StatisticController>().loadInitialStatistic();
-    if (source == 'saving') {
+    // if (source == 'saving') {
+      Get.find<SavingDetailController>().loadDetailSaving();
       Get.find<SavingDetailController>().loadSavingTransactions();
-    }
+    // }
     Get.back();
     Get.back();
   }

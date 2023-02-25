@@ -11,8 +11,6 @@ class SavingDetailController extends GetxController {
 
   SavingEntity saving = SavingEntity();
   List<TransactionEntity> transactions = [];
-  bool loading = false;
-  bool empty = false;
 
   @override
   void onInit() {
@@ -28,18 +26,8 @@ class SavingDetailController extends GetxController {
   }
 
   void loadSavingTransactions() async {
-    loading = true;
-
     var results = await _repository.loadSavingTransactions(savingId);
-
-    if (results.isEmpty) {
-      empty = true;
-    } else {
-      empty = false;
-      transactions = results;
-    }
-
-    loading = false;
+    transactions = results;
     update();
   }
 

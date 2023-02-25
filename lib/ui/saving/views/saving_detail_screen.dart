@@ -175,10 +175,8 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                 ),
                 GetBuilder<SavingDetailController>(
                   builder: (controller) {
-                    if (controller.loading) {
-                      return _loadTransactionIndicator(true);
-                    } else if (controller.empty) {
-                      return _loadTransactionIndicator(false);
+                    if (controller.transactions.isEmpty) {
+                      return _loadTransactionIndicator();
                     } else {
                       return SliverGroupedListView<TransactionEntity, DateTime>(
                         elements: controller.transactions,
@@ -212,12 +210,10 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
     );
   }
 
-  Widget _loadTransactionIndicator(bool loading) {
+  Widget _loadTransactionIndicator() {
     return SliverFillRemaining(
       child: Center(
-        child: loading
-            ? const CircularProgressIndicator()
-            : EmptyLayout(message: 'empty_transaction'.tr),
+        child: EmptyLayout(message: 'empty_transaction'.tr),
       ),
     );
   }
