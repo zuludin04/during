@@ -1,11 +1,10 @@
 import 'package:during/core/widgets/category_item.dart';
 import 'package:during/core/widgets/empty_layout.dart';
+import 'package:during/core/widgets/input_section.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'header_text.dart';
 
 class CategoryPicker extends StatelessWidget {
   final String title;
@@ -25,31 +24,24 @@ class CategoryPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        HeaderText(title: title, showTrailing: false),
-        const SizedBox(height: 8),
-        InkWell(
-          onTap: () async {
-            CategoryEntity? category = await Get.bottomSheet(_categoryList());
-            if (category != null) {
-              onSelectedCategory(category);
-            }
-          },
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black38),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Text(
-              value,
-              style: const TextStyle(fontSize: 16),
-            ),
+    return InputSection(
+      title: title,
+      child: InkWell(
+        onTap: () async {
+          CategoryEntity? category = await Get.bottomSheet(_categoryList());
+          if (category != null) {
+            onSelectedCategory(category);
+          }
+        },
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+          child: Text(
+            value,
+            style: const TextStyle(fontSize: 16),
           ),
         ),
-      ],
+      ),
     );
   }
 

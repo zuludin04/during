@@ -1,7 +1,7 @@
 import 'package:during/core/utils/ad_helper.dart';
 import 'package:during/core/utils/constants.dart';
 import 'package:during/core/widgets/category_picker.dart';
-import 'package:during/core/widgets/header_text.dart';
+import 'package:during/core/widgets/input_section.dart';
 import 'package:during/core/widgets/input_text_field.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/routes/app_pages.dart';
@@ -115,13 +115,8 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
                   currencyFormat: true,
                 ),
                 const SizedBox(height: 16),
-                HeaderText(title: 'color'.tr, showTrailing: false),
-                const SizedBox(height: 8),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black26),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+                InputSection(
+                  title: 'color'.tr,
                   child: DropdownButtonHideUnderline(
                     child: Obx(() {
                       return DropdownButton<String>(

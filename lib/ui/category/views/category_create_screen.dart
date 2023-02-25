@@ -1,6 +1,6 @@
 import 'package:during/core/utils/ad_helper.dart';
 import 'package:during/core/utils/constants.dart';
-import 'package:during/core/widgets/header_text.dart';
+import 'package:during/core/widgets/input_section.dart';
 import 'package:during/core/widgets/input_text_field.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/routes/app_pages.dart';
@@ -90,7 +90,7 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
-                        child: _InputCategorySection(
+                        child: InputSection(
                           title: 'type'.tr,
                           child: DropdownButtonHideUnderline(
                             child: Obx(() {
@@ -115,7 +115,7 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                       ),
                       const SizedBox(width: 8),
                       Expanded(
-                        child: _InputCategorySection(
+                        child: InputSection(
                           title: 'color'.tr,
                           child: DropdownButtonHideUnderline(
                             child: Obx(() {
@@ -150,7 +150,7 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                       ),
                       const SizedBox(width: 8),
                       Obx(() {
-                        return _InputCategorySection(
+                        return InputSection(
                           title: 'icon'.tr,
                           child: InkWell(
                             onTap: () async {
@@ -245,31 +245,6 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
             )
         ],
       ),
-    );
-  }
-}
-
-class _InputCategorySection extends StatelessWidget {
-  final String title;
-  final Widget child;
-
-  const _InputCategorySection({required this.title, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        HeaderText(title: title, showTrailing: false),
-        const SizedBox(height: 8),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black26),
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: child,
-        ),
-      ],
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:during/core/utils/ad_helper.dart';
 import 'package:during/core/widgets/category_picker.dart';
 import 'package:during/core/widgets/date_dialog.dart';
-import 'package:during/core/widgets/header_text.dart';
+import 'package:during/core/widgets/input_section.dart';
 import 'package:during/core/widgets/input_text_field.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/routes/app_pages.dart';
@@ -121,26 +121,23 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                HeaderText(title: 'saving'.tr, showTrailing: false),
-                const SizedBox(height: 8),
-                InkWell(
-                  onTap: () {
-                    _controller.pickSaving();
-                  },
-                  child: Obx(
-                    () => Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 12),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black38),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Text(
-                        _controller.pickedSaving.value == 'Choose Saving'
-                            ? 'choose_saving'.tr
-                            : _controller.pickedSaving.value,
-                        style: const TextStyle(fontSize: 16),
+                InputSection(
+                  title: 'saving'.tr,
+                  child: InkWell(
+                    onTap: () {
+                      _controller.pickSaving();
+                    },
+                    child: Obx(
+                      () => Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 12),
+                        child: Text(
+                          _controller.pickedSaving.value == 'Choose Saving'
+                              ? 'choose_saving'.tr
+                              : _controller.pickedSaving.value,
+                          style: const TextStyle(fontSize: 16),
+                        ),
                       ),
                     ),
                   ),

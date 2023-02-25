@@ -1,9 +1,8 @@
 import 'package:during/core/utils/currency_formatter.dart';
+import 'package:during/core/widgets/input_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
-import 'header_text.dart';
 
 class InputTextField extends StatelessWidget {
   final TextEditingController controller = TextEditingController();
@@ -33,45 +32,42 @@ class InputTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        HeaderText(title: title, showTrailing: false),
-        const SizedBox(height: 8),
-        TextFormField(
-          enabled: enable,
-          controller: controller..text = text,
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: const TextStyle(color: Colors.black45),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-            border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.black38),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.black38),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.black38),
-              borderRadius: BorderRadius.circular(5),
-            ),
+    return InputSection(
+      title: title,
+      child: TextFormField(
+        enabled: enable,
+        controller: controller..text = text,
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: const TextStyle(color: Colors.black45),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.circular(5),
           ),
-          cursorColor: Colors.blue,
-          onSaved: (String? val) {
-            if (currencyFormat) {
-              String onlyDigits = val!.replaceAll(RegExp('[^0-9]'), "");
-              onSaved?.value = onlyDigits;
-            } else {
-              onSaved?.value = val ?? '';
-            }
-          },
-          validator: enableValidation ? _emptyValidator : null,
-          keyboardType: keyboardType,
-          textCapitalization: capitalization,
-          inputFormatters: currencyFormat ? _inputFormatters() : [],
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.circular(5),
+          ),
         ),
-      ],
+        cursorColor: Colors.blue,
+        onSaved: (String? val) {
+          if (currencyFormat) {
+            String onlyDigits = val!.replaceAll(RegExp('[^0-9]'), "");
+            onSaved?.value = onlyDigits;
+          } else {
+            onSaved?.value = val ?? '';
+          }
+        },
+        validator: enableValidation ? _emptyValidator : null,
+        keyboardType: keyboardType,
+        textCapitalization: capitalization,
+        inputFormatters: currencyFormat ? _inputFormatters() : [],
+      ),
     );
   }
 
