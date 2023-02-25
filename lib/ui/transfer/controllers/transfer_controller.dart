@@ -1,3 +1,4 @@
+import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/constants.dart';
@@ -39,7 +40,7 @@ class TransferController extends GetxController {
     await _repository.updateSavingBalance(
         target ? targetSaving.id : sourceSaving.id, savingBalance(target));
     Get.find<TransactionController>().loadDailyTransactions();
-    Get.find<TransactionController>().loadSavingList();
+    Get.find<SavingController>().loadSavingList();
     Get.back();
   }
 

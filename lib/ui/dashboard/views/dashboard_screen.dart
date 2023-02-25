@@ -2,6 +2,7 @@ import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/widgets/bottom_navigation.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
+import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/dashboard/controllers/statistic_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/setting_navigation.dart';
@@ -55,7 +56,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 if (result != null && result == 'OK') {
                   controller.loadSavingTotalBalance();
                   Get.find<TransactionController>().loadDailyTransactions();
-                  Get.find<TransactionController>().loadSavingList();
+                  Get.find<SavingController>().loadSavingList();
                   Get.find<StatisticNavigationController>()
                       .loadInitialStatistic();
                 }

@@ -1,7 +1,7 @@
 import 'package:during/data/during_repository.dart';
-import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:during/service/language_service.dart';
+import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:get/get.dart';
 
@@ -37,20 +37,9 @@ class DashboardController extends GetxController {
     totalBalance.value = balance;
   }
 
-  void addSaving() async {
-    var result = await Get.toNamed(RoutePath.savingInsert, arguments: {
-      'status': 'create',
-    });
-    if (result != null) {
-      if (result == true) {
-        Get.find<TransactionController>().loadSavingList();
-      }
-    }
-  }
-
   void resetData() async {
     _repository.resetAllData().then((value) {
-      Get.find<TransactionController>().loadSavingList();
+      Get.find<SavingController>().loadSavingList();
       Get.find<TransactionController>().loadDailyTransactions();
       changeNavIndex(0);
     });

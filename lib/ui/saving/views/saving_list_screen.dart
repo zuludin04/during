@@ -6,7 +6,7 @@ import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/routes/app_pages.dart';
-import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
+import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:during/ui/saving/controllers/saving_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -71,7 +71,7 @@ class _SavingListScreenState extends State<SavingListScreen> {
               if (result != null) {
                 if (result == true) {
                   _controller.loadSavings();
-                  Get.find<TransactionController>().loadSavingList();
+                  Get.find<SavingController>().loadSavingList();
                 }
               }
             },
