@@ -15,7 +15,7 @@ class SavingCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed(RoutePath.savingDetail, arguments: saving),
+      onTap: () => Get.toNamed(RoutePath.savingDetail, arguments: saving.id),
       child: Container(
         decoration: BoxDecoration(
           color: saving.color!.convertStringToColor().withOpacity(1),

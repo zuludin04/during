@@ -111,7 +111,7 @@ class _SavingListScreenState extends State<SavingListScreen> {
         if (type == savingPickedType) {
           Get.back(result: saving);
         } else {
-          Get.toNamed(RoutePath.savingDetail, arguments: saving);
+          Get.toNamed(RoutePath.savingDetail, arguments: saving.id);
         }
       },
       child: Container(

@@ -4,7 +4,6 @@ import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/header_text.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/core/widgets/transaction_item.dart';
-import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
@@ -23,9 +22,6 @@ class SavingDetailScreen extends StatefulWidget {
 }
 
 class _SavingDetailScreenState extends State<SavingDetailScreen> {
-  final SavingEntity _saving = Get.arguments;
-  final SavingDetailController _controller = Get.find();
-
   late BannerAd _bannerAd;
   bool _isBannerReady = false;
 
@@ -72,7 +68,7 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                 confirm: TextButton(
                   onPressed: () {
                     Get.back();
-                    _controller.deleteSaving();
+                    Get.find<SavingDetailController>().deleteSaving();
                   },
                   child: Text(
                     'ok'.tr,
@@ -97,7 +93,7 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
             onPressed: () {
               Get.toNamed(RoutePath.savingInsert, arguments: {
                 'status': 'update',
-                'saving': Get.arguments,
+                'saving': Get.find<SavingDetailController>().saving,
               });
             },
             icon: const Icon(Icons.edit, color: Colors.black),
@@ -112,65 +108,68 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Rp ${_saving.balance!.toPriceFormat()}',
-                          style: const TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/category/${_saving.categoryIcon}',
-                                  width: 35,
-                                  height: 35,
-                                ),
-                                const SizedBox(width: 10),
-                                Text(
-                                  _saving.name ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600,
+                    child: GetBuilder<SavingDetailController>(
+                      builder: (controller) => Column(
+                        children: [
+                          Text(
+                            'Rp ${controller.saving.balance!.toPriceFormat()}',
+                            style: const TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/category/${controller.saving.categoryIcon}',
+                                    width: 35,
+                                    height: 35,
                                   ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text('type'.tr),
-                                Text(
-                                  _saving.categoryName ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    controller.saving.name ?? '',
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text('created'.tr),
-                                Text(
-                                  _saving.date!.changeDateFormat('MM/yy'),
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text('type'.tr),
+                                  Text(
+                                    controller.saving.categoryName ?? '',
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        HeaderText(
-                            title: 'transaction'.tr, showTrailing: false),
-                      ],
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text('created'.tr),
+                                  Text(
+                                    controller.saving.date!
+                                        .changeDateFormat('MM/yy'),
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          HeaderText(
+                              title: 'transaction'.tr, showTrailing: false),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -182,9 +181,10 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                       return _loadTransactionIndicator(false);
                     } else {
                       return SliverGroupedListView<TransactionEntity, DateTime>(
-                        elements: _controller.transactions,
+                        elements: controller.transactions,
                         groupBy: (element) {
-                          var date = DateTime.fromMillisecondsSinceEpoch(element.date!);
+                          var date = DateTime.fromMillisecondsSinceEpoch(
+                              element.date!);
                           return DateTime(date.year, date.month, date.day);
                         },
                         groupSeparatorBuilder: (DateTime groupByValue) =>

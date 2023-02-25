@@ -49,7 +49,7 @@ class SavingInsertController extends GetxController {
     if (type == 'update') {
       saving.id = this.saving.id!;
       await _repository.updateSaving(saving);
-      Get.find<SavingDetailController>().loadSavingTransactions();
+      Get.find<SavingDetailController>().loadDetailSaving();
       Get.find<SavingController>().loadSavingList();
       Get.find<TransactionController>().loadDailyTransactions();
       Get.find<TransactionController>().loadSavingTotalBalance();

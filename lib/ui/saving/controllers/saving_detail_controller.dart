@@ -7,8 +7,9 @@ import 'package:get/get.dart';
 
 class SavingDetailController extends GetxController {
   final DuringRepository _repository = Get.find();
-  final SavingEntity saving = Get.arguments;
+  final int savingId = Get.arguments;
 
+  SavingEntity saving = SavingEntity();
   List<TransactionEntity> transactions = [];
   bool loading = false;
   bool empty = false;
@@ -17,12 +18,19 @@ class SavingDetailController extends GetxController {
   void onInit() {
     super.onInit();
     loadSavingTransactions();
+    loadDetailSaving();
+  }
+
+  void loadDetailSaving() async {
+    var result = await _repository.loadSingleSaving(savingId);
+    saving = result;
+    update();
   }
 
   void loadSavingTransactions() async {
     loading = true;
 
-    var results = await _repository.loadSavingTransactions(saving.id!);
+    var results = await _repository.loadSavingTransactions(savingId);
 
     if (results.isEmpty) {
       empty = true;
@@ -36,7 +44,7 @@ class SavingDetailController extends GetxController {
   }
 
   void deleteSaving() async {
-    await _repository.deleteSaving(saving.id);
+    await _repository.deleteSaving(savingId);
     await _repository.deleteSavingTransactions(transactions);
     Get.find<SavingController>().loadSavingList();
     Get.find<TransactionController>().loadDailyTransactions();
