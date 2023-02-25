@@ -12,17 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:intl/intl.dart';
 
-class DashboardScreen extends StatefulWidget {
+class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
-
-  @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
-}
-
-class _DashboardScreenState extends State<DashboardScreen> {
-  DateTime showMonth = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +22,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            elevation: controller.navIndex == 0 ? 0 : 0.5,
+            elevation:
+                controller.navIndex == 0 || controller.navIndex == 1 ? 0 : 0.5,
             title: const Text('During'),
-            bottom: _bottomToolbar(navIndex: controller.navIndex),
             systemOverlayStyle: const SystemUiOverlayStyle(
               statusBarColor: Colors.white,
               statusBarIconBrightness: Brightness.dark,
@@ -84,58 +76,5 @@ class _DashboardScreenState extends State<DashboardScreen> {
         );
       },
     );
-  }
-
-  PreferredSizeWidget? _bottomToolbar({required int navIndex}) {
-    if (navIndex == 1) {
-      return PreferredSize(
-        preferredSize: const Size(double.infinity, 40),
-        child: Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  showMonth = DateTime(showMonth.year, showMonth.month - 1);
-                  var startMonth = DateTime(showMonth.year, showMonth.month, 1);
-                  var endMonth =
-                      DateTime(showMonth.year, showMonth.month + 1, 0);
-
-                  Get.find<StatisticController>().loadStatisticData(
-                      startMonth.millisecondsSinceEpoch,
-                      endMonth.millisecondsSinceEpoch);
-                });
-              },
-              icon: const Icon(Icons.chevron_left),
-            ),
-            Expanded(
-              child: Text(
-                DateFormat("MMMM yyyy").format(showMonth),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  showMonth = DateTime(showMonth.year, showMonth.month + 1);
-                });
-                var startMonth = DateTime(showMonth.year, showMonth.month, 1);
-                var endMonth = DateTime(showMonth.year, showMonth.month + 1, 0);
-
-                Get.find<StatisticController>().loadStatisticData(
-                    startMonth.millisecondsSinceEpoch,
-                    endMonth.millisecondsSinceEpoch);
-              },
-              icon: const Icon(Icons.chevron_right),
-            ),
-          ],
-        ),
-      );
-    } else {
-      return null;
-    }
   }
 }

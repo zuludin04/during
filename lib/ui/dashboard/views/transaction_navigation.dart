@@ -66,6 +66,7 @@ class TransactionNavigation extends StatelessWidget {
                   transaction: element,
                   source: 'normal',
                 ),
+                order: GroupedListOrder.DESC,
               ),
             );
           }

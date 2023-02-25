@@ -4,6 +4,7 @@ import 'package:during/ui/dashboard/controllers/statistic_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class StatisticNavigation extends StatelessWidget {
   const StatisticNavigation({Key? key}) : super(key: key);
@@ -12,50 +13,90 @@ class StatisticNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.find<StatisticController>();
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(height: 8),
-          _StatisticSection(
-            title: 'Overview',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          height: kToolbarHeight,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              bottom: BorderSide(color: Colors.black38),
+            ),
+          ),
+          child: GetBuilder<StatisticController>(
+            builder: (controller) => Row(
               children: [
-                _TransactionOverviewSection(
-                  title: 'Income',
-                  balance: controller.income,
-                  color: Colors.blue,
+                IconButton(
+                  onPressed: () => controller.changeMonthStatistic(false),
+                  icon: const Icon(Icons.chevron_left),
                 ),
-                _TransactionOverviewSection(
-                  title: 'Expense',
-                  balance: controller.expense,
-                  color: Colors.red,
+                Expanded(
+                  child: Text(
+                    DateFormat("MMMM yyyy").format(controller.currentDate),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
-                _TransactionOverviewSection(
-                  title: 'Total',
-                  balance: controller.total,
-                  color: Colors.black,
+                IconButton(
+                  onPressed: () => controller.changeMonthStatistic(true),
+                  icon: const Icon(Icons.chevron_right),
                 ),
               ],
             ),
           ),
-          _StatisticSection(
-            title: 'Expense Structure',
-            child: TransactionPieStatistic(
-              transactions: controller.expenseTransactions,
-              totalTransaction: controller.expense,
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 8),
+                _StatisticSection(
+                  title: 'Overview',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _TransactionOverviewSection(
+                        title: 'Income',
+                        balance: controller.income,
+                        color: Colors.blue,
+                      ),
+                      _TransactionOverviewSection(
+                        title: 'Expense',
+                        balance: controller.expense,
+                        color: Colors.red,
+                      ),
+                      _TransactionOverviewSection(
+                        title: 'Total',
+                        balance: controller.total,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
+                ),
+                _StatisticSection(
+                  title: 'Expense Structure',
+                  child: TransactionPieStatistic(
+                    transactions: controller.expenseTransactions,
+                    totalTransaction: controller.expense,
+                  ),
+                ),
+                _StatisticSection(
+                  title: 'Income Structure',
+                  child: TransactionPieStatistic(
+                    transactions: controller.incomeTransactions,
+                    totalTransaction: controller.income,
+                  ),
+                ),
+                const SizedBox(height: 8),
+              ],
             ),
           ),
-          _StatisticSection(
-            title: 'Income Structure',
-            child: TransactionPieStatistic(
-              transactions: controller.incomeTransactions,
-              totalTransaction: controller.income,
-            ),
-          ),
-          const SizedBox(height: 8),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

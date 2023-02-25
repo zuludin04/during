@@ -11,6 +11,8 @@ class StatisticController extends GetxController {
   var incomeTransactions = <TransactionEntity>[].obs;
   var expenseTransactions = <TransactionEntity>[].obs;
 
+  var currentDate = DateTime.now();
+
   @override
   void onInit() {
     loadInitialStatistic();
@@ -18,9 +20,24 @@ class StatisticController extends GetxController {
   }
 
   void loadInitialStatistic() {
-    var dateTime = DateTime.now();
-    var startMonth = DateTime(dateTime.year, dateTime.month, 1);
-    var endMonth = DateTime(dateTime.year, dateTime.month + 1, 0);
+    var startMonth = DateTime(currentDate.year, currentDate.month, 1);
+    var endMonth = DateTime(currentDate.year, currentDate.month + 1, 0);
+    loadStatisticData(
+        startMonth.millisecondsSinceEpoch, endMonth.millisecondsSinceEpoch);
+  }
+
+  void changeMonthStatistic(bool nextMonth) {
+    if (nextMonth) {
+      currentDate = DateTime(currentDate.year, currentDate.month + 1);
+    } else {
+      currentDate = DateTime(currentDate.year, currentDate.month - 1);
+    }
+
+    update();
+
+    var startMonth = DateTime(currentDate.year, currentDate.month, 1);
+    var endMonth = DateTime(currentDate.year, currentDate.month + 1, 0);
+
     loadStatisticData(
         startMonth.millisecondsSinceEpoch, endMonth.millisecondsSinceEpoch);
   }
