@@ -1,6 +1,7 @@
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/ui/category/controllers/category_dashboard_controller.dart';
+import 'package:during/ui/dashboard/controllers/statistic_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/saving/controllers/saving_insert_controller.dart';
 import 'package:during/ui/transaction/controllers/transaction_create_controller.dart';
@@ -47,6 +48,7 @@ class CategoryCreateController extends GetxController {
         if (source == 'category') {
           Get.find<CategoryDashboardController>().loadCategory();
           Get.find<TransactionController>().loadDailyTransactions();
+          Get.find<StatisticController>().loadInitialStatistic();
         }
         _updateCategoryListDialog();
         Get.back();
