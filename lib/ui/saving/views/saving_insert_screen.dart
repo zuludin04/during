@@ -1,11 +1,11 @@
 import 'package:during/core/utils/add_helper.dart';
+import 'package:during/core/utils/constants.dart';
 import 'package:during/core/widgets/category_picker.dart';
-import 'package:during/core/widgets/color_dialog.dart';
+import 'package:during/core/widgets/header_text.dart';
 import 'package:during/core/widgets/input_text_field.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/saving/controllers/saving_insert_controller.dart';
-import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -115,11 +115,40 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
                   currencyFormat: true,
                 ),
                 const SizedBox(height: 16),
-                ColorDialog(
-                  selectedColor: (Color color) {
-                    _controller.color.value = ColorTools.colorCode(color);
-                  },
-                  currentColor: Color(int.parse('0xff${_controller.color}')),
+                HeaderText(title: 'color'.tr, showTrailing: false),
+                const SizedBox(height: 8),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black26),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: Obx(() {
+                      return DropdownButton<String>(
+                        value: _controller.color.value,
+                        items: categoryColors
+                            .map((e) => DropdownMenuItem<String>(
+                                  value: e,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 72,
+                                      decoration: BoxDecoration(
+                                        color: Color(int.parse('0xff$e')),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          _controller.color.value = value ?? "F44336";
+                        },
+                        isExpanded: true,
+                      );
+                    }),
+                  ),
                 ),
                 const SizedBox(height: 32),
                 if (_isBannerReady)

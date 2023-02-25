@@ -4,8 +4,6 @@ import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
-import 'package:flex_color_picker/flex_color_picker.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SavingInsertController extends GetxController {
@@ -17,7 +15,7 @@ class SavingInsertController extends GetxController {
 
   var name = ''.obs;
   var balance = ''.obs;
-  var color = ''.obs;
+  var color = 'F44336'.obs;
   var selectedCategory = CategoryEntity().obs;
   var savingCategory = <CategoryEntity>[].obs;
 
@@ -36,7 +34,6 @@ class SavingInsertController extends GetxController {
       Get.rawSnackbar(message: 'Please choose saving category');
       return;
     }
-    if (color.value == '') color.value = ColorTools.colorCode(Colors.blue);
 
     SavingEntity saving = SavingEntity(
       name: name.value,
