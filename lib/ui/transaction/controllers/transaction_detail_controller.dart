@@ -1,4 +1,4 @@
-import 'package:during/data/during_repository.dart';
+import 'package:during/core/utils/base_controller.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
@@ -8,9 +8,7 @@ import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:get/get.dart';
 
-class TransactionDetailController extends GetxController {
-  final DuringRepository _repository = Get.find();
-
+class TransactionDetailController extends BaseController {
   final TransactionEntity transaction;
   final String source;
   SavingEntity saving = SavingEntity();
@@ -24,21 +22,21 @@ class TransactionDetailController extends GetxController {
   }
 
   Future<void> loadTransactionSaving(int savingId) async {
-    var result = await _repository.loadSingleSaving(savingId);
+    var result = await repository.loadSingleSaving(savingId);
     saving = result;
     update();
   }
 
   void deleteTransaction() async {
-    await _repository.deleteTransaction(transaction.id);
-    await _repository.updateSavingBalance(saving.id, savingBalance());
+    await repository.deleteTransaction(transaction.id);
+    await repository.updateSavingBalance(saving.id, savingBalance());
     Get.find<TransactionController>().loadSavingTotalBalance();
     Get.find<TransactionController>().loadDailyTransactions();
     Get.find<SavingController>().loadSavingList();
     Get.find<StatisticController>().loadInitialStatistic();
     // if (source == 'saving') {
-      Get.find<SavingDetailController>().loadDetailSaving();
-      Get.find<SavingDetailController>().loadSavingTransactions();
+    Get.find<SavingDetailController>().loadDetailSaving();
+    Get.find<SavingDetailController>().loadSavingTransactions();
     // }
     Get.back();
     Get.back();

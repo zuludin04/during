@@ -1,6 +1,6 @@
 import 'package:during/core/extensions/string_extension.dart';
+import 'package:during/core/utils/base_controller.dart';
 import 'package:during/core/utils/constants.dart';
-import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
@@ -11,9 +11,7 @@ import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:get/get.dart';
 
-class TransactionCreateController extends GetxController {
-  final DuringRepository _repository = Get.find();
-
+class TransactionCreateController extends BaseController {
   String? transactionType = Get.parameters['transaction'];
   SavingEntity saving = SavingEntity();
   TransactionEntity transaction = TransactionEntity();
@@ -61,8 +59,8 @@ class TransactionCreateController extends GetxController {
     );
 
     if (transactionType! == 'Update') {
-      await _repository.updateTransaction(transaction..id = transactionId);
-      await _repository.updateSavingBalance(saving.id, savingBalance(true));
+      await repository.updateTransaction(transaction..id = transactionId);
+      await repository.updateSavingBalance(saving.id, savingBalance(true));
       Get.find<TransactionController>().loadSavingTotalBalance();
       Get.find<TransactionController>().loadDailyTransactions();
       Get.find<SavingController>().loadSavingList();
@@ -72,14 +70,14 @@ class TransactionCreateController extends GetxController {
       Get.back();
       Get.back();
     } else {
-      await _repository.saveTransaction(transaction);
-      await _repository.updateSavingBalance(saving.id, savingBalance(false));
+      await repository.saveTransaction(transaction);
+      await repository.updateSavingBalance(saving.id, savingBalance(false));
       Get.back(result: 'OK');
     }
   }
 
   void loadTransaction() async {
-    var transaction = await _repository.loadTransactions();
+    var transaction = await repository.loadTransactions();
     totalTransaction = transaction.length + 1;
   }
 
@@ -118,14 +116,12 @@ class TransactionCreateController extends GetxController {
     type.value = transaction.type!;
     date.value = transaction.date!;
 
-    var savingResult =
-        await _repository.loadSingleSaving(transaction.savingId!);
+    var savingResult = await repository.loadSingleSaving(transaction.savingId!);
     saving = savingResult;
     pickedSaving.value =
         '${savingResult.name} - (Rp ${savingResult.balance!.toPriceFormat()})';
 
-    var category =
-        await _repository.loadSingleCategory(transaction.categoryId!);
+    var category = await repository.loadSingleCategory(transaction.categoryId!);
     selectedCategory.value = category;
 
     changeCategoryList(type.value);
@@ -144,10 +140,10 @@ class TransactionCreateController extends GetxController {
   }
 
   Future<void> loadCategory() async {
-    var incomeResult = await _repository.loadCategoryType(2);
+    var incomeResult = await repository.loadCategoryType(2);
     incomeCategory.value = incomeResult;
 
-    var expenseResult = await _repository.loadCategoryType(3);
+    var expenseResult = await repository.loadCategoryType(3);
     expenseCategory.value = expenseResult;
 
     changeCategoryList(type.value);

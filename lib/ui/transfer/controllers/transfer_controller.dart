@@ -1,16 +1,13 @@
+import 'package:during/core/utils/base_controller.dart';
+import 'package:during/core/utils/constants.dart';
+import 'package:during/data/source/entity/saving_entity.dart';
+import 'package:during/data/source/entity/transaction_entity.dart';
+import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:get/get.dart';
 
-import '../../../core/utils/constants.dart';
-import '../../../data/during_repository.dart';
-import '../../../data/source/entity/saving_entity.dart';
-import '../../../data/source/entity/transaction_entity.dart';
-import '../../../routes/app_pages.dart';
-import '../../dashboard/controllers/transaction_controller.dart';
-
-class TransferController extends GetxController {
-  final DuringRepository _repository = Get.find();
-
+class TransferController extends BaseController {
   var sourceSaving = SavingEntity();
   var targetSaving = SavingEntity();
 
@@ -36,8 +33,8 @@ class TransferController extends GetxController {
       savingId: target ? targetSaving.id : sourceSaving.id,
     );
 
-    await _repository.saveTransaction(transaction);
-    await _repository.updateSavingBalance(
+    await repository.saveTransaction(transaction);
+    await repository.updateSavingBalance(
         target ? targetSaving.id : sourceSaving.id, savingBalance(target));
     Get.find<TransactionController>().loadDailyTransactions();
     Get.find<SavingController>().loadSavingList();

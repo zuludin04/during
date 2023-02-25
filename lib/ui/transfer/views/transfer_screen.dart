@@ -1,11 +1,10 @@
+import 'package:during/core/widgets/date_dialog.dart';
+import 'package:during/core/widgets/header_text.dart';
+import 'package:during/core/widgets/input_text_field.dart';
 import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/ui/transfer/controllers/transfer_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../core/widgets/date_dialog.dart';
-import '../../../core/widgets/header_text.dart';
-import '../../../core/widgets/input_text_field.dart';
 
 class TransferScreen extends StatefulWidget {
   const TransferScreen({Key? key}) : super(key: key);

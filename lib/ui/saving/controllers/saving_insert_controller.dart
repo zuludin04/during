@@ -1,4 +1,4 @@
-import 'package:during/data/during_repository.dart';
+import 'package:during/core/utils/base_controller.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
@@ -7,9 +7,7 @@ import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:during/ui/saving/controllers/saving_manage_controller.dart';
 import 'package:get/get.dart';
 
-class SavingInsertController extends GetxController {
-  final DuringRepository _repository = Get.find();
-
+class SavingInsertController extends BaseController {
   String type = Get.arguments['status'];
   SavingEntity saving = SavingEntity();
   var totalSaving = 0;
@@ -46,7 +44,7 @@ class SavingInsertController extends GetxController {
 
     if (type == 'update') {
       saving.id = this.saving.id!;
-      await _repository.updateSaving(saving);
+      await repository.updateSaving(saving);
       Get.find<SavingDetailController>().loadDetailSaving();
       Get.find<SavingController>().loadSavingList();
       Get.find<SavingManageController>().loadSavings();
@@ -54,7 +52,7 @@ class SavingInsertController extends GetxController {
       Get.find<TransactionController>().loadSavingTotalBalance();
       Get.back();
     } else {
-      await _repository.insertSaving(saving);
+      await repository.insertSaving(saving);
       Get.back(result: 'OK');
     }
   }
@@ -65,16 +63,16 @@ class SavingInsertController extends GetxController {
     balance.value = '${saving.balance}';
     color.value = saving.color!;
     selectedCategory.value =
-        await _repository.loadSingleCategory(saving.categoryId!);
+        await repository.loadSingleCategory(saving.categoryId!);
   }
 
   void loadSavings() async {
-    var savings = await _repository.loadSaving();
+    var savings = await repository.loadSaving();
     totalSaving = savings.length + 1;
   }
 
   void loadCategory() async {
-    var result = await _repository.loadCategoryType(1);
+    var result = await repository.loadCategoryType(1);
     savingCategory.value = result;
     if (savingCategory.isEmpty) {
       selectedCategory.value = CategoryEntity(name: 'category_empty'.tr);

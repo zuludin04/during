@@ -1,10 +1,8 @@
-import 'package:during/data/during_repository.dart';
+import 'package:during/core/utils/base_controller.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:get/get.dart';
 
-class StatisticController extends GetxController {
-  final DuringRepository _repository = Get.find();
-
+class StatisticController extends BaseController {
   var income = 0.obs;
   var expense = 0.obs;
   var total = 0.obs;
@@ -43,7 +41,7 @@ class StatisticController extends GetxController {
   }
 
   void loadStatisticData(int start, int end) async {
-    var result = await _repository.loadDailyTransactions(start, end);
+    var result = await repository.loadDailyTransactions(start, end);
     var incomes = result.where((element) => element.type == 'Income').toList();
     var expenses =
         result.where((element) => element.type == 'Expense').toList();

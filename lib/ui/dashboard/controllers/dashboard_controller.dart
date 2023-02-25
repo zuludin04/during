@@ -1,11 +1,9 @@
-import 'package:during/data/during_repository.dart';
+import 'package:during/core/utils/base_controller.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:during/service/language_service.dart';
 import 'package:get/get.dart';
 
-class DashboardController extends GetxController {
-  final DuringRepository _repository = Get.find();
-
+class DashboardController extends BaseController {
   var navIndex = 0;
 
   void changeNavIndex(int index) {
@@ -22,7 +20,7 @@ class DashboardController extends GetxController {
 
   void loadInitialCategory() {
     if (!CacheService.to.loadInitialCategory) {
-      _repository
+      repository
           .initialCategory()
           .then((value) => CacheService.to.loadInitialCategory = true);
     }

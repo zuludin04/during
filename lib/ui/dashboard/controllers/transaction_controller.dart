@@ -1,10 +1,8 @@
-import 'package:during/data/during_repository.dart';
+import 'package:during/core/utils/base_controller.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:get/get.dart';
 
-class TransactionController extends GetxController {
-  final DuringRepository _repository = Get.find();
-
+class TransactionController extends BaseController {
   var todayTransaction = <TransactionEntity>[].obs;
   var totalBalance = 0.obs;
 
@@ -16,12 +14,12 @@ class TransactionController extends GetxController {
   }
 
   void loadDailyTransactions() async {
-    var result = await _repository.loadTransactions();
+    var result = await repository.loadTransactions();
     todayTransaction.value = result;
   }
 
   void loadSavingTotalBalance() async {
-    var balance = await _repository.loadTotalSavingBalance();
+    var balance = await repository.loadTotalSavingBalance();
     totalBalance.value = balance;
   }
 }

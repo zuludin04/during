@@ -1,11 +1,9 @@
+import 'package:during/core/utils/base_controller.dart';
 import 'package:during/core/utils/constants.dart';
-import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:get/get.dart';
 
-class SavingController extends GetxController {
-  final DuringRepository _repository = Get.find();
-
+class SavingController extends BaseController {
   var savings = <SavingEntity>[].obs;
 
   @override
@@ -15,7 +13,7 @@ class SavingController extends GetxController {
   }
 
   void loadSavingList() async {
-    var result = await _repository.loadSaving();
+    var result = await repository.loadSaving();
     savings.value = result;
     savings.add(SavingEntity(name: emptySavingHash));
   }

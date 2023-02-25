@@ -1,4 +1,4 @@
-import 'package:during/data/during_repository.dart';
+import 'package:during/core/utils/base_controller.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/ui/category/controllers/category_dashboard_controller.dart';
 import 'package:during/ui/dashboard/controllers/statistic_controller.dart';
@@ -7,9 +7,7 @@ import 'package:during/ui/saving/controllers/saving_insert_controller.dart';
 import 'package:during/ui/transaction/controllers/transaction_create_controller.dart';
 import 'package:get/get.dart';
 
-class CategoryCreateController extends GetxController {
-  final DuringRepository _repository = Get.find();
-
+class CategoryCreateController extends BaseController {
   var name = ''.obs;
   var icon = 'icon_wallet.svg'.obs;
   var type = 'Saving'.obs;
@@ -44,7 +42,7 @@ class CategoryCreateController extends GetxController {
 
     if (isUpdate) {
       category.id = this.category.id;
-      _repository.updateCategory(category).then((value) {
+      repository.updateCategory(category).then((value) {
         if (source == 'category') {
           Get.find<CategoryDashboardController>().loadCategory();
           Get.find<TransactionController>().loadDailyTransactions();
@@ -54,7 +52,7 @@ class CategoryCreateController extends GetxController {
         Get.back();
       });
     } else {
-      _repository.inserteCategroy(category).then((value) {
+      repository.inserteCategroy(category).then((value) {
         if (source == 'category') {
           Get.find<CategoryDashboardController>().loadCategory();
         }
@@ -65,7 +63,7 @@ class CategoryCreateController extends GetxController {
   }
 
   void deleteCategory() async {
-    await _repository.deleteCategory(category.id);
+    await repository.deleteCategory(category.id);
 
     Get.find<CategoryDashboardController>().loadCategory();
     Get.find<TransactionController>().loadDailyTransactions();
