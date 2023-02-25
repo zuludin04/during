@@ -54,11 +54,11 @@ class _SettingNavigationState extends State<SettingNavigation> {
               onPressed: (context) {},
             ),
             SettingsTile(
-              title: Text('delete_data'.tr),
+              title: Text('reset'.tr),
               leading: const Icon(Icons.replay),
               onPressed: (context) {
                 Get.defaultDialog(
-                  title: 'delete_data'.tr,
+                  title: 'reset'.tr,
                   content: Text('delete_data_message'.tr),
                   confirm: TextButton(
                     onPressed: () {
