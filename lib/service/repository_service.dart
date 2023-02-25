@@ -1,4 +1,5 @@
 import 'package:during/data/during_repository.dart';
+import 'package:during/data/during_repository_impl.dart';
 import 'package:during/data/source/during_db_provider.dart';
 import 'package:get/get.dart';
 
