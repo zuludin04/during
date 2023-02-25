@@ -2,7 +2,6 @@ import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
-import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
 import 'package:get/get.dart';
 
 class SavingDetailController extends GetxController {
@@ -40,7 +39,6 @@ class SavingDetailController extends GetxController {
     await _repository.deleteSavingTransactions(transactions);
     Get.find<HomeNavigationController>().loadSavingList();
     Get.find<HomeNavigationController>().loadDailyTransactions();
-    Get.find<TransactionNavigationController>().loadInitialTransactions();
     Get.back();
   }
 }

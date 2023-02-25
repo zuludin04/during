@@ -6,7 +6,6 @@ import '../../../data/source/entity/saving_entity.dart';
 import '../../../data/source/entity/transaction_entity.dart';
 import '../../../routes/app_pages.dart';
 import '../../dashboard/controllers/home_navigation_controller.dart';
-import '../../dashboard/controllers/transaction_navigation_controller.dart';
 
 class TransferController extends GetxController {
   final DuringRepository _repository = Get.find();
@@ -41,7 +40,6 @@ class TransferController extends GetxController {
         target ? targetSaving.id : sourceSaving.id, savingBalance(target));
     Get.find<HomeNavigationController>().loadDailyTransactions();
     Get.find<HomeNavigationController>().loadSavingList();
-    Get.find<TransactionNavigationController>().loadInitialTransactions();
     Get.back();
   }
 

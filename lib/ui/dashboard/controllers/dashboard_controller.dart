@@ -3,8 +3,6 @@ import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:during/service/language_service.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
-import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
-import 'package:during/ui/dashboard/views/widgets/filter_bottom_sheet.dart';
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
@@ -39,19 +37,6 @@ class DashboardController extends GetxController {
     totalBalance.value = balance;
   }
 
-  void filterTransaction() async {
-    var result = await Get.bottomSheet(
-      const FilterBottomSheet(),
-      isScrollControlled: true,
-      ignoreSafeArea: false,
-    );
-
-    if (result != null) {
-      var c = Get.find<TransactionNavigationController>();
-      c.filtered = result;
-    }
-  }
-
   void addSaving() async {
     var result = await Get.toNamed(RoutePath.savingInsert, arguments: {
       'status': 'create',
@@ -65,7 +50,6 @@ class DashboardController extends GetxController {
 
   void resetData() async {
     _repository.resetAllData().then((value) {
-      Get.find<TransactionNavigationController>().loadInitialTransactions();
       Get.find<HomeNavigationController>().loadSavingList();
       Get.find<HomeNavigationController>().loadDailyTransactions();
       changeNavIndex(0);
