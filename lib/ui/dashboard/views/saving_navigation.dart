@@ -68,7 +68,7 @@ class _SavingNavigationState extends State<SavingNavigation> {
         ),
         Obx(
           () => SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.all(8),
             sliver: SliverGrid(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
