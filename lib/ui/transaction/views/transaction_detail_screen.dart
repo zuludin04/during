@@ -138,7 +138,6 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                             ),
                             confirm: TextButton(
                               onPressed: () {
-                                Get.back();
                                 _controller.deleteTransaction();
                               },
                               child: Text(

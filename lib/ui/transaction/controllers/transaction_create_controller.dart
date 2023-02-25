@@ -5,8 +5,9 @@ import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
+import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
 import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
-import 'package:during/ui/dashboard/controllers/transaction_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/statistic_navigation_controller.dart';
 import 'package:get/get.dart';
 
 class TransactionCreateController extends GetxController {
@@ -61,9 +62,11 @@ class TransactionCreateController extends GetxController {
     if (transactionType! == 'Update') {
       await _repository.updateTransaction(transaction..id = transactionId);
       await _repository.updateSavingBalance(saving.id, savingBalance(true));
+      Get.find<DashboardController>().loadSavingTotalBalance();
       Get.find<HomeNavigationController>().loadDailyTransactions();
       Get.find<HomeNavigationController>().loadSavingList();
-      Get.find<TransactionNavigationController>().loadInitialTransactions();
+      Get.find<StatisticNavigationController>().loadInitialStatistic();
+      Get.back();
       Get.back();
     } else {
       await _repository.saveTransaction(transaction);
