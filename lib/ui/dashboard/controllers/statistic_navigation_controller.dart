@@ -13,12 +13,16 @@ class StatisticNavigationController extends GetxController {
 
   @override
   void onInit() {
+    loadInitialStatistic();
+    super.onInit();
+  }
+
+  void loadInitialStatistic() {
     var dateTime = DateTime.now();
     var startMonth = DateTime(dateTime.year, dateTime.month, 1);
     var endMonth = DateTime(dateTime.year, dateTime.month + 1, 0);
     loadStatisticData(
         startMonth.millisecondsSinceEpoch, endMonth.millisecondsSinceEpoch);
-    super.onInit();
   }
 
   void loadStatisticData(int start, int end) async {

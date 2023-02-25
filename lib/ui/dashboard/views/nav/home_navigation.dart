@@ -15,7 +15,7 @@ class HomeNavigation extends StatelessWidget {
     HomeNavigationController controller = Get.find();
 
     return Obx(() {
-      if (controller.emptyTransaction.value) {
+      if (controller.todayTransaction.isEmpty) {
         return Container(
           height: 300,
           alignment: Alignment.center,
@@ -34,7 +34,6 @@ class HomeNavigation extends StatelessWidget {
             transaction: element,
             source: 'normal',
           ),
-          order: GroupedListOrder.DESC,
         );
       }
     });

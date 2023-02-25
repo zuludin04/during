@@ -9,9 +9,6 @@ class HomeNavigationController extends GetxController {
 
   var todayTransaction = <TransactionEntity>[].obs;
   var savings = <SavingEntity>[].obs;
-  var emptyTransaction = false.obs;
-  var emptySaving = true.obs;
-  var hideSlider = true.obs;
 
   var todayTime = DateTime.now();
 
@@ -26,16 +23,10 @@ class HomeNavigationController extends GetxController {
     var result = await _repository.loadSaving();
     savings.value = result;
     savings.add(SavingEntity(name: emptySavingHash));
-    emptySaving.value = result.isEmpty;
   }
 
   void loadDailyTransactions() async {
     var result = await _repository.loadTransactions();
-    if (result.isEmpty) {
-      emptyTransaction.value = true;
-    } else {
-      emptyTransaction.value = false;
-      todayTransaction.value = result;
-    }
+    todayTransaction.value = result;
   }
 }

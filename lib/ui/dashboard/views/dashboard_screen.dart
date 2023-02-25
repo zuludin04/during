@@ -2,6 +2,7 @@ import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/widgets/bottom_navigation.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
+import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
 import 'package:during/ui/dashboard/controllers/statistic_navigation_controller.dart';
 import 'package:during/ui/dashboard/views/nav/home_navigation.dart';
 import 'package:during/ui/dashboard/views/nav/saving_navigation.dart';
@@ -45,10 +46,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
             currentIndex: controller.navIndex,
             onSelectedMenu: (index) async {
               if (index == 2) {
-                Get.toNamed(RoutePath.transactionCreate, parameters: {
+                var result =
+                    await Get.toNamed(RoutePath.transactionCreate, parameters: {
                   'transaction': 'Create',
                   'type': 'Expense',
                 });
+
+                if (result != null && result == 'OK') {
+                  controller.loadSavingTotalBalance();
+                  Get.find<HomeNavigationController>().loadDailyTransactions();
+                  Get.find<HomeNavigationController>().loadSavingList();
+                  Get.find<StatisticNavigationController>()
+                      .loadInitialStatistic();
+                }
               } else {
                 controller.changeNavIndex(index);
               }

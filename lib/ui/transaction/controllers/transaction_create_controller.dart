@@ -1,5 +1,5 @@
-import 'package:during/core/utils/constants.dart';
 import 'package:during/core/extensions/string_extension.dart';
+import 'package:during/core/utils/constants.dart';
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
@@ -40,7 +40,7 @@ class TransactionCreateController extends GetxController {
       date.value = DateTime.now().millisecondsSinceEpoch;
     }
 
-     loadCategory();
+    loadCategory();
   }
 
   void createTransaction() async {
@@ -68,8 +68,8 @@ class TransactionCreateController extends GetxController {
     } else {
       await _repository.saveTransaction(transaction);
       await _repository.updateSavingBalance(saving.id, savingBalance(false));
+      Get.back(result: 'OK');
     }
-    Get.back(result: type.value);
   }
 
   void loadTransaction() async {
