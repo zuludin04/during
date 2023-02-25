@@ -1,7 +1,7 @@
 import 'package:during/core/utils/add_helper.dart';
 import 'package:during/core/utils/constants.dart';
 import 'package:during/routes/app_pages.dart';
-import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/dashboard/views/widgets/saving_card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +15,7 @@ class SavingNavigation extends StatefulWidget {
 }
 
 class _SavingNavigationState extends State<SavingNavigation> {
-  final HomeNavigationController _controller = Get.find();
+  final TransactionController _controller = Get.find();
 
   late BannerAd _bannerAd;
   bool _isBannerReady = false;

@@ -1,18 +1,18 @@
 import 'package:during/core/widgets/empty_layout.dart';
 import 'package:during/core/widgets/transaction_item.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
-import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
 
-class HomeNavigation extends StatelessWidget {
-  const HomeNavigation({Key? key}) : super(key: key);
+class TransactionNavigation extends StatelessWidget {
+  const TransactionNavigation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    HomeNavigationController controller = Get.find();
+    TransactionController controller = Get.find();
 
     return Obx(() {
       if (controller.todayTransaction.isEmpty) {

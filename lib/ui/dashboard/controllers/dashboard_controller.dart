@@ -2,7 +2,7 @@ import 'package:during/data/during_repository.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/service/cache_service.dart';
 import 'package:during/service/language_service.dart';
-import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
@@ -43,15 +43,15 @@ class DashboardController extends GetxController {
     });
     if (result != null) {
       if (result == true) {
-        Get.find<HomeNavigationController>().loadSavingList();
+        Get.find<TransactionController>().loadSavingList();
       }
     }
   }
 
   void resetData() async {
     _repository.resetAllData().then((value) {
-      Get.find<HomeNavigationController>().loadSavingList();
-      Get.find<HomeNavigationController>().loadDailyTransactions();
+      Get.find<TransactionController>().loadSavingList();
+      Get.find<TransactionController>().loadDailyTransactions();
       changeNavIndex(0);
     });
   }

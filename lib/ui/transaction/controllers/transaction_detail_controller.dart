@@ -3,7 +3,7 @@ import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/dashboard_controller.dart';
-import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/dashboard/controllers/statistic_navigation_controller.dart';
 import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:get/get.dart';
@@ -33,8 +33,8 @@ class TransactionDetailController extends GetxController {
     await _repository.deleteTransaction(transaction.id);
     await _repository.updateSavingBalance(saving.id, savingBalance());
     Get.find<DashboardController>().loadSavingTotalBalance();
-    Get.find<HomeNavigationController>().loadDailyTransactions();
-    Get.find<HomeNavigationController>().loadSavingList();
+    Get.find<TransactionController>().loadDailyTransactions();
+    Get.find<TransactionController>().loadSavingList();
     Get.find<StatisticNavigationController>().loadInitialStatistic();
     if (source == 'saving') {
       Get.find<SavingDetailController>().loadSavingTransactions();

@@ -1,7 +1,7 @@
 import 'package:during/data/during_repository.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
-import 'package:during/ui/dashboard/controllers/home_navigation_controller.dart';
+import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
 import 'package:during/ui/saving/controllers/saving_detail_controller.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +49,8 @@ class SavingInsertController extends GetxController {
       saving.id = this.saving.id!;
       await _repository.updateSaving(saving);
       Get.find<SavingDetailController>().loadSavingTransactions();
-      Get.find<HomeNavigationController>().loadSavingList();
-      Get.find<HomeNavigationController>().loadDailyTransactions();
+      Get.find<TransactionController>().loadSavingList();
+      Get.find<TransactionController>().loadDailyTransactions();
       Get.back();
     } else {
       await _repository.insertSaving(saving);

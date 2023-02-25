@@ -4,7 +4,7 @@ import 'package:during/data/source/entity/saving_entity.dart';
 import 'package:during/data/source/entity/transaction_entity.dart';
 import 'package:get/get.dart';
 
-class HomeNavigationController extends GetxController {
+class TransactionController extends GetxController {
   final DuringRepository _repository = Get.find();
 
   var todayTransaction = <TransactionEntity>[].obs;
