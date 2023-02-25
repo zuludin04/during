@@ -12,10 +12,10 @@ import 'package:during/ui/dashboard/views/dashboard_screen.dart';
 import 'package:during/ui/language/language_change_screen.dart';
 import 'package:during/ui/saving/bindings/saving_detail_binding.dart';
 import 'package:during/ui/saving/bindings/saving_insert_binding.dart';
-import 'package:during/ui/saving/bindings/saving_list_binding.dart';
+import 'package:during/ui/saving/bindings/saving_manage_binding.dart';
 import 'package:during/ui/saving/views/saving_detail_screen.dart';
 import 'package:during/ui/saving/views/saving_insert_screen.dart';
-import 'package:during/ui/saving/views/saving_list_screen.dart';
+import 'package:during/ui/saving/views/saving_manage_screen.dart';
 import 'package:during/ui/transaction/bindings/transaction_create_binding.dart';
 import 'package:during/ui/transaction/bindings/transaction_detail_binding.dart';
 import 'package:during/ui/transaction/views/transaction_create_screen.dart';
@@ -60,8 +60,8 @@ class AppPages {
     ),
     GetPage(
       name: RoutePath.savingList,
-      page: () => const SavingListScreen(),
-      binding: SavingListBinding(),
+      page: () => const SavingManageScreen(),
+      binding: SavingManageBinding(),
     ),
     GetPage(
       name: RoutePath.savingDetail,

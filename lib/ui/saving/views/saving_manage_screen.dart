@@ -6,20 +6,20 @@ import 'package:during/core/widgets/toolbar_during.dart';
 import 'package:during/routes/app_pages.dart';
 import 'package:during/ui/dashboard/controllers/saving_controller.dart';
 import 'package:during/ui/dashboard/controllers/transaction_controller.dart';
-import 'package:during/ui/saving/controllers/saving_list_controller.dart';
+import 'package:during/ui/saving/controllers/saving_manage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class SavingListScreen extends StatefulWidget {
-  const SavingListScreen({Key? key}) : super(key: key);
+class SavingManageScreen extends StatefulWidget {
+  const SavingManageScreen({Key? key}) : super(key: key);
 
   @override
-  State<SavingListScreen> createState() => _SavingListScreenState();
+  State<SavingManageScreen> createState() => _SavingManageScreenState();
 }
 
-class _SavingListScreenState extends State<SavingListScreen> {
-  final SavingListController _controller = Get.find();
+class _SavingManageScreenState extends State<SavingManageScreen> {
+  final SavingManageController _controller = Get.find();
   final String type = Get.arguments;
 
   late BannerAd _bannerAd;
