@@ -6,7 +6,7 @@ class TransactionDetailBinding extends Bindings {
   @override
   void dependencies() {
     TransactionEntity transaction = Get.arguments;
-    String source = Get.parameters['source'] ?? 'normal';
+    String source = Get.parameters['source']!;
     Get.lazyPut(() => TransactionDetailController(transaction, source));
   }
 }

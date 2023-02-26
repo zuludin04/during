@@ -18,6 +18,7 @@ class TransactionDetailController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    print("source transaction $source");
     loadTransactionSaving(transaction.savingId ?? 1);
   }
 
@@ -34,10 +35,10 @@ class TransactionDetailController extends BaseController {
     Get.find<TransactionController>().loadDailyTransactions();
     Get.find<SavingController>().loadSavingList();
     Get.find<StatisticController>().loadInitialStatistic();
-    // if (source == 'saving') {
-    Get.find<SavingDetailController>().loadDetailSaving();
-    Get.find<SavingDetailController>().loadSavingTransactions();
-    // }
+    if (source == 'saving') {
+      Get.find<SavingDetailController>().loadDetailSaving();
+      Get.find<SavingDetailController>().loadSavingTransactions();
+    }
     Get.back();
     Get.back();
   }

@@ -66,7 +66,7 @@ class TransactionNavigation extends StatelessWidget {
                     TransactionHeaderItem(date: groupByValue),
                 itemBuilder: (context, element) => TransactionItem(
                   transaction: element,
-                  source: 'normal',
+                  source: 'navigation',
                 ),
                 order: GroupedListOrder.DESC,
               ),

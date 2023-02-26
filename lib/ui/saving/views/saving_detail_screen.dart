@@ -188,7 +188,7 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                             TransactionHeaderItem(date: groupByValue),
                         itemBuilder: (context, element) => TransactionItem(
                           transaction: element,
-                          source: 'normal',
+                          source: 'saving',
                         ),
                         order: GroupedListOrder.DESC,
                       );

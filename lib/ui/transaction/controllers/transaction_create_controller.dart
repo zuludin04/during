@@ -66,8 +66,10 @@ class TransactionCreateController extends BaseController {
       Get.find<TransactionController>().loadDailyTransactions();
       Get.find<SavingController>().loadSavingList();
       Get.find<StatisticController>().loadInitialStatistic();
-      Get.find<SavingDetailController>().loadSavingTransactions();
-      Get.find<SavingDetailController>().loadDetailSaving();
+      if (Get.parameters['source'] == 'saving') {
+        Get.find<SavingDetailController>().loadSavingTransactions();
+        Get.find<SavingDetailController>().loadDetailSaving();
+      }
       Get.back();
       Get.back();
     } else {
