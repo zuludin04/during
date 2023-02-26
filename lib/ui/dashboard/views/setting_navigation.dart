@@ -41,18 +41,18 @@ class _SettingNavigationState extends State<SettingNavigation> {
               leading: const Icon(Icons.dashboard_rounded),
               onPressed: (context) => Get.toNamed(RoutePath.category),
             ),
-            SettingsTile(
-              title: Text('budget'.tr),
-              description: const Text('Under construction'),
-              leading: const Icon(Icons.monetization_on),
-              onPressed: (context) {},
-            ),
-            SettingsTile(
-              title: Text('backup'.tr),
-              description: const Text('Under construction'),
-              leading: const Icon(Icons.backup),
-              onPressed: (context) {},
-            ),
+            // SettingsTile(
+            //   title: Text('budget'.tr),
+            //   description: const Text('Under construction'),
+            //   leading: const Icon(Icons.monetization_on),
+            //   onPressed: (context) {},
+            // ),
+            // SettingsTile(
+            //   title: Text('backup'.tr),
+            //   description: const Text('Under construction'),
+            //   leading: const Icon(Icons.backup),
+            //   onPressed: (context) {},
+            // ),
             SettingsTile(
               title: Text('reset'.tr),
               leading: const Icon(Icons.replay),
@@ -107,12 +107,12 @@ class _SettingNavigationState extends State<SettingNavigation> {
                 );
               },
             ),
-            SettingsTile(
-              title: Text('password'.tr),
-              leading: const Icon(Icons.lock),
-              description: const Text('Under construction'),
-              onPressed: (context) {},
-            ),
+            // SettingsTile(
+            //   title: Text('password'.tr),
+            //   leading: const Icon(Icons.lock),
+            //   description: const Text('Under construction'),
+            //   onPressed: (context) {},
+            // ),
           ],
         ),
         SettingsSection(
