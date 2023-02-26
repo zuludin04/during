@@ -32,6 +32,7 @@ class TransactionCreateController extends BaseController {
   void onInit() {
     super.onInit();
     loadTransaction();
+    loadCategory();
     if (transactionType! == 'Update') {
       transaction = Get.arguments;
       _loadInitialValue();
@@ -39,8 +40,6 @@ class TransactionCreateController extends BaseController {
       type.value = Get.parameters['type'] ?? "Income";
       date.value = DateTime.now().millisecondsSinceEpoch;
     }
-
-    loadCategory();
   }
 
   void createTransaction() async {
@@ -124,10 +123,11 @@ class TransactionCreateController extends BaseController {
     pickedSaving.value =
         '${savingResult.name} - (Rp ${savingResult.balance!.toPriceFormat()})';
 
+    changeCategoryList(type.value);
+
     var category = await repository.loadSingleCategory(transaction.categoryId!);
     selectedCategory.value = category;
-
-    changeCategoryList(type.value);
+    print("selected category ${category.toString()}");
   }
 
   int savingBalance(bool update) {
