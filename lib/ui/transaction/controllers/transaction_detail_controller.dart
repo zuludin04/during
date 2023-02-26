@@ -29,7 +29,7 @@ class TransactionDetailController extends BaseController {
 
   void deleteTransaction() async {
     await repository.deleteTransaction(transaction.id);
-    await repository.updateSavingBalance(saving.id, savingBalance());
+    await repository.updateSavingBalance(transaction.savingId, savingBalance());
     Get.find<TransactionController>().loadSavingTotalBalance();
     Get.find<TransactionController>().loadDailyTransactions();
     Get.find<SavingController>().loadSavingList();

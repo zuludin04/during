@@ -6,6 +6,7 @@ class TransactionEntity {
   int? categoryId;
   String? name;
   int? savingId;
+  String? savingName;
 
   String? categoryName;
   int? categoryType;
@@ -20,6 +21,7 @@ class TransactionEntity {
     this.categoryId,
     this.name,
     this.savingId,
+    this.savingName,
   });
 
   TransactionEntity.fromMap(Map<String, dynamic> map) {
@@ -30,6 +32,7 @@ class TransactionEntity {
     categoryId = map['categoryId'];
     name = map['name'];
     savingId = map['savingId'];
+    savingName = map['savingName'];
   }
 
   TransactionEntity.fromJoinDb(Map<String, dynamic> map) {
@@ -44,6 +47,7 @@ class TransactionEntity {
     categoryId = map['categoryId'];
     name = map['name'];
     savingId = map['savingId'];
+    savingName = map['savingName'];
   }
 
   Map<String, dynamic> toMap() {
@@ -55,6 +59,7 @@ class TransactionEntity {
     map['categoryId'] = categoryId;
     map['name'] = name;
     map['savingId'] = savingId;
+    map['savingName'] = savingName;
     return map;
   }
 }

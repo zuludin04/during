@@ -56,6 +56,7 @@ class TransactionCreateController extends BaseController {
       categoryId: selectedCategory.value.id,
       name: name.value,
       savingId: saving.id,
+      savingName: saving.name,
     );
 
     if (transactionType! == 'Update') {

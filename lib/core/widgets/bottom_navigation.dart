@@ -103,7 +103,7 @@ class _BottomNavItem extends StatelessWidget {
   Widget _centerMenu() {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xffffa400),
+        color: const Color(0xffffa400),
         borderRadius: BorderRadius.circular(10),
       ),
       child: const Icon(

@@ -86,7 +86,7 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                             ),
                             children: [
                               TextSpan(
-                                text: controller.saving.name,
+                                text: controller.transaction.savingName,
                                 style: TextStyle(
                                   color: controller.transaction.categoryColor!
                                       .dynamicTextColor(),

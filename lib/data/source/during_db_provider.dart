@@ -41,6 +41,7 @@ class DuringDbProvider {
         'name TEXT, '
         'categoryId INTEGER, '
         'savingId INTEGER, '
+        'savingName TEXT, '
         'FOREIGN KEY (savingId) REFERENCES saving (id) ON DELETE NO ACTION ON UPDATE NO ACTION, '
         'FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE NO ACTION ON UPDATE NO ACTION)');
 
