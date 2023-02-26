@@ -224,6 +224,7 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
                         const Indicator(
                           color: Colors.grey,
                           text: "-",
+                          isTouched: false,
                         )
                       ]
                     : widget.transactions
@@ -232,6 +233,8 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
                             color: Color(
                                 int.parse('0xff${element.categoryColor}')),
                             text: element.name ?? "-",
+                            isTouched: widget.transactions.indexOf(element) ==
+                                touchedIndex,
                           ),
                         )
                         .toList(),
@@ -269,7 +272,9 @@ class TransactionPieStatisticState extends State<TransactionPieStatistic> {
       return PieChartSectionData(
         color: Color(int.parse('0xff${element.categoryColor}')),
         value: percent,
-        title: '${percent.round()} %',
+        title: isTouched
+            ? 'Rp ${element.nominal!.toPriceFormat()}'
+            : '${percent.round()} %',
         radius: radius,
         titleStyle: const TextStyle(
           fontSize: 16,
@@ -286,11 +291,13 @@ class Indicator extends StatelessWidget {
     Key? key,
     required this.color,
     required this.text,
+    required this.isTouched,
     this.textColor,
   }) : super(key: key);
 
   final Color color;
   final String text;
+  final bool isTouched;
   final Color? textColor;
 
   @override
@@ -310,8 +317,9 @@ class Indicator extends StatelessWidget {
           text,
           maxLines: 1,
           style: TextStyle(
-            fontWeight: FontWeight.w500,
+            fontWeight: isTouched ? FontWeight.bold : FontWeight.w500,
             color: textColor,
+            fontSize: isTouched ? 16 : 14,
           ),
         )
       ],
