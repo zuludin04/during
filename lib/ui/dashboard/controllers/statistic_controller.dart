@@ -25,17 +25,12 @@ class StatisticController extends BaseController {
   }
 
   void changeMonthStatistic(bool nextMonth) {
-    if (nextMonth) {
-      currentDate = DateTime(currentDate.year, currentDate.month + 1);
-    } else {
-      currentDate = DateTime(currentDate.year, currentDate.month - 1);
-    }
-
+    var showMonth = nextMonth ? currentDate.month + 1 : currentDate.month - 1;
+    currentDate = DateTime(currentDate.year, showMonth);
     update();
 
     var startMonth = DateTime(currentDate.year, currentDate.month, 1);
     var endMonth = DateTime(currentDate.year, currentDate.month + 1, 0);
-
     loadStatisticData(
         startMonth.millisecondsSinceEpoch, endMonth.millisecondsSinceEpoch);
   }
