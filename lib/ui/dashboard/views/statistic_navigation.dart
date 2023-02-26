@@ -67,7 +67,7 @@ class StatisticNavigation extends StatelessWidget {
                       _TransactionOverviewSection(
                         title: 'Total',
                         balance: controller.total,
-                        color: Colors.black,
+                        color: Theme.of(context).textTheme.bodyMedium!.color!,
                       ),
                     ],
                   ),

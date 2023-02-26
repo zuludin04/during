@@ -24,7 +24,7 @@ class _TransactionTypeState extends State<TransactionType> {
       decoration: BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(5),
-        border: Border.all(color: Colors.grey),
+        border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
       ),
       child: Row(
         children: [
@@ -89,7 +89,11 @@ class CategoryType extends StatelessWidget {
           child: Text(
             title.toLowerCase().tr,
             textAlign: TextAlign.center,
-            style: TextStyle(color: isSelected ? Colors.white : Colors.black),
+            style: TextStyle(
+              color: isSelected
+                  ? Colors.white
+                  : Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
         ),
       ),

@@ -21,7 +21,7 @@ class InputSection extends StatelessWidget {
         const SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.black26),
+            border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
             borderRadius: BorderRadius.circular(5),
           ),
           child: child,
