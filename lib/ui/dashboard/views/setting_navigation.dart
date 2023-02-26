@@ -87,8 +87,13 @@ class _SettingNavigationState extends State<SettingNavigation> {
           tiles: [
             SettingsTile.switchTile(
               initialValue: darkMode,
-              onToggle: (value) {},
-              description: const Text('Under construction'),
+              onToggle: (value) {
+                Get.changeThemeMode(value ? ThemeMode.dark : ThemeMode.light);
+                CacheService.to.darkMode = value;
+                setState(() {
+                  darkMode = value;
+                });
+              },
               title: Text('dark_theme'.tr),
               leading: const Icon(Icons.dark_mode),
             ),

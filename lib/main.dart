@@ -13,14 +13,30 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final storage = GetStorage();
+
+  @override
+  void initState() {
+    bool darkMode = storage.read('DARK_MODE') ?? false;
+    Get.changeThemeMode(darkMode ? ThemeMode.dark : ThemeMode.light);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'During',
       theme: CustomTheme.defaultTheme,
+      darkTheme: CustomTheme.darkTheme,
+      themeMode: ThemeMode.system,
       initialBinding: BindingsBuilder(() {
         Get.put(RepositoryService());
         Get.put(CacheService());

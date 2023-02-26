@@ -47,7 +47,7 @@ class CustomTheme {
         onError: Colors.white,
         brightness: Brightness.dark,
       ),
-      fontFamily: 'NotoSans',
+      fontFamily: 'PlusJakarta',
       iconTheme: const IconThemeData(
         color: Colors.black,
       ),
