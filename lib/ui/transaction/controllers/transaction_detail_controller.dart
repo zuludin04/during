@@ -18,7 +18,6 @@ class TransactionDetailController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    print("source transaction $source");
     loadTransactionSaving(transaction.savingId ?? 1);
   }
 

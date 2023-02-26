@@ -127,7 +127,6 @@ class TransactionCreateController extends BaseController {
 
     var category = await repository.loadSingleCategory(transaction.categoryId!);
     selectedCategory.value = category;
-    print("selected category ${category.toString()}");
   }
 
   int savingBalance(bool update) {
