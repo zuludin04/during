@@ -32,18 +32,11 @@ class ToolbarDuring {
             Get.back();
           }
         },
-        icon: Icon(
-          leadingIcon,
-          color: const Color(0xff111410),
-        ),
+        icon: Icon(leadingIcon),
       ),
-      backgroundColor: Colors.white,
       title: Text(
         title,
-        style: const TextStyle(
-          color: Color(0xff111410),
-          fontSize: 18,
-        ),
+        style: const TextStyle(fontSize: 18),
       ),
       centerTitle: true,
       elevation: 0.5,

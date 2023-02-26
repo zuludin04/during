@@ -2,7 +2,7 @@ import 'package:during/service/cache_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ChangeLanguageDialog extends StatefulWidget{
+class ChangeLanguageDialog extends StatefulWidget {
   const ChangeLanguageDialog({Key? key}) : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class _ChangeLanguageDialogState extends State<ChangeLanguageDialog> {
         _languageItem(
           'English',
           _languageSelected[0],
-              () {
+          () {
             changeTypeState(0);
             CacheService.to.selectedLanguage = 'en_US';
             Get.updateLocale(const Locale('en', 'US'));
@@ -40,7 +40,7 @@ class _ChangeLanguageDialogState extends State<ChangeLanguageDialog> {
         _languageItem(
           'Bahasa Indonesia',
           _languageSelected[1],
-              () {
+          () {
             changeTypeState(1);
             CacheService.to.selectedLanguage = 'id_ID';
             Get.updateLocale(const Locale('id', 'ID'));
@@ -53,10 +53,11 @@ class _ChangeLanguageDialogState extends State<ChangeLanguageDialog> {
 
   Widget _languageItem(String title, bool selected, Function() onTap) {
     return ListTile(
-      title: Text(title),
+      title: Text(title, style: Theme.of(context).textTheme.bodyMedium),
       leading: Icon(
         Icons.check,
-        color: selected ? Colors.black : Colors.transparent,
+        color:
+            selected ? Theme.of(context).iconTheme.color : Colors.transparent,
       ),
       onTap: onTap,
     );

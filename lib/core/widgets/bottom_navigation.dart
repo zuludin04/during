@@ -16,19 +16,20 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration:  BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(15),
-            topRight: Radius.circular(15),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.background,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, -1),
+            blurRadius: 1,
+            color: Colors.black26.withOpacity(0.3),
           ),
-          boxShadow: [
-            BoxShadow(
-              offset: const Offset(0, -1),
-              blurRadius: 1,
-              color: Colors.black26.withOpacity(0.1),
-            ),
-          ]),
+        ],
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: navMenus
@@ -67,10 +68,10 @@ class _BottomNavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return menu.isCenter ? _centerMenu() : _normalMenu();
+    return menu.isCenter ? _centerMenu() : _normalMenu(context);
   }
 
-  Widget _normalMenu() {
+  Widget _normalMenu(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -79,10 +80,10 @@ class _BottomNavItem extends StatelessWidget {
           width: 20,
           height: 20,
           color: selected && index != 2
-              ? Colors.blue
+              ? const Color(0xffffa400)
               : index == 2
                   ? null
-                  : Colors.black,
+                  : Theme.of(context).iconTheme.color,
         ),
         const SizedBox(height: 2),
         Text(
@@ -90,7 +91,9 @@ class _BottomNavItem extends StatelessWidget {
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: selected ? Colors.blue : Colors.black,
+            color: selected
+                ? const Color(0xffffa400)
+                : Theme.of(context).iconTheme.color,
           ),
         ),
       ],
@@ -100,7 +103,7 @@ class _BottomNavItem extends StatelessWidget {
   Widget _centerMenu() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.blueAccent,
+        color: Color(0xffffa400),
         borderRadius: BorderRadius.circular(10),
       ),
       child: const Icon(

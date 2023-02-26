@@ -37,9 +37,10 @@ class InputTextField extends StatelessWidget {
       child: TextFormField(
         enabled: enable,
         controller: controller..text = text,
+        style: Theme.of(context).textTheme.bodyMedium,
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(color: Colors.black45),
+          hintStyle: Theme.of(context).textTheme.bodySmall,
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           border: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.transparent),

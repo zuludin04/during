@@ -9,7 +9,8 @@ class HeaderText extends StatelessWidget {
   final Widget? trailing;
   final Function()? onTrailingTap;
 
-  const HeaderText({Key? key, 
+  const HeaderText({
+    Key? key,
     required this.title,
     required this.showTrailing,
     this.more = '',
@@ -27,11 +28,10 @@ class HeaderText extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
-            fontSize: titleSize,
-            color: Colors.black,
-            fontWeight: FontWeight.w800,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: titleSize,
+                fontWeight: FontWeight.w800,
+              ),
         ),
         Visibility(
           visible: showTrailing,

@@ -74,10 +74,7 @@ class _SavingInsertScreenState extends State<SavingInsertScreen> {
                 }
               }
             },
-            icon: const Icon(
-              Icons.check,
-              color: Colors.black,
-            ),
+            icon: const Icon(Icons.check),
           ),
         ],
       ),

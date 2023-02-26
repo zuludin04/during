@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTheme {
   static ThemeData get defaultTheme {
@@ -11,7 +12,7 @@ class CustomTheme {
         surface: Colors.white,
         background: Colors.white,
         error: Colors.redAccent,
-        onPrimary: Colors.black,
+        onPrimary: Color(0xff252526),
         onSecondary: Colors.black,
         onSurface: Color(0xffcccccc),
         onBackground: Color(0xffcccccc),
@@ -19,12 +20,21 @@ class CustomTheme {
         brightness: Brightness.light,
       ),
       fontFamily: 'PlusJakarta',
-      iconTheme: const IconThemeData(
-        color: Colors.black,
-      ),
+      iconTheme: const IconThemeData(color: Colors.black),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+        ),
+      ),
+      textTheme: const TextTheme(
+        bodyMedium: TextStyle(color: Colors.black, fontSize: 14),
+        bodySmall: TextStyle(color: Colors.black45, fontSize: 14),
+        titleMedium: TextStyle(color: Colors.black87, fontSize: 14),
+      ),
+      appBarTheme: const AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.white,
+          statusBarIconBrightness: Brightness.dark,
         ),
       ),
     );
@@ -48,13 +58,22 @@ class CustomTheme {
         brightness: Brightness.dark,
       ),
       fontFamily: 'PlusJakarta',
-      iconTheme: const IconThemeData(
-        color: Colors.black,
-      ),
+      iconTheme: const IconThemeData(color: Colors.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor:
               MaterialStateProperty.all<Color>(const Color(0xffffa400)),
+        ),
+      ),
+      textTheme: const TextTheme(
+        bodyMedium: TextStyle(color: Colors.white, fontSize: 14),
+        bodySmall: TextStyle(color: Colors.white54, fontSize: 14),
+        titleMedium: TextStyle(color: Colors.white70, fontSize: 14),
+      ),
+      appBarTheme: const AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Color(0xff252526),
+          statusBarIconBrightness: Brightness.light,
         ),
       ),
     );

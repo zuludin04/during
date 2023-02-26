@@ -115,7 +115,7 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                   Text(
                     _controller.transaction.date!
                         .changeDateFormat('dd MMM yyyy, HH:mm'),
-                    style: const TextStyle(color: Colors.black87),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   _transactionInfo('Name', '${_controller.transaction.name}'),
                   _transactionInfo('Type', '${_controller.transaction.type}'),

@@ -61,10 +61,7 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
               _formKey.currentState!.save();
               _controller.insertCategory();
             },
-            icon: const Icon(
-              Icons.check,
-              color: Colors.black,
-            ),
+            icon: const Icon(Icons.check),
           ),
         ],
       ),
@@ -101,7 +98,10 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                                           value: e,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: Text(e),
+                                            child: Text(e,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium),
                                           ),
                                         ))
                                     .toList(),
@@ -168,8 +168,8 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                               padding: const EdgeInsets.all(9),
                               child: SvgPicture.asset(
                                 'assets/category/${_controller.icon.value}',
-                                colorFilter: const ColorFilter.mode(
-                                  Color(0xff373a36),
+                                colorFilter: ColorFilter.mode(
+                                  Theme.of(context).iconTheme.color!,
                                   BlendMode.srcIn,
                                 ),
                                 width: 30,

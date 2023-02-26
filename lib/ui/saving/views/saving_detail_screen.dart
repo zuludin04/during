@@ -84,10 +84,7 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                 ),
               );
             },
-            icon: const Icon(
-              Icons.delete,
-              color: Colors.black,
-            ),
+            icon: const Icon(Icons.delete),
           ),
           IconButton(
             onPressed: () {
@@ -96,7 +93,7 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                 'saving': Get.find<SavingDetailController>().saving,
               });
             },
-            icon: const Icon(Icons.edit, color: Colors.black),
+            icon: const Icon(Icons.edit),
           ),
         ],
       ),
@@ -126,13 +123,16 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                                     'assets/category/${controller.saving.categoryIcon}',
                                     width: 35,
                                     height: 35,
+                                    colorFilter: ColorFilter.mode(
+                                      Theme.of(context).iconTheme.color!,
+                                      BlendMode.srcIn,
+                                    ),
                                   ),
                                   const SizedBox(width: 10),
                                   Text(
                                     controller.saving.name ?? '',
                                     style: const TextStyle(
                                       fontSize: 16,
-                                      color: Colors.black,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),

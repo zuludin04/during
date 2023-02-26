@@ -24,6 +24,8 @@ class _SettingNavigationState extends State<SettingNavigation> {
   Widget build(BuildContext context) {
     return SettingsList(
       lightTheme: SettingsThemeData(settingsListBackground: Colors.grey[50]),
+      darkTheme:
+          const SettingsThemeData(settingsListBackground: Colors.black12),
       sections: [
         SettingsSection(
           title: Text('management'.tr),

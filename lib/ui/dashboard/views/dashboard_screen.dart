@@ -9,7 +9,6 @@ import 'package:during/ui/dashboard/views/setting_navigation.dart';
 import 'package:during/ui/dashboard/views/statistic_navigation.dart';
 import 'package:during/ui/dashboard/views/transaction_navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -25,10 +24,6 @@ class DashboardScreen extends StatelessWidget {
             elevation:
                 controller.navIndex == 0 || controller.navIndex == 1 ? 0 : 0.5,
             title: const Text('During'),
-            systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
-              statusBarIconBrightness: Brightness.dark,
-            ),
           ),
           bottomNavigationBar: BottomNavigation(
             currentIndex: controller.navIndex,

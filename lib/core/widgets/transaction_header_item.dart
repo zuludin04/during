@@ -9,7 +9,7 @@ class TransactionHeaderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.background,
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(top: 16),
       child: Row(
@@ -27,11 +27,11 @@ class TransactionHeaderItem extends StatelessWidget {
             children: [
               Text(
                 DateFormat("EEEE").format(date),
-                style: const TextStyle(color: Colors.black),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               Text(
                 DateFormat("MMM yyyy").format(date),
-                style: const TextStyle(color: Colors.black45),
+                style: Theme.of(context).textTheme.bodySmall,
               )
             ],
           ),

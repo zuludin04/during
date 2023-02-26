@@ -28,7 +28,8 @@ class CategoryPicker extends StatelessWidget {
       title: title,
       child: InkWell(
         onTap: () async {
-          CategoryEntity? category = await Get.bottomSheet(_categoryList());
+          CategoryEntity? category =
+              await Get.bottomSheet(_categoryList(context));
           if (category != null) {
             onSelectedCategory(category);
           }
@@ -45,11 +46,11 @@ class CategoryPicker extends StatelessWidget {
     );
   }
 
-  Widget _categoryList() {
+  Widget _categoryList(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.background,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
         ),

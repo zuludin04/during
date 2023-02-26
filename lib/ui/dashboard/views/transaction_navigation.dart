@@ -22,11 +22,9 @@ class TransactionNavigation extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16),
           width: double.infinity,
           height: kToolbarHeight,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            border: Border(
-              bottom: BorderSide(color: Colors.black26),
-            ),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
+            border: const Border(bottom: BorderSide(color: Colors.black26)),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,6 +32,10 @@ class TransactionNavigation extends StatelessWidget {
               SvgPicture.asset(
                 'assets/category/icon_emoney.svg',
                 width: 30,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).iconTheme.color!,
+                  BlendMode.srcIn,
+                ),
               ),
               const SizedBox(width: 12),
               Obx(

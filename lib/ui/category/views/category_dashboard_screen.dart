@@ -103,7 +103,7 @@ class _CategoryDashboardScreenState extends State<CategoryDashboardScreen> {
       children: [
         SliverToBoxAdapter(
           child: Container(
-            color: const Color(0xffF6F6F6),
+            color: Theme.of(context).colorScheme.background,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text(

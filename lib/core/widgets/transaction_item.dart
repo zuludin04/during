@@ -24,7 +24,7 @@ class TransactionItem extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background,
             padding: const EdgeInsets.all(12),
             child: Row(
               children: [
@@ -70,7 +70,7 @@ class TransactionItem extends StatelessWidget {
                       const SizedBox(height: 5),
                       Text(
                         transaction.categoryName ?? "",
-                        style: const TextStyle(color: Colors.black54),
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],
                   ),
@@ -106,7 +106,7 @@ class TransactionItem extends StatelessWidget {
                     const SizedBox(height: 5),
                     Text(
                       transaction.date!.changeDateFormat('HH:mm'),
-                      style: const TextStyle(color: Colors.black87),
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
                 ),

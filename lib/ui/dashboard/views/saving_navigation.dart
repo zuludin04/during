@@ -122,7 +122,7 @@ class _SavingEmptyItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.black45),
+          border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
         ),
         padding: const EdgeInsets.all(12),
         child: const Icon(Icons.add, size: 32),

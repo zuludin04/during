@@ -18,11 +18,9 @@ class StatisticNavigation extends StatelessWidget {
         Container(
           width: double.infinity,
           height: kToolbarHeight,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            border: Border(
-              bottom: BorderSide(color: Colors.black26),
-            ),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
+            border: const Border(bottom: BorderSide(color: Colors.black26)),
           ),
           child: GetBuilder<StatisticController>(
             builder: (controller) => Row(
@@ -35,10 +33,7 @@ class StatisticNavigation extends StatelessWidget {
                   child: Text(
                     DateFormat("MMMM yyyy").format(controller.currentDate),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                    ),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ),
                 IconButton(
@@ -62,7 +57,7 @@ class StatisticNavigation extends StatelessWidget {
                       _TransactionOverviewSection(
                         title: 'Income',
                         balance: controller.income,
-                        color: Colors.blue,
+                        color: Colors.green,
                       ),
                       _TransactionOverviewSection(
                         title: 'Expense',
@@ -145,7 +140,7 @@ class _StatisticSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.background,
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.symmetric(vertical: 8),
@@ -157,7 +152,6 @@ class _StatisticSection extends StatelessWidget {
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
-              color: Colors.black,
             ),
           ),
           const SizedBox(height: 8),

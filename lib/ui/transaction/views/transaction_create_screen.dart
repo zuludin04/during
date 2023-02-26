@@ -90,10 +90,7 @@ class _TransactionCreateScreenState extends State<TransactionCreateScreen> {
                 }
               }
             },
-            icon: const Icon(
-              Icons.check,
-              color: Colors.black,
-            ),
+            icon: const Icon(Icons.check),
           ),
         ],
       ),
