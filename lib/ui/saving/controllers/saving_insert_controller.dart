@@ -1,3 +1,4 @@
+import 'package:during/core/extensions/string_extension.dart';
 import 'package:during/core/utils/base_controller.dart';
 import 'package:during/data/source/entity/category_entity.dart';
 import 'package:during/data/source/entity/saving_entity.dart';
@@ -60,7 +61,7 @@ class SavingInsertController extends BaseController {
   void populateSavingData() async {
     saving = Get.arguments['saving'];
     name.value = saving.name!;
-    balance.value = '${saving.balance}';
+    balance.value = saving.balance!.toPriceFormat();
     color.value = saving.color!;
     selectedCategory.value =
         await repository.loadSingleCategory(saving.categoryId!);
