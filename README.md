@@ -19,7 +19,7 @@ In English During means "throughout the course" but actually it is an abbreviati
 
 ## Future Implementation
 
-- [ ]  Show transaction statistic
+- [x]  Show transaction statistic
 - [ ]  Add new transaction from detail Saving
 - [ ]  Pin to open application
 - [ ]  Calculator when add new transaction
