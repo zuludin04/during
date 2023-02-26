@@ -11,7 +11,6 @@ class TransactionEntity {
   int? categoryType;
   String? categoryIcon;
   String? categoryColor;
-  String? savingColor;
 
   TransactionEntity({
     this.id,
@@ -38,7 +37,6 @@ class TransactionEntity {
     categoryType = map['categoryType'];
     categoryIcon = map['categoryIcon'];
     categoryColor = map['categoryColor'];
-    savingColor = map['savingColor'];
     id = map['id'];
     type = map['type'];
     date = map['date'];

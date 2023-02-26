@@ -67,7 +67,6 @@ class _SavingDetailScreenState extends State<SavingDetailScreen> {
                 ),
                 confirm: TextButton(
                   onPressed: () {
-                    Get.back();
                     Get.find<SavingDetailController>().deleteSaving();
                   },
                   child: Text(

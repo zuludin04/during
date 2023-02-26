@@ -100,12 +100,10 @@ class DuringDbProvider {
   Future<List<TransactionEntity>> loadDuringTransactions() async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, category.color AS categoryColor, saving.color AS savingColor, transactionDuring.* '
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, category.color AS categoryColor, transactionDuring.* '
         'FROM transactionDuring '
         'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
-        'INNER JOIN saving '
-        'ON transactionDuring.savingId = saving.id '
         'ORDER BY transactionDuring.date DESC');
     List<TransactionEntity> transactions = result.isEmpty
         ? []
@@ -117,12 +115,10 @@ class DuringDbProvider {
       int start, int end) async {
     final Database db = await database;
     List<Map<String, dynamic>> result = await db.rawQuery(
-        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, category.color AS categoryColor, saving.color AS savingColor, transactionDuring.* '
+        'SELECT category.name AS categoryName, category.icon AS categoryIcon, category.type AS categoryType, category.color AS categoryColor, transactionDuring.* '
         'FROM transactionDuring '
         'INNER JOIN category '
         'ON transactionDuring.categoryId = category.id '
-        'INNER JOIN saving '
-        'ON transactionDuring.savingId = saving.id '
         'WHERE transactionDuring.date BETWEEN $start AND $end '
         'ORDER BY transactionDuring.date DESC');
     List<TransactionEntity> transactions = result.isEmpty

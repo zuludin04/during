@@ -33,11 +33,11 @@ class SavingDetailController extends BaseController {
 
   void deleteSaving() async {
     await repository.deleteSaving(savingId);
-    await repository.deleteSavingTransactions(transactions);
     Get.find<SavingController>().loadSavingList();
     Get.find<TransactionController>().loadDailyTransactions();
     Get.find<TransactionController>().loadSavingTotalBalance();
     Get.find<SavingManageController>().loadSavings();
+    Get.back();
     Get.back();
   }
 }
