@@ -1,10 +1,11 @@
-class AdHelper {
+import 'package:during/flavor_config.dart';
 
+class AdHelper {
   static String get bannerAdUnitId {
-    return 'ca-app-pub-3940256099942544/6300978111';
+    return FlavorConfig.instance.bannerAdUnitId;
   }
 
   static String get interstitialAdUnitId {
-    return "ca-app-pub-3940256099942544/1033173712";
+    return FlavorConfig.instance.interstitialAdUnitId;
   }
 }

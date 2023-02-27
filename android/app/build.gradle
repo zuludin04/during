@@ -50,10 +50,27 @@ android {
     defaultConfig {
         applicationId "com.app.zuludin.during.during"
         minSdkVersion 20
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
+    }
+
+    flavorDimensions "duringapp"
+
+    productFlavors {
+        dev {
+            dimension "duringapp"
+            applicationIdSuffix ".dev"
+            resValue "string", "ads_app_id", "ca-app-pub-3940256099942544~3347511713"
+            versionNameSuffix ".dev"
+        }
+        prod {
+            dimension "duringapp"
+            applicationIdSuffix ""
+            resValue "string", "ads_app_id", "ca-app-pub-8689174357144809~1761592430"
+            versionNameSuffix ".prod"
+        }
     }
 
     signingConfigs {
