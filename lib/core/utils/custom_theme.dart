@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 class CustomTheme {
   static ThemeData get defaultTheme {
     return ThemeData(
-      // primaryColor: const Color(0xff373a36),
-      // primaryColorDark: const Color(0xff111410),
-      // primaryColorLight: const Color(0xff616460),
-      // accentColor: const Color(0xffffa400),
-      // backgroundColor: Colors.white,
       colorScheme: const ColorScheme(
         primary: Colors.white,
         primaryContainer: Color(0xffcccccc),

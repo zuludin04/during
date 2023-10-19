@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class SavingNavigation extends StatefulWidget {
-  const SavingNavigation({Key? key}) : super(key: key);
+  const SavingNavigation({super.key});
 
   @override
   State<SavingNavigation> createState() => _SavingNavigationState();
@@ -104,7 +104,8 @@ class _SavingNavigationState extends State<SavingNavigation> {
               ),
               child: SvgPicture.asset(
                 'assets/category/${saving.categoryIcon}',
-                color: Colors.white,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
             ),
             const SizedBox(width: 10),

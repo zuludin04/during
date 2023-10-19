@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class SavingListScreen extends StatefulWidget {
-  const SavingListScreen({Key? key}) : super(key: key);
+  const SavingListScreen({super.key});
 
   @override
   State<SavingListScreen> createState() => _SavingListScreenState();
@@ -127,7 +127,8 @@ class _SavingListScreenState extends State<SavingListScreen> {
               ),
               child: SvgPicture.asset(
                 'assets/category/${saving.categoryIcon}',
-                color: Colors.white,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
             ),
             const SizedBox(width: 10),

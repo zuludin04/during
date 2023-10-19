@@ -10,10 +10,10 @@ class TransactionItem extends StatelessWidget {
   final String source;
 
   const TransactionItem({
-    Key? key,
+    super.key,
     required this.transaction,
     required this.source,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class TransactionNavigation extends StatefulWidget {
-  const TransactionNavigation({Key? key}) : super(key: key);
+  const TransactionNavigation({super.key});
 
   @override
   State<TransactionNavigation> createState() => _TransactionNavigationState();

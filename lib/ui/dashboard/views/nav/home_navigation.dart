@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeNavigation extends StatelessWidget {
-  const HomeNavigation({Key? key}) : super(key: key);
+  const HomeNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 class FilterBottomSheet extends StatelessWidget {
   final TransactionNavigationController _controller = Get.find();
 
-  FilterBottomSheet({Key? key}) : super(key: key);
+  FilterBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {

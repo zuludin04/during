@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class TransactionCreateScreen extends StatefulWidget {
-  const TransactionCreateScreen({Key? key}) : super(key: key);
+  const TransactionCreateScreen({super.key});
 
   @override
   State<TransactionCreateScreen> createState() =>

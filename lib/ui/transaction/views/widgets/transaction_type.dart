@@ -5,10 +5,7 @@ import 'package:get/get.dart';
 class TransactionType extends StatefulWidget {
   final TransactionCreateController controller;
 
-  const TransactionType({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+  const TransactionType({super.key, required this.controller});
 
   @override
   State<TransactionType> createState() => _TransactionTypeState();
@@ -75,11 +72,11 @@ class CategoryType extends StatelessWidget {
   final String title;
 
   const CategoryType({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.isSelected,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

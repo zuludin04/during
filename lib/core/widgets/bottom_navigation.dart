@@ -7,11 +7,11 @@ class BottomNavigation extends StatelessWidget {
   final Function(int) onSelectedMenu;
 
   const BottomNavigation({
-    Key? key,
+    super.key,
     required this.currentIndex,
     required this.navMenus,
     required this.onSelectedMenu,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +79,11 @@ class _BottomNavItem extends StatelessWidget {
           'assets/navigation/${menu.icon}.svg',
           width: 18,
           height: 18,
-          color: selected && index != 2
-              ? Colors.blue
+          colorFilter: selected && index != 2
+              ? const ColorFilter.mode(Colors.blue, BlendMode.srcIn)
               : index == 2
                   ? null
-                  : Colors.black,
+                  : const ColorFilter.mode(Colors.black, BlendMode.srcIn),
         ),
         const SizedBox(height: 2),
         Text(

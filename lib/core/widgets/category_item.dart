@@ -7,10 +7,10 @@ class CategoryItem extends StatelessWidget {
   final Function(CategoryEntity category) onTap;
 
   const CategoryItem({
-    Key? key,
+    super.key,
     required this.category,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,8 @@ class CategoryItem extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset(
               'assets/category/${category.icon}',
-              color: const Color(0xff373a36),
+              colorFilter:
+                  const ColorFilter.mode(Color(0xff373a36), BlendMode.srcIn),
               width: 30,
               height: 30,
             ),

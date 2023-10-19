@@ -15,13 +15,13 @@ class CategoryPicker extends StatelessWidget {
   final Function(CategoryEntity selected) onSelectedCategory;
 
   const CategoryPicker({
-    Key? key,
+    super.key,
     required this.title,
     required this.dialogTitle,
     required this.value,
     required this.categories,
     required this.onSelectedCategory,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

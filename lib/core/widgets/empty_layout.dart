@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class EmptyLayout extends StatelessWidget {
   final String message;
 
-  const EmptyLayout({
-    Key? key,
-    required this.message,
-  }) : super(key: key);
+  const EmptyLayout({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {

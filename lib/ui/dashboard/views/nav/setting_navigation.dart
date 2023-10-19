@@ -10,7 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingNavigation extends StatefulWidget {
-  const SettingNavigation({Key? key}) : super(key: key);
+  const SettingNavigation({super.key});
 
   @override
   State<SettingNavigation> createState() => _SettingNavigationState();

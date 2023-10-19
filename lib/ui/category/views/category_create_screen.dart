@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class CategoryCreateScreen extends StatefulWidget {
-  const CategoryCreateScreen({Key? key}) : super(key: key);
+  const CategoryCreateScreen({super.key});
 
   @override
   State<CategoryCreateScreen> createState() => _CategoryCreateScreenState();
@@ -116,7 +116,8 @@ class _CategoryCreateScreenState extends State<CategoryCreateScreen> {
                             padding: const EdgeInsets.all(9),
                             child: SvgPicture.asset(
                               'assets/category/${_controller.icon.value}',
-                              color: const Color(0xff373a36),
+                              colorFilter: const ColorFilter.mode(
+                                  Color(0xff373a36), BlendMode.srcIn),
                               width: 30,
                               height: 30,
                             ),

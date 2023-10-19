@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class SavingInsertScreen extends StatefulWidget {
-  const SavingInsertScreen({Key? key}) : super(key: key);
+  const SavingInsertScreen({super.key});
 
   @override
   State<SavingInsertScreen> createState() => _SavingInsertScreenState();

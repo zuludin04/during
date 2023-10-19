@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 class SavingSlider extends StatelessWidget {
   final HomeNavigationController controller = Get.find();
 
-  SavingSlider({Key? key}) : super(key: key);
+  SavingSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,8 @@ class SavingSlider extends StatelessWidget {
                     'assets/category/${saving.categoryIcon}',
                     width: 25,
                     height: 25,
-                    color: saving.color!.dynamicTextColor(),
+                    colorFilter: ColorFilter.mode(
+                        saving.color!.dynamicTextColor(), BlendMode.srcIn),
                   ),
                   const SizedBox(width: 5),
                   Text(

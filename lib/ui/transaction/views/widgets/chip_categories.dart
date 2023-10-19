@@ -12,13 +12,13 @@ class ChipCategories extends StatefulWidget {
   final Function(int id, String title, List<String> choices)? onSelected;
 
   const ChipCategories({
-    Key? key,
+    super.key,
     required this.title,
     required this.categories,
     required this.multiChoice,
     this.selected = 0,
     this.onSelected,
-  }) : super(key: key);
+  });
 
   @override
   State<ChipCategories> createState() => _ChipCategoriesState();

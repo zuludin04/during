@@ -8,10 +8,10 @@ class TransactionInfo extends StatelessWidget {
   final int expense;
 
   const TransactionInfo({
-    Key? key,
+    super.key,
     required this.income,
     required this.expense,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,8 @@ class TransactionInfo extends StatelessWidget {
                 type == 'daily_income'
                     ? 'assets/icon_income.svg'
                     : 'assets/icon_expense.svg',
-                color: Colors.white,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
             ),
             const SizedBox(width: 10),

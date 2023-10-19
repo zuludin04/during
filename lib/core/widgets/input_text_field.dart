@@ -19,7 +19,7 @@ class InputTextField extends StatelessWidget {
   final bool enableValidation;
 
   InputTextField({
-    Key? key,
+    super.key,
     required this.title,
     this.text = '',
     this.hint,
@@ -29,7 +29,7 @@ class InputTextField extends StatelessWidget {
     this.currencyFormat = false,
     this.enable = true,
     this.enableValidation = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -9,12 +9,12 @@ class FormFieldSpinner extends StatefulWidget {
   final String title;
 
   const FormFieldSpinner({
-    Key? key,
+    super.key,
     required this.items,
     required this.currentSelected,
     required this.onSelect,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   State<FormFieldSpinner> createState() => _FormFieldSpinnerState();

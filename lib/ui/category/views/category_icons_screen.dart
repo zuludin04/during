@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CategoryIconsScreen extends StatelessWidget {
-  const CategoryIconsScreen({Key? key}) : super(key: key);
+  const CategoryIconsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,8 @@ class CategoryIconsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: SvgPicture.asset(
           'assets/category/$path',
-          color: const Color(0xff373a36),
+          colorFilter:
+              const ColorFilter.mode(Color(0xff373a36), BlendMode.srcIn),
           width: 30,
           height: 30,
         ),

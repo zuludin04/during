@@ -11,7 +11,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class CategoryDashboardScreen extends StatefulWidget {
-  const CategoryDashboardScreen({Key? key}) : super(key: key);
+  const CategoryDashboardScreen({super.key});
 
   @override
   State<CategoryDashboardScreen> createState() =>

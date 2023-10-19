@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class CurrentTransaction extends StatelessWidget {
   final HomeNavigationController controller = Get.find();
 
-  CurrentTransaction({Key? key}) : super(key: key);
+  CurrentTransaction({super.key});
 
   @override
   Widget build(BuildContext context) {

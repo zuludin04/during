@@ -10,10 +10,10 @@ class DateDialog extends StatefulWidget {
   final DateTime currentDate;
 
   const DateDialog({
-    Key? key,
+    super.key,
     required this.selectedDate,
     required this.currentDate,
-  }) : super(key: key);
+  });
 
   @override
   State<DateDialog> createState() => _DateDialogState();

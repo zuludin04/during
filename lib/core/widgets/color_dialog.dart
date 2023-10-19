@@ -9,10 +9,10 @@ class ColorDialog extends StatefulWidget {
   final Color currentColor;
 
   const ColorDialog({
-    Key? key,
+    super.key,
     required this.selectedColor,
     this.currentColor = Colors.blue,
-  }) : super(key: key);
+  });
 
   @override
   State<ColorDialog> createState() => _ColorDialogState();
@@ -48,11 +48,11 @@ class _ColorDialogState extends State<ColorDialog> {
               borderRadius: 22,
               heading: Text(
                 'select_color'.tr,
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               subheading: Text(
                 'select_shade'.tr,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ).showPickerDialog(
               context,
