@@ -14,9 +14,6 @@ import 'package:during/ui/saving/bindings/saving_list_binding.dart';
 import 'package:during/ui/saving/views/saving_detail_screen.dart';
 import 'package:during/ui/saving/views/saving_insert_screen.dart';
 import 'package:during/ui/saving/views/saving_list_screen.dart';
-import 'package:during/ui/share/bindings/share_payment_binding.dart';
-import 'package:during/ui/share/views/share_generated_code_screen.dart';
-import 'package:during/ui/share/views/share_payment_screen.dart';
 import 'package:during/ui/transaction/bindings/transaction_create_binding.dart';
 import 'package:during/ui/transaction/bindings/transaction_detail_binding.dart';
 import 'package:during/ui/dashboard/bindings/transaction_filter_binding.dart';
@@ -66,15 +63,6 @@ class AppPages {
       name: RoutePath.savingDetail,
       page: () => const SavingDetailScreen(),
       binding: SavingDetailBinding(),
-    ),
-    GetPage(
-      name: RoutePath.sharePayment,
-      page: () => SharePaymentScreen(),
-      binding: SharePaymentBinding(),
-    ),
-    GetPage(
-      name: RoutePath.generatedCode,
-      page: () => const ShareGeneratedCodeScreen(),
     ),
     GetPage(
       name: RoutePath.language,
