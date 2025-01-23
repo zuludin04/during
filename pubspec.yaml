@@ -1,0 +1,57 @@
+name: during
+description: "Manage income and outcome"
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  get: ^4.6.5
+  sqflite: ^2.2.6
+  path: ^1.8.3
+  intl: ^0.20.1
+  flutter_svg: ^2.0.5
+  settings_ui: ^2.0.2
+  get_storage: ^2.1.1
+  url_launcher: ^6.1.10
+  share_plus: ^10.1.4
+  sliver_tools: ^0.2.12
+  grouped_list: ^6.0.0
+  fl_chart: ^0.70.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  mockito: ^5.4.0
+  build_runner: ^2.3.3
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/category/
+    - assets/navigation/
+
+  fonts:
+    - family: PlusJakarta
+      fonts:
+        - asset: fonts/PlusJakartaSans.ttf
+        - asset: fonts/PlusJakartaSans-w300.ttf
+          weight: 300
+        - asset: fonts/PlusJakartaSans-w500.ttf
+          weight: 500
+        - asset: fonts/PlusJakartaSans-w700.ttf
+          weight: 700
+        - asset: fonts/PlusJakartaSans-w900.ttf
+          weight: 900
