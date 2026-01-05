@@ -37,7 +37,7 @@ jobs:
           echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/key.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
-          echo "storeFile=keystore.jks" >> android/key.properties
+          echo "storeFile=during-keystore.jks" >> android/key.properties
 
       - name: Build APK
         run: flutter build apk -t lib/main_dev.dart --release
