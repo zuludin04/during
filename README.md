@@ -1,5 +1,7 @@
 # During
 
+[![Build During Pipeline](https://github.com/zuludin04/during/actions/workflows/main.yaml/badge.svg)](https://github.com/zuludin04/during/actions/workflows/main.yaml)
+
 During is money tracking application, that will track your daily expense.
 Not only that, you can save your saving account as well.
 In English During means "throughout the course" but actually it is an abbreviation for "Duit Kuring" a sundanese language for my money.
