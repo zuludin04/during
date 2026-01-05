@@ -17,9 +17,9 @@ In English During means "throughout the course" but actually it is an abbreviati
 
 ## Screenshot
 
-|![file](https://raw.githubusercontent.com/zuludin04/during/master/screenshot/during_sc_1.webp) | ![file](https://raw.githubusercontent.com/zuludin04/during/master/screenshot/during_sc_12.webp)|
+|<img src="https://raw.githubusercontent.com/zuludin04/zuludin04/main/images/ss/during/during1.png" alt="Sample Image" width="400"> | <img src="https://raw.githubusercontent.com/zuludin04/zuludin04/main/images/ss/during/during2.png" alt="Sample Image" width="400">|
 
-|![file](https://raw.githubusercontent.com/zuludin04/during/master/screenshot/during_sc_3.webp) | ![file](https://raw.githubusercontent.com/zuludin04/during/master/screenshot/during_sc_4.webp)|
+|<img src="https://raw.githubusercontent.com/zuludin04/zuludin04/main/images/ss/during/during3.png" alt="Sample Image" width="400"> | <img src="https://raw.githubusercontent.com/zuludin04/zuludin04/main/images/ss/during/during4.png" alt="Sample Image" width="400">|
 
 ## Future Implementation
 
